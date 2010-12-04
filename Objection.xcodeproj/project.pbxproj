@@ -34,6 +34,11 @@
 		4B15F24F12AA896900C3CD8E /* OCHamcrest.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */; };
 		4B25BCE61291B81F00821DC1 /* InjectionErrorsSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF451E21291AD28006EB2D5 /* InjectionErrorsSpecs.m */; };
 		4B25BD4B1291BBE700821DC1 /* InjectionErrorFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */; };
+		4B7300D812AA8F3400903427 /* InheritenceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritenceSpecs.m */; };
+		4B7300D912AA8F3400903427 /* InheritenceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritenceSpecs.m */; };
+		4BA6DD1F12AAB3CD00CFFD70 /* ObjectionEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */; };
+		4BA6DD2012AAB3CD00CFFD70 /* ObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; };
+		4BA6DD2112AAB3CD00CFFD70 /* ObjectionInstanceEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */; };
 		4BA9CFB212AA868400674F0E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA9CFB112AA868400674F0E /* main.m */; };
 		4BA9CFEA12AA86D300674F0E /* Cedar-iPhone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA9CFE912AA86D300674F0E /* Cedar-iPhone.framework */; };
 		4BA9CFEC12AA86D300674F0E /* OCHamcrest-iPhone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */; };
@@ -49,9 +54,9 @@
 		4BED512A12AA8BCC00CA6B36 /* ObjectionEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED511E12AA8BCC00CA6B36 /* ObjectionEntry.m */; };
 		4BED512B12AA8BCC00CA6B36 /* ObjectionInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED511F12AA8BCC00CA6B36 /* ObjectionInjector.m */; };
 		4BED512C12AA8BCC00CA6B36 /* ObjectionInstanceEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED512012AA8BCC00CA6B36 /* ObjectionInstanceEntry.m */; };
-		4BED513212AA8BF300CA6B36 /* ObjectionEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */; };
-		4BED513312AA8BF300CA6B36 /* ObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; };
-		4BED513412AA8BF300CA6B36 /* ObjectionInstanceEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */; };
+		4BED513212AA8BF300CA6B36 /* ObjectionEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4BED513312AA8BF300CA6B36 /* ObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4BED513412AA8BF300CA6B36 /* ObjectionInstanceEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BED513512AA8BF300CA6B36 /* ObjectionEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */; };
 		4BED513612AA8BF300CA6B36 /* ObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; };
 		4BED513712AA8BF300CA6B36 /* ObjectionInstanceEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */; };
@@ -79,6 +84,9 @@
 			dstPath = "${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal/${PRODUCT_NAME}.framework/Versions/Current/Headers";
 			dstSubfolderSpec = 0;
 			files = (
+				4BA6DD1F12AAB3CD00CFFD70 /* ObjectionEntry.h in Copy Header Files */,
+				4BA6DD2012AAB3CD00CFFD70 /* ObjectionInjector.h in Copy Header Files */,
+				4BA6DD2112AAB3CD00CFFD70 /* ObjectionInstanceEntry.h in Copy Header Files */,
 			);
 			name = "Copy Header Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +96,7 @@
 /* Begin PBXFileReference section */
 		4B25BD491291BBE700821DC1 /* InjectionErrorFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InjectionErrorFixtures.h; sourceTree = "<group>"; };
 		4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectionErrorFixtures.m; sourceTree = "<group>"; };
+		4B7300D712AA8F3400903427 /* InheritenceSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InheritenceSpecs.m; sourceTree = "<group>"; };
 		4BA9CFB112AA868400674F0E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BA9CFB312AA86A200674F0E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BA9CFE912AA86D300674F0E /* Cedar-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iPhone.framework"; path = "Vendor/Cedar-iPhone.framework"; sourceTree = "<group>"; };
@@ -240,6 +249,7 @@
 				4BF452461291AFEA006EB2D5 /* Helpers */,
 				4BF4516B129199AF006EB2D5 /* BasicUsageSpecs.m */,
 				4BF451E21291AD28006EB2D5 /* InjectionErrorsSpecs.m */,
+				4B7300D712AA8F3400903427 /* InheritenceSpecs.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -409,7 +419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator4.1 -target ${PROJECT_NAME}-StaticLib -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos4.1 -target ${PROJECT_NAME}-StaticLib -configuration ${CONFIGURATION} clean build";
+			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator4.2 -target ${PROJECT_NAME}-StaticLib -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos4.2 -target ${PROJECT_NAME}-StaticLib -configuration ${CONFIGURATION} clean build";
 		};
 		4B25BE511291C51E00821DC1 /* Build Universal Lib */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -440,6 +450,7 @@
 				4BED512112AA8BCC00CA6B36 /* ObjectionEntry.m in Sources */,
 				4BED512212AA8BCC00CA6B36 /* ObjectionInjector.m in Sources */,
 				4BED512312AA8BCC00CA6B36 /* ObjectionInstanceEntry.m in Sources */,
+				4B7300D812AA8F3400903427 /* InheritenceSpecs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +476,7 @@
 				4BED512712AA8BCC00CA6B36 /* ObjectionEntry.m in Sources */,
 				4BED512812AA8BCC00CA6B36 /* ObjectionInjector.m in Sources */,
 				4BED512912AA8BCC00CA6B36 /* ObjectionInstanceEntry.m in Sources */,
+				4B7300D912AA8F3400903427 /* InheritenceSpecs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

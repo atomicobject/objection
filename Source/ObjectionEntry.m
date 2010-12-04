@@ -51,8 +51,8 @@ static Class ParseClassFromProperty(objc_property_t property) {
 
 
 - (id)buildObject {
-	if([self.classEntry respondsToSelector:@selector(requires)]) {
-    NSArray *properties = [self.classEntry performSelector:@selector(requires)];
+	if([self.classEntry respondsToSelector:@selector(objectionRequires)]) {
+    NSArray *properties = [self.classEntry performSelector:@selector(objectionRequires)];
     NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
   	id objectUnderConstruction = [[self.classEntry alloc] init];
     

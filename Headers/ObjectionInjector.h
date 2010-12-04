@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "ObjectionEntry.h"
+#import <objc/objc.h>
 
 #define objection_register(value)			\
   + (void)initialize { \
@@ -16,8 +17,17 @@
   }
 
 #define objection_requires(args...) \
-	+ (NSArray *)requires { \
-		return [NSArray arrayWithObjects: args, nil]; \
+	+ (NSArray *)objectionRequires { \
+    NSArray *requirements = [NSArray arrayWithObjects: args, nil]; \
+    Class superClass = class_getSuperclass([self class]); \
+    if([superClass respondsToSelector:@selector(objectionRequires)]) { \
+      NSArray *parentsRequirements = [superClass performSelector:@selector(objectionRequires)]; \
+      NSMutableSet *dependencies = [NSMutableSet setWithCapacity:parentsRequirements.count]; \
+      [dependencies addObjectsFromArray:parentsRequirements]; \
+      [dependencies addObjectsFromArray:requirements]; \
+      requirements = [dependencies allObjects]; \
+    } \
+		return requirements; \
 	} \
 
 @interface ObjectionInjector : NSObject {
