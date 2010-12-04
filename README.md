@@ -12,37 +12,37 @@ A class can be registered with objection using the macros *objection_register* o
 
 #### Example
 
-    @class Engine, Brakes;
+      @class Engine, Brakes;
     
-    @interface Car : NSObject
-    {
-      Engine *engine;
-      Brakes *brakes;
-      BOOL awake;  
-    }
+      @interface Car : NSObject
+      {
+        Engine *engine;
+        Brakes *brakes;
+        BOOL awake;  
+      }
 
-    // Will be filled in by objection
-    @property(nonatomic, retain) Engine *engine;
-    // Will be filled in by objection
-    @property(nonatomic, retain) Brakes *brakes;
-    @property(nonatomic) BOOL awake;
+      // Will be filled in by objection
+      @property(nonatomic, retain) Engine *engine;
+      // Will be filled in by objection
+      @property(nonatomic, retain) Brakes *brakes;
+      @property(nonatomic) BOOL awake;
     
-    @implementation Car
-    objection_register(@"Car")
-    objection_requires(@"engine", @"brakes")
-    @synthesize engine, brakes, awake;
-    @end
+      @implementation Car
+      objection_register(@"Car")
+      objection_requires(@"engine", @"brakes")
+      @synthesize engine, brakes, awake;
+      @end
 
 ### Registering Objects
 
 Objection supports associating an object outside the context of Objection with a class.
 
 ### Example
-    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-      [ObjectionInjector 
-        registerObject:[UIApplication sharedApplication] 
-        forClass:[UIApplication class]];  
-    }
+      - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+        [ObjectionInjector 
+          registerObject:[UIApplication sharedApplication] 
+          forClass:[UIApplication class]];  
+      }
 
 ### Instance Creation Notification
 
@@ -50,20 +50,20 @@ If an object is interested in knowing when it has been fully instantiated by obj
 *awakeFromObjection*.
 
 #### Example
-    @implementation Car
-    //...
-    objection_register_singleton(@"Car")
-      - (void)awakeFromObjection {
-        awake = YES;
-      }
-    @end  
+      @implementation Car
+      //...
+      objection_register_singleton(@"Car")
+        - (void)awakeFromObjection {
+          awake = YES;
+        }
+      @end  
       
 
 ### Fetching Objects from Objection
 
-    - (void)someMethod {
-      id car = [ObjectionInjector getObject:[Car class]];
-    }
+      - (void)someMethod {
+        id car = [ObjectionInjector getObject:[Car class]];
+      }
 
 Installation
 =======
