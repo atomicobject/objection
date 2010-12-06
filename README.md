@@ -76,7 +76,7 @@ If an object is interested in knowing when it has been fully instantiated by obj
           @end
     
           - (void)forExample {
-            ObjectionContext context = [Objection getContext:aModule];
+            ObjectionInjector *context = [Objection createInjector:aModule];
             id object = [context getObject:[MyObject class]];
           }
 
