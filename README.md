@@ -65,6 +65,21 @@ If an object is interested in knowing when it has been fully instantiated by obj
         id car = [ObjectionInjector getObject:[Car class]];
       }
 
+### TODO
+
+* Migrate to using a module specific context rather than a shared global context (similar to Guice)
+
+          @implementation MyModule
+            - (void) configure {
+              [self bind:[UIApplication sharedApplication] toClass:[UIApplication class]];
+            }
+          @end
+    
+          - (void)forExample {
+            ObjectionContext context = [Objection getContext:aModule];
+            id object = [context getObject:[MyObject class]];
+          }
+
 Installation
 =======
 
