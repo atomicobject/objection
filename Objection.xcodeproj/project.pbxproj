@@ -80,7 +80,7 @@
 		};
 		4B25BE571291C58800821DC1 /* Copy Header Files */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal/${PRODUCT_NAME}.framework/Versions/Current/Headers";
 			dstSubfolderSpec = 0;
 			files = (

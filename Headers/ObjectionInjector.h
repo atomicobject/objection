@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "ObjectionEntry.h"
 #import <objc/objc.h>
+#import <objc/runtime.h>
 
 #define objection_register(value)			\
   + (void)initialize { \
