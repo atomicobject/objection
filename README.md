@@ -28,20 +28,51 @@ A class can be registered with objection using the macros *objection_register* o
       @property(nonatomic) BOOL awake;
     
       @implementation Car
-      objection_register(@"Car")
+      objection_register(Car)
       objection_requires(@"engine", @"brakes")
       @synthesize engine, brakes, awake;
       @end
 
-### Registering Objects
 
-Objection supports associating an object outside the context of Objection with a class.
+### Fetching Objects from Objection
+
+An object can be fetched from objection by creating an injector and then asking for an instance of particular class. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a *true* singleton.
+
+    - (void)someMethod {
+      ObjectionInjector *injector = [Objection createInjector];
+      id car = [injector getObject:[Car class]];
+    }
+
+A global injector can registered with Objection which can be used throughout your application or library.
+    
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+      ObjectionInjector *injector = [Objection createInjector];
+      [Objection setGlobalInjector:injector];
+    }
+    
+    - (void)viewDidLoad {
+      id myModel = [[Objection globalInjector] getObject:[MyModel class]];
+    }
+
+### Registering Instances
+
+Objection supports associating an object outside the context of Objection by configuring an ObjectionModule.
 
 ### Example
+      @interface MyAppModule : ObjectionModule {
+        
+      }
+      @end
+      
+      @implementation MyAppModule
+      - (void)configure {
+        [self bind:[UIApplication sharedApplication] toClass:[UIApplication class]];
+      }
+      
+      @end
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-        [ObjectionInjector 
-          registerObject:[UIApplication sharedApplication] 
-          forClass:[UIApplication class]];  
+        ObjectionInjector *injector = [Objection createInjector:[[[MyAppModule alloc] init] autorelease]];
+        [Objection setGlobalInjector:injector];
       }
 
 ### Instance Creation Notification
@@ -58,12 +89,6 @@ If an object is interested in knowing when it has been fully instantiated by obj
         }
       @end  
       
-
-### Fetching Objects from Objection
-
-      - (void)someMethod {
-        id car = [ObjectionInjector getObject:[Car class]];
-      }
 
 ### TODO
 
