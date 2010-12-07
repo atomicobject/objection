@@ -2,6 +2,7 @@
 
 #import "ObjectionModule.h"
 #import "ObjectionInjector.h"
+#import "ObjectionInstanceEntry.h"
 #import "ObjectionEntry.h"
 
 #import <objc/objc.h>
