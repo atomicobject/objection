@@ -13,7 +13,13 @@ static ObjectionInjector *gGlobalInjector;
 }
 
 + (ObjectionInjector *) createInjector {
-  return [[[ObjectionInjector alloc] initWithContext:gObjectionContext] autorelease];
+  pthread_mutex_lock(&gObjectionMutex);
+  @try {
+    return [[[ObjectionInjector alloc] initWithContext:gObjectionContext] autorelease];
+  }
+  @finally {
+    pthread_mutex_unlock(&gObjectionMutex); 
+  }
 }
 
 + (void)initialize {
@@ -29,6 +35,7 @@ static ObjectionInjector *gGlobalInjector;
 
 + (void) registerClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)lifeCycle {
   pthread_mutex_lock(&gObjectionMutex);
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   if (lifeCycle != ObjectionInstantiationRule_Singleton && lifeCycle != ObjectionInstantiationRule_Everytime) {
     @throw [NSException exceptionWithName:@"ObjectionInjectorException" reason:@"Invalid Instantiation Rule" userInfo:nil];
   }
@@ -36,6 +43,7 @@ static ObjectionInjector *gGlobalInjector;
   if (theClass && [gObjectionContext objectForKey:NSStringFromClass(theClass)] == nil) {
     [gObjectionContext setObject:[ObjectionEntry withClass:theClass lifeCycle:lifeCycle] forKey:NSStringFromClass(theClass)];
   } 
+  [pool drain];
   pthread_mutex_unlock(&gObjectionMutex);
 }
 

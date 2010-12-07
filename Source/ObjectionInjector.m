@@ -10,8 +10,8 @@
 @implementation ObjectionInjector
 - (id)initWithContext:(NSDictionary *)initialContext {
   if ((self = [super init])) {
-    _context = [[NSMutableDictionary alloc] initWithDictionary:initialContext copyItems:YES];
-    [self configureContext];
+    _globalContext = [initialContext retain];
+    _context = [[NSMutableDictionary alloc] init];
   }
   
   return self;
@@ -19,25 +19,28 @@
 
 - (id)getObject:(Class)theClass {
   NSString *key = NSStringFromClass(theClass);
-  ObjectionEntry *entry = [_context objectForKey:key];
-  if (theClass && entry) {
-    return [entry extractObject];
+  ObjectionEntry *injectorEntry = [_context objectForKey:key];
+  
+  if (!injectorEntry) {
+    ObjectionEntry *entry = [_globalContext objectForKey:key];
+    if (entry) {
+      injectorEntry = [entry copy];
+      injectorEntry.injector = self;
+      [_context setObject:injectorEntry forKey:key];      
+    }
+  }
+  
+  if (theClass && injectorEntry) {
+    return [injectorEntry extractObject];
   } 
+  
   return nil;
 }
 
 - (void)dealloc {
-  [_context release]; _context = nil;
+  [_globalContext release]; _globalContext = nil;
+  [_context release]; _context = nil;  
   [super dealloc];
 }
 
-#pragma mark Private
-#pragma mark -
-
-- (void)configureContext {
-  for (NSString *key in _context) {
-    ObjectionEntry *entry = [_context objectForKey:key];
-    entry.injector = self;
-  }
-}
 @end

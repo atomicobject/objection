@@ -1,34 +1,12 @@
 #import "ObjectionEntry.h"
+#import "Objection.h"
+
 #import <objc/runtime.h>
-
-static Class ParseClassFromProperty(objc_property_t property) {
-  NSString *attributes = [NSString stringWithCString: property_getAttributes(property) encoding: NSASCIIStringEncoding];  
-  NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
-
-  NSRange startRange = [attributes rangeOfString:@"T@\""];
-  if (startRange.location == NSNotFound) {
-    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'", propertyName] userInfo:nil];
-  }
-  
-  NSString *startOfClassName = [attributes substringFromIndex:startRange.length];
-  NSRange endRange = [startOfClassName rangeOfString:@"\""];
-  
-  if (endRange.location == NSNotFound) {
-    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'", propertyName] userInfo:nil];        
-  }
-  
-  NSString *className = [startOfClassName substringToIndex:endRange.location];
-  Class theClass = NSClassFromString(className);
-  
-  if(!theClass) {
-    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", className, propertyName] userInfo:nil];            
-  }
-  
-  return theClass;  
-}
 
 @interface ObjectionEntry (Private)
 - (void) notifyObjectThatItIsReady: (id)object;
+- (Class) parseClassFromProperty:(objc_property_t)property;
+- (id) buildObject;
 @end
 
 
@@ -48,43 +26,6 @@ static Class ParseClassFromProperty(objc_property_t property) {
   }
   
   return self;
-}
-
-- (id)buildObject {
-	if([self.classEntry respondsToSelector:@selector(objectionRequires)]) {
-    NSArray *properties = [self.classEntry performSelector:@selector(objectionRequires)];
-    NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
-  	id objectUnderConstruction = [[self.classEntry alloc] init];
-    
-    for (NSString *propertyName in properties) {
-      objc_property_t property = class_getProperty(self.classEntry, (const char *)[propertyName UTF8String]);
-      if (property == NULL) {
-        @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to find property declaration: '%@'", propertyName] userInfo:nil];
-      }
-      
-      Class desiredClass = ParseClassFromProperty(property);
-      id theObject = [_injector performSelector:@selector(getObject:) withObject:desiredClass];
-      
-      // Insantiate it using a default constructor
-      if(!theObject) {
-        theObject = [[[desiredClass alloc] init] autorelease];
-      }
-      
-      [propertiesDictionary setObject:theObject forKey:propertyName];      
-    }
-    
-    [objectUnderConstruction setValuesForKeysWithDictionary:propertiesDictionary];
-    
-    [self notifyObjectThatItIsReady: objectUnderConstruction];
-
-    
-    return objectUnderConstruction;
-  } else {
-    id object = [[[self.classEntry alloc] init] autorelease];
-    [self notifyObjectThatItIsReady: object];
-    return object;
-  }
-  
 }
 
 - (id) extractObject {
@@ -118,6 +59,42 @@ static Class ParseClassFromProperty(objc_property_t property) {
   }
 }
 
+- (id)buildObject {
+	if([self.classEntry respondsToSelector:@selector(objectionRequires)]) {
+    NSArray *properties = [self.classEntry performSelector:@selector(objectionRequires)];
+    NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
+  	id objectUnderConstruction = [[self.classEntry alloc] init];
+    
+    for (NSString *propertyName in properties) {
+      objc_property_t property = class_getProperty(self.classEntry, (const char *)[propertyName UTF8String]);
+      if (property == NULL) {
+        @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to find property declaration: '%@'", propertyName] userInfo:nil];
+      }
+      
+      Class desiredClass = [self parseClassFromProperty:property];
+      id theObject = [_injector getObject:desiredClass];
+      
+      if(!theObject) {
+        [Objection registerClass:desiredClass lifeCycle: ObjectionInstantiationRule_Everytime];
+        theObject = [_injector getObject:desiredClass];
+      }
+      
+      [propertiesDictionary setObject:theObject forKey:propertyName];      
+    }
+    
+    [objectUnderConstruction setValuesForKeysWithDictionary:propertiesDictionary];
+    
+    [self notifyObjectThatItIsReady: objectUnderConstruction];
+    
+    return objectUnderConstruction;
+  } else {
+    id object = [[[self.classEntry alloc] init] autorelease];
+    [self notifyObjectThatItIsReady: object];
+    return object;
+  }
+  
+}
+
 #pragma mark Class Methods
 #pragma mark -
 
@@ -125,4 +102,31 @@ static Class ParseClassFromProperty(objc_property_t property) {
   return [[[ObjectionEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle] autorelease];
 }
 
+#pragma mark Private Methods
+
+- (Class)parseClassFromProperty:(objc_property_t)property {
+  NSString *attributes = [NSString stringWithCString: property_getAttributes(property) encoding: NSASCIIStringEncoding];  
+  NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
+  
+  NSRange startRange = [attributes rangeOfString:@"T@\""];
+  if (startRange.location == NSNotFound) {
+    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'", propertyName] userInfo:nil];
+  }
+  
+  NSString *startOfClassName = [attributes substringFromIndex:startRange.length];
+  NSRange endRange = [startOfClassName rangeOfString:@"\""];
+  
+  if (endRange.location == NSNotFound) {
+    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'", propertyName] userInfo:nil];        
+  }
+  
+  NSString *className = [startOfClassName substringToIndex:endRange.location];
+  Class theClass = NSClassFromString(className);
+  
+  if(!theClass) {
+    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", className, propertyName] userInfo:nil];            
+  }
+  
+  return theClass;    
+}
 @end

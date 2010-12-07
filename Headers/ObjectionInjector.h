@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ObjectionInjector : NSObject {
+  NSDictionary *_globalContext;
   NSMutableDictionary *_context;
 }
 

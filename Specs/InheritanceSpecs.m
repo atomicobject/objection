@@ -9,7 +9,7 @@
 @end
 
 @implementation Person
-objection_register(@"Person")
+objection_register(Person)
 objection_requires(@"attributes")
 @synthesize attributes=_attributes;
 @end
@@ -22,7 +22,7 @@ objection_requires(@"attributes")
 @end
 
 @implementation Programmer
-objection_register(@"Programmer")
+objection_register(Programmer)
 objection_requires(@"favoriteLanguages")
 @synthesize favoriteLanguages=_favoriteLanguages;
 
@@ -38,7 +38,7 @@ objection_requires(@"favoriteLanguages")
 @end
 
 @implementation NoInheritance
-objection_register(@"NoInheritence")
+objection_register(NoInheritance)
 objection_requires(@"something")
 
 @synthesize something=_something;
@@ -47,19 +47,19 @@ objection_requires(@"something")
 
 
 SPEC_BEGIN(InheritanceSpecs)
-//  beforeEach(^{
-//    ObjectionInjector *injector = [Objection createInjector];
-//    [Objection setGlobalInjector:injector];
-//  });
-//
-//  it(@"coalesces dependencies from parent to child", ^{
-//    Programmer *programmer = [[Objection globalInjector] getObject:[Programmer class]];
-//    assertThat(programmer.attributes, is(notNilValue()));
-//    assertThat(programmer.favoriteLanguages, is(notNilValue()));
-//  });
-//
-//  it(@"does not throw a fit if the base class does not implement super", ^{
-//    NoInheritance *noParentObjectWithRequires = [[Objection globalInjector] getObject:[NoInheritance class]];
-//    assertThat(noParentObjectWithRequires.something, is(notNilValue()));
-//  });
+  beforeEach(^{
+    ObjectionInjector *injector = [Objection createInjector];
+    [Objection setGlobalInjector:injector];
+  });
+
+  it(@"coalesces dependencies from parent to child", ^{
+    Programmer *programmer = [[Objection globalInjector] getObject:[Programmer class]];
+    assertThat(programmer.attributes, is(notNilValue()));
+    assertThat(programmer.favoriteLanguages, is(notNilValue()));
+  });
+
+  it(@"does not throw a fit if the base class does not implement super", ^{
+    NoInheritance *noParentObjectWithRequires = [[Objection globalInjector] getObject:[NoInheritance class]];
+    assertThat(noParentObjectWithRequires.something, is(notNilValue()));
+  });
 SPEC_END

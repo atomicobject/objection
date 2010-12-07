@@ -7,15 +7,15 @@
 
 #define objection_register(value)			\
   + (void)initialize { \
-    if (self == NSClassFromString(value)) { \
-      [Objection registerClass:NSClassFromString(value) lifeCycle: ObjectionInstantiationRule_Everytime]; \
+    if (self == [value class]) { \
+      [Objection registerClass:[value class] lifeCycle: ObjectionInstantiationRule_Everytime]; \
     } \
   }
 
 #define objection_register_singleton(value) \
   + (void)initialize { \
-      if (self == NSClassFromString(value)) { \
-        [Objection registerClass:NSClassFromString(value) lifeCycle: ObjectionInstantiationRule_Singleton]; \
+      if (self == [value class]) { \
+        [Objection registerClass:[value class] lifeCycle: ObjectionInstantiationRule_Singleton]; \
       } \
     }
 

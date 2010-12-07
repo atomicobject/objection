@@ -2,7 +2,7 @@
 #import "Objection.h"
 
 @implementation Engine
-objection_register(@"Engine")
+objection_register(Engine)
 @synthesize awake;
 
 - (void) awakeFromObjection {
@@ -16,7 +16,7 @@ objection_register(@"Engine")
 
 
 @implementation Car
-objection_register(@"Car")
+objection_register(Car)
 
 @synthesize engine, brakes, awake;
 
@@ -28,5 +28,5 @@ objection_requires(@"engine", @"brakes")
 @end
 
 @implementation CarFactory
-objection_register_singleton(@"CarFactory")
+objection_register_singleton(CarFactory)
 @end

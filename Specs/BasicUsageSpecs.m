@@ -48,6 +48,12 @@ it(@"will return the same instance if it is registered as a singleton", ^{
   assertThat(carFactory1, is(sameInstance(carFactory2)));
 });
 
+it(@"will not return the same instance per injector if object is a singleton", ^{
+  id carFactory1 = [[Objection globalInjector] getObject:[CarFactory class]];
+  id carFactory2 = [[Objection createInjector] getObject:[CarFactory class]];
+  assertThat(carFactory1, isNot(sameInstance(carFactory2)));
+});
+
 it(@"returns nil if the class is nil", ^{
   assertThat([[Objection globalInjector] getObject:nil], is(nilValue()));
 });
