@@ -34,8 +34,20 @@
 		4B15F24F12AA896900C3CD8E /* OCHamcrest.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */; };
 		4B25BCE61291B81F00821DC1 /* InjectionErrorsSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF451E21291AD28006EB2D5 /* InjectionErrorsSpecs.m */; };
 		4B25BD4B1291BBE700821DC1 /* InjectionErrorFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */; };
-		4B7300D812AA8F3400903427 /* InheritenceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritenceSpecs.m */; };
-		4B7300D912AA8F3400903427 /* InheritenceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritenceSpecs.m */; };
+		4B7300D812AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
+		4B7300D912AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
+		4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; };
+		4B957EC412ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; };
+		4B957EC612ADE03900CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
+		4B957EC712ADE03900CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
+		4B957EC812ADE05D00CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
+		4B957EC912ADE06600CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
+		4B957ECC12ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
+		4B957ECE12ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
+		4B957ECF12ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
+		4B957ED112ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
+		4B957EE712ADE26500CBF1EB /* Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; };
+		4B957EE812ADE26500CBF1EB /* Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; };
 		4BA6DD1F12AAB3CD00CFFD70 /* ObjectionEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */; };
 		4BA6DD2012AAB3CD00CFFD70 /* ObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; };
 		4BA6DD2112AAB3CD00CFFD70 /* ObjectionInstanceEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */; };
@@ -96,14 +108,18 @@
 /* Begin PBXFileReference section */
 		4B25BD491291BBE700821DC1 /* InjectionErrorFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InjectionErrorFixtures.h; sourceTree = "<group>"; };
 		4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectionErrorFixtures.m; sourceTree = "<group>"; };
-		4B7300D712AA8F3400903427 /* InheritenceSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InheritenceSpecs.m; sourceTree = "<group>"; };
+		4B7300D712AA8F3400903427 /* InheritanceSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InheritanceSpecs.m; sourceTree = "<group>"; };
+		4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectionModule.h; sourceTree = "<group>"; };
+		4B957EC512ADE03900CBF1EB /* ObjectionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionModule.m; sourceTree = "<group>"; };
+		4B957ECB12ADE0B900CBF1EB /* Objection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Objection.m; sourceTree = "<group>"; };
+		4B957EE612ADE26500CBF1EB /* Objection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Objection.h; sourceTree = "<group>"; };
 		4BA9CFB112AA868400674F0E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BA9CFB312AA86A200674F0E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BA9CFE912AA86D300674F0E /* Cedar-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iPhone.framework"; path = "Vendor/Cedar-iPhone.framework"; sourceTree = "<group>"; };
 		4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
 		4BA9CFF212AA86E600674F0E /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Vendor/Cedar.framework; sourceTree = "<group>"; };
 		4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = Vendor/OCHamcrest.framework; sourceTree = "<group>"; };
-		4BED511612AA8B7A00CA6B36 /* Objection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Objection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BED511612AA8B7A00CA6B36 /* Objection */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = Objection; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED511712AA8B7A00CA6B36 /* Objection-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Objection-Info.plist"; sourceTree = "<group>"; };
 		4BED511E12AA8BCC00CA6B36 /* ObjectionEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionEntry.m; sourceTree = "<group>"; };
 		4BED511F12AA8BCC00CA6B36 /* ObjectionInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionInjector.m; sourceTree = "<group>"; };
@@ -165,7 +181,7 @@
 			children = (
 				D2AAC07E0554694100DB518D /* libObjection-StaticLib.a */,
 				4BF4512812919817006EB2D5 /* UISpecs.app */,
-				4BED511612AA8B7A00CA6B36 /* Objection.framework */,
+				4BED511612AA8B7A00CA6B36 /* Objection */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,6 +219,8 @@
 				4BED511E12AA8BCC00CA6B36 /* ObjectionEntry.m */,
 				4BED511F12AA8BCC00CA6B36 /* ObjectionInjector.m */,
 				4BED512012AA8BCC00CA6B36 /* ObjectionInstanceEntry.m */,
+				4B957EC512ADE03900CBF1EB /* ObjectionModule.m */,
+				4B957ECB12ADE0B900CBF1EB /* Objection.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -234,9 +252,11 @@
 		4BED512E12AA8BD600CA6B36 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				4B957EE612ADE26500CBF1EB /* Objection.h */,
 				4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */,
 				4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */,
 				4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */,
+				4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -249,7 +269,7 @@
 				4BF452461291AFEA006EB2D5 /* Helpers */,
 				4BF4516B129199AF006EB2D5 /* BasicUsageSpecs.m */,
 				4BF451E21291AD28006EB2D5 /* InjectionErrorsSpecs.m */,
-				4B7300D712AA8F3400903427 /* InheritenceSpecs.m */,
+				4B7300D712AA8F3400903427 /* InheritanceSpecs.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -276,6 +296,8 @@
 				4BED513212AA8BF300CA6B36 /* ObjectionEntry.h in Headers */,
 				4BED513312AA8BF300CA6B36 /* ObjectionInjector.h in Headers */,
 				4BED513412AA8BF300CA6B36 /* ObjectionInstanceEntry.h in Headers */,
+				4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */,
+				4B957EE712ADE26500CBF1EB /* Objection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +308,8 @@
 				4BED513512AA8BF300CA6B36 /* ObjectionEntry.h in Headers */,
 				4BED513612AA8BF300CA6B36 /* ObjectionInjector.h in Headers */,
 				4BED513712AA8BF300CA6B36 /* ObjectionInstanceEntry.h in Headers */,
+				4B957EC412ADDFC500CBF1EB /* ObjectionModule.h in Headers */,
+				4B957EE812ADE26500CBF1EB /* Objection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +347,7 @@
 			);
 			name = Objection;
 			productName = Objection;
-			productReference = 4BED511612AA8B7A00CA6B36 /* Objection.framework */;
+			productReference = 4BED511612AA8B7A00CA6B36 /* Objection */;
 			productType = "com.apple.product-type.framework";
 		};
 		4BF4512712919817006EB2D5 /* UISpecs */ = {
@@ -450,7 +474,9 @@
 				4BED512112AA8BCC00CA6B36 /* ObjectionEntry.m in Sources */,
 				4BED512212AA8BCC00CA6B36 /* ObjectionInjector.m in Sources */,
 				4BED512312AA8BCC00CA6B36 /* ObjectionInstanceEntry.m in Sources */,
-				4B7300D812AA8F3400903427 /* InheritenceSpecs.m in Sources */,
+				4B7300D812AA8F3400903427 /* InheritanceSpecs.m in Sources */,
+				4B957EC912ADE06600CBF1EB /* ObjectionModule.m in Sources */,
+				4B957ECF12ADE0B900CBF1EB /* Objection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +487,8 @@
 				4BED512412AA8BCC00CA6B36 /* ObjectionEntry.m in Sources */,
 				4BED512512AA8BCC00CA6B36 /* ObjectionInjector.m in Sources */,
 				4BED512612AA8BCC00CA6B36 /* ObjectionInstanceEntry.m in Sources */,
+				4B957EC712ADE03900CBF1EB /* ObjectionModule.m in Sources */,
+				4B957ECE12ADE0B900CBF1EB /* Objection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +504,9 @@
 				4BED512712AA8BCC00CA6B36 /* ObjectionEntry.m in Sources */,
 				4BED512812AA8BCC00CA6B36 /* ObjectionInjector.m in Sources */,
 				4BED512912AA8BCC00CA6B36 /* ObjectionInstanceEntry.m in Sources */,
-				4B7300D912AA8F3400903427 /* InheritenceSpecs.m in Sources */,
+				4B7300D912AA8F3400903427 /* InheritanceSpecs.m in Sources */,
+				4B957EC612ADE03900CBF1EB /* ObjectionModule.m in Sources */,
+				4B957ECC12ADE0B900CBF1EB /* Objection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +517,8 @@
 				4BED512A12AA8BCC00CA6B36 /* ObjectionEntry.m in Sources */,
 				4BED512B12AA8BCC00CA6B36 /* ObjectionInjector.m in Sources */,
 				4BED512C12AA8BCC00CA6B36 /* ObjectionInstanceEntry.m in Sources */,
+				4B957EC812ADE05D00CBF1EB /* ObjectionModule.m in Sources */,
+				4B957ED112ADE0B900CBF1EB /* Objection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #import <OCHamcrest/OCHamcrest.h>
 #endif
 
-#import "ObjectionInjector.h"
+#import "Objection.h"
 
 #define AddToContext(key, value) [[SpecHelper specHelper].sharedExampleContext setObject:value forKey:key]
 #define GetFromContext(key) [[SpecHelper specHelper].sharedExampleContext objectForKey:key]

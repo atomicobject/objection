@@ -1,5 +1,5 @@
 #import "Fixtures.h"
-#import "ObjectionInjector.h"
+#import "Objection.h"
 
 @implementation Engine
 objection_register(@"Engine")

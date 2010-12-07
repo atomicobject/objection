@@ -33,22 +33,22 @@ static Class ParseClassFromProperty(objc_property_t property) {
 
 
 @implementation ObjectionEntry
-@synthesize lifeCycle=_lifeCycle, classEntry=_classEntry;
+@synthesize lifeCycle=_lifeCycle; 
+@synthesize classEntry=_classEntry;
+@synthesize injector=_injector;
 
 #pragma mark Instance Methods
 #pragma mark -
 
-- (id)initWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle andContext:(id)theContext {
+- (id)initWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle {
   if (self = [super init]) {
     _lifeCycle = theLifeCycle;
     _classEntry = theClass;
     _storageCache = nil;
-    _context = [theContext retain];
   }
   
   return self;
 }
-
 
 - (id)buildObject {
 	if([self.classEntry respondsToSelector:@selector(objectionRequires)]) {
@@ -63,11 +63,11 @@ static Class ParseClassFromProperty(objc_property_t property) {
       }
       
       Class desiredClass = ParseClassFromProperty(property);
-      id theObject = [_context performSelector:@selector(getObject:) withObject:desiredClass];
+      id theObject = [_injector performSelector:@selector(getObject:) withObject:desiredClass];
       
+      // Insantiate it using a default constructor
       if(!theObject) {
-        [_context performSelector:@selector(registerClass:lifeCycle:) withObject:desiredClass withObject:ObjectionInstantiationRule_Everytime];
-        theObject = [_context performSelector:@selector(getObject:) withObject:desiredClass];
+        theObject = [[[desiredClass alloc] init] autorelease];
       }
       
       [propertiesDictionary setObject:theObject forKey:propertyName];      
@@ -98,9 +98,15 @@ static Class ParseClassFromProperty(objc_property_t property) {
 }
 
 - (void)dealloc {
-  [_context release]; _context = nil;
   [_storageCache release]; _storageCache = nil;
   [super dealloc];
+}
+
+#pragma mark NSCopying
+#pragma mark -
+
+- (id)copyWithZone:(NSZone *)zone {
+  return [[ObjectionEntry alloc] initWithClass:self.classEntry lifeCycle:self.lifeCycle];
 }
 
 #pragma mark Private Methods
@@ -115,8 +121,8 @@ static Class ParseClassFromProperty(objc_property_t property) {
 #pragma mark Class Methods
 #pragma mark -
 
-+ (id)withClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle andContext:(id)theContext {
-  return [[[ObjectionEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle andContext:theContext] autorelease];
++ (id)withClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle {
+  return [[[ObjectionEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle] autorelease];
 }
 
 @end
