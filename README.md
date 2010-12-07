@@ -106,7 +106,7 @@ Installation
 5. Build
 
 #### Include framework
-    #import <Objection-iPhone/ObjectionInjector.h>
+    #import <Objection-iPhone/Objection.h>
 
 ### MacOS X
 
@@ -117,7 +117,7 @@ Installation
 5. Build
 
 #### Include framework
-    #import <Objection/ObjectionInjector.h>
+    #import <Objection/Objection.h>
 
 Requirements
 ============

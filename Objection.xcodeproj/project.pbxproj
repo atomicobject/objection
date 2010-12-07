@@ -51,6 +51,8 @@
 		4B95819712AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
 		4B95819912AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
 		4B95819A12AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
+		4B9582C212AE753800CBF1EB /* Objection.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; };
+		4B9582C312AE755000CBF1EB /* ObjectionModule.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; };
 		4BA6DD1F12AAB3CD00CFFD70 /* ObjectionEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */; };
 		4BA6DD2012AAB3CD00CFFD70 /* ObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; };
 		4BA6DD2112AAB3CD00CFFD70 /* ObjectionInstanceEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */; };
@@ -99,6 +101,8 @@
 			dstPath = "${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal/${PRODUCT_NAME}.framework/Versions/Current/Headers";
 			dstSubfolderSpec = 0;
 			files = (
+				4B9582C312AE755000CBF1EB /* ObjectionModule.h in Copy Header Files */,
+				4B9582C212AE753800CBF1EB /* Objection.h in Copy Header Files */,
 				4BA6DD1F12AAB3CD00CFFD70 /* ObjectionEntry.h in Copy Header Files */,
 				4BA6DD2012AAB3CD00CFFD70 /* ObjectionInjector.h in Copy Header Files */,
 				4BA6DD2112AAB3CD00CFFD70 /* ObjectionInstanceEntry.h in Copy Header Files */,
