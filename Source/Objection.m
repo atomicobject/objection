@@ -60,21 +60,17 @@ static ObjectionInjector *gGlobalInjector;
 }
 
 + (void)setGlobalInjector:(ObjectionInjector *)anInjector {
-  pthread_mutex_lock(&gObjectionMutex);
   if (gGlobalInjector != anInjector) {
     [gGlobalInjector release];
     gGlobalInjector = [anInjector retain];
   }
-  pthread_mutex_unlock(&gObjectionMutex);
 }
 
 + (ObjectionInjector *) globalInjector {
-  pthread_mutex_lock(&gObjectionMutex);
   @try {
     return gGlobalInjector;
   }
   @finally {
-    pthread_mutex_unlock(&gObjectionMutex);
   }  
 }
 @end
