@@ -30,3 +30,10 @@ objection_requires(@"engine", @"brakes")
 @implementation CarFactory
 objection_register_singleton(CarFactory)
 @end
+
+@implementation CarManufacturer
+@synthesize factory;
+objection_register(CarManufacturer)
+objection_requires(@"factory")
+@end
+

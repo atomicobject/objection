@@ -57,3 +57,11 @@ task :uispecs => :build_uispecs do
 
   system_or_exit(%Q[#{File.join(build_dir("-iphonesimulator"), "#{UI_SPECS_TARGET_NAME}.app", UI_SPECS_TARGET_NAME)} -RegisterForSystemEvents]);
 end
+
+desc "Run the Clang static analyzer against the codebase"
+task :clang do
+  raise 'No "scan-build" found, you need Clang: http://clang-analyzer.llvm.org' unless
+    File.exist?(`which scan-build`.strip)
+  system "xcodebuild -configuration Debug -sdk iphonesimulator4.2 -target Objection-StaticLib clean"
+  sh "scan-build -k -V xcodebuild -configuration Debug -sdk iphonesimulator4.2 -target Objection-StaticLib"
+end

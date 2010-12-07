@@ -9,7 +9,13 @@ static ObjectionInjector *gGlobalInjector;
 @implementation Objection
 
 + (ObjectionInjector *) createInjector:(ObjectionModule *)aModule {
-  return nil;
+  pthread_mutex_lock(&gObjectionMutex);
+  @try {
+    return [[[ObjectionInjector alloc] initWithContext:gObjectionContext andModule:aModule] autorelease];
+  }
+  @finally {
+    pthread_mutex_unlock(&gObjectionMutex); 
+  }
 }
 
 + (ObjectionInjector *) createInjector {

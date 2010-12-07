@@ -32,7 +32,7 @@
   if (self.lifeCycle == ObjectionInstantiationRule_Everytime) {
   	return [self buildObject];  
   } else if (!_storageCache) {
-    _storageCache = [self buildObject];
+    _storageCache = [[self buildObject] retain];
   }
   
   return _storageCache;

@@ -43,9 +43,11 @@ it(@"defaults to returning a new instance", ^{
 it(@"will return the same instance if it is registered as a singleton", ^{
   id carFactory1 = [[Objection globalInjector] getObject:[CarFactory class]];
   id carFactory2 = [[Objection globalInjector] getObject:[CarFactory class]];
+  id carManufacturer = [[Objection globalInjector] getObject:[CarManufacturer class]];
   
   assertThat(carFactory1, isNot(nilValue()));
   assertThat(carFactory1, is(sameInstance(carFactory2)));
+  assertThat([carManufacturer factory], is(sameInstance(carFactory2)));
 });
 
 it(@"will not return the same instance per injector if object is a singleton", ^{
@@ -60,12 +62,6 @@ it(@"returns nil if the class is nil", ^{
 
 it(@"doesn't blow up if a nil class is passed into register", ^{
   [Objection registerClass:nil lifeCycle:ObjectionInstantiationRule_Singleton];
-});
-
-it(@"can register an existing instance with a class", ^{
-  fail(@"fix me");
-//  [ObjectionInjector registerObject:@"my string" forClass:[NSString class]];
-//  assertThat([ObjectionInjector getObject:[NSString class]], is(@"my string"));
 });
 
 it(@"calls awakeFromObjection when object has constructed", ^{

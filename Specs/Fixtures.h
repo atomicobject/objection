@@ -35,3 +35,12 @@
 }
 
 @end
+
+@interface CarManufacturer : NSObject
+{
+  CarFactory *factory;
+}
+
+@property(nonatomic, retain) CarFactory *factory;
+@end
+
