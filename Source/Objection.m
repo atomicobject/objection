@@ -65,6 +65,7 @@ static ObjectionInjector *gGlobalInjector;
     [gGlobalInjector release];
     gGlobalInjector = [anInjector retain];
   }
+  pthread_mutex_unlock(&gObjectionMutex);
 }
 
 + (ObjectionInjector *) globalInjector {
