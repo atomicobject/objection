@@ -37,7 +37,6 @@
 		4B7300D812AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
 		4B7300D912AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
 		4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; };
-		4B957EC412ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; };
 		4B957EC612ADE03900CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
 		4B957EC712ADE03900CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
 		4B957EC812ADE05D00CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
@@ -47,7 +46,6 @@
 		4B957ECF12ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
 		4B957ED112ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
 		4B957EE712ADE26500CBF1EB /* Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; };
-		4B957EE812ADE26500CBF1EB /* Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; };
 		4B95819712AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
 		4B95819912AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
 		4B95819A12AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
@@ -74,9 +72,6 @@
 		4BED513212AA8BF300CA6B36 /* ObjectionEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BED513312AA8BF300CA6B36 /* ObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BED513412AA8BF300CA6B36 /* ObjectionInstanceEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4BED513512AA8BF300CA6B36 /* ObjectionEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionEntry.h */; };
-		4BED513612AA8BF300CA6B36 /* ObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; };
-		4BED513712AA8BF300CA6B36 /* ObjectionInstanceEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */; };
 		4BF451401291986A006EB2D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		4BF4516C129199AF006EB2D5 /* BasicUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4516B129199AF006EB2D5 /* BasicUsageSpecs.m */; };
 		4BF451AD12919CAD006EB2D5 /* Fixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF451AC12919CAD006EB2D5 /* Fixtures.m */; };
@@ -98,7 +93,7 @@
 		4B25BE571291C58800821DC1 /* Copy Header Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = "${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal/${PRODUCT_NAME}.framework/Versions/Current/Headers";
+			dstPath = "${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal/${PRODUCT_NAME}.framework/Versions/A/Headers/";
 			dstSubfolderSpec = 0;
 			files = (
 				4B9582C312AE755000CBF1EB /* ObjectionModule.h in Copy Header Files */,
@@ -314,11 +309,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BED513512AA8BF300CA6B36 /* ObjectionEntry.h in Headers */,
-				4BED513612AA8BF300CA6B36 /* ObjectionInjector.h in Headers */,
-				4BED513712AA8BF300CA6B36 /* ObjectionInstanceEntry.h in Headers */,
-				4B957EC412ADDFC500CBF1EB /* ObjectionModule.h in Headers */,
-				4B957EE812ADE26500CBF1EB /* Objection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +446,7 @@
 		};
 		4B25BE511291C51E00821DC1 /* Build Universal Lib */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -464,7 +454,7 @@
 			name = "Build Universal Lib";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "SIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}-StaticLib.a\" &&\n\tDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}-StaticLib.a\" &&\n\tUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\n\tUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}\" &&\n\tFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\n\trm -rf \"${FRAMEWORK}\" &&\n\tmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\tmkdir -p \"${FRAMEWORK}/Versions/A/Headers\" &&\n\tmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary from desktop, device, and simulator builds.\n\tlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Move files to appropriate locations in framework paths.\n\tcp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A\" &&\n\tln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\n\tln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\n\tln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\n\tln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\"\n";
 		};
