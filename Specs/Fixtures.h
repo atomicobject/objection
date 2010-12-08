@@ -36,11 +36,19 @@
 
 @end
 
-@interface CarManufacturer : NSObject
+@interface SingletonItem : NSObject
 {
-  CarFactory *factory;
+  
 }
 
-@property(nonatomic, retain) CarFactory *factory;
+@end
+
+
+@interface SingletonItemHolder : NSObject
+{
+  SingletonItem *singletonItem;
+}
+
+@property(nonatomic, retain) SingletonItem *singletonItem;
 @end
 

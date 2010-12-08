@@ -31,9 +31,15 @@ objection_requires(@"engine", @"brakes")
 objection_register_singleton(CarFactory)
 @end
 
-@implementation CarManufacturer
-@synthesize factory;
-objection_register(CarManufacturer)
-objection_requires(@"factory")
+@implementation SingletonItemHolder
+@synthesize singletonItem;
+objection_register(SingletonItemHolder)
+objection_requires(@"singletonItem")
 @end
+
+@implementation SingletonItem
+objection_register_singleton(SingletonItem)
+
+@end
+
 

@@ -72,6 +72,11 @@
       }
       
       Class desiredClass = [self parseClassFromProperty:property];
+      // Ensure that the class is initialized before attempting to retrieve it.
+      // Using +load would force all registered classes to be initialized so are
+      // lazily initializing them.
+      [desiredClass class];
+      
       id theObject = [_injector getObject:desiredClass];
       
       if(!theObject) {
