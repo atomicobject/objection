@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+
 @interface ObjectionModule : NSObject {
   NSMutableDictionary *_bindings;
 }

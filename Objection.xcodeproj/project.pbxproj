@@ -36,7 +36,7 @@
 		4B25BD4B1291BBE700821DC1 /* InjectionErrorFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */; };
 		4B7300D812AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
 		4B7300D912AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
-		4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; };
+		4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B957EC612ADE03900CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
 		4B957EC712ADE03900CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
 		4B957EC812ADE05D00CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
@@ -45,7 +45,7 @@
 		4B957ECE12ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
 		4B957ECF12ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
 		4B957ED112ADE0B900CBF1EB /* Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957ECB12ADE0B900CBF1EB /* Objection.m */; };
-		4B957EE712ADE26500CBF1EB /* Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; };
+		4B957EE712ADE26500CBF1EB /* Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B95819712AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
 		4B95819912AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
 		4B95819A12AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
@@ -137,7 +137,6 @@
 		4BF451AB12919CAD006EB2D5 /* Fixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixtures.h; sourceTree = "<group>"; };
 		4BF451AC12919CAD006EB2D5 /* Fixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fixtures.m; sourceTree = "<group>"; };
 		4BF451E21291AD28006EB2D5 /* InjectionErrorsSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectionErrorsSpecs.m; sourceTree = "<group>"; };
-		AA747D9E0F9514B9006C5449 /* Objection_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Objection_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libObjection-StaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libObjection-StaticLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -195,7 +194,6 @@
 				4BF45123129197F3006EB2D5 /* Specs */,
 				4BED512E12AA8BD600CA6B36 /* Headers */,
 				08FB77AEFE84172EC02AAC07 /* Source */,
-				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 				4BF4512A12919818006EB2D5 /* UISpecs-Info.plist */,
@@ -226,14 +224,6 @@
 				4B957ECB12ADE0B900CBF1EB /* Objection.m */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		32C88DFF0371C24200C91783 /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				AA747D9E0F9514B9006C5449 /* Objection_Prefix.pch */,
-			);
-			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 		4BA9CFAF12AA864800674F0E /* iPhone */ = {
@@ -542,8 +532,6 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Objection_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = "Objection-StaticLib";
@@ -562,8 +550,6 @@
 					"\"$(SRCROOT)/..\"",
 				);
 				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Objection_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = "Objection-StaticLib";
