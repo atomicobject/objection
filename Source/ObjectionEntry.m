@@ -60,7 +60,7 @@
       objc_property_t property = ObjectionGetProperty(self.classEntry, propertyName);
       Class desiredClass = ObjectionFindClassForProperty(property);
       // Ensure that the class is initialized before attempting to retrieve it.
-      // Using +load would force all registered classes to be initialized so are
+      // Using +load would force all registered classes to be initialized so we are
       // lazily initializing them.
       [desiredClass class];
       
