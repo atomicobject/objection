@@ -4,7 +4,6 @@
 
 @interface ObjectionEntry (Private)
 - (void) notifyObjectThatItIsReady: (id)object;
-- (Class) parseClassFromProperty:(objc_property_t)property;
 - (id) buildObject;
 @end
 
