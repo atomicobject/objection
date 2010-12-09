@@ -36,14 +36,14 @@ A class can be registered with objection using the macros *objection_register* o
 
 ### Fetching Objects from Objection
 
-An object can be fetched from objection by creating an injector and then asking for an instance of particular class. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a *true* singleton.
+An object can be fetched from objection by creating an injector and then asking for an instance of a particular class. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a *true* singleton.
 
     - (void)someMethod {
       ObjectionInjector *injector = [Objection createInjector];
       id car = [injector getObject:[Car class]];
     }
 
-A global injector can registered with Objection which can be used throughout your application or library.
+A global injector can be registered with Objection which can be used throughout your application or library.
     
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
       ObjectionInjector *injector = [Objection createInjector];
