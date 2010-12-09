@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
+#import "ObjectionEntry.h"
 
-@interface ObjectionInstanceEntry : NSObject {
+@interface ObjectionInstanceEntry : NSObject<ObjectionEntry> {
 	id instance;
 }
 

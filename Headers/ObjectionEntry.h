@@ -6,9 +6,18 @@ typedef enum {
 } ObjectionInstantiationRule;
 
 
+@protocol ObjectionEntry<NSObject>
+
+@property(nonatomic, readonly) ObjectionInstantiationRule lifeCycle;
+
+- (id) extractObject;
+
+@end
+
+
 @class ObjectionInjector;
 
-@interface ObjectionEntry : NSObject<NSCopying> {
+@interface ObjectionEntry : NSObject {
 	Class _classEntry;
   ObjectionInstantiationRule _lifeCycle;
   id _injector;
@@ -22,5 +31,6 @@ typedef enum {
 - (id) initWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle;
 - (id) extractObject;
 
-+ (id)withClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle;
++ (id)entryWithEntry:(ObjectionEntry *)entry;
++ (id)entryWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle;
 @end

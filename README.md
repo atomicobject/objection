@@ -103,8 +103,9 @@ Installation
 1. git clone git://github.com/atomicobject/objection.git
 2. Open Objection.xcodeproj
 3. Select Objection-iPhone target
-4. Select Release Configuration.
+4. Select Release Configuration
 5. Build
+6. Add -ObjC and -all_load to Other Link Flags in your project
 
 #### Include framework
     #import <Objection-iPhone/Objection.h>
@@ -123,6 +124,6 @@ Installation
 Requirements
 ============
 
-* MacOS X 10.6 >
-* iOS 3.0 >
+* MacOS X 10.6 +
+* iOS 3.0 +
 

@@ -13,6 +13,10 @@
   return instance;
 }
 
+- (ObjectionInstantiationRule) lifeCycle {
+  return ObjectionInstantiationRule_Singleton;
+}
+
 - (void)dealloc {
   [instance release]; instance = nil;
   [super dealloc];

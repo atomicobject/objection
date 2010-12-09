@@ -1,7 +1,6 @@
 #import "ObjectionEntry.h"
 #import "Objection.h"
-
-#import <objc/runtime.h>
+#import "ObjectionFunctions.h"
 
 @interface ObjectionEntry (Private)
 - (void) notifyObjectThatItIsReady: (id)object;
@@ -43,13 +42,6 @@
   [super dealloc];
 }
 
-#pragma mark NSCopying
-#pragma mark -
-
-- (id)copyWithZone:(NSZone *)zone {
-  return [[ObjectionEntry alloc] initWithClass:self.classEntry lifeCycle:self.lifeCycle];
-}
-
 #pragma mark Private Methods
 #pragma mark -
 
@@ -66,12 +58,8 @@
   	id objectUnderConstruction = [[self.classEntry alloc] init];
     
     for (NSString *propertyName in properties) {
-      objc_property_t property = class_getProperty(self.classEntry, (const char *)[propertyName UTF8String]);
-      if (property == NULL) {
-        @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to find property declaration: '%@'", propertyName] userInfo:nil];
-      }
-      
-      Class desiredClass = [self parseClassFromProperty:property];
+      objc_property_t property = ObjectionGetProperty(self.classEntry, propertyName);
+      Class desiredClass = ObjectionFindClassForProperty(property);
       // Ensure that the class is initialized before attempting to retrieve it.
       // Using +load would force all registered classes to be initialized so are
       // lazily initializing them.
@@ -103,35 +91,11 @@
 #pragma mark Class Methods
 #pragma mark -
 
-+ (id)withClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle {
++ (id)entryWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle {
   return [[[ObjectionEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle] autorelease];
 }
 
-#pragma mark Private Methods
-
-- (Class)parseClassFromProperty:(objc_property_t)property {
-  NSString *attributes = [NSString stringWithCString: property_getAttributes(property) encoding: NSASCIIStringEncoding];  
-  NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
-  
-  NSRange startRange = [attributes rangeOfString:@"T@\""];
-  if (startRange.location == NSNotFound) {
-    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'", propertyName] userInfo:nil];
-  }
-  
-  NSString *startOfClassName = [attributes substringFromIndex:startRange.length];
-  NSRange endRange = [startOfClassName rangeOfString:@"\""];
-  
-  if (endRange.location == NSNotFound) {
-    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'", propertyName] userInfo:nil];        
-  }
-  
-  NSString *className = [startOfClassName substringToIndex:endRange.location];
-  Class theClass = NSClassFromString(className);
-  
-  if(!theClass) {
-    @throw [NSException exceptionWithName:@"ObjectionInjectionException" reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", className, propertyName] userInfo:nil];            
-  }
-  
-  return theClass;    
++ (id)entryWithEntry:(ObjectionEntry *)entry {
+  return [[[ObjectionEntry alloc] initWithClass:entry.classEntry lifeCycle:entry.lifeCycle] autorelease];  
 }
 @end

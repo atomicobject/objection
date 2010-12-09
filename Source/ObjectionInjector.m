@@ -28,16 +28,16 @@
 
 - (id)getObject:(Class)theClass {
   @synchronized(self) {
+    
     NSString *key = NSStringFromClass(theClass);
-    ObjectionEntry *injectorEntry = [_context objectForKey:key];
+    id<ObjectionEntry> injectorEntry = [_context objectForKey:key];
     
     if (!injectorEntry) {
-      ObjectionEntry *entry = [_globalContext objectForKey:key];
-      if (entry) {
-        injectorEntry = [entry copy];
-        injectorEntry.injector = self;
+      id<ObjectionEntry> entry = [_globalContext objectForKey:key];
+      if ([entry isKindOfClass:[ObjectionEntry class]]) {
+        injectorEntry = [ObjectionEntry entryWithEntry:entry];
+        ((ObjectionEntry *)injectorEntry).injector = self;
         [_context setObject:injectorEntry forKey:key];      
-        [injectorEntry release];
       }
     }
     

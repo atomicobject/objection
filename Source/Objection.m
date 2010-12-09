@@ -47,7 +47,7 @@ static ObjectionInjector *gGlobalInjector;
   }
   
   if (theClass && [gObjectionContext objectForKey:NSStringFromClass(theClass)] == nil) {
-    [gObjectionContext setObject:[ObjectionEntry withClass:theClass lifeCycle:lifeCycle] forKey:NSStringFromClass(theClass)];
+    [gObjectionContext setObject:[ObjectionEntry entryWithClass:theClass lifeCycle:lifeCycle] forKey:NSStringFromClass(theClass)];
   } 
   [pool drain];
   pthread_mutex_unlock(&gObjectionMutex);
