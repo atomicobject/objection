@@ -83,7 +83,7 @@ If an object is interested in knowing when it has been fully instantiated by obj
 #### Example
       @implementation Car
       //...
-      objection_register_singleton(@"Car")
+      objection_register_singleton(Car)
         - (void)awakeFromObjection {
           awake = YES;
         }
