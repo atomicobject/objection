@@ -54,7 +54,7 @@
 	if([self.classEntry respondsToSelector:@selector(objectionRequires)]) {
     NSArray *properties = [self.classEntry performSelector:@selector(objectionRequires)];
     NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
-  	id objectUnderConstruction = [[self.classEntry alloc] init];
+  	id objectUnderConstruction = [[[self.classEntry alloc] init] autorelease];
     
     for (NSString *propertyName in properties) {
       objc_property_t property = ObjectionGetProperty(self.classEntry, propertyName);
