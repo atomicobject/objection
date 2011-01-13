@@ -127,3 +127,9 @@ Requirements
 * MacOS X 10.6 +
 * iOS 3.0 +
 
+Authors
+=======
+
+* Justin DeWind (dewind@atomicobject.com)
+* © 2009-2011 [Atomic Object](http://www.atomicobject.com/)
+* More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
