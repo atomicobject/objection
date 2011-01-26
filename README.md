@@ -95,6 +95,7 @@ If an object is interested in knowing when it has been fully instantiated by obj
 * Diagram class initialization and its relationship with Objection
 * Add support for Protocol based dependencies
 * Support eager singletons
+* Add awakeFromObjection to NSObject(Objection) to allow better editor support
 
 Installation
 =======
