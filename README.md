@@ -67,6 +67,7 @@ Objection supports associating an object outside the context of Objection by con
       @implementation MyAppModule
       - (void)configure {
         [self bind:[UIApplication sharedApplication] toClass:[UIApplication class]];
+        [self bind:[UIApplication sharedApplication].delegate toProtocol:@protocol(UIApplicationDelegate)];
       }
       
       @end
@@ -93,7 +94,6 @@ If an object is interested in knowing when it has been fully instantiated by obj
 ### TODO
 
 * Diagram class initialization and its relationship with Objection
-* Add support for Protocol based dependencies
 * Support eager singletons
 
 Installation
