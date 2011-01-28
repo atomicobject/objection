@@ -40,6 +40,14 @@
 		4B496E6C12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B496E6A12B0F3E50053F2A3 /* ObjectionFunctions.m */; };
 		4B496E6D12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B496E6A12B0F3E50053F2A3 /* ObjectionFunctions.m */; };
 		4B496E6E12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B496E6A12B0F3E50053F2A3 /* ObjectionFunctions.m */; };
+		4B53471112F3165F000480AB /* NSObject+Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B53470E12F3165F000480AB /* NSObject+Objection.h */; };
+		4B53471312F3165F000480AB /* NSObject+Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B53470E12F3165F000480AB /* NSObject+Objection.h */; };
+		4B53471512F31660000480AB /* NSObject+Objection.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B53470E12F3165F000480AB /* NSObject+Objection.h */; };
+		4B53471912F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
+		4B53471A12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
+		4B53471B12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
+		4B53471C12F316A4000480AB /* NSObject+Objection.m in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
+		4B53471D12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
 		4B7300D812AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
 		4B7300D912AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
 		4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -109,6 +117,8 @@
 				4BA6DD2012AAB3CD00CFFD70 /* ObjectionInjector.h in Copy Header Files */,
 				4BA6DD2112AAB3CD00CFFD70 /* ObjectionInstanceEntry.h in Copy Header Files */,
 				4BAEB37B12B0F7A200CD97E5 /* ObjectionFunctions.h in Copy Header Files */,
+				4B53471512F31660000480AB /* NSObject+Objection.h in Copy Header Files */,
+				4B53471C12F316A4000480AB /* NSObject+Objection.m in Copy Header Files */,
 			);
 			name = "Copy Header Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +130,8 @@
 		4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectionErrorFixtures.m; sourceTree = "<group>"; };
 		4B496DB512B0F0340053F2A3 /* ObjectionFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectionFunctions.h; sourceTree = "<group>"; };
 		4B496E6A12B0F3E50053F2A3 /* ObjectionFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionFunctions.m; sourceTree = "<group>"; };
+		4B53470E12F3165F000480AB /* NSObject+Objection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Objection.h"; sourceTree = "<group>"; };
+		4B53471812F316A4000480AB /* NSObject+Objection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Objection.m"; sourceTree = "<group>"; };
 		4B7300D712AA8F3400903427 /* InheritanceSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InheritanceSpecs.m; sourceTree = "<group>"; };
 		4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectionModule.h; sourceTree = "<group>"; };
 		4B957EC512ADE03900CBF1EB /* ObjectionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionModule.m; sourceTree = "<group>"; };
@@ -227,6 +239,7 @@
 		08FB77AEFE84172EC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				4B53471812F316A4000480AB /* NSObject+Objection.m */,
 				4B496E6A12B0F3E50053F2A3 /* ObjectionFunctions.m */,
 				4BED511E12AA8BCC00CA6B36 /* ObjectionEntry.m */,
 				4BED511F12AA8BCC00CA6B36 /* ObjectionInjector.m */,
@@ -262,6 +275,7 @@
 				4BED513112AA8BF300CA6B36 /* ObjectionInstanceEntry.h */,
 				4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */,
 				4B496DB512B0F0340053F2A3 /* ObjectionFunctions.h */,
+				4B53470E12F3165F000480AB /* NSObject+Objection.h */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -305,6 +319,7 @@
 				4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */,
 				4B957EE712ADE26500CBF1EB /* Objection.h in Headers */,
 				4B496DB812B0F0340053F2A3 /* ObjectionFunctions.h in Headers */,
+				4B53471112F3165F000480AB /* NSObject+Objection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B496DBA12B0F0340053F2A3 /* ObjectionFunctions.h in Headers */,
+				4B53471312F3165F000480AB /* NSObject+Objection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +498,7 @@
 				4B957ECF12ADE0B900CBF1EB /* Objection.m in Sources */,
 				4B95819A12AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */,
 				4B496E6E12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */,
+				4B53471D12F316A4000480AB /* NSObject+Objection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +513,7 @@
 				4B957ECE12ADE0B900CBF1EB /* Objection.m in Sources */,
 				4B95819712AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */,
 				4B496E6C12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */,
+				4B53471A12F316A4000480AB /* NSObject+Objection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +534,7 @@
 				4B957ECC12ADE0B900CBF1EB /* Objection.m in Sources */,
 				4B95819912AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */,
 				4B496E6B12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */,
+				4B53471912F316A4000480AB /* NSObject+Objection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +548,7 @@
 				4B957EC812ADE05D00CBF1EB /* ObjectionModule.m in Sources */,
 				4B957ED112ADE0B900CBF1EB /* Objection.m in Sources */,
 				4B496E6D12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */,
+				4B53471B12F316A4000480AB /* NSObject+Objection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

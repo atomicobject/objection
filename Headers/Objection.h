@@ -3,8 +3,8 @@
 #import "ObjectionModule.h"
 #import "ObjectionInjector.h"
 #import "ObjectionInstanceEntry.h"
+#import "NSObject+Objection.h"
 #import "ObjectionEntry.h"
-
 #import <objc/objc.h>
 #import <objc/runtime.h>
 
@@ -23,15 +23,15 @@
     }
 
 #define objection_requires(args...) \
-  + (NSArray *)objectionRequires { \
-      NSArray *requirements = [NSArray arrayWithObjects: args, nil]; \
+  + (NSSet *)objectionRequires { \
+      NSSet *requirements = [NSSet setWithObjects: args, nil]; \
       Class superClass = class_getSuperclass([self class]); \
       if([superClass respondsToSelector:@selector(objectionRequires)]) { \
-        NSArray *parentsRequirements = [superClass performSelector:@selector(objectionRequires)]; \
+        NSSet *parentsRequirements = [superClass performSelector:@selector(objectionRequires)]; \
         NSMutableSet *dependencies = [NSMutableSet setWithCapacity:parentsRequirements.count]; \
-        [dependencies addObjectsFromArray:parentsRequirements]; \
-        [dependencies addObjectsFromArray:requirements]; \
-        requirements = [dependencies allObjects]; \
+        [dependencies unionSet:parentsRequirements]; \
+        [dependencies unionSet:requirements]; \
+        requirements = dependencies; \
       } \
       return requirements; \
     } \
