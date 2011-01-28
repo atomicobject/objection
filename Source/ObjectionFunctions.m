@@ -29,6 +29,18 @@ Class ObjectionFindClassForProperty(objc_property_t property) {
   return theClass;      
 }
 
+NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements) {
+  Class superClass = class_getSuperclass([klass class]);
+  if([superClass respondsToSelector:@selector(objectionRequires)]) {
+    NSSet *parentsRequirements = [superClass performSelector:@selector(objectionRequires)];
+    NSMutableSet *dependencies = [NSMutableSet setWithCapacity:parentsRequirements.count];
+    [dependencies unionSet:parentsRequirements];
+    [dependencies unionSet:requirements];
+    requirements = dependencies;
+  }
+  return requirements;  
+}
+
 objc_property_t ObjectionGetProperty(Class klass, NSString *propertyName) {
   objc_property_t property = class_getProperty(klass, (const char *)[propertyName UTF8String]);
   if (property == NULL) {

@@ -8,6 +8,8 @@
 #import <objc/objc.h>
 #import <objc/runtime.h>
 
+extern NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements);
+
 #define objection_register(value)			\
   + (void)initialize { \
     if (self == [value class]) { \
@@ -25,15 +27,7 @@
 #define objection_requires(args...) \
   + (NSSet *)objectionRequires { \
       NSSet *requirements = [NSSet setWithObjects: args, nil]; \
-      Class superClass = class_getSuperclass([self class]); \
-      if([superClass respondsToSelector:@selector(objectionRequires)]) { \
-        NSSet *parentsRequirements = [superClass performSelector:@selector(objectionRequires)]; \
-        NSMutableSet *dependencies = [NSMutableSet setWithCapacity:parentsRequirements.count]; \
-        [dependencies unionSet:parentsRequirements]; \
-        [dependencies unionSet:requirements]; \
-        requirements = dependencies; \
-      } \
-      return requirements; \
+      return ObjectionBuildDependenciesForClass(self, requirements); \
     } \
 
 @interface Objection : NSObject {
