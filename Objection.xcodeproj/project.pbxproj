@@ -48,6 +48,8 @@
 		4B53471B12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
 		4B53471C12F316A4000480AB /* NSObject+Objection.m in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
 		4B53471D12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
+		4B53482F12F31E93000480AB /* SpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53482E12F31E93000480AB /* SpecHelper.m */; };
+		4B53483012F31E93000480AB /* SpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53482E12F31E93000480AB /* SpecHelper.m */; };
 		4B7300D812AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
 		4B7300D912AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
 		4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -132,6 +134,7 @@
 		4B496E6A12B0F3E50053F2A3 /* ObjectionFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionFunctions.m; sourceTree = "<group>"; };
 		4B53470E12F3165F000480AB /* NSObject+Objection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Objection.h"; sourceTree = "<group>"; };
 		4B53471812F316A4000480AB /* NSObject+Objection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Objection.m"; sourceTree = "<group>"; };
+		4B53482E12F31E93000480AB /* SpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecHelper.m; sourceTree = "<group>"; };
 		4B7300D712AA8F3400903427 /* InheritanceSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InheritanceSpecs.m; sourceTree = "<group>"; };
 		4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectionModule.h; sourceTree = "<group>"; };
 		4B957EC512ADE03900CBF1EB /* ObjectionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionModule.m; sourceTree = "<group>"; };
@@ -302,6 +305,7 @@
 				4BF451AC12919CAD006EB2D5 /* Fixtures.m */,
 				4B25BD491291BBE700821DC1 /* InjectionErrorFixtures.h */,
 				4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */,
+				4B53482E12F31E93000480AB /* SpecHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -499,6 +503,7 @@
 				4B95819A12AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */,
 				4B496E6E12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */,
 				4B53471D12F316A4000480AB /* NSObject+Objection.m in Sources */,
+				4B53483012F31E93000480AB /* SpecHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +540,7 @@
 				4B95819912AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */,
 				4B496E6B12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */,
 				4B53471912F316A4000480AB /* NSObject+Objection.m in Sources */,
+				4B53482F12F31E93000480AB /* SpecHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

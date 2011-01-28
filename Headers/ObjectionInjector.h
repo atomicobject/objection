@@ -8,5 +8,5 @@
 
 - (id)initWithContext:(NSDictionary *)theGlobalContext;
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(ObjectionModule *)theModule;
-- (id) getObject:(Class)theClass;
+- (id) getObject:(id)classOrProtocol;
 @end

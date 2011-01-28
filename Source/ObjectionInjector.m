@@ -26,10 +26,21 @@
   return self;
 }
 
-- (id)getObject:(Class)theClass {
+- (id)getObject:(id)classOrProtocol {
   @synchronized(self) {
     
-    NSString *key = NSStringFromClass(theClass);
+    if (!classOrProtocol) {
+      return nil;
+    }
+    
+    NSString *key = NSStringFromProtocol(classOrProtocol);
+    if (!key) {
+      key = NSStringFromClass(classOrProtocol);
+    } else {
+      key = [NSString stringWithFormat:@"<%@>", key];
+    }
+
+    
     id<ObjectionEntry> injectorEntry = [_context objectForKey:key];
     
     if (!injectorEntry) {
@@ -41,7 +52,7 @@
       }
     }
     
-    if (theClass && injectorEntry) {
+    if (classOrProtocol && injectorEntry) {
       return [injectorEntry extractObject];
     } 
     

@@ -16,3 +16,5 @@
 #define SetTarget(value) AddToContext(@"target", value)
 #define GetTarget() GetFromContext(@"target")
 #define NSINT(__i) ([NSNumber numberWithInt:__i])
+
+void assertRaises(void(^block)(), NSString *expectedReason);
