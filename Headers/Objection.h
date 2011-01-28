@@ -1,14 +1,13 @@
 #import <Foundation/Foundation.h>
+#import <objc/objc.h>
+#import <objc/runtime.h>
 
 #import "ObjectionModule.h"
 #import "ObjectionInjector.h"
 #import "ObjectionInstanceEntry.h"
 #import "NSObject+Objection.h"
 #import "ObjectionEntry.h"
-#import <objc/objc.h>
-#import <objc/runtime.h>
-
-extern NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements);
+#import "ObjectionFunctions.h"
 
 #define objection_register(value)			\
   + (void)initialize { \
