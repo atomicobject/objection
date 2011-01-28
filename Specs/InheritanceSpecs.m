@@ -54,8 +54,9 @@ SPEC_BEGIN(InheritanceSpecs)
 
   it(@"coalesces dependencies from parent to child", ^{
     Programmer *programmer = [[Objection globalInjector] getObject:[Programmer class]];
-    assertThat(programmer.attributes, is(notNilValue()));
+    assertThat(programmer, is(notNilValue()));
     assertThat(programmer.favoriteLanguages, is(notNilValue()));
+    assertThat(programmer.attributes, is(notNilValue()));
   });
 
   it(@"does not throw a fit if the base class does not implement super", ^{

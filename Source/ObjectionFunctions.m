@@ -45,8 +45,7 @@ NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements) {
   Class superClass = class_getSuperclass([klass class]);
   if([superClass respondsToSelector:@selector(objectionRequires)]) {
     NSSet *parentsRequirements = [superClass performSelector:@selector(objectionRequires)];
-    NSMutableSet *dependencies = [NSMutableSet setWithCapacity:parentsRequirements.count];
-    [dependencies unionSet:parentsRequirements];
+    NSMutableSet *dependencies = [NSMutableSet setWithSet:parentsRequirements];
     [dependencies unionSet:requirements];
     requirements = dependencies;
   }
