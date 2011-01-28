@@ -1,9 +1,9 @@
-#import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+#import "ObjectionFunctions.h"
 
 static NSString *const ObjectionException = @"ObjectionException";
 
-Class ObjectionFindClassForProperty(objc_property_t property) {
+ObjectionPropertyInfo ObjectionFindClassOrProtocolForProperty(objc_property_t property) {
   NSString *attributes = [NSString stringWithCString: property_getAttributes(property) encoding: NSASCIIStringEncoding];  
   NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
   
@@ -19,14 +19,26 @@ Class ObjectionFindClassForProperty(objc_property_t property) {
     @throw [NSException exceptionWithName:ObjectionException reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'", propertyName] userInfo:nil];        
   }
   
-  NSString *className = [startOfClassName substringToIndex:endRange.location];
-  Class theClass = NSClassFromString(className);
+  NSString *classOrProtocolName = [startOfClassName substringToIndex:endRange.location];
+  id classOrProtocol = nil;
+  ObjectionPropertyInfo propertyInfo;
   
-  if(!theClass) {
-    @throw [NSException exceptionWithName:ObjectionException reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", className, propertyName] userInfo:nil];            
+  if ([classOrProtocolName hasPrefix:@"<"] && [classOrProtocolName hasSuffix:@">"]) {
+    classOrProtocolName = [classOrProtocolName stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    classOrProtocolName = [classOrProtocolName stringByReplacingOccurrencesOfString:@">" withString:@""];
+    classOrProtocol = objc_getProtocol([classOrProtocolName UTF8String]);
+    propertyInfo.type = ObjectionTypeProtocol;
+  } else {
+    classOrProtocol = NSClassFromString(classOrProtocolName);
+    propertyInfo.type = ObjectionTypeClass;
   }
   
-  return theClass;      
+  if(!classOrProtocol) {
+    @throw [NSException exceptionWithName:ObjectionException reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", classOrProtocolName, propertyName] userInfo:nil];            
+  }
+  propertyInfo.object = classOrProtocol;
+  
+  return propertyInfo;      
 }
 
 NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements) {

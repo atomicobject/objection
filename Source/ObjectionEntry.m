@@ -58,18 +58,24 @@
     
     for (NSString *propertyName in properties) {
       objc_property_t property = ObjectionGetProperty(self.classEntry, propertyName);
-      Class desiredClass = ObjectionFindClassForProperty(property);
+      ObjectionPropertyInfo propertyInfo = ObjectionFindClassOrProtocolForProperty(property);
+      id desiredClassOrProtocol = propertyInfo.object;
       // Ensure that the class is initialized before attempting to retrieve it.
       // Using +load would force all registered classes to be initialized so we are
       // lazily initializing them.
-      [desiredClass class];
-      
-      id theObject = [_injector getObject:desiredClass];
-      
-      if(!theObject) {
-        [Objection registerClass:desiredClass lifeCycle: ObjectionInstantiationRule_Everytime];
-        theObject = [_injector getObject:desiredClass];
+      if (propertyInfo.type == ObjectionTypeClass) {
+        [desiredClassOrProtocol class];        
       }
+      
+      id theObject = [_injector getObject:desiredClassOrProtocol];
+      
+      if(theObject == nil && propertyInfo.type == ObjectionTypeClass) {
+        [Objection registerClass:desiredClassOrProtocol lifeCycle: ObjectionInstantiationRule_Everytime];
+        theObject = [_injector getObject:desiredClassOrProtocol];
+      } else if (!theObject) {
+        @throw [NSException exceptionWithName:@"ObjectionException" reason:[NSString stringWithFormat:@"Cannot find associated object in context for protocol property '%@'", propertyName] userInfo:nil];
+      }
+
       
       [propertiesDictionary setObject:theObject forKey:propertyName];      
     }

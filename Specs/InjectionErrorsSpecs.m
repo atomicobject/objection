@@ -30,7 +30,11 @@ it(@"throws an exception if property cannot be found", ^{
   
 });
 
-it(@"throws if an object requires a protocol that does not exist in the context", PENDING);
+it(@"throws if an object requires a protocol that does not exist in the context", ^{
+  assertRaises(^{
+    [[Objection globalInjector] getObject:[ManualCar class]];
+  }, @"Cannot find associated object in context for protocol property 'gearBox'");
+});
 
 it(@"throws if instantiation rule if not valid", ^{  
   @try {

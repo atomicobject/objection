@@ -27,6 +27,14 @@ objection_register(Car)
 objection_requires(@"engine", @"brakes")
 @end
 
+@implementation ManualCar
+objection_register(ManualCar)
+
+@synthesize gearBox;
+
+objection_requires(@"gearBox")
+@end
+
 @implementation CarFactory
 objection_register_singleton(CarFactory)
 @end

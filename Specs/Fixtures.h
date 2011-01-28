@@ -29,6 +29,17 @@
 
 @end
 
+@protocol GearBox;
+@interface ManualCar : Car
+{
+  id<GearBox> gearBox;
+  
+}
+
+@property(nonatomic, retain) id<GearBox> gearBox;
+@end
+
+
 @interface CarFactory : NSObject
 {
   

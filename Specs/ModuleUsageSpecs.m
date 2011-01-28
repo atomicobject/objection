@@ -50,6 +50,7 @@
 
 - (void)configure {
   [self bind:_engine toClass:[Engine class]];
+  [self bind:_gearBox toProtocol:@protocol(GearBox)];
 }
 
 - (void)dealloc {
@@ -80,9 +81,10 @@ SPEC_BEGIN(ModuleUsageSpecs)
 
   it(@"uses the module's bounded instance to fill out other objects dependencies", ^{
     MyModule *module = GetFromContext(@"module");
-    Car *car = [[Objection globalInjector] getObject:[Car class]];
+    ManualCar *car = [[Objection globalInjector] getObject:[ManualCar class]];
     
     assertThat(car.engine, is(sameInstance(module.engine)));    
+    assertThat(car.gearBox, is(sameInstance(module.gearBox)));    
   });
 
   it(@"supports binding an instance to a protocol", ^{
@@ -90,12 +92,14 @@ SPEC_BEGIN(ModuleUsageSpecs)
     assertThat([[Objection globalInjector] getObject:@protocol(GearBox)], is(sameInstance(module.gearBox)));    
   });
 
-//  it(@"throws an exception of the instance does not conform the protocol", ^{
-//    Engine *engine = [[[Engine alloc] init] autorelease];
-//    
-//    assertRaises(^{
-//      [[[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"] autorelease];    
-//    }, @"That hurts!") ; 
-//  });
+  it(@"throws an exception of the instance does not conform the protocol", ^{
+    Engine *engine = [[[Engine alloc] init] autorelease];
+    
+    assertRaises(^{
+      MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"] autorelease];    
+      [module configure];
+    }, @"Instance does not conform to the given protocol") ; 
+  });
+
 
 SPEC_END
