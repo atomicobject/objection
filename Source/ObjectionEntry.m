@@ -27,7 +27,7 @@
 }
 
 - (id) extractObject {
-  if (self.lifeCycle == ObjectionInstantiationRule_Everytime) {
+  if (self.lifeCycle == ObjectionInstantiationRuleEverytime) {
   	return [self buildObject];  
   } else if (!_storageCache) {
     _storageCache = [[self buildObject] retain];
@@ -70,7 +70,7 @@
       id theObject = [_injector getObject:desiredClassOrProtocol];
       
       if(theObject == nil && propertyInfo.type == ObjectionTypeClass) {
-        [Objection registerClass:desiredClassOrProtocol lifeCycle: ObjectionInstantiationRule_Everytime];
+        [Objection registerClass:desiredClassOrProtocol lifeCycle: ObjectionInstantiationRuleEverytime];
         theObject = [_injector getObject:desiredClassOrProtocol];
       } else if (!theObject) {
         @throw [NSException exceptionWithName:@"ObjectionException" reason:[NSString stringWithFormat:@"Cannot find associated object in context for protocol property '%@'", propertyName] userInfo:nil];

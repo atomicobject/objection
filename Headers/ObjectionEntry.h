@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-  ObjectionInstantiationRule_Everytime,
-  ObjectionInstantiationRule_Singleton  
+  ObjectionInstantiationRuleEverytime,
+  ObjectionInstantiationRuleSingleton  
 } ObjectionInstantiationRule;
 
 

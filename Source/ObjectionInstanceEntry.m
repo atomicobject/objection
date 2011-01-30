@@ -14,7 +14,7 @@
 }
 
 - (ObjectionInstantiationRule) lifeCycle {
-  return ObjectionInstantiationRule_Singleton;
+  return ObjectionInstantiationRuleSingleton;
 }
 
 - (void)dealloc {

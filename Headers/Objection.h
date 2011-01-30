@@ -12,14 +12,14 @@
 #define objection_register(value)			\
   + (void)initialize { \
     if (self == [value class]) { \
-      [Objection registerClass:[value class] lifeCycle: ObjectionInstantiationRule_Everytime]; \
+      [Objection registerClass:[value class] lifeCycle: ObjectionInstantiationRuleEverytime]; \
     } \
   }
 
 #define objection_register_singleton(value) \
   + (void)initialize { \
       if (self == [value class]) { \
-        [Objection registerClass:[value class] lifeCycle: ObjectionInstantiationRule_Singleton]; \
+        [Objection registerClass:[value class] lifeCycle: ObjectionInstantiationRuleSingleton]; \
       } \
     }
 

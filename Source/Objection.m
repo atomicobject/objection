@@ -42,7 +42,7 @@ static ObjectionInjector *gGlobalInjector;
 + (void) registerClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)lifeCycle {
   pthread_mutex_lock(&gObjectionMutex);
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  if (lifeCycle != ObjectionInstantiationRule_Singleton && lifeCycle != ObjectionInstantiationRule_Everytime) {
+  if (lifeCycle != ObjectionInstantiationRuleSingleton && lifeCycle != ObjectionInstantiationRuleEverytime) {
     @throw [NSException exceptionWithName:@"ObjectionInjectorException" reason:@"Invalid Instantiation Rule" userInfo:nil];
   }
   
