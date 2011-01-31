@@ -3,6 +3,15 @@ Description
 
 A lightweight dependency injection framework for Objective-C. With support for iOS and MacOS X.
 
+Why Objection?
+==============
+
+* "Annotation" Based Dependency Injection
+* Support for singletons
+* Lazy Instantiation over Eager Instantiation
+* Support for integrating external dependencies
+
+
 Synopsis
 ========
 
