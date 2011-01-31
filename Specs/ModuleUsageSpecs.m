@@ -21,16 +21,31 @@
 }
 @end
 
+static BOOL gEagerSingletonHook = NO;
+@interface EagerSingleton : NSObject
+
+@end
+
+@implementation EagerSingleton
+objection_register_singleton(EagerSingleton)
+- (void)awakeFromObjection {
+  gEagerSingletonHook = YES;
+}
+@end
+
+
 
 
 @interface MyModule : ObjectionModule
 {
   Engine *_engine;
   id<GearBox> _gearBox;
+  BOOL _instrumentInvalidEagerSingleton;
 }
 
 @property(nonatomic, readonly) Engine *engine;
 @property(nonatomic, readonly) id<GearBox> gearBox;
+@property(nonatomic, assign) BOOL instrumentInvalidEagerSingleton;
 
 - (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox;
 @end
@@ -38,6 +53,7 @@
 @implementation MyModule
 @synthesize engine=_engine;
 @synthesize gearBox=_gearBox;
+@synthesize instrumentInvalidEagerSingleton=_instrumentInvalidEagerSingleton;
 
 - (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox {
   if (self = [super init]) {
@@ -51,6 +67,12 @@
 - (void)configure {
   [self bind:_engine toClass:[Engine class]];
   [self bind:_gearBox toProtocol:@protocol(GearBox)];
+  if (_instrumentInvalidEagerSingleton) {
+    [self registerEagerSingleton:[Car class]];
+  } else {
+    [self registerEagerSingleton:[EagerSingleton class]];
+  }
+
 }
 
 - (void)dealloc {
@@ -101,5 +123,19 @@ SPEC_BEGIN(ModuleUsageSpecs)
     }, @"Instance does not conform to the GearBox protocol") ; 
   });
 
+  it(@"supports eager singletons", ^{
+    assertThatBool(gEagerSingletonHook, equalToBool(YES));
+  });
+
+  it(@"throws an exception if an attempt is made to register an eager singleton that was not registered as a singleton", ^{
+    Engine *engine = [[[Engine alloc] init] autorelease];
+    
+    assertRaises(^{
+      id<GearBox> gearBox = [[[WantsToBreakGearBox alloc] init] autorelease];
+      MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
+      module.instrumentInvalidEagerSingleton = YES;
+      [Objection createInjector:module];
+    }, @"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton") ;     
+  });
 
 SPEC_END

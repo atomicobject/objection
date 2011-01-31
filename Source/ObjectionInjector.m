@@ -5,7 +5,7 @@
 #import <objc/runtime.h>
 
 @interface ObjectionInjector(Private)
-- (void)configureContext;
+- (void)initializeEagerSingletons;
 @end
 
 @implementation ObjectionInjector
@@ -14,6 +14,7 @@
   if ((self = [super init])) {
     _globalContext = [theGlobalContext retain];
     _context = [[NSMutableDictionary alloc] init];
+    _eagerSingletons = nil;
   }
   
   return self;
@@ -22,7 +23,9 @@
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(ObjectionModule *)theModule {
   if (self = [self initWithContext:theGlobalContext]) {
     [theModule configure];
+    _eagerSingletons = theModule.eagerSingletons;
     [_context addEntriesFromDictionary:theModule.bindings];
+    [self initializeEagerSingletons];
   }
   return self;
 }
@@ -63,6 +66,20 @@
     } 
     
     return nil;    
+  }
+}
+
+- (void)initializeEagerSingletons {
+  for (NSString *eagerSingletonKey in _eagerSingletons) {
+    id entry = [_globalContext objectForKey:eagerSingletonKey];
+    if ([entry lifeCycle] == ObjectionInstantiationRuleSingleton) {
+      [self getObject:NSClassFromString(eagerSingletonKey)];      
+    } else {
+      @throw [NSException exceptionWithName:@"ObjectionException" 
+                          reason:[NSString stringWithFormat:@"Unable to initialize eager singleton for the class '%@' because it was never registered as a singleton", eagerSingletonKey] 
+                          userInfo:nil];
+    }
+
   }
 }
 

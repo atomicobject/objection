@@ -3,10 +3,12 @@
 
 @implementation ObjectionModule
 @synthesize bindings=_bindings;
+@synthesize eagerSingletons=_eagerSingletons;
 
 - (id)init {
   if (self = [super init]) {
     _bindings = [[NSMutableDictionary alloc] init];
+    _eagerSingletons = [[NSMutableSet alloc] init];
   }
   return self;
 }
@@ -29,11 +31,16 @@
   [_bindings setObject:entry forKey:key];
 }
 
+- (void) registerEagerSingleton:(Class)klass {
+  [_eagerSingletons addObject:NSStringFromClass(klass)];
+}
+
 - (void) configure {
 }
 
 - (void)dealloc {
   [_bindings release]; _bindings = nil;
+  [_eagerSingletons release]; _eagerSingletons = nil;
   [super dealloc];
 }
 @end

@@ -56,7 +56,7 @@ A global injector can be registered with Objection which can be used throughout 
 
 ### Registering Instances
 
-Objection supports associating an object outside the context of Objection by configuring an ObjectionModule.
+Objection supports associating an object outside the context of Objection by configuring an ObjectionModule. You can also mark registered [singleton] classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
 
 ### Example
       @interface MyAppModule : ObjectionModule {
@@ -68,6 +68,7 @@ Objection supports associating an object outside the context of Objection by con
       - (void)configure {
         [self bind:[UIApplication sharedApplication] toClass:[UIApplication class]];
         [self bind:[UIApplication sharedApplication].delegate toProtocol:@protocol(UIApplicationDelegate)];
+        [self registerEagerSingleton:[Car class]];
       }
       
       @end
