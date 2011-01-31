@@ -98,7 +98,7 @@ SPEC_BEGIN(ModuleUsageSpecs)
     assertRaises(^{
       MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"] autorelease];    
       [module configure];
-    }, @"Instance does not conform to the given protocol") ; 
+    }, @"Instance does not conform to the GearBox protocol") ; 
   });
 
 

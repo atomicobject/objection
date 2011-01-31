@@ -13,7 +13,9 @@
 
 - (void) bind:(id)instance toProtocol:(Protocol *)aProtocol {
   if (![instance conformsToProtocol:aProtocol]) {
-    @throw [NSException exceptionWithName:@"ObjectionException" reason:@"Instance does not conform to the given protocol" userInfo:nil];
+    @throw [NSException exceptionWithName:@"ObjectionException" 
+                        reason:[NSString stringWithFormat:@"Instance does not conform to the %@ protocol", NSStringFromProtocol(aProtocol)] 
+                        userInfo:nil];
   }
   
   NSString *key = [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(aProtocol)];

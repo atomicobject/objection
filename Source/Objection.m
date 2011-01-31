@@ -1,5 +1,4 @@
 #import "Objection.h"
-#import "ObjectionInstanceEntry.h"
 #import <pthread.h>
 
 static NSMutableDictionary *gObjectionContext;
