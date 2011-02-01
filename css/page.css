@@ -41,3 +41,11 @@ h1 + p {
 h1 {
   margin-bottom:5px;
 }
+
+#objection img {
+	display: block;
+	width: 180px;
+	height: 162px;
+	margin-right: auto;
+	margin-left: auto;
+}
