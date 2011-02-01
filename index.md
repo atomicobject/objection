@@ -4,5 +4,5 @@ layout: default
 ---
 
 [GitHub](https://github.com/atomicobject/objection/) |
-[Issues](http://ralfebert.lighthouseapp.com/projects/67904/) |
+[Issues](https://github.com/atomicobject/objection/issues) |
 [Installation](#installation)
