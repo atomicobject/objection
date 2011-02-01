@@ -7,4 +7,5 @@ layout: default
 [Issues](https://github.com/atomicobject/objection/issues) |
 [Installation](#installation)
 
-# ![objection](dependency_injection.png) Objection
+# ![objection](dependency_injection.png) 
+# Objection
