@@ -11,7 +11,7 @@ layout: default
 
 ## Overview
 
-objection is a lightweight [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection) framework for Objective-C for MacOS X and iOS. For those of you that are familiar with [GUICE](http://code.google.com/p/google-guice/) objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.
+objection is a lightweight [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection) framework for Objective-C for MacOS X and iOS. For those of you that have used [GUICE](http://code.google.com/p/google-guice/) objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.
 
 ## Features
 
