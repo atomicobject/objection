@@ -36,14 +36,9 @@
     if (!classOrProtocol) {
       return nil;
     }
-    
-    /*
-     We have not found an effective programmatic method of determining whether an object is a Class or Protocol. A Protocol appears
-     to act like a root level object where the superclass is itself. It does not implement methodSignatureForSelector: that the root object NSObject
-     and NSProxy implement. Therefore we are using this as a distinguishing factor in whether to treat it like a protocol or class.
-    */
+        
     NSString *key = nil;
-    if ([classOrProtocol respondsToSelector:@selector(methodSignatureForSelector:)]) {
+    if (class_isMetaClass(object_getClass(classOrProtocol))) {
       key = NSStringFromClass(classOrProtocol);
     } else {
       key = [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(classOrProtocol)];
