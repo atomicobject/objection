@@ -33,10 +33,10 @@
 
 }
 
-+ (ObjectionInjector *) createInjector:(ObjectionModule *)aModule;
-+ (ObjectionInjector *) createInjector;
-+ (void) registerClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)lifeCycle;
++ (ObjectionInjector *)createInjector:(ObjectionModule *)aModule;
++ (ObjectionInjector *)createInjector;
++ (void)registerClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)lifeCycle;
 + (void)setGlobalInjector:(ObjectionInjector *)anInjector;
-+ (ObjectionInjector *) globalInjector;
-+ (void) reset;
++ (ObjectionInjector *)globalInjector;
++ (void)reset;
 @end

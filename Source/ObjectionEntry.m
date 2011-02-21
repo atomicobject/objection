@@ -9,9 +9,9 @@
 
 
 @implementation ObjectionEntry
-@synthesize lifeCycle=_lifeCycle; 
-@synthesize classEntry=_classEntry;
-@synthesize injector=_injector;
+@synthesize lifeCycle = _lifeCycle; 
+@synthesize classEntry = _classEntry;
+@synthesize injector = _injector;
 
 #pragma mark Instance Methods
 #pragma mark -
@@ -26,7 +26,7 @@
   return self;
 }
 
-- (id) extractObject {
+- (id)extractObject {
   if (self.lifeCycle == ObjectionInstantiationRuleEverytime) {
   	return [self buildObject];  
   } else if (!_storageCache) {
@@ -44,7 +44,7 @@
 #pragma mark Private Methods
 #pragma mark -
 
-- (void) notifyObjectThatItIsReady: (id) object  {
+- (void)notifyObjectThatItIsReady: (id) object  {
   if([object respondsToSelector:@selector(awakeFromObjection)]) {
     [object performSelector:@selector(awakeFromObjection)];
   }

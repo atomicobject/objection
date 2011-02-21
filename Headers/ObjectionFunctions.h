@@ -12,7 +12,5 @@ typedef struct objection_property_info {
 } ObjectionPropertyInfo;
 
 ObjectionPropertyInfo ObjectionFindClassOrProtocolForProperty(objc_property_t property);
-
 objc_property_t ObjectionGetProperty(Class klass, NSString *propertyName);
-
 NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements);

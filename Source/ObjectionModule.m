@@ -2,8 +2,8 @@
 #import "ObjectionInstanceEntry.h"
 
 @implementation ObjectionModule
-@synthesize bindings=_bindings;
-@synthesize eagerSingletons=_eagerSingletons;
+@synthesize bindings = _bindings;
+@synthesize eagerSingletons = _eagerSingletons;
 
 - (id)init {
   if (self = [super init]) {

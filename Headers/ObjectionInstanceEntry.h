@@ -5,6 +5,6 @@
 	id instance;
 }
 
-- (id) initWithObject:(id)theObject;
-- (id) extractObject;
+- (id)initWithObject:(id)theObject;
+- (id)extractObject;
 @end
