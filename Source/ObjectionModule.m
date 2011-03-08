@@ -1,5 +1,10 @@
 #import "ObjectionModule.h"
 #import "ObjectionInstanceEntry.h"
+#import <objc/runtime.h>
+
+@interface ObjectionModule(Private)
+- (NSString *)protocolKey:(Protocol *)aProtocol;
+@end
 
 @implementation ObjectionModule
 @synthesize bindings = _bindings;
@@ -13,6 +18,17 @@
   return self;
 }
 
+- (void)bindMetaClass:(Class)metaClass toProtocol:(Protocol *)aProtocol {
+  if (!class_isMetaClass(object_getClass(metaClass))) {
+    @throw [NSException exceptionWithName:@"ObjectionException" 
+                          reason:[NSString stringWithFormat:@"\"%@\" can not be bound to the protocol \"%@\" because it is not a meta class", metaClass, NSStringFromProtocol(aProtocol)]
+                          userInfo:nil];
+  }
+  NSString *key = [self protocolKey:aProtocol];
+  ObjectionInstanceEntry *entry = [[[ObjectionInstanceEntry alloc] initWithObject:metaClass] autorelease];
+  [_bindings setObject:entry forKey:key];    
+}
+
 - (void) bind:(id)instance toProtocol:(Protocol *)aProtocol {
   if (![instance conformsToProtocol:aProtocol]) {
     @throw [NSException exceptionWithName:@"ObjectionException" 
@@ -20,7 +36,7 @@
                         userInfo:nil];
   }
   
-  NSString *key = [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(aProtocol)];
+  NSString *key = [self protocolKey:aProtocol];
   ObjectionInstanceEntry *entry = [[[ObjectionInstanceEntry alloc] initWithObject:instance] autorelease];
   [_bindings setObject:entry forKey:key];  
 }
@@ -43,4 +59,12 @@
   [_eagerSingletons release]; _eagerSingletons = nil;
   [super dealloc];
 }
+
+#pragma mark -
+#pragma mark Private
+
+- (NSString *)protocolKey:(Protocol *)aProtocol {
+ return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(aProtocol)]; 
+}
+
 @end

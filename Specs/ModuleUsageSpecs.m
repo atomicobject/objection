@@ -1,6 +1,25 @@
 #import "SpecHelper.h"
 #import "Fixtures.h"
 
+@protocol MetaCar<NSObject>
+- (id)manufacture;
+@end
+
+@interface Car(Meta)
+// Perfect example of why factories OK alternatives to class methods. 
+// Car that manufactures a...car?
++ (id)manufacture;
+@end
+
+@implementation Car(Meta)
+
++ (id)manufacture {
+  return [[[Car alloc] init] autorelease];
+}
+
+@end
+
+
 @protocol GearBox<NSObject>
 - (void)shiftUp;
 - (void)shiftDown;
@@ -41,11 +60,13 @@ objection_register_singleton(EagerSingleton)
   Engine *_engine;
   id<GearBox> _gearBox;
   BOOL _instrumentInvalidEagerSingleton;
+  BOOL _instrumentInvalidMetaClass;
 }
 
 @property(nonatomic, readonly) Engine *engine;
 @property(nonatomic, readonly) id<GearBox> gearBox;
 @property(nonatomic, assign) BOOL instrumentInvalidEagerSingleton;
+@property (nonatomic, assign) BOOL instrumentInvalidMetaClass;
 
 - (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox;
 @end
@@ -54,6 +75,7 @@ objection_register_singleton(EagerSingleton)
 @synthesize engine=_engine;
 @synthesize gearBox=_gearBox;
 @synthesize instrumentInvalidEagerSingleton=_instrumentInvalidEagerSingleton;
+@synthesize instrumentInvalidMetaClass = _instrumentInvalidMetaClass;
 
 - (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox {
   if (self = [super init]) {
@@ -67,7 +89,14 @@ objection_register_singleton(EagerSingleton)
 - (void)configure {
   [self bind:_engine toClass:[Engine class]];
   [self bind:_gearBox toProtocol:@protocol(GearBox)];
-  if (_instrumentInvalidEagerSingleton) {
+  
+  if (self.instrumentInvalidMetaClass) {
+    [self bindMetaClass:(id)@"sneaky" toProtocol:@protocol(MetaCar)];
+  } else {
+    [self bindMetaClass:[Car class] toProtocol:@protocol(MetaCar)];    
+  }
+
+  if (self.instrumentInvalidEagerSingleton) {
     [self registerEagerSingleton:[Car class]];
   } else {
     [self registerEagerSingleton:[EagerSingleton class]];
@@ -137,5 +166,26 @@ SPEC_BEGIN(ModuleUsageSpecs)
       [Objection createInjector:module];
     }, @"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton") ;     
   });
+
+  describe(@"meta class binding", ^{
+    it(@"supports binding to a meta class instance via a protocol", ^{
+      id<MetaCar> car = [[Objection globalInjector] getObject:@protocol(MetaCar)];
+      assertThat(car, is([Car class]));    
+      assertThat([car manufacture], is(instanceOf([Car class])));
+    });
+    
+    it(@"throws an exception if the given object is not a meta class", ^{
+      id<GearBox> gearBox = [[[WantsToBreakGearBox alloc] init] autorelease];
+      Engine *engine = [[[Engine alloc] init] autorelease];
+
+      assertRaises(^{
+        MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
+        module.instrumentInvalidMetaClass = YES;
+        [module configure];
+      }, @"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class");       
+    });
+  });
+
+
 
 SPEC_END
