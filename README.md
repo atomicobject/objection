@@ -86,6 +86,33 @@ Objection supports associating an object outside the context of Objection by con
         [Objection setGlobalInjector:injector];
       }
 
+### Meta Class Bindings
+
+There are times when a dependency -- usually external -- is implemented only using class methods. Objection can support explicitly binding to
+the meta class instance through a protocol. This avoids having to unnecessarily create a wrapper class that passes through to the class
+methods. The disadvantage, of course, is that it requires a protocol definition so that Objection knows how to bind the meta class to objects
+in the injector context.
+
+### Example
+
+      @protocol ExternalUtility
+        - (void)doSomething;
+      @end
+      
+      @interface ExternalUtility
+        + (void)doSomething;
+      @end
+      
+      @implementation ExternalUtility
+        + (void)doSomething {...}
+      @end
+      
+      // Module Configuration
+      - (void)configure {
+        [self bindMetaClass:[ExternalUtility class] toProtocol:@protocol(ExternalUtility)];    
+      }
+      
+
 ### Instance Creation Notification
 
 If an object is interested in knowing when it has been fully instantiated by objection it can implement the method
