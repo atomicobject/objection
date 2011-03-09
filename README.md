@@ -88,7 +88,7 @@ Objection supports associating an object outside the context of Objection by con
 
 ### Meta Class Bindings
 
-There are times when a dependency -- usually external -- is implemented only using class methods. Objection can support explicitly binding to
+There are times when a dependency -- usually external -- is implemented only using class methods. Objection can explicitly support binding to
 the meta class instance through a protocol. This avoids having to unnecessarily create a wrapper class that passes through to the class
 methods. The disadvantage, of course, is that it requires a protocol definition so that Objection knows how to bind the meta class to objects
 in the injector context.
