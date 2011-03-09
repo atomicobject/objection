@@ -65,11 +65,7 @@ static ObjectionInjector *gGlobalInjector;
   }
 }
 
-+ (ObjectionInjector *) globalInjector {
-  @try {
-    return gGlobalInjector;
-  }
-  @finally {
-  }  
++ (ObjectionInjector *) globalInjector {  
+  return gGlobalInjector;
 }
 @end
