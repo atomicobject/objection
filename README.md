@@ -112,6 +112,16 @@ in the injector context.
         [self bindMetaClass:[ExternalUtility class] toProtocol:@protocol(ExternalUtility)];    
       }
       
+      @interface SomeClass
+      {
+        ...
+      }
+      // Use 'assign' because a meta class is not subject to the normal retain/release lifecycle. 
+      // It will exist until the application is terminated (Class Initialization -> Application Termination)
+      // regardless of the number of objects in the runtime that reference it.
+      @property (nonatomic, assign) id<ExternalUtility> externalUtility
+      @end
+      
 
 ### Instance Creation Notification
 
