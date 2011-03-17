@@ -7,10 +7,10 @@ Why Objection?
 ==============
 
 * "Annotation" Based Dependency Injection
-* Support for singletons
+* Does not require that a large upfront container is maintained
 * Lazy Instantiation over Eager Instantiation
+* Alleviates the need to manually construct objects or rely on factories
 * Support for integrating external dependencies
-
 
 Synopsis
 ========
