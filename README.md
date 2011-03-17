@@ -140,7 +140,6 @@ If an object is interested in knowing when it has been fully instantiated by obj
 
 ### TODO
 
-* Directly support meta class bindings so that unnecessary class wrappers can be avoided
 * Diagram class initialization and its relationship with Objection
 
 Installation
