@@ -141,6 +141,7 @@ If an object is interested in knowing when it has been fully instantiated by obj
 ### TODO
 
 * Diagram class initialization and its relationship with Objection
+* Resolve circular dependencies
 
 Installation
 =======
