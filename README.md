@@ -65,7 +65,7 @@ A global injector can be registered with Objection which can be used throughout 
 
 ### Registering Instances
 
-Objection supports associating an object outside the context of Objection by configuring an ObjectionModule. You can also mark registered [singleton] classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
+Objection supports associating an object outside the context of Objection by configuring an ObjectionModule. You can also mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
 
 ### Example
       @interface MyAppModule : ObjectionModule {
@@ -88,9 +88,9 @@ Objection supports associating an object outside the context of Objection by con
 
 ### Meta Class Bindings
 
-There are times when a dependency -- usually external -- is implemented only using class methods. Objection can explicitly support binding to
+There are times when a dependency -- usually external -- is implemented using only class methods. Objection can explicitly support binding to
 the meta class instance through a protocol. This avoids having to unnecessarily create a wrapper class that passes through to the class
-methods. The disadvantage, of course, is that it requires a protocol definition so that Objection knows how to bind the meta class to objects
+methods. The catch, of course, is that it requires a protocol definition so that Objection knows how to bind the meta class to objects
 in the injector context.
 
 ### Example

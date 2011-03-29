@@ -67,7 +67,7 @@
         [desiredClassOrProtocol class];        
       }
       
-      id theObject = [_injector getObject:desiredClassOrProtocol];
+      id theObject = [self.injector getObject:desiredClassOrProtocol];
       
       if(theObject == nil && propertyInfo.type == ObjectionTypeClass) {
         [Objection registerClass:desiredClassOrProtocol lifeCycle: ObjectionInstantiationRuleEverytime];
