@@ -59,7 +59,7 @@ SPEC_BEGIN(InheritanceSpecs)
     assertThat(programmer.attributes, is(notNilValue()));
   });
 
-  it(@"does not throw a fit if the base class does not implement super", ^{
+  it(@"does not throw a fit if the base class does not implement .objectionRequires", ^{
     NoInheritance *noParentObjectWithRequires = [[Objection globalInjector] getObject:[NoInheritance class]];
     assertThat(noParentObjectWithRequires.something, is(notNilValue()));
   });
