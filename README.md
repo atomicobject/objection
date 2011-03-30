@@ -156,7 +156,7 @@ Installation
 6. Add -ObjC and -all_load to Other Link Flags in your project
 
 #### Include framework
-    #import <Objection-iPhone/Objection.h>
+    #import <Objection-iOS/Objection.h>
 
 ### MacOS X
 
