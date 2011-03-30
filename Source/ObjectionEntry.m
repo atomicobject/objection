@@ -2,7 +2,7 @@
 #import "Objection.h"
 #import "ObjectionFunctions.h"
 
-@interface ObjectionEntry (Private)
+@interface ObjectionEntry()
 - (void) notifyObjectThatItIsReady: (id)object;
 - (id) buildObject;
 @end
@@ -41,8 +41,9 @@
   [super dealloc];
 }
 
-#pragma mark Private Methods
+
 #pragma mark -
+#pragma mark Private Methods
 
 - (void)notifyObjectThatItIsReady: (id) object  {
   if([object respondsToSelector:@selector(awakeFromObjection)]) {

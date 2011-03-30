@@ -2,7 +2,7 @@
 #import "ObjectionInstanceEntry.h"
 #import <objc/runtime.h>
 
-@interface ObjectionModule(Private)
+@interface ObjectionModule()
 - (NSString *)protocolKey:(Protocol *)aProtocol;
 @end
 
@@ -60,8 +60,8 @@
   [super dealloc];
 }
 
-#pragma mark -
 #pragma mark Private
+#pragma mark -
 
 - (NSString *)protocolKey:(Protocol *)aProtocol {
  return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(aProtocol)]; 
