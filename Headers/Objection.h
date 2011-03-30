@@ -4,9 +4,10 @@
 
 #import "ObjectionModule.h"
 #import "ObjectionInjector.h"
-#import "ObjectionInstanceEntry.h"
-#import "NSObject+Objection.h"
 #import "ObjectionEntry.h"
+#import "ObjectionBindingEntry.h"
+#import "NSObject+Objection.h"
+#import "ObjectionInjectorEntry.h"
 #import "ObjectionFunctions.h"
 
 #define objection_register(value)			\

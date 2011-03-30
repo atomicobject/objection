@@ -1,5 +1,5 @@
 #import "ObjectionModule.h"
-#import "ObjectionInstanceEntry.h"
+#import "ObjectionBindingEntry.h"
 #import <objc/runtime.h>
 
 @interface ObjectionModule()
@@ -25,7 +25,7 @@
                           userInfo:nil];
   }
   NSString *key = [self protocolKey:aProtocol];
-  ObjectionInstanceEntry *entry = [[[ObjectionInstanceEntry alloc] initWithObject:metaClass] autorelease];
+  ObjectionBindingEntry *entry = [[[ObjectionBindingEntry alloc] initWithObject:metaClass] autorelease];
   [_bindings setObject:entry forKey:key];    
 }
 
@@ -37,13 +37,13 @@
   }
   
   NSString *key = [self protocolKey:aProtocol];
-  ObjectionInstanceEntry *entry = [[[ObjectionInstanceEntry alloc] initWithObject:instance] autorelease];
+  ObjectionBindingEntry *entry = [[[ObjectionBindingEntry alloc] initWithObject:instance] autorelease];
   [_bindings setObject:entry forKey:key];  
 }
 
 - (void) bind:(id)instance toClass:(Class)aClass {
   NSString *key = NSStringFromClass(aClass);
-  ObjectionInstanceEntry *entry = [[[ObjectionInstanceEntry alloc] initWithObject:instance] autorelease];
+  ObjectionBindingEntry *entry = [[[ObjectionBindingEntry alloc] initWithObject:instance] autorelease];
   [_bindings setObject:entry forKey:key];
 }
 

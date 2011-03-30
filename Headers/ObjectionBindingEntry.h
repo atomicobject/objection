@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 #import "ObjectionEntry.h"
 
-@interface ObjectionInstanceEntry : NSObject<ObjectionEntry> {
-	id instance;
+@interface ObjectionBindingEntry : ObjectionEntry {
+	id _instance;
 }
 
 - (id)initWithObject:(id)theObject;

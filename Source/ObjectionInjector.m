@@ -1,5 +1,4 @@
 #import "ObjectionInjector.h"
-#import "ObjectionInstanceEntry.h"
 #import "ObjectionEntry.h"
 #import <pthread.h>
 #import <objc/runtime.h>
@@ -49,10 +48,10 @@
     
     if (!injectorEntry) {
       id<ObjectionEntry> entry = [_globalContext objectForKey:key];
-      if ([entry isKindOfClass:[ObjectionEntry class]]) {
-        injectorEntry = [ObjectionEntry entryWithEntry:entry];
-        ((ObjectionEntry *)injectorEntry).injector = self;
-        [_context setObject:injectorEntry forKey:key];      
+      if (entry) {
+        injectorEntry = [[entry class] entryWithEntry:entry];
+        injectorEntry.injector = self;
+        [_context setObject:injectorEntry forKey:key];              
       }
     }
     
