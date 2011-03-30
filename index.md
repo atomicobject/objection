@@ -34,7 +34,7 @@ For a technical overview of framework please visit the [GitHub page](https://git
 
 1. git clone git://github.com/atomicobject/objection.git
 2. Open Objection.xcodeproj
-3. Select Objection-iPhone target
+3. Select Objection-iOS target
 4. Select Release Configuration
 5. Build
 6. Add -ObjC and -all_load to Other Link Flags in your project
