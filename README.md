@@ -150,7 +150,7 @@ Installation
 
 1. git clone git://github.com/atomicobject/objection.git
 2. Open Objection.xcodeproj
-3. Select Objection-iPhone target
+3. Select Objection-iOS target
 4. Select Release Configuration
 5. Build
 6. Add -ObjC and -all_load to Other Link Flags in your project
@@ -168,6 +168,11 @@ Installation
 
 #### Include framework
     #import <Objection/Objection.h>
+
+### Installation Notes
+
+* There is a glitch in XCode that will cause header files to not be copied properly. So, if you are building the iOS target you may have to run the build process a couple of times to get all of the proper header files copied.
+* If you get an non-compile error when building the Objection target for MacOS X you may need to close the project and re-open it. XCode does not play nice with diverse platform configurations.
 
 Requirements
 ============
