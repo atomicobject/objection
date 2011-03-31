@@ -11,7 +11,7 @@
 @synthesize eagerSingletons = _eagerSingletons;
 
 - (id)init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _bindings = [[NSMutableDictionary alloc] init];
     _eagerSingletons = [[NSMutableSet alloc] init];
   }
