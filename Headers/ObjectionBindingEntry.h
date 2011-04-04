@@ -6,5 +6,4 @@
 }
 
 - (id)initWithObject:(id)theObject;
-- (id)extractObject;
 @end

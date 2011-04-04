@@ -8,7 +8,6 @@
 }
 
 @property (nonatomic, readonly) Class classEntry;
-@property (nonatomic, readonly) ObjectionInstantiationRule lifeCycle;
 
 - (id)initWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle;
 + (id)entryWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle;
