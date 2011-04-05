@@ -63,7 +63,7 @@ A global injector can be registered with Objection which can be used throughout 
       id myModel = [[Objection globalInjector] getObject:[MyModel class]];
     }
 
-### Registering Instances
+### External Dependencies
 
 Objection supports associating an object outside the context of Objection by configuring an ObjectionModule. You can also mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
 
