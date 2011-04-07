@@ -9,7 +9,7 @@ beforeEach(^{
   [Objection setGlobalInjector:injector];
 });
 
-it(@"throws an exception if property type if not an object", ^{
+it(@"throws an exception if property type is not an object", ^{
   @try {
     [[Objection globalInjector] getObject:[UnsupportedPropertyObject class]];
     fail(@"Should have thrown an exception");
