@@ -36,7 +36,7 @@ it(@"throws if an object requires a protocol that does not exist in the context"
   }, @"Cannot find an instance that is bound to the protocol 'GearBox' to assign to the property 'gearBox'");
 });
 
-it(@"throws if instantiation rule if not valid", ^{  
+it(@"throws if instantiation rule is not valid", ^{  
   @try {
     [Objection registerClass:[CarFactory class] lifeCycle:3];  
     fail(@"Should have thrown an exception");
