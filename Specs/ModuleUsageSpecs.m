@@ -125,7 +125,7 @@ SPEC_BEGIN(ModuleUsageSpecs)
     [Objection setGlobalInjector:injector];
   });
 
-  it(@"merges the modules instance binding with the injector's context", ^{
+  it(@"merges the modules instance bindings with the injector's context", ^{
     MyModule *module = GetFromContext(@"module");
     assertThat([[Objection globalInjector] getObject:[Engine class]], is(sameInstance(module.engine)));
   });
@@ -143,7 +143,7 @@ SPEC_BEGIN(ModuleUsageSpecs)
     assertThat([[Objection globalInjector] getObject:@protocol(GearBox)], is(sameInstance(module.gearBox)));    
   });
 
-  it(@"throws an exception of the instance does not conform the protocol", ^{
+  it(@"throws an exception if the instance does not conform to the protocol", ^{
     Engine *engine = [[[Engine alloc] init] autorelease];
     
     assertRaises(^{
@@ -167,7 +167,7 @@ SPEC_BEGIN(ModuleUsageSpecs)
     }, @"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton") ;     
   });
 
-  describe(@"meta class binding", ^{
+  describe(@"meta class bindings", ^{
     it(@"supports binding to a meta class instance via a protocol", ^{
       id<MetaCar> car = [[Objection globalInjector] getObject:@protocol(MetaCar)];
       assertThat(car, is([Car class]));    
