@@ -70,7 +70,7 @@ it(@"doesn't blow up if a nil class is passed into register", ^{
   [Objection registerClass:nil lifeCycle:ObjectionInstantiationRuleSingleton];
 });
 
-it(@"calls awakeFromObjection when object has constructed", ^{
+it(@"calls awakeFromObjection when an object has been constructed", ^{
   id engine = [[Objection globalInjector] getObject:[Engine class]];
   id car = [[Objection globalInjector] getObject:[Car class]];
 
