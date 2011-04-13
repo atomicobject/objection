@@ -154,7 +154,7 @@
 		4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
 		4BA9CFF212AA86E600674F0E /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Vendor/Cedar.framework; sourceTree = "<group>"; };
 		4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = Vendor/OCHamcrest.framework; sourceTree = "<group>"; };
-		4BED511612AA8B7A00CA6B36 /* Objection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Objection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BED511612AA8B7A00CA6B36 /* Objection */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = Objection; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED511712AA8B7A00CA6B36 /* Objection-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Objection-Info.plist"; sourceTree = "<group>"; };
 		4BED511E12AA8BCC00CA6B36 /* ObjectionInjectorEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionInjectorEntry.m; sourceTree = "<group>"; };
 		4BED511F12AA8BCC00CA6B36 /* ObjectionInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionInjector.m; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 			children = (
 				D2AAC07E0554694100DB518D /* libObjection-StaticLib.a */,
 				4BF4512812919817006EB2D5 /* UISpecs.app */,
-				4BED511612AA8B7A00CA6B36 /* Objection.framework */,
+				4BED511612AA8B7A00CA6B36 /* Objection */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -381,7 +381,7 @@
 			);
 			name = Objection;
 			productName = Objection;
-			productReference = 4BED511612AA8B7A00CA6B36 /* Objection.framework */;
+			productReference = 4BED511612AA8B7A00CA6B36 /* Objection */;
 			productType = "com.apple.product-type.framework";
 		};
 		4BF4512712919817006EB2D5 /* UISpecs */ = {
@@ -491,7 +491,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}-StaticLib.a\" &&\n\tDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}-StaticLib.a\" &&\n\tUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\n\tUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}\" &&\n\tFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\n\trm -rf \"${FRAMEWORK}\" &&\n\tmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\tmkdir -p \"${FRAMEWORK}/Versions/A/Headers\" &&\n\tmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary from desktop, device, and simulator builds.\n\tlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Move files to appropriate locations in framework paths.\n\tcp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A\" &&\n\tln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\n\tln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\n\tln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\n\tln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\"\n";
+			shellScript = "SIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}-StaticLib.a\" &&\n\tDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}-StaticLib.a\" &&\n\tUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\n\tUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}\" &&\n\tFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\n\trm -rf \"${FRAMEWORK}\" &&\n\tmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\tmkdir -p \"${FRAMEWORK}/Versions/A/Headers\" &&\n\tmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary from desktop, device, and simulator builds.\n\tlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Move files to appropriate locations in framework paths.\n\tcp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A\" &&\n\tln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\n\tln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\n\tln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\n\tln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\" &&\n\tcp \"${SRCROOT}/${PROJECT_NAME}-Info.plist\" \"${FRAMEWORK}/Resources/Info.plist\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
