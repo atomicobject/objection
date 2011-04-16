@@ -9,7 +9,8 @@
 
 @implementation ObjectionInjector
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext {
+- (id)initWithContext:(NSDictionary *)theGlobalContext 
+{
   if ((self = [super init])) {
     _globalContext = [theGlobalContext retain];
     _context = [[NSMutableDictionary alloc] init];
@@ -19,7 +20,8 @@
   return self;
 }
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(ObjectionModule *)theModule {
+- (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(ObjectionModule *)theModule 
+{
   if (self = [self initWithContext:theGlobalContext]) {
     [theModule configure];
     _eagerSingletons = theModule.eagerSingletons;
@@ -29,7 +31,8 @@
   return self;
 }
 
-- (id)getObject:(id)classOrProtocol {
+- (id)getObject:(id)classOrProtocol 
+{
   @synchronized(self) {
     
     if (!classOrProtocol) {
@@ -63,7 +66,8 @@
   }
 }
 
-- (void)initializeEagerSingletons {
+- (void)initializeEagerSingletons 
+{
   for (NSString *eagerSingletonKey in _eagerSingletons) {
     id entry = [_globalContext objectForKey:eagerSingletonKey];
     if ([entry lifeCycle] == ObjectionInstantiationRuleSingleton) {

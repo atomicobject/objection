@@ -7,7 +7,8 @@ static ObjectionInjector *gGlobalInjector;
 
 @implementation Objection
 
-+ (ObjectionInjector *) createInjector:(ObjectionModule *)aModule {
++ (ObjectionInjector *) createInjector:(ObjectionModule *)aModule 
+{
   pthread_mutex_lock(&gObjectionMutex);
   @try {
     return [[[ObjectionInjector alloc] initWithContext:gObjectionContext andModule:aModule] autorelease];
@@ -17,7 +18,8 @@ static ObjectionInjector *gGlobalInjector;
   }
 }
 
-+ (ObjectionInjector *) createInjector {
++ (ObjectionInjector *) createInjector 
+{
   pthread_mutex_lock(&gObjectionMutex);
   @try {
     return [[[ObjectionInjector alloc] initWithContext:gObjectionContext] autorelease];
@@ -27,7 +29,8 @@ static ObjectionInjector *gGlobalInjector;
   }
 }
 
-+ (void)initialize {
++ (void)initialize 
+{
   if (self == [Objection class]) {
 		gObjectionContext = [[NSMutableDictionary alloc] init];
     pthread_mutexattr_t mutexattr;
@@ -38,9 +41,9 @@ static ObjectionInjector *gGlobalInjector;
   }
 }
 
-+ (void) registerClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)lifeCycle {
++ (void) registerClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)lifeCycle 
+{
   pthread_mutex_lock(&gObjectionMutex);
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   if (lifeCycle != ObjectionInstantiationRuleSingleton && lifeCycle != ObjectionInstantiationRuleEverytime) {
     @throw [NSException exceptionWithName:@"ObjectionInjectorException" reason:@"Invalid Instantiation Rule" userInfo:nil];
   }
@@ -48,24 +51,26 @@ static ObjectionInjector *gGlobalInjector;
   if (theClass && [gObjectionContext objectForKey:NSStringFromClass(theClass)] == nil) {
     [gObjectionContext setObject:[ObjectionInjectorEntry entryWithClass:theClass lifeCycle:lifeCycle] forKey:NSStringFromClass(theClass)];
   } 
-  [pool drain];
   pthread_mutex_unlock(&gObjectionMutex);
 }
 
-+ (void) reset {
++ (void) reset 
+{
   pthread_mutex_lock(&gObjectionMutex);
   [gObjectionContext removeAllObjects];
   pthread_mutex_unlock(&gObjectionMutex);
 }
 
-+ (void)setGlobalInjector:(ObjectionInjector *)anInjector {
++ (void)setGlobalInjector:(ObjectionInjector *)anInjector 
+{
   if (gGlobalInjector != anInjector) {
     [gGlobalInjector release];
     gGlobalInjector = [anInjector retain];
   }
 }
 
-+ (ObjectionInjector *) globalInjector {  
++ (ObjectionInjector *) globalInjector 
+{  
   return gGlobalInjector;
 }
 @end

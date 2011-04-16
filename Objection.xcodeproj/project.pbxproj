@@ -806,7 +806,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = UISpecs;
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -839,7 +839,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = UISpecs;
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;

@@ -15,7 +15,8 @@
 #pragma mark Instance Methods
 #pragma mark -
 
-- (id)initWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle {
+- (id)initWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle 
+{
   if ((self = [super init])) {
     _lifeCycle = theLifeCycle;
     _classEntry = theClass;
@@ -25,7 +26,8 @@
   return self;
 }
 
-- (id)extractObject {
+- (id)extractObject 
+{
   if (self.lifeCycle == ObjectionInstantiationRuleEverytime) {
   	return [self buildObject];  
   } else if (!_storageCache) {
@@ -35,7 +37,8 @@
   return _storageCache;
 }
 
-- (void)dealloc {
+- (void)dealloc 
+{
   [_storageCache release]; _storageCache = nil;
   [super dealloc];
 }
@@ -44,13 +47,15 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)notifyObjectThatItIsReady: (id) object  {
+- (void)notifyObjectThatItIsReady: (id) object 
+{
   if([object respondsToSelector:@selector(awakeFromObjection)]) {
     [object performSelector:@selector(awakeFromObjection)];
   }
 }
 
-- (id)buildObject {
+- (id)buildObject 
+{
 	if([self.classEntry respondsToSelector:@selector(objectionRequires)]) {
     NSArray *properties = [self.classEntry performSelector:@selector(objectionRequires)];
     NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
@@ -98,11 +103,13 @@
 #pragma mark Class Methods
 #pragma mark -
 
-+ (id)entryWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle {
++ (id)entryWithClass:(Class)theClass lifeCycle:(ObjectionInstantiationRule)theLifeCycle 
+{
   return [[[ObjectionInjectorEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle] autorelease];
 }
 
-+ (id)entryWithEntry:(ObjectionInjectorEntry *)entry {
++ (id)entryWithEntry:(ObjectionInjectorEntry *)entry 
+{
   return [[[ObjectionInjectorEntry alloc] initWithClass:entry.classEntry lifeCycle:entry.lifeCycle] autorelease];  
 }
 @end

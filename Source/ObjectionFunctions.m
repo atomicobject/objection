@@ -3,7 +3,8 @@
 
 static NSString *const ObjectionException = @"ObjectionException";
 
-ObjectionPropertyInfo ObjectionFindClassOrProtocolForProperty(objc_property_t property) {
+ObjectionPropertyInfo ObjectionFindClassOrProtocolForProperty(objc_property_t property) 
+{
   NSString *attributes = [NSString stringWithCString: property_getAttributes(property) encoding: NSASCIIStringEncoding];  
   NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
   
@@ -41,7 +42,8 @@ ObjectionPropertyInfo ObjectionFindClassOrProtocolForProperty(objc_property_t pr
   return propertyInfo;      
 }
 
-NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements) {
+NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements) 
+{
   Class superClass = class_getSuperclass([klass class]);
   if([superClass respondsToSelector:@selector(objectionRequires)]) {
     NSSet *parentsRequirements = [superClass performSelector:@selector(objectionRequires)];
@@ -52,7 +54,8 @@ NSSet* ObjectionBuildDependenciesForClass(Class klass, NSSet *requirements) {
   return requirements;  
 }
 
-objc_property_t ObjectionGetProperty(Class klass, NSString *propertyName) {
+objc_property_t ObjectionGetProperty(Class klass, NSString *propertyName) 
+{
   objc_property_t property = class_getProperty(klass, (const char *)[propertyName UTF8String]);
   if (property == NULL) {
     @throw [NSException exceptionWithName:ObjectionException reason:[NSString stringWithFormat:@"Unable to find property declaration: '%@'", propertyName] userInfo:nil];

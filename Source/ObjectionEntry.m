@@ -4,15 +4,18 @@
 @synthesize injector = _injector;
 @dynamic lifeCycle;
 
-- (id)extractObject {
+- (id)extractObject 
+{
   return nil;
 }
 
-+ (id)entryWithEntry:(ObjectionEntry *)entry {
++ (id)entryWithEntry:(ObjectionEntry *)entry 
+{
   return [[entry retain] autorelease];
 }
 
-- (ObjectionInstantiationRule)lifeCycle {
+- (ObjectionInstantiationRule)lifeCycle 
+{
   return ObjectionInstantiationRuleNone;
 }
 @end

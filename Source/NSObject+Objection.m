@@ -2,7 +2,8 @@
 
 
 @implementation NSObject(Objection)
-- (void)awakeFromObjection {
+- (void)awakeFromObjection 
+{
   
 }
 @end
