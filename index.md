@@ -33,11 +33,9 @@ For a technical overview of framework please visit the [GitHub page](https://git
 ### iOS
 
 1. git clone git://github.com/atomicobject/objection.git
-2. Open Objection.xcodeproj
-3. Select Objection-iOS target
-4. Select Release Configuration
-5. Build
-6. Add -ObjC and -all_load to Other Link Flags in your project
+2. rake artifact:ios
+3. cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}
+4. Add -ObjC and -all_load to Other Link Flags in your project
 
 #### Include framework
     #import <Objection-iOS/Objection.h>
@@ -45,10 +43,12 @@ For a technical overview of framework please visit the [GitHub page](https://git
 ### MacOS X
 
 1. git clone git://github.com/atomicobject/objection.git
-2. Open Objection.xcodeproj
-3. Select Objection target
-4. Select Release Configuration.
-5. Build
+2. rake artifact:osx
+3. cp -R build/Release/Objection.framework ${DEST_DIR}
 
 #### Include framework
     #import <Objection/Objection.h>
+
+### Installation Notes
+
+* There is a glitch in XCode that will cause header files to not be copied properly. So, if you are building the iOS target you may have to run the build process a couple of times to get all of the proper header files copied.
