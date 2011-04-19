@@ -22,6 +22,19 @@ task :cruise do
   Rake::Task[:uispecs].invoke
 end
 
+namespace :artifact do
+  desc "Build OSX Framework"
+  task :osx => :clean do
+    system_or_exit(%Q[xcodebuild -project #{PROJECT_NAME}.xcodeproj -target Objection -configuration Release build], nil)
+  end
+  
+  desc "Build iOS Framework"
+  task :ios  => :clean do
+    system_or_exit(%Q[xcodebuild -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build], nil)
+  end
+end
+  
+
 task :clean do
   stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "clean.output") if (ENV['IS_CI_BOX'])
   system_or_exit(%Q[xcodebuild -project #{PROJECT_NAME}.xcodeproj -alltargets -configuration #{CONFIGURATION} clean], stdout)

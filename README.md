@@ -140,10 +140,11 @@ If an object is interested in knowing when it has been fully instantiated by obj
 
 ### TODO
 
-* Diagram class initialization and its relationship with Objection
-* Resolve circular dependencies
-* Cache results of property definitions
+* Diagram class initialization and its relationship with Objection.
+* Resolve circular dependencies.
+* Cache results of property definitions.
 * Reconcile mixing iOS and MacOS X targets. It is currently a nightmare.
+* Document _Provider_ feature.
 
 Installation
 =======
@@ -151,11 +152,9 @@ Installation
 ### iOS
 
 1. git clone git://github.com/atomicobject/objection.git
-2. Open Objection.xcodeproj
-3. Select Objection-iOS target
-4. Select Release Configuration
-5. Build
-6. Add -ObjC and -all_load to Other Link Flags in your project
+2. rake artifact:ios
+3. cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}
+4. Add -ObjC and -all_load to Other Link Flags in your project
 
 #### Include framework
     #import <Objection-iOS/Objection.h>
@@ -163,10 +162,8 @@ Installation
 ### MacOS X
 
 1. git clone git://github.com/atomicobject/objection.git
-2. Open Objection.xcodeproj
-3. Select Objection target
-4. Select Release Configuration.
-5. Build
+2. rake artifact:osx
+3. cp -R build/Release/Objection.framework ${DEST_DIR}
 
 #### Include framework
     #import <Objection/Objection.h>
@@ -174,7 +171,6 @@ Installation
 ### Installation Notes
 
 * There is a glitch in XCode that will cause header files to not be copied properly. So, if you are building the iOS target you may have to run the build process a couple of times to get all of the proper header files copied.
-* If you get an non-compile error when building the Objection target for MacOS X you may need to close the project and re-open it. XCode does not play nice with diverse platform configurations.
 
 Requirements
 ============
