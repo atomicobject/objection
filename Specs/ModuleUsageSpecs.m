@@ -1,123 +1,12 @@
 #import "SpecHelper.h"
 #import "Fixtures.h"
-
-@protocol MetaCar<NSObject>
-- (id)manufacture;
-@end
-
-@interface Car(Meta)
-// Perfect example of why factories OK alternatives to class methods. 
-// Car that manufactures a...car?
-+ (id)manufacture;
-@end
-
-@implementation Car(Meta)
-
-+ (id)manufacture {
-  return [[[Car alloc] init] autorelease];
-}
-
-@end
-
-
-@protocol GearBox<NSObject>
-- (void)shiftUp;
-- (void)shiftDown;
-@optional // ;-)
-- (void)engageClutch;
-@end
-
-@interface WantsToBreakGearBox : NSObject<GearBox>
-@end
-
-@implementation WantsToBreakGearBox
-- (void)shiftUp {
-  
-}
-
-- (void)shiftDown {
-  
-}
-@end
-
-static BOOL gEagerSingletonHook = NO;
-@interface EagerSingleton : NSObject
-
-@end
-
-@implementation EagerSingleton
-objection_register_singleton(EagerSingleton)
-- (void)awakeFromObjection {
-  gEagerSingletonHook = YES;
-}
-@end
-
-
-
-
-@interface MyModule : ObjectionModule
-{
-  Engine *_engine;
-  id<GearBox> _gearBox;
-  BOOL _instrumentInvalidEagerSingleton;
-  BOOL _instrumentInvalidMetaClass;
-}
-
-@property(nonatomic, readonly) Engine *engine;
-@property(nonatomic, readonly) id<GearBox> gearBox;
-@property(nonatomic, assign) BOOL instrumentInvalidEagerSingleton;
-@property (nonatomic, assign) BOOL instrumentInvalidMetaClass;
-
-- (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox;
-@end
-
-@implementation MyModule
-@synthesize engine=_engine;
-@synthesize gearBox=_gearBox;
-@synthesize instrumentInvalidEagerSingleton=_instrumentInvalidEagerSingleton;
-@synthesize instrumentInvalidMetaClass = _instrumentInvalidMetaClass;
-
-- (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox {
-  if (self = [super init]) {
-    _engine = [engine retain];
-    _gearBox = [gearBox retain];
-  }
-  
-  return self;
-}
-
-- (void)configure {
-  [self bind:_engine toClass:[Engine class]];
-  [self bind:_gearBox toProtocol:@protocol(GearBox)];
-  
-  if (self.instrumentInvalidMetaClass) {
-    [self bindMetaClass:(id)@"sneaky" toProtocol:@protocol(MetaCar)];
-  } else {
-    [self bindMetaClass:[Car class] toProtocol:@protocol(MetaCar)];    
-  }
-
-  if (self.instrumentInvalidEagerSingleton) {
-    [self registerEagerSingleton:[Car class]];
-  } else {
-    [self registerEagerSingleton:[EagerSingleton class]];
-  }
-
-}
-
-- (void)dealloc {
-  [_engine release];_engine = nil;
-  [_gearBox release];_gearBox = nil;
-  [super dealloc];
-}
-
-@end
-
+#import "ModuleFixtures.h"
 
 SPEC_BEGIN(ModuleUsageSpecs)
 
   beforeEach(^{
     Engine *engine = [[[Engine alloc] init] autorelease];
-    id<GearBox> gearBox = [[[WantsToBreakGearBox alloc] init] autorelease];
+    id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
     
     MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
     AddToContext(@"module", module);
@@ -160,11 +49,55 @@ SPEC_BEGIN(ModuleUsageSpecs)
     Engine *engine = [[[Engine alloc] init] autorelease];
     
     assertRaises(^{
-      id<GearBox> gearBox = [[[WantsToBreakGearBox alloc] init] autorelease];
+      id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
       MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
       module.instrumentInvalidEagerSingleton = YES;
       [Objection createInjector:module];
     }, @"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton") ;     
+  });
+
+  describe(@"provider bindings", ^{
+    beforeEach(^{
+      MyModule *module = [[[ProviderModule alloc] init] autorelease];    
+      AddToContext(@"module", module);
+      ObjectionInjector *injector = [Objection createInjector:module];
+      [Objection setGlobalInjector:injector];      
+    });
+    
+    it(@"allows a bound protocol to be created through a provider", ^{
+      ManualCar *car = [[Objection globalInjector] getObject:[Car class]];
+      
+      assertThat(car, is(instanceOf([ManualCar class])));
+      assertThat(car.brakes, is(instanceOf([Brakes class])));
+      assertThat(car.engine, is(@"my engine"));
+    });
+    
+    it(@"allows a bound class to be created through a provider", ^{
+      AfterMarketGearBox *gearBox = [[Objection globalInjector] getObject:@protocol(GearBox)];      
+      assertThat(gearBox, is(instanceOf([AfterMarketGearBox class])));
+    });
+  });
+
+  describe(@"block bindings", ^{
+    beforeEach(^{
+      MyModule *module = [[[BlockModule alloc] init] autorelease];    
+      AddToContext(@"module", module);
+      ObjectionInjector *injector = [Objection createInjector:module];
+      [Objection setGlobalInjector:injector];      
+    });
+    
+    it(@"allows a bound protocol to be created using a block", ^{
+      ManualCar *car = [[Objection globalInjector] getObject:[Car class]];
+      
+      assertThat(car, is(instanceOf([ManualCar class])));
+      assertThat(car.brakes, is(instanceOf([Brakes class])));
+      assertThat(car.engine, is(@"My Engine"));      
+    });
+    
+    it(@"allows a bound class to be created using a block", ^{
+      AfterMarketGearBox *gearBox = [[Objection globalInjector] getObject:@protocol(GearBox)];      
+      assertThat(gearBox, is(instanceOf([AfterMarketGearBox class])));
+    });    
   });
 
   describe(@"meta class bindings", ^{
@@ -175,7 +108,7 @@ SPEC_BEGIN(ModuleUsageSpecs)
     });
     
     it(@"throws an exception if the given object is not a meta class", ^{
-      id<GearBox> gearBox = [[[WantsToBreakGearBox alloc] init] autorelease];
+      id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
       Engine *engine = [[[Engine alloc] init] autorelease];
 
       assertRaises(^{

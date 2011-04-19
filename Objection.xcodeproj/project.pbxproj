@@ -58,6 +58,18 @@
 		4B53483012F31E93000480AB /* SpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53482E12F31E93000480AB /* SpecHelper.m */; };
 		4B7300D812AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
 		4B7300D912AA8F3400903427 /* InheritanceSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7300D712AA8F3400903427 /* InheritanceSpecs.m */; };
+		4B81F8D0135D06A300221A88 /* ObjectionProviderEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B81F8CE135D06A300221A88 /* ObjectionProviderEntry.h */; };
+		4B81F8D2135D06A300221A88 /* ObjectionProviderEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B81F8CE135D06A300221A88 /* ObjectionProviderEntry.h */; };
+		4B81F8D5135D06A300221A88 /* ObjectionProviderEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B81F8CE135D06A300221A88 /* ObjectionProviderEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4B81F8DE135D06C200221A88 /* ObjectionProviderEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B81F8DC135D06C200221A88 /* ObjectionProviderEntry.m */; };
+		4B81F8DF135D06C200221A88 /* ObjectionProviderEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B81F8DC135D06C200221A88 /* ObjectionProviderEntry.m */; };
+		4B81F8E0135D06C200221A88 /* ObjectionProviderEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B81F8DC135D06C200221A88 /* ObjectionProviderEntry.m */; };
+		4B81F90F135D0ACF00221A88 /* ModuleFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B81F90C135D0ACF00221A88 /* ModuleFixtures.m */; };
+		4B81FA3A135D245B00221A88 /* Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; };
+		4B81FA3B135D245B00221A88 /* ObjectionInjectorEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionInjectorEntry.h */; };
+		4B81FA3C135D245B00221A88 /* ObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; };
+		4B81FA3D135D245B00221A88 /* ObjectionBindingEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionBindingEntry.h */; };
+		4B81FA3E135D245B00221A88 /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; };
 		4B957EC312ADDFC500CBF1EB /* ObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B957EC612ADE03900CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
 		4B957EC712ADE03900CBF1EB /* ObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* ObjectionModule.m */; };
@@ -72,6 +84,8 @@
 		4B95819A12AE593F00CBF1EB /* ModuleUsageSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */; };
 		4B9582C212AE753800CBF1EB /* Objection.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B957EE612ADE26500CBF1EB /* Objection.h */; };
 		4B9582C312AE755000CBF1EB /* ObjectionModule.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */; };
+		4BA59609135D282000717522 /* ModuleFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B81F90C135D0ACF00221A88 /* ModuleFixtures.m */; };
+		4BA59610135D283100717522 /* ObjectionProviderEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B81F8DC135D06C200221A88 /* ObjectionProviderEntry.m */; };
 		4BA6DD1F12AAB3CD00CFFD70 /* ObjectionInjectorEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* ObjectionInjectorEntry.h */; };
 		4BA6DD2012AAB3CD00CFFD70 /* ObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* ObjectionInjector.h */; };
 		4BA6DD2112AAB3CD00CFFD70 /* ObjectionBindingEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* ObjectionBindingEntry.h */; };
@@ -126,6 +140,7 @@
 				4BAEB37B12B0F7A200CD97E5 /* ObjectionFunctions.h in Copy Header Files */,
 				4B53471512F31660000480AB /* NSObject+Objection.h in Copy Header Files */,
 				4B4B21A51342B78E00833077 /* ObjectionEntry.h in Copy Header Files */,
+				4B81F8D0135D06A300221A88 /* ObjectionProviderEntry.h in Copy Header Files */,
 			);
 			name = "Copy Header Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +158,10 @@
 		4B53471812F316A4000480AB /* NSObject+Objection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Objection.m"; sourceTree = "<group>"; };
 		4B53482E12F31E93000480AB /* SpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecHelper.m; sourceTree = "<group>"; };
 		4B7300D712AA8F3400903427 /* InheritanceSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InheritanceSpecs.m; sourceTree = "<group>"; };
+		4B81F8CE135D06A300221A88 /* ObjectionProviderEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectionProviderEntry.h; sourceTree = "<group>"; };
+		4B81F8DC135D06C200221A88 /* ObjectionProviderEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionProviderEntry.m; sourceTree = "<group>"; };
+		4B81F90B135D0ACF00221A88 /* ModuleFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleFixtures.h; sourceTree = "<group>"; };
+		4B81F90C135D0ACF00221A88 /* ModuleFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleFixtures.m; sourceTree = "<group>"; };
 		4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectionModule.h; sourceTree = "<group>"; };
 		4B957EC512ADE03900CBF1EB /* ObjectionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectionModule.m; sourceTree = "<group>"; };
 		4B957ECB12ADE0B900CBF1EB /* Objection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Objection.m; sourceTree = "<group>"; };
@@ -249,6 +268,7 @@
 		08FB77AEFE84172EC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				4B81F8DC135D06C200221A88 /* ObjectionProviderEntry.m */,
 				4B4B21A71342B79E00833077 /* ObjectionEntry.m */,
 				4B53471812F316A4000480AB /* NSObject+Objection.m */,
 				4B496E6A12B0F3E50053F2A3 /* ObjectionFunctions.m */,
@@ -288,6 +308,7 @@
 				4B957EC212ADDFC500CBF1EB /* ObjectionModule.h */,
 				4B496DB512B0F0340053F2A3 /* ObjectionFunctions.h */,
 				4B53470E12F3165F000480AB /* NSObject+Objection.h */,
+				4B81F8CE135D06A300221A88 /* ObjectionProviderEntry.h */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -315,6 +336,8 @@
 				4B25BD491291BBE700821DC1 /* InjectionErrorFixtures.h */,
 				4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */,
 				4B53482E12F31E93000480AB /* SpecHelper.m */,
+				4B81F90B135D0ACF00221A88 /* ModuleFixtures.h */,
+				4B81F90C135D0ACF00221A88 /* ModuleFixtures.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -334,6 +357,7 @@
 				4B496DB812B0F0340053F2A3 /* ObjectionFunctions.h in Headers */,
 				4B53471112F3165F000480AB /* NSObject+Objection.h in Headers */,
 				4B4B21A61342B78E00833077 /* ObjectionEntry.h in Headers */,
+				4B81F8D5135D06A300221A88 /* ObjectionProviderEntry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,9 +365,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B81FA3A135D245B00221A88 /* Objection.h in Headers */,
+				4B81FA3B135D245B00221A88 /* ObjectionInjectorEntry.h in Headers */,
+				4B81FA3C135D245B00221A88 /* ObjectionInjector.h in Headers */,
+				4B81FA3D135D245B00221A88 /* ObjectionBindingEntry.h in Headers */,
+				4B81FA3E135D245B00221A88 /* ObjectionModule.h in Headers */,
 				4B496DBA12B0F0340053F2A3 /* ObjectionFunctions.h in Headers */,
 				4B53471312F3165F000480AB /* NSObject+Objection.h in Headers */,
 				4B4B21A41342B78E00833077 /* ObjectionEntry.h in Headers */,
+				4B81F8D2135D06A300221A88 /* ObjectionProviderEntry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +507,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator4.2 -target ${PROJECT_NAME}-StaticLib -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos4.2 -target ${PROJECT_NAME}-StaticLib -configuration ${CONFIGURATION} clean build";
+			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator4.3 -target ${PROJECT_NAME}-StaticLib -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos4.3 -target ${PROJECT_NAME}-StaticLib -configuration ${CONFIGURATION} clean build";
 		};
 		4B25BE511291C51E00821DC1 /* Build Universal Lib */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -516,6 +546,8 @@
 				4B53471D12F316A4000480AB /* NSObject+Objection.m in Sources */,
 				4B53483012F31E93000480AB /* SpecHelper.m in Sources */,
 				4B4B21AB1342B79E00833077 /* ObjectionEntry.m in Sources */,
+				4BA59609135D282000717522 /* ModuleFixtures.m in Sources */,
+				4BA59610135D283100717522 /* ObjectionProviderEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +563,7 @@
 				4B496E6C12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */,
 				4B53471A12F316A4000480AB /* NSObject+Objection.m in Sources */,
 				4B4B21AC1342B79E00833077 /* ObjectionEntry.m in Sources */,
+				4B81F8E0135D06C200221A88 /* ObjectionProviderEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +587,8 @@
 				4B53471912F316A4000480AB /* NSObject+Objection.m in Sources */,
 				4B53482F12F31E93000480AB /* SpecHelper.m in Sources */,
 				4B4B21A81342B79E00833077 /* ObjectionEntry.m in Sources */,
+				4B81F8DF135D06C200221A88 /* ObjectionProviderEntry.m in Sources */,
+				4B81F90F135D0ACF00221A88 /* ModuleFixtures.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +604,7 @@
 				4B496E6D12B0F3E50053F2A3 /* ObjectionFunctions.m in Sources */,
 				4B53471B12F316A4000480AB /* NSObject+Objection.m in Sources */,
 				4B4B21A91342B79E00833077 /* ObjectionEntry.m in Sources */,
+				4B81F8DE135D06C200221A88 /* ObjectionProviderEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +629,7 @@
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = "Objection-StaticLib";
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -611,7 +647,7 @@
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = "Objection-StaticLib";
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -647,7 +683,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				PRODUCT_NAME = "Objection-iPhone";
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos4.3;
 			};
 			name = Debug;
 		};
@@ -660,7 +696,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				PRODUCT_NAME = "Objection-iOS";
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos4.3;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -753,6 +789,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -772,7 +809,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Objection;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;

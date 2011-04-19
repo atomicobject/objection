@@ -48,6 +48,7 @@
 
     
     id<ObjectionEntry> injectorEntry = [_context objectForKey:key];
+    injectorEntry.injector = self;
     
     if (!injectorEntry) {
       id<ObjectionEntry> entry = [_globalContext objectForKey:key];

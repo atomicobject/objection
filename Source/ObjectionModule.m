@@ -1,9 +1,11 @@
 #import "ObjectionModule.h"
 #import "ObjectionBindingEntry.h"
+#import "ObjectionProviderEntry.h"
 #import <objc/runtime.h>
 
 @interface ObjectionModule()
 - (NSString *)protocolKey:(Protocol *)aProtocol;
+- (void)ensureInstance:(id)instance conformsTo:(Protocol *)aProtocol;
 @end
 
 @implementation ObjectionModule
@@ -33,12 +35,7 @@
 
 - (void) bind:(id)instance toProtocol:(Protocol *)aProtocol 
 {
-  if (![instance conformsToProtocol:aProtocol]) {
-    @throw [NSException exceptionWithName:@"ObjectionException" 
-                        reason:[NSString stringWithFormat:@"Instance does not conform to the %@ protocol", NSStringFromProtocol(aProtocol)] 
-                        userInfo:nil];
-  }
-  
+  [self ensureInstance: instance conformsTo: aProtocol];
   NSString *key = [self protocolKey:aProtocol];
   ObjectionBindingEntry *entry = [[[ObjectionBindingEntry alloc] initWithObject:instance] autorelease];
   [_bindings setObject:entry forKey:key];  
@@ -50,6 +47,36 @@
   ObjectionBindingEntry *entry = [[[ObjectionBindingEntry alloc] initWithObject:instance] autorelease];
   [_bindings setObject:entry forKey:key];
 }
+
+- (void)bindProvider:(id<ObjectionProvider>)provider toClass:(Class)aClass
+{
+  NSString *key = NSStringFromClass(aClass);
+  ObjectionProviderEntry *entry = [[[ObjectionProviderEntry alloc] initWithProvider:provider] autorelease];
+  [_bindings setObject:entry forKey:key];  
+}
+
+- (void)bindProvider:(id<ObjectionProvider>)provider toProtocol:(Protocol *)aProtocol
+{
+  NSString *key = [self protocolKey:aProtocol];
+  ObjectionProviderEntry *entry = [[[ObjectionProviderEntry alloc] initWithProvider:provider] autorelease];
+  [_bindings setObject:entry forKey:key];  
+}
+
+#if NS_BLOCKS_AVAILABLE
+- (void)bindBlock:(id (^)(ObjectionInjector *context))block toClass:(Class)aClass
+{
+  NSString *key = NSStringFromClass(aClass);
+  ObjectionProviderEntry *entry = [[[ObjectionProviderEntry alloc] initWithBlock:block] autorelease];
+  [_bindings setObject:entry forKey:key];    
+}
+
+- (void)bindBlock:(id (^)(ObjectionInjector *context))block toProtocol:(Protocol *)aProtocol
+{
+  NSString *key = [self protocolKey:aProtocol];
+  ObjectionProviderEntry *entry = [[[ObjectionProviderEntry alloc] initWithBlock:block] autorelease];
+  [_bindings setObject:entry forKey:key];    
+}
+#endif
 
 - (void) registerEagerSingleton:(Class)klass 
 {
@@ -69,6 +96,16 @@
 
 #pragma mark Private
 #pragma mark -
+
+- (void)ensureInstance:(id)instance conformsTo:(Protocol *)aProtocol  
+{
+  if (![instance conformsToProtocol:aProtocol]) {
+    @throw [NSException exceptionWithName:@"ObjectionException" 
+                                   reason:[NSString stringWithFormat:@"Instance does not conform to the %@ protocol", NSStringFromProtocol(aProtocol)] 
+                                 userInfo:nil];
+  }
+  
+}
 
 - (NSString *)protocolKey:(Protocol *)aProtocol 
 {
