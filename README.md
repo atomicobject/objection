@@ -143,6 +143,7 @@ If an object is interested in knowing when it has been fully instantiated by obj
 * Diagram class initialization and its relationship with Objection
 * Resolve circular dependencies
 * Cache results of property definitions
+* Reconcile mixing iOS and MacOS X targets. It is currently a nightmare.
 
 Installation
 =======
