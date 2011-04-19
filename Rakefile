@@ -32,6 +32,11 @@ namespace :artifact do
   task :ios  => :clean do
     system_or_exit(%Q[xcodebuild -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build], nil)
   end
+
+  desc "Build iOS Framework for iOS 3.0"  
+  task :ios3 => :clean do
+    system_or_exit(%Q[xcodebuild -project #{PROJECT_NAME}.xcodeproj OTHER_CFLAGS='-DNS_BLOCKS_AVAILABLE=0' -target Objection-iOS -configuration Release build], nil)
+  end
 end
   
 

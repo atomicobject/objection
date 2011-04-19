@@ -152,7 +152,7 @@ Installation
 ### iOS
 
 1. git clone git://github.com/atomicobject/objection.git
-2. rake artifact:ios
+2. rake artifact:ios or rake artifact:ios3 if you require iOS 3.0 compatibility
 3. cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}
 4. Add -ObjC and -all_load to Other Link Flags in your project
 

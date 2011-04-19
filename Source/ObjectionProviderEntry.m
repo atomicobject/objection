@@ -36,7 +36,9 @@
 - (void)dealloc
 {
   [_provider release];
+#if NS_BLOCKS_AVAILABLE
   [_block release];
+#endif
   [super dealloc];
 }
 @end
