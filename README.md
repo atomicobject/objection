@@ -145,6 +145,7 @@ If an object is interested in knowing when it has been fully instantiated by obj
 * Cache results of property definitions.
 * Reconcile mixing iOS and MacOS X targets. It is currently a nightmare.
 * Document _Provider_ feature.
+* Replace explicit exceptions with assertions
 
 Installation
 =======
