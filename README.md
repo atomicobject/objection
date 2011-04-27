@@ -1,18 +1,21 @@
 Description
 ===========
 
-A lightweight dependency injection framework for Objective-C. With support for iOS and MacOS X.
+Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used Guice objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.
 
-Why Objection?
+Features
 ==============
 
 * "Annotation" Based Dependency Injection
-* Does not require that a large upfront container is maintained
-* Lazy Instantiation over Eager Instantiation
-* Alleviates the need to manually construct objects or rely on factories
-* Support for integrating external dependencies
+* Seamless support for integrating custom and external dependencies
+  * Custom Object Providers
+  * Meta Class Bindings
+  * Protocol Bindings
+  * Instance Bindings
+* Lazily instantiates dependencies
+* Eager Singletons
 
-Synopsis
+Using Objection
 ========
 
 ### Basic Usage
@@ -63,11 +66,15 @@ A global injector can be registered with Objection which can be used throughout 
       id myModel = [[Objection globalInjector] getObject:[MyModel class]];
     }
 
-### External Dependencies
+### Integrating external and custom objects
 
-Objection supports associating an object outside the context of Objection by configuring an ObjectionModule. You can also mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
+Objection supports associating an object outside the context of Objection by configuring an ObjectionModule.
 
-### Example
+#### Instance and Protocol Bindings
+
+You can bind a type to a specific instance of that type. This is useful when an object exists or is constructed outside of Objection.
+
+#### Example
       @interface MyAppModule : ObjectionModule {
         
       }
@@ -77,7 +84,6 @@ Objection supports associating an object outside the context of Objection by con
       - (void)configure {
         [self bind:[UIApplication sharedApplication] toClass:[UIApplication class]];
         [self bind:[UIApplication sharedApplication].delegate toProtocol:@protocol(UIApplicationDelegate)];
-        [self registerEagerSingleton:[Car class]];
       }
       
       @end
@@ -86,14 +92,14 @@ Objection supports associating an object outside the context of Objection by con
         [Objection setGlobalInjector:injector];
       }
 
-### Meta Class Bindings
+#### Meta Class Bindings
 
 There are times when a dependency -- usually external -- is implemented using only class methods. Objection can explicitly support binding to
 the meta class instance through a protocol. This avoids having to unnecessarily create a wrapper class that passes through to the class
 methods. The catch, of course, is that it requires a protocol definition so that Objection knows how to bind the meta class to objects
 in the injector context.
 
-### Example
+#### Example
 
       @protocol ExternalUtility
         - (void)doSomething;
@@ -121,9 +127,46 @@ in the injector context.
       // regardless of the number of objects in the runtime that reference it.
       @property (nonatomic, assign) id<ExternalUtility> externalUtility
       @end
-      
 
-### Instance Creation Notification
+#### Providers
+
+Occasionally you'll want to manually construct an object within Objection. Providers allow you to use a custom mechanism for building objects that are bound to a type. You can create a class that _conforms_ to the ObjectionProvider protocol or you can use a _block_ to build the object.
+      
+#### Example
+
+    @implementation CarProvider
+    - (id)createInstance:(ObjectionInjector *)context {
+      // Manually build object
+      return car;
+    }
+    @end
+    
+    @implementation MyAppModule
+    - (void)configure {
+        [self bindProvider:[[[CarProvider alloc] init] autorelease] toClass:[Car class]];
+        [self bindBlock:^(ObjectionInjector *context) {
+          // Manually build object
+          return car;          
+        } toClass:[Car class]];
+    }
+    @end
+
+
+### Eager Singletons
+
+You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
+
+### Example
+
+    @implementation MyAppModule
+    - (void)configure {
+      [self registerEagerSingleton:[Car class]];
+    }
+
+    @end
+
+
+### Awaking from Objection
 
 If an object is interested in knowing when it has been fully instantiated by objection it can implement the method
 *awakeFromObjection*.
@@ -143,8 +186,6 @@ If an object is interested in knowing when it has been fully instantiated by obj
 * Diagram class initialization and its relationship with Objection.
 * Resolve circular dependencies.
 * Cache results of property definitions.
-* Reconcile mixing iOS and MacOS X targets. It is currently a nightmare.
-* Document _Provider_ feature.
 * Replace explicit exceptions with assertions
 
 Installation
