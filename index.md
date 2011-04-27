@@ -17,10 +17,13 @@ objection is a lightweight [dependency injection](http://en.wikipedia.org/wiki/D
 ## Features
 
 * "Annotation" Based Dependency Injection
-* Does not require that a large upfront container is maintained
-* Lazy Instantiation over Eager Instantiation
-* Alleviates the need to manually construct objects or rely on factories
-* Support for integrating external dependencies
+* Seamless support for integrating custom and external dependencies
+  * Custom Object Providers
+  * Meta Class Bindings
+  * Protocol Bindings
+  * Instance Bindings
+* Lazily instantiates dependencies
+* Eager Singletons
 
 <script src="https://gist.github.com/806214.js"> </script>
 
