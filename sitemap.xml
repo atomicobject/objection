@@ -9,4 +9,12 @@
   <priority>1.000</priority>
   <changefreq>monthly</changefreq>
 </url>
+<url>
+  <loc>https://github.com/atomicobject/objection/</loc>
+  <priority>0.5000</priority>
+</url>
+<url>
+  <loc>http://objection-framework.org/#installation</loc>
+  <priority>0.5000</priority>
+</url>
 </urlset>
