@@ -6,6 +6,7 @@ layout: default
 [GitHub](https://github.com/atomicobject/objection/) |
 [Issues](https://github.com/atomicobject/objection/issues) |
 [Installation](#installation) |
+[Usage](#usage) |
 [Atomic Object](http://www.atomicobject.com)
 
 # ![objection](dependency_injection.png) 

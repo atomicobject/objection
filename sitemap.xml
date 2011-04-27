@@ -13,4 +13,8 @@
   <loc>http://objection-framework.org/#installation</loc>
   <priority>0.5000</priority>
 </url>
+<url>
+  <loc>http://objection-framework.org/#usage</loc>
+  <priority>0.5000</priority>
+</url>
 </urlset>
