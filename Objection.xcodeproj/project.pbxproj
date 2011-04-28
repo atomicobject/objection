@@ -310,7 +310,8 @@
 				4B53470E12F3165F000480AB /* NSObject+Objection.h */,
 				4B81F8CE135D06A300221A88 /* ObjectionProviderEntry.h */,
 			);
-			path = Headers;
+			name = Headers;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		4BF45123129197F3006EB2D5 /* Specs */ = {
