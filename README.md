@@ -186,7 +186,7 @@ If an object is interested in knowing when it has been fully instantiated by obj
 * Diagram class initialization and its relationship with Objection.
 * Resolve circular dependencies.
 * Cache results of property definitions.
-* Replace explicit exceptions with assertions
+* Add contribution section
 
 Installation
 =======
