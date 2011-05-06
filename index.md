@@ -1,5 +1,5 @@
 ---
-title: objection - iOS/MacOS X Dependency Injection Framework
+title: Objection - iOS/MacOS X Dependency Injection Framework
 layout: default
 ---
 
