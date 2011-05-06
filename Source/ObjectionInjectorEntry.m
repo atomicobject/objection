@@ -28,7 +28,7 @@
 
 - (id)extractObject 
 {
-  if (self.lifeCycle == ObjectionInstantiationRuleEverytime) {
+  if (self.lifeCycle == ObjectionInstantiationRuleNormal) {
   	return [self buildObject];  
   } else if (!_storageCache) {
     _storageCache = [[self buildObject] retain];
@@ -75,7 +75,7 @@
       id theObject = [self.injector getObject:desiredClassOrProtocol];
       
       if(theObject == nil && propertyInfo.type == ObjectionTypeClass) {
-        [Objection registerClass:desiredClassOrProtocol lifeCycle: ObjectionInstantiationRuleEverytime];
+        [Objection registerClass:desiredClassOrProtocol lifeCycle: ObjectionInstantiationRuleNormal];
         theObject = [_injector getObject:desiredClassOrProtocol];
       } else if (!theObject) {
         @throw [NSException exceptionWithName:@"ObjectionException" 

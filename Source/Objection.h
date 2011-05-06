@@ -14,7 +14,7 @@
 #define objection_register(value)			\
   + (void)initialize { \
     if (self == [value class]) { \
-      [Objection registerClass:[value class] lifeCycle: ObjectionInstantiationRuleEverytime]; \
+      [Objection registerClass:[value class] lifeCycle: ObjectionInstantiationRuleNormal]; \
     } \
   }
 

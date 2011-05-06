@@ -2,7 +2,7 @@
 
 typedef enum {
   ObjectionInstantiationRuleNone = -1,
-  ObjectionInstantiationRuleEverytime,
+  ObjectionInstantiationRuleNormal,
   ObjectionInstantiationRuleSingleton  
 } ObjectionInstantiationRule;
 
