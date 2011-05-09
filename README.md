@@ -183,11 +183,14 @@ If an object is interested in knowing when it has been fully instantiated by obj
 
 ## TODO
 
-* Diagram class initialization and its relationship with Objection.
 * Resolve circular dependencies.
 * Cache results of property definitions.
 * Create example project
 * Add contribution section
+* Re-factor the method for declaring dependencies.
+  * The current implementation relies on extending (via _objection\_requires) the class interface
+  * The re-factored form should delegate directly to Objection (e.g. _[Objection registerClass:[TheClass class] withDependencies:@"collaborator", nil]_)
+  * This form would allow for alternative registration mechanisms
 
 Installation
 =======
@@ -224,6 +227,6 @@ Requirements
 Authors
 =======
 
-* Justin DeWind (dewind@atomicobject.com)
+* Justin DeWind (dewind@atomicobject.com, @dewind on Twitter)
 * © 2009-2011 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
