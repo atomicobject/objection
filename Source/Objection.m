@@ -71,6 +71,6 @@ static ObjectionInjector *gGlobalInjector;
 
 + (ObjectionInjector *) globalInjector 
 {  
-  return gGlobalInjector;
+  return [[gGlobalInjector retain] autorelease];
 }
 @end
