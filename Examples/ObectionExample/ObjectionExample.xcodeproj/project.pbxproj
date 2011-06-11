@@ -14,12 +14,12 @@
 		4B5F5FA713A266C00083EA7F /* OEObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F5FA513A266C00083EA7F /* OEObjectionModule.m */; };
 		4B5F5FB413A267460083EA7F /* commit.json in Resources */ = {isa = PBXBuildFile; fileRef = 808D8BD5139E73D300649B55 /* commit.json */; };
 		4B5F5FBC13A267F50083EA7F /* OEObjectionModuleSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F5FBB13A267F50083EA7F /* OEObjectionModuleSpecs.m */; };
+		4BE03DBD13A305E5000F49CA /* OECommit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE03DBC13A305E5000F49CA /* OECommit.m */; };
+		4BE03DBE13A305E5000F49CA /* OECommit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE03DBC13A305E5000F49CA /* OECommit.m */; };
 		807093BB139D5CC10083E7CB /* OETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* OETableViewController.m */; };
 		808D8B09139E684900649B55 /* OEGitHubObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 808D8B08139E684900649B55 /* OEGitHubObjectBuilder.m */; };
 		808D8B0A139E684900649B55 /* OEGitHubObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 808D8B08139E684900649B55 /* OEGitHubObjectBuilder.m */; };
 		808D8B0C139E686500649B55 /* OEGitHubObjectBuilderSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 808D8B0B139E686500649B55 /* OEGitHubObjectBuilderSpecs.m */; };
-		808D8B30139E6CB700649B55 /* OECommit.m in Sources */ = {isa = PBXBuildFile; fileRef = 808D8B2F139E6CB700649B55 /* OECommit.m */; };
-		808D8B31139E6CB700649B55 /* OECommit.m in Sources */ = {isa = PBXBuildFile; fileRef = 808D8B2F139E6CB700649B55 /* OECommit.m */; };
 		808D8BDD139E793B00649B55 /* NSDateFormatter+TimeZoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 808D8BDC139E793B00649B55 /* NSDateFormatter+TimeZoneFormat.m */; };
 		808D8BE1139E7CBF00649B55 /* NSDateFormatter+TimeZoneFormatSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 808D8BE0139E7CBF00649B55 /* NSDateFormatter+TimeZoneFormatSpecs.m */; };
 		808D8DBA139EB37A00649B55 /* NSDateFormatter+TimeZoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 808D8BDC139E793B00649B55 /* NSDateFormatter+TimeZoneFormat.m */; };
@@ -90,11 +90,11 @@
 		4B5F5FA413A266C00083EA7F /* OEObjectionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEObjectionModule.h; sourceTree = "<group>"; };
 		4B5F5FA513A266C00083EA7F /* OEObjectionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEObjectionModule.m; sourceTree = "<group>"; };
 		4B5F5FBB13A267F50083EA7F /* OEObjectionModuleSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEObjectionModuleSpecs.m; sourceTree = "<group>"; };
+		4BE03DBB13A305E5000F49CA /* OECommit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OECommit.h; sourceTree = "<group>"; };
+		4BE03DBC13A305E5000F49CA /* OECommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OECommit.m; sourceTree = "<group>"; };
 		808D8B07139E684900649B55 /* OEGitHubObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEGitHubObjectBuilder.h; sourceTree = "<group>"; };
 		808D8B08139E684900649B55 /* OEGitHubObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEGitHubObjectBuilder.m; sourceTree = "<group>"; };
 		808D8B0B139E686500649B55 /* OEGitHubObjectBuilderSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEGitHubObjectBuilderSpecs.m; sourceTree = "<group>"; };
-		808D8B2E139E6CB700649B55 /* OECommit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OECommit.h; sourceTree = "<group>"; };
-		808D8B2F139E6CB700649B55 /* OECommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OECommit.m; sourceTree = "<group>"; };
 		808D8BD5139E73D300649B55 /* commit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = commit.json; sourceTree = "<group>"; };
 		808D8BDB139E793B00649B55 /* NSDateFormatter+TimeZoneFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+TimeZoneFormat.h"; sourceTree = "<group>"; };
 		808D8BDC139E793B00649B55 /* NSDateFormatter+TimeZoneFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+TimeZoneFormat.m"; sourceTree = "<group>"; };
@@ -394,10 +394,8 @@
 			children = (
 				809BE33B13996C790042F12B /* OEApplicationModel.h */,
 				809BE33C13996C790042F12B /* OEApplicationModel.m */,
-				808D8B2E139E6CB700649B55 /* OECommit.h */,
-				808D8B2F139E6CB700649B55 /* OECommit.m */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		809BE34913996F7C0042F12B /* Helpers */ = {
@@ -428,6 +426,8 @@
 		80CAEACB13997AE2004783BA /* GitHubAPI */ = {
 			isa = PBXGroup;
 			children = (
+				4BE03DBB13A305E5000F49CA /* OECommit.h */,
+				4BE03DBC13A305E5000F49CA /* OECommit.m */,
 				808D8B07139E684900649B55 /* OEGitHubObjectBuilder.h */,
 				808D8B08139E684900649B55 /* OEGitHubObjectBuilder.m */,
 				80CAEACC13997B09004783BA /* OEGitHubAPI.h */,
@@ -541,9 +541,9 @@
 				80CAEACF13997B09004783BA /* OEGitHubAPI.m in Sources */,
 				80BD343E139D76D500924886 /* OERequestFactory.m in Sources */,
 				808D8B0A139E684900649B55 /* OEGitHubObjectBuilder.m in Sources */,
-				808D8B31139E6CB700649B55 /* OECommit.m in Sources */,
 				808D8DBA139EB37A00649B55 /* NSDateFormatter+TimeZoneFormat.m in Sources */,
 				4B5F5FA613A266C00083EA7F /* OEObjectionModule.m in Sources */,
+				4BE03DBE13A305E5000F49CA /* OECommit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,11 +573,11 @@
 				80BD3442139D775200924886 /* OERequestFactorySpecs.m in Sources */,
 				808D8B09139E684900649B55 /* OEGitHubObjectBuilder.m in Sources */,
 				808D8B0C139E686500649B55 /* OEGitHubObjectBuilderSpecs.m in Sources */,
-				808D8B30139E6CB700649B55 /* OECommit.m in Sources */,
 				808D8BDD139E793B00649B55 /* NSDateFormatter+TimeZoneFormat.m in Sources */,
 				808D8BE1139E7CBF00649B55 /* NSDateFormatter+TimeZoneFormatSpecs.m in Sources */,
 				4B5F5FA713A266C00083EA7F /* OEObjectionModule.m in Sources */,
 				4B5F5FBC13A267F50083EA7F /* OEObjectionModuleSpecs.m in Sources */,
+				4BE03DBD13A305E5000F49CA /* OECommit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

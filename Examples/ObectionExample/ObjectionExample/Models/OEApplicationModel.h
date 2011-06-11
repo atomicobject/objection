@@ -7,13 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OEGitHubAPI.h"
+#import "ASINetworkQueue.h"
 
 @class OETableViewController;
 
+extern NSString *const kDefaultAuthor;
+extern NSString *const kDefaultRepo;
+extern NSString *const kDefaultBranch;
+
 @interface OEApplicationModel : NSObject {
 	OETableViewController *_controller;
+	OEGitHubAPI *_api;
+  ASINetworkQueue *_networkQueue;
+	NSArray *_commits;
 }
 
 @property (nonatomic, assign) OETableViewController *controller;
+@property (nonatomic, retain) OEGitHubAPI *api;
+@property (nonatomic, retain) ASINetworkQueue *networkQueue;
+
+@property (nonatomic, retain) NSArray *commits;
+
+- (void)loadCommits;
+- (NSInteger)numberOfCommits;
+- (OECommit *)commitForIndex:(NSInteger)index;
 
 @end

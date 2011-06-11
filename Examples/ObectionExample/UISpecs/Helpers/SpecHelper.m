@@ -58,7 +58,6 @@ NSString* ReadFile(NSString *fileName) {
 }
 
 NSData* ReadFileAsData(NSString *fileName) {
-  NSData *data = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:fileName ofType:nil]];
   return [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:fileName ofType:nil]];  
 }
 
