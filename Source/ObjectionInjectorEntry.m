@@ -64,7 +64,7 @@
     for (NSString *propertyName in properties) {
       objc_property_t property = ObjectionGetProperty(self.classEntry, propertyName);
       ObjectionPropertyInfo propertyInfo = ObjectionFindClassOrProtocolForProperty(property);
-      id desiredClassOrProtocol = propertyInfo.object;
+      id desiredClassOrProtocol = propertyInfo.value;
       // Ensure that the class is initialized before attempting to retrieve it.
       // Using +load would force all registered classes to be initialized so we are
       // lazily initializing them.

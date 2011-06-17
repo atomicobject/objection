@@ -7,7 +7,7 @@ typedef enum {
 } ObjectionType;
 
 typedef struct objection_property_info {
-  id object;
+  void *value;
   ObjectionType type;
 } ObjectionPropertyInfo;
 

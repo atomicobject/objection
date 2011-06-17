@@ -37,7 +37,7 @@ ObjectionPropertyInfo ObjectionFindClassOrProtocolForProperty(objc_property_t pr
   if(!classOrProtocol) {
     @throw [NSException exceptionWithName:ObjectionException reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", classOrProtocolName, propertyName] userInfo:nil];            
   }
-  propertyInfo.object = classOrProtocol;
+  propertyInfo.value = classOrProtocol;
   
   return propertyInfo;      
 }
