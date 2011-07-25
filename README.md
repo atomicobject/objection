@@ -192,6 +192,7 @@ If an object is interested in knowing when it has been fully instantiated by obj
   * The re-factored form should delegate directly to Objection (e.g. _[Objection registerClass:[TheClass class] withDependencies:@"collaborator", nil]_)
   * This form would allow for alternative registration mechanisms
 * XCode 4 build compatibility
+* Be a good Objective-C citizen by using a namespace prefix for symbols
 
 Installation
 =======
