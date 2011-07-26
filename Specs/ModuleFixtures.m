@@ -71,7 +71,7 @@ objection_register_singleton(EagerSingleton)
 @end
 
 @implementation CarProvider
-- (id)createInstance:(ObjectionInjector *)context
+- (id)createInstance:(JSObjectionInjector *)context
 {
   Car *car = [context getObject:[ManualCar class]];
   car.engine = (id)@"my engine";
@@ -80,7 +80,7 @@ objection_register_singleton(EagerSingleton)
 @end
 
 @implementation GearBoxProvider
-- (id)createInstance:(ObjectionInjector *)context
+- (id)createInstance:(JSObjectionInjector *)context
 {
   return [[[AfterMarketGearBox alloc] init] autorelease];
 }
@@ -101,14 +101,14 @@ objection_register_singleton(EagerSingleton)
 {
   NSString *myEngine = [NSString stringWithString:@"My Engine"];
   
-  [self bindBlock:^(ObjectionInjector *context) {
+  [self bindBlock:^(JSObjectionInjector *context) {
     Car *car = [context getObject:[ManualCar class]];
     car.engine = (id)myEngine;
     return (id)car;    
   } toClass:[Car class]];
   
   AfterMarketGearBox *gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
-  [self bindBlock:^(ObjectionInjector *context) {
+  [self bindBlock:^(JSObjectionInjector *context) {
     return (id)gearBox;
   } toProtocol:@protocol(GearBox)];
 }

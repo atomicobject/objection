@@ -30,7 +30,7 @@ extern BOOL gEagerSingletonHook;
 @interface EagerSingleton : NSObject
 @end
 
-@interface MyModule : ObjectionModule
+@interface MyModule : JSObjectionModule
 {
   Engine *_engine;
   id<GearBox> _gearBox;
@@ -46,16 +46,16 @@ extern BOOL gEagerSingletonHook;
 - (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox;
 @end
 
-@interface CarProvider : NSObject<ObjectionProvider>
+@interface CarProvider : NSObject<JSObjectionProvider>
 @end
 
-@interface GearBoxProvider : NSObject<ObjectionProvider>
+@interface GearBoxProvider : NSObject<JSObjectionProvider>
 @end
 
-@interface ProviderModule : ObjectionModule
+@interface ProviderModule : JSObjectionModule
 @end
 
-@interface BlockModule : ObjectionModule
+@interface BlockModule : JSObjectionModule
 @end
 
 

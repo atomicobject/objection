@@ -1,13 +1,13 @@
-#import "ObjectionInjector.h"
-#import "ObjectionEntry.h"
+#import "JSObjectionInjector.h"
+#import "JSObjectionEntry.h"
 #import <pthread.h>
 #import <objc/runtime.h>
 
-@interface ObjectionInjector(Private)
+@interface JSObjectionInjector(Private)
 - (void)initializeEagerSingletons;
 @end
 
-@implementation ObjectionInjector
+@implementation JSObjectionInjector
 
 - (id)initWithContext:(NSDictionary *)theGlobalContext 
 {
@@ -20,7 +20,7 @@
   return self;
 }
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(ObjectionModule *)theModule 
+- (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule 
 {
   if (self = [self initWithContext:theGlobalContext]) {
     [theModule configure];
@@ -47,11 +47,11 @@
     }
 
     
-    id<ObjectionEntry> injectorEntry = [_context objectForKey:key];
+    id<JSObjectionEntry> injectorEntry = [_context objectForKey:key];
     injectorEntry.injector = self;
     
     if (!injectorEntry) {
-      id<ObjectionEntry> entry = [_globalContext objectForKey:key];
+      id<JSObjectionEntry> entry = [_globalContext objectForKey:key];
       if (entry) {
         injectorEntry = [[entry class] entryWithEntry:entry];
         injectorEntry.injector = self;
@@ -71,10 +71,10 @@
 {
   for (NSString *eagerSingletonKey in _eagerSingletons) {
     id entry = [_globalContext objectForKey:eagerSingletonKey];
-    if ([entry lifeCycle] == ObjectionInstantiationRuleSingleton) {
+    if ([entry lifeCycle] == JSObjectionInstantiationRuleSingleton) {
       [self getObject:NSClassFromString(eagerSingletonKey)];      
     } else {
-      @throw [NSException exceptionWithName:@"ObjectionException" 
+      @throw [NSException exceptionWithName:@"JSObjectionException" 
                           reason:[NSString stringWithFormat:@"Unable to initialize eager singleton for the class '%@' because it was never registered as a singleton", eagerSingletonKey] 
                           userInfo:nil];
     }

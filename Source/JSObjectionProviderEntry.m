@@ -1,9 +1,9 @@
-#import "ObjectionProviderEntry.h"
+#import "JSObjectionProviderEntry.h"
 
 
-@implementation ObjectionProviderEntry
+@implementation JSObjectionProviderEntry
 
-- (id)initWithProvider:(id<ObjectionProvider>)theProvider
+- (id)initWithProvider:(id<JSObjectionProvider>)theProvider
 {
   if ((self = [super init])) {
     _provider = [theProvider retain];
@@ -13,7 +13,7 @@
 }
 
 #if NS_BLOCKS_AVAILABLE
-- (id)initWithBlock:(id(^)(ObjectionInjector *context))theBlock
+- (id)initWithBlock:(id(^)(JSObjectionInjector *context))theBlock
 {
   if ((self = [super init])) {
     _block = [theBlock copy];

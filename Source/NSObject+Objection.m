@@ -1,7 +1,7 @@
 #import "NSObject+Objection.h"
 
 
-@implementation NSObject(Objection)
+@implementation NSObject(JSObjection)
 - (void)awakeFromObjection 
 {
   

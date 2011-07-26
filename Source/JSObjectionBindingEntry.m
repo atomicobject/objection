@@ -1,7 +1,7 @@
-#import "ObjectionBindingEntry.h"
+#import "JSObjectionBindingEntry.h"
 
 
-@implementation ObjectionBindingEntry
+@implementation JSObjectionBindingEntry
 
 - (id)initWithObject:(id)theObject 
 {
@@ -16,9 +16,9 @@
   return _instance;
 }
 
-- (ObjectionInstantiationRule)lifeCycle 
+- (JSObjectionInstantiationRule)lifeCycle 
 {
-  return ObjectionInstantiationRuleSingleton;
+  return JSObjectionInstantiationRuleSingleton;
 }
 
 - (void)dealloc 

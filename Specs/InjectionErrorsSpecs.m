@@ -5,13 +5,13 @@
 SPEC_BEGIN(InjectionErrorsSpecs)
 
 beforeEach(^{
-  ObjectionInjector *injector = [Objection createInjector];
-  [Objection setGlobalInjector:injector];
+  JSObjectionInjector *injector = [JSObjection createInjector];
+  [JSObjection setGlobalInjector:injector];
 });
 
 it(@"throws an exception if property type is not an object", ^{
   @try {
-    [[Objection globalInjector] getObject:[UnsupportedPropertyObject class]];
+    [[JSObjection globalInjector] getObject:[UnsupportedPropertyObject class]];
     fail(@"Should have thrown an exception");
   }
   @catch (NSException * e) {
@@ -21,7 +21,7 @@ it(@"throws an exception if property type is not an object", ^{
 
 it(@"throws an exception if property cannot be found", ^{
   @try {
-    [[Objection globalInjector] getObject:[BadPropertyObject class]];
+    [[JSObjection globalInjector] getObject:[BadPropertyObject class]];
     fail(@"Should have thrown an exception");
   }
   @catch (NSException * e) {
@@ -32,13 +32,13 @@ it(@"throws an exception if property cannot be found", ^{
 
 it(@"throws if an object requires a protocol that does not exist in the context", ^{
   assertRaises(^{
-    [[Objection globalInjector] getObject:[ManualCar class]];
+    [[JSObjection globalInjector] getObject:[ManualCar class]];
   }, @"Cannot find an instance that is bound to the protocol 'GearBox' to assign to the property 'gearBox'");
 });
 
 it(@"throws if instantiation rule is not valid", ^{  
   @try {
-    [Objection registerClass:[CarFactory class] lifeCycle:3];  
+    [JSObjection registerClass:[CarFactory class] lifeCycle:3];  
     fail(@"Should have thrown an exception");
   }
   @catch (NSException * e) {
