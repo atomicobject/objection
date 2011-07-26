@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface OEObjectionModule : ObjectionModule {
+@interface OEObjectionModule : JSObjectionModule {
 
 }
 

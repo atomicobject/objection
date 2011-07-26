@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "ObjectionEntry.h"
+#import "JSObjectionEntry.h"
 
-@interface ObjectionBindingEntry : ObjectionEntry {
+@interface JSObjectionBindingEntry : JSObjectionEntry {
 	id _instance;
 }
 

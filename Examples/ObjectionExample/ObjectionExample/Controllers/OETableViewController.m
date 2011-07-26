@@ -12,7 +12,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {    
-		self.applicationModel = [[Objection globalInjector] getObject:[OEApplicationModel class]];
+		self.applicationModel = [[JSObjection globalInjector] getObject:[OEApplicationModel class]];
 		self.applicationModel.controller = self;    
     self.title = @"Commits";
     self.tableView.delegate = self;

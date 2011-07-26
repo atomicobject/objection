@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
 
-@interface NSObject(Objection)
+@interface NSObject(JSObjection)
 - (void)awakeFromObjection;
 @end
