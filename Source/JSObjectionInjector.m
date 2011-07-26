@@ -22,7 +22,7 @@
 
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule 
 {
-  if (self = [self initWithContext:theGlobalContext]) {
+  if ((self = [self initWithContext:theGlobalContext])) {
     [theModule configure];
     _eagerSingletons = theModule.eagerSingletons;
     [_context addEntriesFromDictionary:theModule.bindings];
@@ -65,6 +65,8 @@
     
     return nil;    
   }
+  
+  return nil;
 }
 
 - (void)initializeEagerSingletons 

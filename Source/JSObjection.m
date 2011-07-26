@@ -17,6 +17,8 @@ static JSObjectionInjector *gGlobalInjector;
   @finally {
     pthread_mutex_unlock(&gObjectionMutex); 
   }
+  
+  return nil;
 }
 
 + (JSObjectionInjector *) createInjector 
@@ -28,6 +30,8 @@ static JSObjectionInjector *gGlobalInjector;
   @finally {
     pthread_mutex_unlock(&gObjectionMutex); 
   }
+  
+  return nil;
 }
 
 + (void)initialize 

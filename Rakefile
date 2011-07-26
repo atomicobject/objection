@@ -2,7 +2,7 @@ PROJECT_NAME = "Objection"
 CONFIGURATION = "Debug"
 SPECS_TARGET_NAME = "Specs"
 UI_SPECS_TARGET_NAME = "UISpecs"
-SDK_DIR = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk"
+SDK_DIR = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk"
 
 def xcodebuild_executable
   "/Developer/usr/bin/xcodebuild"  
@@ -56,7 +56,7 @@ end
 
 task :build_uispecs do
   stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_uispecs.output") if (ENV['IS_CI_BOX'])
-  system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target #{UI_SPECS_TARGET_NAME} -configuration #{CONFIGURATION} build], stdout)
+  system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target #{UI_SPECS_TARGET_NAME} -sdk #{SDK_DIR} -configuration #{CONFIGURATION} build], stdout)
 end
 
 task :build_all do
@@ -64,6 +64,7 @@ task :build_all do
   system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -alltargets -configuration #{CONFIGURATION} build], stdout)
 end
 
+desc "OS X Specs"
 task :specs => :build_specs do
   build_dir = build_dir("")
   ENV["DYLD_FRAMEWORK_PATH"] = build_dir
@@ -71,6 +72,8 @@ task :specs => :build_specs do
 end
 
 require 'tmpdir'
+
+desc "UISpecs"
 task :uispecs => :build_uispecs do
   ENV["DYLD_ROOT_PATH"] = SDK_DIR
   ENV["IPHONE_SIMULATOR_ROOT"] = SDK_DIR
