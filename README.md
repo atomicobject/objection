@@ -185,7 +185,6 @@ If an object is interested in knowing when it has been fully instantiated by obj
 
 * Resolve circular dependencies.
 * Cache results of property definitions.
-* Create example project
 * Add contribution section
 * Re-factor the method for declaring dependencies.
   * The current implementation relies on extending (via _objection\_requires_) the class interface
