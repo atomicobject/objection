@@ -6,6 +6,7 @@ body {
 	background: #fff url('/ForkMe_Blk.png') no-repeat left top;
 	font-family:Georgia;
 	line-height:1.6em;
+	min-width: 1024px !important;
 }
 
 .content {
