@@ -51,31 +51,31 @@ A class can be registered with objection using the macros *objection_register* o
 An object can be fetched from objection by creating an injector and then asking for an instance of a particular class or protocol. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a *true* singleton.
 
     - (void)someMethod {
-      ObjectionInjector *injector = [Objection createInjector];
+      JSObjectionInjector *injector = [JSObjection createInjector];
       id car = [injector getObject:[Car class]];
     }
 
 A global injector can be registered with Objection which can be used throughout your application or library.
     
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-      ObjectionInjector *injector = [Objection createInjector];
-      [Objection setGlobalInjector:injector];
+      JSObjectionInjector *injector = [JSObjection createInjector];
+      [JSObjection setGlobalInjector:injector];
     }
     
     - (void)viewDidLoad {
-      id myModel = [[Objection globalInjector] getObject:[MyModel class]];
+      id myModel = [[JSObjection globalInjector] getObject:[MyModel class]];
     }
 
 ### Integrating external and custom objects
 
-Objection supports associating an object outside the context of Objection by configuring an ObjectionModule.
+Objection supports associating an object outside the context of Objection by configuring an JSObjectionModule.
 
 #### Instance and Protocol Bindings
 
 You can bind a type to a specific instance of that type. This is useful when an object exists or is constructed outside of Objection.
 
 #### Example
-      @interface MyAppModule : ObjectionModule {
+      @interface MyAppModule : JSObjectionModule {
         
       }
       @end
@@ -88,8 +88,8 @@ You can bind a type to a specific instance of that type. This is useful when an 
       
       @end
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-        ObjectionInjector *injector = [Objection createInjector:[[[MyAppModule alloc] init] autorelease]];
-        [Objection setGlobalInjector:injector];
+        JSObjectionInjector *injector = [JSObjection createInjector:[[[MyAppModule alloc] init] autorelease]];
+        [JSObjection setGlobalInjector:injector];
       }
 
 #### Meta Class Bindings
@@ -135,7 +135,7 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 #### Example
 
     @implementation CarProvider
-    - (id)createInstance:(ObjectionInjector *)context {
+    - (id)createInstance:(JSObjectionInjector *)context {
       // Manually build object
       return car;
     }
@@ -144,7 +144,7 @@ Occasionally you'll want to manually construct an object within Objection. Provi
     @implementation MyAppModule
     - (void)configure {
         [self bindProvider:[[[CarProvider alloc] init] autorelease] toClass:[Car class]];
-        [self bindBlock:^(ObjectionInjector *context) {
+        [self bindBlock:^(JSObjectionInjector *context) {
           // Manually build object
           return car;          
         } toClass:[Car class]];
@@ -189,10 +189,8 @@ If an object is interested in knowing when it has been fully instantiated by obj
 * Add contribution section
 * Re-factor the method for declaring dependencies.
   * The current implementation relies on extending (via _objection\_requires_) the class interface
-  * The re-factored form should delegate directly to Objection (e.g. _[Objection registerClass:[TheClass class] withDependencies:@"collaborator", nil]_)
+  * The re-factored form should delegate directly to Objection (e.g. _[JSObjection registerClass:[TheClass class] withDependencies:@"collaborator", nil]_)
   * This form would allow for alternative registration mechanisms
-* XCode 4 build compatibility
-* Be a good Objective-C citizen by using a namespace prefix for symbols
 
 Installation
 =======
