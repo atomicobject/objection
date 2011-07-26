@@ -33,22 +33,22 @@ objection is a lightweight [dependency injection](http://en.wikipedia.org/wiki/D
 For a technical overview of framework please visit the [GitHub page](https://github.com/atomicobject/objection/)
 
 ## Installation
-
+    git clone git://github.com/atomicobject/objection.git
+    git checkout 0.8.0
+     
 ### iOS
 
-1. git clone git://github.com/atomicobject/objection.git
-2. rake artifact:ios or rake artifact:ios3 if you require iOS 3.0 compatibility
-3. cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}
-4. Add -ObjC and -all_load to Other Link Flags in your project
+1. rake artifact:ios or rake artifact:ios3 if you require iOS 3.0 compatibility
+2. cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}
+3. Add -ObjC and -all_load to Other Link Flags in your project
 
 #### Include framework
     #import <Objection-iOS/Objection.h>
 
 ### MacOS X
 
-1. git clone git://github.com/atomicobject/objection.git
-2. rake artifact:osx
-3. cp -R build/Release/Objection.framework ${DEST_DIR}
+1. rake artifact:osx
+2. cp -R build/Release/Objection.framework ${DEST_DIR}
 
 #### Include framework
     #import <Objection/Objection.h>

@@ -1,3 +1,5 @@
 _site
 build
 *.xcodeproj
+run
+.xcworkspace
