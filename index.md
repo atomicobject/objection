@@ -30,7 +30,7 @@ objection is a lightweight [dependency injection](http://en.wikipedia.org/wiki/D
 
 ## Usage
 
-For a technical overview of framework please visit the [GitHub page](https://github.com/atomicobject/objection/)
+For a technical overview of the framework please visit the [GitHub page](https://github.com/atomicobject/objection/)
 
 ## Installation
     git clone git://github.com/atomicobject/objection.git
