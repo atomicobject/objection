@@ -16,3 +16,4 @@ profile
 *.swp
 _site
 !Objection.xcworkspace
+run
