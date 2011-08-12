@@ -3,24 +3,22 @@
 #import "ModuleFixtures.h"
 
 SPEC_BEGIN(ModuleUsageSpecs)
+  __block MyModule *module = nil;
 
   beforeEach(^{
     Engine *engine = [[[Engine alloc] init] autorelease];
     id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
     
-    MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
-    AddToContext(@"module", module);
+    module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
     JSObjectionInjector *injector = [JSObjection createInjector:module];
     [JSObjection setGlobalInjector:injector];
   });
 
   it(@"merges the modules instance bindings with the injector's context", ^{
-    MyModule *module = GetFromContext(@"module");
     assertThat([[JSObjection globalInjector] getObject:[Engine class]], is(sameInstance(module.engine)));
   });
 
   it(@"uses the module's bounded instance to fill out other objects dependencies", ^{
-    MyModule *module = GetFromContext(@"module");
     ManualCar *car = [[JSObjection globalInjector] getObject:[ManualCar class]];
     
     assertThat(car.engine, is(sameInstance(module.engine)));    
@@ -28,17 +26,16 @@ SPEC_BEGIN(ModuleUsageSpecs)
   });
 
   it(@"supports binding an instance to a protocol", ^{
-    MyModule *module = GetFromContext(@"module");
     assertThat([[JSObjection globalInjector] getObject:@protocol(GearBox)], is(sameInstance(module.gearBox)));    
   });
 
   it(@"throws an exception if the instance does not conform to the protocol", ^{
     Engine *engine = [[[Engine alloc] init] autorelease];
     
-    assertRaises(^{
+    [[theBlock(^{
       MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"] autorelease];    
-      [module configure];
-    }, @"Instance does not conform to the GearBox protocol") ; 
+      [module configure];      
+    }) should] raiseWithReason:@"Instance does not conform to the GearBox protocol"];
   });
 
   it(@"supports eager singletons", ^{
@@ -47,19 +44,19 @@ SPEC_BEGIN(ModuleUsageSpecs)
 
   it(@"throws an exception if an attempt is made to register an eager singleton that was not registered as a singleton", ^{
     Engine *engine = [[[Engine alloc] init] autorelease];
-    
-    assertRaises(^{
+
+    [[theBlock(^{
       id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
       MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
       module.instrumentInvalidEagerSingleton = YES;
       [JSObjection createInjector:module];
-    }, @"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton") ;     
+    }) should] raiseWithReason:@"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton"];
+
   });
 
   describe(@"provider bindings", ^{
     beforeEach(^{
-      MyModule *module = [[[ProviderModule alloc] init] autorelease];    
-      AddToContext(@"module", module);
+      module = [[[ProviderModule alloc] init] autorelease];    
       JSObjectionInjector *injector = [JSObjection createInjector:module];
       [JSObjection setGlobalInjector:injector];      
     });
@@ -80,8 +77,7 @@ SPEC_BEGIN(ModuleUsageSpecs)
 
   describe(@"block bindings", ^{
     beforeEach(^{
-      MyModule *module = [[[BlockModule alloc] init] autorelease];    
-      AddToContext(@"module", module);
+      module = [[[BlockModule alloc] init] autorelease];    
       JSObjectionInjector *injector = [JSObjection createInjector:module];
       [JSObjection setGlobalInjector:injector];      
     });
@@ -111,14 +107,11 @@ SPEC_BEGIN(ModuleUsageSpecs)
       id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
       Engine *engine = [[[Engine alloc] init] autorelease];
 
-      assertRaises(^{
+      [[theBlock(^{
         MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
         module.instrumentInvalidMetaClass = YES;
         [module configure];
-      }, @"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class");       
+      }) should] raiseWithReason:@"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class"];
     });
   });
-
-
-
 SPEC_END

@@ -36,7 +36,7 @@ objection_register_singleton(EagerSingleton)
 @synthesize instrumentInvalidMetaClass = _instrumentInvalidMetaClass;
 
 - (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _engine = [engine retain];
     _gearBox = [gearBox retain];
   }

@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Specs-iOS' target in the 'Specs-iOS' project
+//
+
+#ifdef __OBJC__
+  #import <UIKit/UIKit.h>
+#endif

@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+
 @interface UnsupportedPropertyObject : NSObject {
 	NSInteger myInteger;  
 }
