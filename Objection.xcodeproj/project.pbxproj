@@ -459,9 +459,7 @@
 		4B9D30FE13DF5FAC00C81C45 /* JSObjectionFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectionFunctions.h; sourceTree = "<group>"; };
 		4B9D310113DF613500C81C45 /* JSObjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjection.h; sourceTree = "<group>"; };
 		4B9D310213DF613500C81C45 /* JSObjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjection.m; sourceTree = "<group>"; };
-		4BA9CFE912AA86D300674F0E /* Cedar-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iPhone.framework"; path = "Vendor/Cedar-iPhone.framework"; sourceTree = "<group>"; };
 		4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
-		4BA9CFF212AA86E600674F0E /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Vendor/Cedar.framework; sourceTree = "<group>"; };
 		4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = Vendor/OCHamcrest.framework; sourceTree = "<group>"; };
 		4BED511612AA8B7A00CA6B36 /* Objection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Objection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED511712AA8B7A00CA6B36 /* Objection-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Objection-Info.plist"; sourceTree = "<group>"; };
@@ -551,9 +549,7 @@
 				4B42580113F56C70006BC001 /* CoreGraphics.framework */,
 				4B4257FF13F56C67006BC001 /* UIKit.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
-				4BA9CFE912AA86D300674F0E /* Cedar-iPhone.framework */,
 				4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */,
-				4BA9CFF212AA86E600674F0E /* Cedar.framework */,
 				4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */,
 				4B42587613F56EA3006BC001 /* Cocoa.framework */,
 				4B42587813F56EA3006BC001 /* Other Frameworks */,
@@ -1592,6 +1588,7 @@
 				4B42581913F56CC1006BC001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B42588713F56EA3006BC001 /* Build configuration list for PBXNativeTarget "Specs-OSX" */ = {
 			isa = XCConfigurationList;
@@ -1600,6 +1597,7 @@
 				4B42588913F56EA3006BC001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BED511A12AA8B7A00CA6B36 /* Build configuration list for PBXNativeTarget "Objection" */ = {
 			isa = XCConfigurationList;
