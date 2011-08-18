@@ -23,48 +23,51 @@ Using Objection
 A class can be registered with objection using the macros *objection_register* or *objection_register_singleton*. The *objection_requires* macro can be used to declare what dependencies objection should provide to all instances it creates of that class. *objection_requires* can be used safely with inheritance.
 
 #### Example
+```objective-c
+@class Engine, Brakes;
 
-      @class Engine, Brakes;
-    
-      @interface Car : NSObject
-      {
-        Engine *engine;
-        Brakes *brakes;
-        BOOL awake;  
-      }
+@interface Car : NSObject
+{
+  Engine *engine;
+  Brakes *brakes;
+  BOOL awake;  
+}
 
-      // Will be filled in by objection
-      @property(nonatomic, retain) Engine *engine;
-      // Will be filled in by objection
-      @property(nonatomic, retain) Brakes *brakes;
-      @property(nonatomic) BOOL awake;
-    
-      @implementation Car
-      objection_register(Car)
-      objection_requires(@"engine", @"brakes")
-      @synthesize engine, brakes, awake;
-      @end
+// Will be filled in by objection
+@property(nonatomic, retain) Engine *engine;
+// Will be filled in by objection
+@property(nonatomic, retain) Brakes *brakes;
+@property(nonatomic) BOOL awake;
 
-
+@implementation Car
+objection_register(Car)
+objection_requires(@"engine", @"brakes")
+@synthesize engine, brakes, awake;
+@end
+```
 ### Fetching Objects from Objection
 
 An object can be fetched from objection by creating an injector and then asking for an instance of a particular class or protocol. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a *true* singleton.
 
-    - (void)someMethod {
-      JSObjectionInjector *injector = [JSObjection createInjector];
-      id car = [injector getObject:[Car class]];
-    }
+```objective-c
+- (void)someMethod {
+  JSObjectionInjector *injector = [JSObjection createInjector];
+  id car = [injector getObject:[Car class]];
+}
+```
 
 A global injector can be registered with Objection which can be used throughout your application or library.
-    
-    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-      JSObjectionInjector *injector = [JSObjection createInjector];
-      [JSObjection setGlobalInjector:injector];
-    }
-    
-    - (void)viewDidLoad {
-      id myModel = [[JSObjection globalInjector] getObject:[MyModel class]];
-    }
+
+```objective-c    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+  JSObjectionInjector *injector = [JSObjection createInjector];
+  [JSObjection setGlobalInjector:injector];
+}
+
+- (void)viewDidLoad {
+  id myModel = [[JSObjection globalInjector] getObject:[MyModel class]];
+}
+```
 
 ### Integrating external and custom objects
 
@@ -75,23 +78,24 @@ Objection supports associating an object outside the context of Objection by con
 You can bind a type to a specific instance of that type. This is useful when an object exists or is constructed outside of Objection.
 
 #### Example
-      @interface MyAppModule : JSObjectionModule {
-        
-      }
-      @end
-      
-      @implementation MyAppModule
-      - (void)configure {
-        [self bind:[UIApplication sharedApplication] toClass:[UIApplication class]];
-        [self bind:[UIApplication sharedApplication].delegate toProtocol:@protocol(UIApplicationDelegate)];
-      }
-      
-      @end
-      - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-        JSObjectionInjector *injector = [JSObjection createInjector:[[[MyAppModule alloc] init] autorelease]];
-        [JSObjection setGlobalInjector:injector];
-      }
+```objective-c
+@interface MyAppModule : JSObjectionModule {
+  
+}
+@end
 
+@implementation MyAppModule
+- (void)configure {
+  [self bind:[UIApplication sharedApplication] toClass:[UIApplication class]];
+  [self bind:[UIApplication sharedApplication].delegate toProtocol:@protocol(UIApplicationDelegate)];
+}
+
+@end
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+  JSObjectionInjector *injector = [JSObjection createInjector:[[[MyAppModule alloc] init] autorelease]];
+  [JSObjection setGlobalInjector:injector];
+}
+```
 #### Meta Class Bindings
 
 There are times when a dependency -- usually external -- is implemented using only class methods. Objection can explicitly support binding to
@@ -100,87 +104,85 @@ methods. The catch, of course, is that it requires a protocol definition so that
 in the injector context.
 
 #### Example
+```objective-c
+@protocol ExternalUtility
+  - (void)doSomething;
+@end
 
-      @protocol ExternalUtility
-        - (void)doSomething;
-      @end
-      
-      @interface ExternalUtility
-        + (void)doSomething;
-      @end
-      
-      @implementation ExternalUtility
-        + (void)doSomething {...}
-      @end
-      
-      // Module Configuration
-      - (void)configure {
-        [self bindMetaClass:[ExternalUtility class] toProtocol:@protocol(ExternalUtility)];    
-      }
-      
-      @interface SomeClass
-      {
-        ...
-      }
-      // Use 'assign' because a meta class is not subject to the normal retain/release lifecycle. 
-      // It will exist until the application is terminated (Class Initialization -> Application Termination)
-      // regardless of the number of objects in the runtime that reference it.
-      @property (nonatomic, assign) id<ExternalUtility> externalUtility
-      @end
+@interface ExternalUtility
+  + (void)doSomething;
+@end
 
+@implementation ExternalUtility
+  + (void)doSomething {...}
+@end
+
+// Module Configuration
+- (void)configure {
+  [self bindMetaClass:[ExternalUtility class] toProtocol:@protocol(ExternalUtility)];    
+}
+
+@interface SomeClass
+{
+  ...
+}
+// Use 'assign' because a meta class is not subject to the normal retain/release lifecycle. 
+// It will exist until the application is terminated (Class Initialization -> Application Termination)
+// regardless of the number of objects in the runtime that reference it.
+@property (nonatomic, assign) id<ExternalUtility> externalUtility
+@end
+```
 #### Providers
 
 Occasionally you'll want to manually construct an object within Objection. Providers allow you to use a custom mechanism for building objects that are bound to a type. You can create a class that _conforms_ to the ObjectionProvider protocol or you can use a _block_ to build the object.
       
 #### Example
+```objective-c
+@implementation CarProvider
+- (id)createInstance:(JSObjectionInjector *)context {
+  // Manually build object
+  return car;
+}
+@end
 
-    @implementation CarProvider
-    - (id)createInstance:(JSObjectionInjector *)context {
+@implementation MyAppModule
+- (void)configure {
+    [self bindProvider:[[[CarProvider alloc] init] autorelease] toClass:[Car class]];
+    [self bindBlock:^(JSObjectionInjector *context) {
       // Manually build object
-      return car;
-    }
-    @end
-    
-    @implementation MyAppModule
-    - (void)configure {
-        [self bindProvider:[[[CarProvider alloc] init] autorelease] toClass:[Car class]];
-        [self bindBlock:^(JSObjectionInjector *context) {
-          // Manually build object
-          return car;          
-        } toClass:[Car class]];
-    }
-    @end
-
-
+      return car;          
+    } toClass:[Car class]];
+}
+@end
+```
 ### Eager Singletons
 
 You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
 
 ### Example
+```objective-c
+@implementation MyAppModule
+- (void)configure {
+  [self registerEagerSingleton:[Car class]];
+}
 
-    @implementation MyAppModule
-    - (void)configure {
-      [self registerEagerSingleton:[Car class]];
-    }
-
-    @end
-
-
+@end
+```
 ### Awaking from Objection
 
 If an object is interested in knowing when it has been fully instantiated by objection it can implement the method
 *awakeFromObjection*.
 
 #### Example
-      @implementation Car
-      //...
-      objection_register_singleton(Car)
-        - (void)awakeFromObjection {
-          awake = YES;
-        }
-      @end  
-      
-
+```objective-c
+@implementation Car
+//...
+objection_register_singleton(Car)
+  - (void)awakeFromObjection {
+    awake = YES;
+  }
+@end  
+```
 ## TODO
 
 * Resolve circular dependencies.
