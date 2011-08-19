@@ -113,5 +113,14 @@ SPEC_BEGIN(ModuleUsageSpecs)
         [module configure];
       }) should] raiseWithReason:@"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class"];
     });
+    
+    describe(@"class to protocol bindings", ^{
+      it(@"supports associating a concrete class with a protocol", ^{
+        VisaCCProcessor *processor = [[JSObjection globalInjector] getObject:@protocol(CreditCardProcessor)];
+        
+        assertThat(processor, is(instanceOf([VisaCCProcessor class])));
+        assertThat(processor.validator, is(instanceOf([CreditCardValidator class])));
+      });
+    });
   });
 SPEC_END

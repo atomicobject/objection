@@ -75,7 +75,7 @@ Objection supports associating an object outside the context of Objection by con
 
 #### Instance and Protocol Bindings
 
-You can bind a type to a specific instance of that type. This is useful when an object exists or is constructed outside of Objection.
+You can bind a protocol or class to a specific instance of that type. This is useful when an object exists or is constructed outside of Objection.
 
 #### Example
 ```objective-c
@@ -88,6 +88,7 @@ You can bind a type to a specific instance of that type. This is useful when an 
 - (void)configure {
   [self bind:[UIApplication sharedApplication] toClass:[UIApplication class]];
   [self bind:[UIApplication sharedApplication].delegate toProtocol:@protocol(UIApplicationDelegate)];
+  [self bindClass:[MyAPIService class] toProtocol:@protocol(APIService)];
 }
 
 @end

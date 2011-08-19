@@ -18,7 +18,7 @@ def system_or_exit(cmd, stdout = nil)
   system(cmd) or raise "******** Build failed ********"
 end
 
-task :default => [:specs, :uispecs]
+task :default => ["specs:ios", "specs:osx"]
 task :cruise do
   Rake::Task[:clean].invoke
   Rake::Task[:build_all].invoke

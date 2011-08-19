@@ -4,7 +4,6 @@
 
 extern BOOL gEagerSingletonHook;
 
-
 @protocol MetaCar<NSObject>
 - (id)manufacture;
 @end
@@ -56,6 +55,19 @@ extern BOOL gEagerSingletonHook;
 @end
 
 @interface BlockModule : JSObjectionModule
+@end
+
+@interface CreditCardValidator : NSObject
+@end
+
+@protocol CreditCardProcessor <NSObject>
+- (void)processNumber:(NSString *)number;
+@end
+
+@interface VisaCCProcessor : NSObject<CreditCardProcessor> {
+  CreditCardValidator *_validator;
+}
+@property (nonatomic, retain) CreditCardValidator *validator;
 @end
 
 

@@ -2,6 +2,31 @@
 #import "JSObjectionBindingEntry.h"
 #import "JSObjectionProviderEntry.h"
 #import <objc/runtime.h>
+#import "JSObjectionInjector.h"
+
+@interface __JSClassToProtoclProvider : NSObject<JSObjectionProvider>
+{
+  Class _class;
+}
+- (id)initWithClass:(Class)aClass;
+@end
+
+@implementation __JSClassToProtoclProvider
+
+- (id)initWithClass:(Class)aClass
+{
+  if ((self = [super init])) {
+    _class = aClass;
+  }
+  return self;
+}
+
+- (id)createInstance:(JSObjectionInjector *)context
+{
+  return [context getObject:_class];
+}
+
+@end
 
 @interface JSObjectionModule()
 - (NSString *)protocolKey:(Protocol *)aProtocol;
@@ -58,6 +83,14 @@
 - (void)bindProvider:(id<JSObjectionProvider>)provider toProtocol:(Protocol *)aProtocol
 {
   NSString *key = [self protocolKey:aProtocol];
+  JSObjectionProviderEntry *entry = [[[JSObjectionProviderEntry alloc] initWithProvider:provider] autorelease];
+  [_bindings setObject:entry forKey:key];  
+}
+
+- (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol
+{
+  NSString *key = [self protocolKey:aProtocol];
+  __JSClassToProtoclProvider *provider = [[[__JSClassToProtoclProvider alloc] initWithClass:aClass] autorelease];
   JSObjectionProviderEntry *entry = [[[JSObjectionProviderEntry alloc] initWithProvider:provider] autorelease];
   [_bindings setObject:entry forKey:key];  
 }
