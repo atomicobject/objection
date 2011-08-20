@@ -75,7 +75,8 @@ Objection supports associating an object outside the context of Objection by con
 
 #### Instance and Protocol Bindings
 
-You can bind a protocol or class to a specific instance of that type. This is useful when an object exists or is constructed outside of Objection.
+* Bind a protocol or class to a specific instance of that type
+* Bind a class that is registered with Objection to a protocol
 
 #### Example
 ```objective-c
