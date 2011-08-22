@@ -1,9 +1,9 @@
 #import <objc/runtime.h>
-#import "JSObjectionFunctions.h"
+#import "JSObjectionUtils.h"
 
 static NSString *const JSObjectionException = @"JSObjectionException";
 
-JSObjectionPropertyInfo JSFindClassOrProtocolForProperty(objc_property_t property) 
+static JSObjectionPropertyInfo FindClassOrProtocolForProperty(objc_property_t property) 
 {
   NSString *attributes = [NSString stringWithCString: property_getAttributes(property) encoding: NSASCIIStringEncoding];  
   NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
@@ -42,7 +42,7 @@ JSObjectionPropertyInfo JSFindClassOrProtocolForProperty(objc_property_t propert
   return propertyInfo;      
 }
 
-NSSet* JSBuildDependenciesForClass(Class klass, NSSet *requirements) 
+static NSSet* BuildDependenciesForClass(Class klass, NSSet *requirements) 
 {
   Class superClass = class_getSuperclass([klass class]);
   if([superClass respondsToSelector:@selector(objectionRequires)]) {
@@ -54,7 +54,7 @@ NSSet* JSBuildDependenciesForClass(Class klass, NSSet *requirements)
   return requirements;  
 }
 
-objc_property_t JSGetProperty(Class klass, NSString *propertyName) 
+static objc_property_t GetProperty(Class klass, NSString *propertyName) 
 {
   objc_property_t property = class_getProperty(klass, (const char *)[propertyName UTF8String]);
   if (property == NULL) {
@@ -62,3 +62,9 @@ objc_property_t JSGetProperty(Class klass, NSString *propertyName)
   }
   return property;
 }
+
+const struct JSObjectionUtils JSObjectionUtils = {
+  .findClassOrProtocolForProperty = FindClassOrProtocolForProperty,
+  .propertyForClass = GetProperty,
+  .buildDependenciesForClass = BuildDependenciesForClass
+};

@@ -1,6 +1,6 @@
 #import "JSObjectionInjectorEntry.h"
 #import "JSObjection.h"
-#import "JSObjectionFunctions.h"
+#import "JSObjectionUtils.h"
 
 @interface JSObjectionInjectorEntry()
 - (void)notifyObjectThatItIsReady: (id)object;
@@ -62,8 +62,8 @@
   	id objectUnderConstruction = [[[self.classEntry alloc] init] autorelease];
     
     for (NSString *propertyName in properties) {
-      objc_property_t property = JSGetProperty(self.classEntry, propertyName);
-      JSObjectionPropertyInfo propertyInfo = JSFindClassOrProtocolForProperty(property);
+      objc_property_t property = JSObjectionUtils.propertyForClass(self.classEntry, propertyName);
+      JSObjectionPropertyInfo propertyInfo = JSObjectionUtils.findClassOrProtocolForProperty(property);
       id desiredClassOrProtocol = propertyInfo.value;
       // Ensure that the class is initialized before attempting to retrieve it.
       // Using +load would force all registered classes to be initialized so we are
