@@ -199,7 +199,7 @@ Installation
 =======
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.8.5
+    git checkout 0.8.6
     
 ### iOS
 
