@@ -119,7 +119,7 @@ objection_register_singleton(EagerSingleton)
 @end
 
 @implementation VisaCCProcessor
-objection_register(VisaCCProcessor)
+objection_register_singleton(VisaCCProcessor)
 objection_requires(@"validator")
 
 @synthesize validator = _validator;
