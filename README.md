@@ -187,10 +187,11 @@ objection_register_singleton(Car)
 ```
 ## TODO
 
-* Resolve circular dependencies.
-* Cache results of property definitions.
+* Create factory pattern for creating objects from injector context
+* Allow a subclass to be bound to a superlcass definition
+* Resolve circular dependencies
 * Add contribution section
-* Re-factor the method for declaring dependencies.
+* Re-factor the method for declaring dependencies
   * The current implementation relies on extending (via _objection\_requires_) the class interface
   * The re-factored form should delegate directly to Objection (e.g. _[JSObjection registerClass:[TheClass class] withDependencies:@"collaborator", nil]_)
   * This form would allow for alternative registration mechanisms
