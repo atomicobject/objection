@@ -55,9 +55,11 @@ SPEC_BEGIN(ModuleUsageSpecs)
   });
 
   describe(@"provider bindings", ^{
+    __block ProviderModule *providerModule = nil;
+    
     beforeEach(^{
-      module = [[[ProviderModule alloc] init] autorelease];    
-      JSObjectionInjector *injector = [JSObjection createInjector:module];
+      providerModule = [[[ProviderModule alloc] init] autorelease];    
+      JSObjectionInjector *injector = [JSObjection createInjector:providerModule];
       [JSObjection setGlobalInjector:injector];      
     });
     
@@ -76,9 +78,11 @@ SPEC_BEGIN(ModuleUsageSpecs)
   });
 
   describe(@"block bindings", ^{
+    __block BlockModule *blockModule = nil;
+    
     beforeEach(^{
-      module = [[[BlockModule alloc] init] autorelease];    
-      JSObjectionInjector *injector = [JSObjection createInjector:module];
+      blockModule = [[[BlockModule alloc] init] autorelease];    
+      JSObjectionInjector *injector = [JSObjection createInjector:blockModule];
       [JSObjection setGlobalInjector:injector];      
     });
     

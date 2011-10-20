@@ -95,7 +95,6 @@
   [_bindings setObject:entry forKey:key];  
 }
 
-#if NS_BLOCKS_AVAILABLE
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass
 {
   NSString *key = NSStringFromClass(aClass);
@@ -109,7 +108,6 @@
   JSObjectionProviderEntry *entry = [[[JSObjectionProviderEntry alloc] initWithBlock:block] autorelease];
   [_bindings setObject:entry forKey:key];    
 }
-#endif
 
 - (void) registerEagerSingleton:(Class)klass 
 {

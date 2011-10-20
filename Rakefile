@@ -2,7 +2,7 @@ PROJECT_NAME = "Objection"
 CONFIGURATION = "Debug"
 SPECS_TARGET_NAME = "Specs-OSX"
 UI_SPECS_TARGET_NAME = "Specs-iOS"
-SDK_DIR = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk"
+SDK_DIR = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk"
 
 def xcodebuild_executable
   "/Developer/usr/bin/xcodebuild"  
@@ -35,11 +35,6 @@ namespace :artifact do
   desc "Build iOS Framework"
   task :ios  => :clean do
     system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build], nil)
-  end
-
-  desc "Build iOS Framework for iOS 3.0"  
-  task :ios3 => :clean do
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj OTHER_CFLAGS='-DNS_BLOCKS_AVAILABLE=0' -target Objection-iOS -configuration Release build], nil)
   end
 end
   
