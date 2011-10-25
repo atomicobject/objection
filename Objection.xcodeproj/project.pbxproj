@@ -206,6 +206,7 @@
 		4B4B21A61342B78E00833077 /* JSObjectionEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B4B21A31342B78E00833077 /* JSObjectionEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B4B21A91342B79E00833077 /* JSObjectionEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B21A71342B79E00833077 /* JSObjectionEntry.m */; };
 		4B4B21AC1342B79E00833077 /* JSObjectionEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B21A71342B79E00833077 /* JSObjectionEntry.m */; };
+		4B4F7B5814577AB50064EBFB /* JSObjectFactory.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BE7875E145647EF00BD705E /* JSObjectFactory.h */; };
 		4B53471112F3165F000480AB /* NSObject+Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B53470E12F3165F000480AB /* NSObject+Objection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B53471312F3165F000480AB /* NSObject+Objection.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B53470E12F3165F000480AB /* NSObject+Objection.h */; };
 		4B53471512F31660000480AB /* NSObject+Objection.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B53470E12F3165F000480AB /* NSObject+Objection.h */; };
@@ -265,6 +266,7 @@
 				4B9D311413DF79FE00C81C45 /* JSObjectionUtils.h in Copy Header Files */,
 				4B9D311513DF79FE00C81C45 /* JSObjection.h in Copy Header Files */,
 				4B9582C312AE755000CBF1EB /* JSObjectionModule.h in Copy Header Files */,
+				4B4F7B5814577AB50064EBFB /* JSObjectFactory.h in Copy Header Files */,
 				4B9582C212AE753800CBF1EB /* Objection.h in Copy Header Files */,
 				4BA6DD1F12AAB3CD00CFFD70 /* JSObjectionInjectorEntry.h in Copy Header Files */,
 				4BA6DD2012AAB3CD00CFFD70 /* JSObjectionInjector.h in Copy Header Files */,
