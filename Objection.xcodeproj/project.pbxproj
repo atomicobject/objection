@@ -239,7 +239,7 @@
 		4BA6DD2012AAB3CD00CFFD70 /* JSObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* JSObjectionInjector.h */; };
 		4BA6DD2112AAB3CD00CFFD70 /* JSObjectionBindingEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* JSObjectionBindingEntry.h */; };
 		4BE78760145647EF00BD705E /* JSObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE7875E145647EF00BD705E /* JSObjectFactory.h */; };
-		4BE78761145647EF00BD705E /* JSObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE7875E145647EF00BD705E /* JSObjectFactory.h */; };
+		4BE78761145647EF00BD705E /* JSObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE7875E145647EF00BD705E /* JSObjectFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BE78762145647EF00BD705E /* JSObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7875F145647EF00BD705E /* JSObjectFactory.m */; };
 		4BE78763145647EF00BD705E /* JSObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7875F145647EF00BD705E /* JSObjectFactory.m */; };
 		4BE78764145647EF00BD705E /* JSObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7875F145647EF00BD705E /* JSObjectFactory.m */; };
@@ -850,8 +850,8 @@
 				4B4B21A61342B78E00833077 /* JSObjectionEntry.h in Headers */,
 				4B9D310013DF5FAC00C81C45 /* JSObjectionUtils.h in Headers */,
 				4B81F8D5135D06A300221A88 /* JSObjectionProviderEntry.h in Headers */,
-				4B9D310413DF613600C81C45 /* JSObjection.h in Headers */,
 				4BE78761145647EF00BD705E /* JSObjectFactory.h in Headers */,
+				4B9D310413DF613600C81C45 /* JSObjection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
