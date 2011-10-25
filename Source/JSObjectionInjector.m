@@ -1,10 +1,43 @@
 #import "JSObjectionInjector.h"
 #import "JSObjectionEntry.h"
+#import "JSObjectFactory.h"
+
 #import <pthread.h>
 #import <objc/runtime.h>
 
+@interface __JSObjectionInjectorDefaultModule : JSObjectionModule
+{
+  JSObjectionInjector *_injector;
+}
+@end
+
+@implementation __JSObjectionInjectorDefaultModule
+
+- (id)initWithInjector:(JSObjectionInjector *)injector 
+{
+  if ((self = [super init])) {
+    _injector = [injector retain];
+  }
+  return self;
+}
+
+- (void)configure 
+{
+  [self bind:[[[JSObjectFactory alloc] initWithInjector:_injector] autorelease] 
+     toClass:[JSObjectFactory class]];
+}
+
+- (void)dealloc
+{
+  [_injector release];
+  [super dealloc];
+}
+@end
+  
 @interface JSObjectionInjector(Private)
 - (void)initializeEagerSingletons;
+- (void)configureDefaultModule;
+- (void)configureModule:(JSObjectionModule *)module;
 @end
 
 @implementation JSObjectionInjector
@@ -14,8 +47,9 @@
   if ((self = [super init])) {
     _globalContext = [theGlobalContext retain];
     _context = [[NSMutableDictionary alloc] init];
-    _eagerSingletons = nil;
-  }
+    [self configureDefaultModule];
+    [self initializeEagerSingletons];
+ }
   
   return self;
 }
@@ -23,9 +57,7 @@
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule 
 {
   if ((self = [self initWithContext:theGlobalContext])) {
-    [theModule configure];
-    _eagerSingletons = theModule.eagerSingletons;
-    [_context addEntriesFromDictionary:theModule.bindings];
+    [self configureModule:theModule];
     [self initializeEagerSingletons];
   }
   return self;
@@ -69,6 +101,8 @@
   return nil;
 }
 
+#pragma mark - Private
+
 - (void)initializeEagerSingletons 
 {
   for (NSString *eagerSingletonKey in _eagerSingletons) {
@@ -84,9 +118,27 @@
   }
 }
 
+- (void)configureModule:(JSObjectionModule *)module
+{
+  [module configure];
+  NSSet *mergedSet = [module.eagerSingletons setByAddingObjectsFromSet:_eagerSingletons];
+  [_eagerSingletons release];
+  _eagerSingletons = [mergedSet retain];
+  [_context addEntriesFromDictionary:module.bindings];
+}
+
+- (void)configureDefaultModule
+{
+  __JSObjectionInjectorDefaultModule *module = [[[__JSObjectionInjectorDefaultModule alloc] initWithInjector:self] autorelease];
+  [self configureModule:module];
+}
+
+#pragma mark - 
+
 - (void)dealloc {
-  [_globalContext release]; _globalContext = nil;
-  [_context release]; _context = nil;  
+  [_globalContext release];
+  [_context release];  
+  [_eagerSingletons release];
   [super dealloc];
 }
 

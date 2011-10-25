@@ -72,7 +72,7 @@
         [desiredClassOrProtocol class];        
       }
       
-      id theObject = desiredClassOrProtocol == [self.injector class] ? self.injector : [self.injector getObject:desiredClassOrProtocol];
+      id theObject = [self.injector getObject:desiredClassOrProtocol];
       
       
       if(theObject == nil && propertyInfo.type == JSObjectionTypeClass) {
