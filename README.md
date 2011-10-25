@@ -68,8 +68,54 @@ A global injector can be registered with Objection which can be used throughout 
   id myModel = [[JSObjection globalInjector] getObject:[MyModel class]];
 }
 ```
+### Awaking from Objection
 
-### Integrating external and custom objects
+If an object is interested in knowing when it has been fully instantiated by objection it can implement the method
+*awakeFromObjection*.
+
+#### Example
+```objective-c
+@implementation Car
+//...
+objection_register_singleton(Car)
+  - (void)awakeFromObjection {
+    awake = YES;
+  }
+@end  
+```  
+### Eager Singletons
+
+You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
+
+### Example
+```objective-c
+@implementation MyAppModule
+- (void)configure {
+  [self registerEagerSingleton:[Car class]];
+}
+
+@end
+```  
+### Object Factory
+
+A class can get objects from the injector context through an Object Factory.
+
+### Example
+```objective-c
+@interface RequestDispatcher
+@property(nonatomic, retain) JSObjectFactory *objectFactory
+@end
+
+@implementation RequestDispatcher
+- (void)dispatch:(NSDictionary *)params
+{
+  Request *request = [self.objectFactory getObject:[Request class]];
+  request.params = params;
+  [request send];
+}
+@end
+
+### Integrating external dependencies
 
 Objection supports associating an object outside the context of Objection by configuring an JSObjectionModule.
 
@@ -157,37 +203,8 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 }
 @end
 ```
-### Eager Singletons
-
-You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
-
-### Example
-```objective-c
-@implementation MyAppModule
-- (void)configure {
-  [self registerEagerSingleton:[Car class]];
-}
-
-@end
-```
-### Awaking from Objection
-
-If an object is interested in knowing when it has been fully instantiated by objection it can implement the method
-*awakeFromObjection*.
-
-#### Example
-```objective-c
-@implementation Car
-//...
-objection_register_singleton(Car)
-  - (void)awakeFromObjection {
-    awake = YES;
-  }
-@end  
-```
 ## TODO
 
-* Create factory pattern for creating objects from injector context
 * Allow a subclass to be bound to a superlcass definition
 * Resolve circular dependencies
 * Add contribution section
@@ -200,7 +217,7 @@ Installation
 =======
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.9
+    git checkout 0.10.0
     
 ### iOS
 
