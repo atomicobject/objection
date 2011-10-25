@@ -98,7 +98,7 @@ You can mark registered singleton classes as eager singletons. Eager singletons 
 ```  
 ### Object Factory
 
-A class can get objects from the injector context through an Object Factory.
+A class can get objects from the injector context through an object factory.
 
 ### Example
 ```objective-c
@@ -114,7 +114,7 @@ A class can get objects from the injector context through an Object Factory.
   [request send];
 }
 @end
-
+```
 ### Integrating external dependencies
 
 Objection supports associating an object outside the context of Objection by configuring an JSObjectionModule.
