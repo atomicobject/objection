@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 
-
 @interface Engine : NSObject
 {
   BOOL awake;  
@@ -20,7 +19,7 @@
 {
   Engine *engine;
   Brakes *brakes;
-  BOOL awake;  
+  BOOL awake; 
 }
 
 @property(nonatomic, retain) Engine *engine;
@@ -51,7 +50,6 @@
 {
   
 }
-
 @end
 
 
@@ -63,3 +61,8 @@
 @property(nonatomic, retain) SingletonItem *singletonItem;
 @end
 
+@class JSObjectFactory;
+
+@interface JSObjectFactoryHolder : NSObject
+@property (nonatomic, retain) JSObjectFactory *objectFactory;
+@end

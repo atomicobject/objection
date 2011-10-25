@@ -238,6 +238,12 @@
 		4BA6DD1F12AAB3CD00CFFD70 /* JSObjectionInjectorEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* JSObjectionInjectorEntry.h */; };
 		4BA6DD2012AAB3CD00CFFD70 /* JSObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* JSObjectionInjector.h */; };
 		4BA6DD2112AAB3CD00CFFD70 /* JSObjectionBindingEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* JSObjectionBindingEntry.h */; };
+		4BE78760145647EF00BD705E /* JSObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE7875E145647EF00BD705E /* JSObjectFactory.h */; };
+		4BE78761145647EF00BD705E /* JSObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE7875E145647EF00BD705E /* JSObjectFactory.h */; };
+		4BE78762145647EF00BD705E /* JSObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7875F145647EF00BD705E /* JSObjectFactory.m */; };
+		4BE78763145647EF00BD705E /* JSObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7875F145647EF00BD705E /* JSObjectFactory.m */; };
+		4BE78764145647EF00BD705E /* JSObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7875F145647EF00BD705E /* JSObjectFactory.m */; };
+		4BE78765145647EF00BD705E /* JSObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7875F145647EF00BD705E /* JSObjectFactory.m */; };
 		4BED512412AA8BCC00CA6B36 /* JSObjectionInjectorEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED511E12AA8BCC00CA6B36 /* JSObjectionInjectorEntry.m */; };
 		4BED512512AA8BCC00CA6B36 /* JSObjectionInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED511F12AA8BCC00CA6B36 /* JSObjectionInjector.m */; };
 		4BED512612AA8BCC00CA6B36 /* JSObjectionBindingEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED512012AA8BCC00CA6B36 /* JSObjectionBindingEntry.m */; };
@@ -461,6 +467,8 @@
 		4B9D310213DF613500C81C45 /* JSObjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjection.m; sourceTree = "<group>"; };
 		4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
 		4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = Vendor/OCHamcrest.framework; sourceTree = "<group>"; };
+		4BE7875E145647EF00BD705E /* JSObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectFactory.h; sourceTree = "<group>"; };
+		4BE7875F145647EF00BD705E /* JSObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjectFactory.m; sourceTree = "<group>"; };
 		4BED511612AA8B7A00CA6B36 /* Objection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Objection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED511712AA8B7A00CA6B36 /* Objection-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Objection-Info.plist"; sourceTree = "<group>"; };
 		4BED511E12AA8BCC00CA6B36 /* JSObjectionInjectorEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjectionInjectorEntry.m; sourceTree = "<group>"; };
@@ -569,6 +577,7 @@
 				4BED512012AA8BCC00CA6B36 /* JSObjectionBindingEntry.m */,
 				4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */,
 				4B9D310213DF613500C81C45 /* JSObjection.m */,
+				4BE7875F145647EF00BD705E /* JSObjectFactory.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -779,6 +788,7 @@
 		4BED512E12AA8BD600CA6B36 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				4BE7875E145647EF00BD705E /* JSObjectFactory.h */,
 				4B9D30FE13DF5FAC00C81C45 /* JSObjectionUtils.h */,
 				4B4B21A31342B78E00833077 /* JSObjectionEntry.h */,
 				4B957EE612ADE26500CBF1EB /* Objection.h */,
@@ -841,6 +851,7 @@
 				4B9D310013DF5FAC00C81C45 /* JSObjectionUtils.h in Headers */,
 				4B81F8D5135D06A300221A88 /* JSObjectionProviderEntry.h in Headers */,
 				4B9D310413DF613600C81C45 /* JSObjection.h in Headers */,
+				4BE78761145647EF00BD705E /* JSObjectFactory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,6 +869,7 @@
 				4B81F8D2135D06A300221A88 /* JSObjectionProviderEntry.h in Headers */,
 				4B9D30FF13DF5FAC00C81C45 /* JSObjectionUtils.h in Headers */,
 				4B9D310313DF613600C81C45 /* JSObjection.h in Headers */,
+				4BE78760145647EF00BD705E /* JSObjectFactory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1140,6 +1152,7 @@
 				4B42585713F56D26006BC001 /* NSObject+KiwiStubAdditions.m in Sources */,
 				4B42585813F56D26006BC001 /* NSObject+KiwiVerifierAdditions.m in Sources */,
 				4B42585913F56D26006BC001 /* NSValue+KiwiAdditions.m in Sources */,
+				4BE78764145647EF00BD705E /* JSObjectFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1231,6 +1244,7 @@
 				4B4258CA13F56F2D006BC001 /* NSObject+KiwiStubAdditions.m in Sources */,
 				4B4258CB13F56F2D006BC001 /* NSObject+KiwiVerifierAdditions.m in Sources */,
 				4B4258CC13F56F2D006BC001 /* NSValue+KiwiAdditions.m in Sources */,
+				4BE78765145647EF00BD705E /* JSObjectFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1247,6 +1261,7 @@
 				4B4B21AC1342B79E00833077 /* JSObjectionEntry.m in Sources */,
 				4B81F8E0135D06C200221A88 /* JSObjectionProviderEntry.m in Sources */,
 				4B9D310713DF613600C81C45 /* JSObjection.m in Sources */,
+				4BE78763145647EF00BD705E /* JSObjectFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,6 +1278,7 @@
 				4B4B21A91342B79E00833077 /* JSObjectionEntry.m in Sources */,
 				4B81F8DE135D06C200221A88 /* JSObjectionProviderEntry.m in Sources */,
 				4B9D310513DF613600C81C45 /* JSObjection.m in Sources */,
+				4BE78762145647EF00BD705E /* JSObjectFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

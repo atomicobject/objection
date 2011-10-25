@@ -78,4 +78,17 @@ it(@"calls awakeFromObjection when an object has been constructed", ^{
   assertThatBool([car awake], equalToBool(YES));
 });
 
+it(@"returns a JSObjectFactory for the given injector context", ^{
+  JSObjectionInjector *injector1 = [JSObjection createInjector];
+  JSObjectionInjector *injector2 = [JSObjection globalInjector];
+  
+  JSObjectFactoryHolder *holder1 = [injector1 getObject:[JSObjectFactoryHolder class]];
+  JSObjectFactoryHolder *holder2 = [injector2 getObject:[JSObjectFactoryHolder class]];
+  
+  SingletonItem *item1 = [holder1.objectFactory getObject:[SingletonItem class]];
+  SingletonItem *item2 = [holder2.objectFactory getObject:[SingletonItem class]];
+    
+  [[item1 shouldNot] equal:item2];
+});
+
 SPEC_END

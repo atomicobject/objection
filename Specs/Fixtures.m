@@ -47,7 +47,12 @@ objection_requires(@"singletonItem")
 
 @implementation SingletonItem
 objection_register_singleton(SingletonItem)
-
 @end
 
+@implementation JSObjectFactoryHolder
+objection_register_singleton(JSObjectFactoryHolder)
+objection_requires(@"objectFactory")
+
+@synthesize objectFactory;
+@end
 

@@ -10,6 +10,7 @@
 #import "JSObjectionInjectorEntry.h"
 #import "JSObjectionUtils.h"
 #import "JSObjectionProviderEntry.h"
+#import "JSObjectFactory.h"
 #import "JSObjection.h"
 
 #define objection_register(value)			\
