@@ -14,6 +14,7 @@
 		4B5F5FA713A266C00083EA7F /* OEObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F5FA513A266C00083EA7F /* OEObjectionModule.m */; };
 		4B5F5FB413A267460083EA7F /* commit.json in Resources */ = {isa = PBXBuildFile; fileRef = 808D8BD5139E73D300649B55 /* commit.json */; };
 		4B5F5FBC13A267F50083EA7F /* OEObjectionModuleSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F5FBB13A267F50083EA7F /* OEObjectionModuleSpecs.m */; };
+		4B62199A1494588300F6B3E8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6219991494588300F6B3E8 /* libz.dylib */; };
 		4B9D311713DF7B1A00C81C45 /* Objection-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9D311613DF7B1A00C81C45 /* Objection-iOS.framework */; };
 		4B9D311813DF7B1A00C81C45 /* Objection-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9D311613DF7B1A00C81C45 /* Objection-iOS.framework */; };
 		4BE03DBD13A305E5000F49CA /* OECommit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE03DBC13A305E5000F49CA /* OECommit.m */; };
@@ -38,11 +39,9 @@
 		809BE1E613993A3B0042F12B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		809BE1E713993A3B0042F12B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		809BE1E813993A3B0042F12B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		809BE1EE13993AA80042F12B /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 809BE1ED13993AA80042F12B /* libz.1.2.3.dylib */; };
 		809BE1F013993AB00042F12B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809BE1EF13993AB00042F12B /* CFNetwork.framework */; };
 		809BE1F213993AED0042F12B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809BE1F113993AED0042F12B /* MobileCoreServices.framework */; };
 		809BE1F413993AF10042F12B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809BE1F313993AF10042F12B /* SystemConfiguration.framework */; };
-		809BE25213993CFE0042F12B /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 809BE1ED13993AA80042F12B /* libz.1.2.3.dylib */; };
 		809BE25313993CFE0042F12B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809BE1EF13993AB00042F12B /* CFNetwork.framework */; };
 		809BE25413993CFE0042F12B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809BE1F113993AED0042F12B /* MobileCoreServices.framework */; };
 		809BE25513993CFE0042F12B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809BE1F313993AF10042F12B /* SystemConfiguration.framework */; };
@@ -90,6 +89,7 @@
 		4B5F5FA413A266C00083EA7F /* OEObjectionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEObjectionModule.h; sourceTree = "<group>"; };
 		4B5F5FA513A266C00083EA7F /* OEObjectionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEObjectionModule.m; sourceTree = "<group>"; };
 		4B5F5FBB13A267F50083EA7F /* OEObjectionModuleSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEObjectionModuleSpecs.m; sourceTree = "<group>"; };
+		4B6219991494588300F6B3E8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4B9D311613DF7B1A00C81C45 /* Objection-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Objection-iOS.framework"; path = "Libraries/Objection-iOS.framework"; sourceTree = "<group>"; };
 		4BE03DBB13A305E5000F49CA /* OECommit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OECommit.h; sourceTree = "<group>"; };
 		4BE03DBC13A305E5000F49CA /* OECommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OECommit.m; sourceTree = "<group>"; };
@@ -128,7 +128,6 @@
 		809BE092139935680042F12B /* Cedar-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iPhone.framework"; path = "Libraries/Test/Cedar-iPhone.framework"; sourceTree = "<group>"; };
 		809BE096139935720042F12B /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Libraries/Test/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
 		809BE09A1399358E0042F12B /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = Libraries/Test/OCMock/libOCMock.a; sourceTree = "<group>"; };
-		809BE1ED13993AA80042F12B /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		809BE1EF13993AB00042F12B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		809BE1F113993AED0042F12B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		809BE1F313993AF10042F12B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -161,10 +160,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B62199A1494588300F6B3E8 /* libz.dylib in Frameworks */,
 				809BE1E613993A3B0042F12B /* UIKit.framework in Frameworks */,
 				809BE1E713993A3B0042F12B /* Foundation.framework in Frameworks */,
 				809BE1E813993A3B0042F12B /* CoreGraphics.framework in Frameworks */,
-				809BE1EE13993AA80042F12B /* libz.1.2.3.dylib in Frameworks */,
 				809BE1F013993AB00042F12B /* CFNetwork.framework in Frameworks */,
 				809BE1F213993AED0042F12B /* MobileCoreServices.framework in Frameworks */,
 				809BE1F413993AF10042F12B /* SystemConfiguration.framework in Frameworks */,
@@ -176,7 +175,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				809BE25213993CFE0042F12B /* libz.1.2.3.dylib in Frameworks */,
 				809BE25313993CFE0042F12B /* CFNetwork.framework in Frameworks */,
 				809BE25413993CFE0042F12B /* MobileCoreServices.framework in Frameworks */,
 				809BE25513993CFE0042F12B /* SystemConfiguration.framework in Frameworks */,
@@ -225,8 +223,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B6219991494588300F6B3E8 /* libz.dylib */,
 				4B9D311613DF7B1A00C81C45 /* Objection-iOS.framework */,
-				809BE1ED13993AA80042F12B /* libz.1.2.3.dylib */,
 				809BE1EF13993AB00042F12B /* CFNetwork.framework */,
 				809BE1F113993AED0042F12B /* MobileCoreServices.framework */,
 				809BE1F313993AF10042F12B /* SystemConfiguration.framework */,
@@ -480,6 +478,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ObjectionExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -598,6 +599,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ObjectionExample/ObjectionExample_Prefix.pch;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "ObjectionExample/Resources/ObjectionExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -624,6 +626,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ObjectionExample/ObjectionExample_Prefix.pch;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "ObjectionExample/Resources/ObjectionExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -671,7 +674,6 @@
 					"-framework",
 					UIKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = UISpecs;
 				SDKROOT = iphoneos;
 			};
@@ -689,7 +691,6 @@
 					"\"$(SRCROOT)/Libraries/Test\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ObjectionExample/ObjectionExample_Prefix.pch;
 				HEADER_SEARCH_PATHS = Libraries/Test/OCMock/Headers;
@@ -709,7 +710,6 @@
 					"-framework",
 					UIKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = UISpecs;
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
@@ -724,7 +724,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -738,7 +737,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

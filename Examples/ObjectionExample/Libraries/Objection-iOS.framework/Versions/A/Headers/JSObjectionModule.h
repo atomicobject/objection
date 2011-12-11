@@ -20,10 +20,9 @@
 - (void)bindMetaClass:(Class)metaClass toProtocol:(Protocol *)aProtocol;
 - (void)bindProvider:(id<JSObjectionProvider>)provider toClass:(Class)aClass;
 - (void)bindProvider:(id<JSObjectionProvider>)provider toProtocol:(Protocol *)aProtocol;
-#if NS_BLOCKS_AVAILABLE
+- (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol;
-#endif
 - (void)registerEagerSingleton:(Class)klass;
 - (void)configure;
 @end

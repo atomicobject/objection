@@ -8,8 +8,9 @@
 #import "JSObjectionBindingEntry.h"
 #import "NSObject+Objection.h"
 #import "JSObjectionInjectorEntry.h"
-#import "JSObjectionFunctions.h"
+#import "JSObjectionUtils.h"
 #import "JSObjectionProviderEntry.h"
+#import "JSObjectFactory.h"
 #import "JSObjection.h"
 
 #define objection_register(value)			\
@@ -29,5 +30,5 @@
 #define objection_requires(args...) \
   + (NSSet *)objectionRequires { \
       NSSet *requirements = [NSSet setWithObjects: args, nil]; \
-      return JSBuildDependenciesForClass(self, requirements); \
+      return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
     }
