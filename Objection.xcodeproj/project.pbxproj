@@ -1383,10 +1383,14 @@
 		4B25BE4B1291C43400821DC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = "Objection-iPhone";
+				PRODUCT_NAME = "Objection-iOS";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1394,6 +1398,10 @@
 		4B25BE4C1291C43400821DC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c99;
