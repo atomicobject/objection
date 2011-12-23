@@ -34,7 +34,7 @@ For a technical overview of the framework please visit the [GitHub page](https:/
 
 ## Installation
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.10.0
+    git checkout 0.10.1
      
 ### iOS
 
