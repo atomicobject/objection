@@ -204,8 +204,9 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 @end
 ```
 ## TODO
-
-* Allow a subclass to be bound to a superlcass definition
+              
+* Automate tagging and pushing releases
+* Allow a subclass to be bound to a superclass definition
 * Resolve circular dependencies
 * Add contribution section
 * Re-factor the method for declaring dependencies
@@ -217,7 +218,7 @@ Installation
 =======
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.10.0
+    git checkout 0.10.1
     
 ### iOS
 
