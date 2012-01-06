@@ -207,6 +207,7 @@ Occasionally you'll want to manually construct an object within Objection. Provi
               
 * Automate tagging and pushing releases
 * Allow a subclass to be bound to a superclass definition
+* Allow for creating an injector with _multiple_ modules
 * Resolve circular dependencies
 * Add contribution section
 * Re-factor the method for declaring dependencies
