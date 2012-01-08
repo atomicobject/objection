@@ -35,6 +35,21 @@ namespace :artifact do
   desc "Build iOS Framework"
   task :ios  => :clean do
     system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build], nil)
+  end                             
+  
+  require 'rake/clean'
+  CLEAN.include("pkg")
+  CLEAN.include("build")
+  
+  desc "Build package containing OS X and iOS frameworks"
+  task :package => [:clean, :osx, :ios] do    
+    version = %x|/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" Objection-Info.plist|.strip
+    mkdir_p "pkg"
+    cp_r "build/Release-iphoneuniversal/Objection-iOS.framework", "pkg"
+    cp_r "build/Release/Objection.framework", "pkg"
+    cd "pkg" do
+      sh "tar cvzf Objection-#{version}.tar.gz Objection-iOS.framework Objection.framework"
+    end
   end
 end
   
