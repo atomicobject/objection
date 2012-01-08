@@ -207,7 +207,6 @@ Occasionally you'll want to manually construct an object within Objection. Provi
               
 * Automate tagging and pushing releases
 * Allow a subclass to be bound to a superclass definition
-* Allow for creating an injector with _multiple_ modules
 * Resolve circular dependencies
 * Add contribution section
 * Re-factor the method for declaring dependencies
@@ -219,7 +218,7 @@ Installation
 =======
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.10.1
+    git checkout 0.11.0
     
 ### iOS
 
@@ -252,5 +251,5 @@ Authors
 =======
 
 * Justin DeWind (dewind@atomicobject.com, @dewind on Twitter)
-* © 2009-2011 [Atomic Object](http://www.atomicobject.com/)
+* © 2009-2012 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
