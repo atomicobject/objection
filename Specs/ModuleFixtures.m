@@ -133,3 +133,16 @@ objection_requires(@"validator")
   [super dealloc];
 }
 @end
+
+@implementation FirstModule
+- (void)configure {  
+  [self bind:[[[ManualCar alloc] init] autorelease] toClass:[Car class]];
+  [self registerEagerSingleton:[EagerSingleton class]];
+}
+@end
+
+@implementation SecondModule
+- (void)configure {
+  [self bind:[[[AfterMarketGearBox alloc] init] autorelease] toProtocol:@protocol(GearBox)];  
+}
+@end

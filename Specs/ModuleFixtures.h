@@ -70,6 +70,11 @@ extern BOOL gEagerSingletonHook;
 @property (nonatomic, retain) CreditCardValidator *validator;
 @end
 
+@interface FirstModule : JSObjectionModule
+@end
+
+@interface SecondModule : JSObjectionModule
+@end
 
 
 

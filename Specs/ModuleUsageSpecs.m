@@ -127,4 +127,22 @@ SPEC_BEGIN(ModuleUsageSpecs)
       });
     });
   });
+
+  describe(@"multiple modules", ^{
+      beforeEach(^{
+        FirstModule *first = [[[FirstModule alloc] init] autorelease];
+        SecondModule *second = [[[SecondModule alloc] init] autorelease]; 
+        JSObjectionInjector *injector = [JSObjection createInjectorWithModules:first, second, nil];
+        [JSObjection setGlobalInjector:injector];
+      });
+    
+      it(@"merges the binding in each module", ^{
+        AfterMarketGearBox *gearBox = [[JSObjection globalInjector] getObject:@protocol(GearBox)];      
+        Car *car = [[JSObjection globalInjector] getObject:[Car class]];
+        
+        assertThat(gearBox, is(instanceOf([AfterMarketGearBox class])));
+        assertThat(car, is(instanceOf([ManualCar class])));
+        assertThatBool(gEagerSingletonHook, equalToBool(YES));
+      });
+  });
 SPEC_END

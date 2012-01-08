@@ -8,11 +8,33 @@ static JSObjectionInjector *gGlobalInjector;
 
 @implementation JSObjection
 
-+ (JSObjectionInjector *) createInjector:(JSObjectionModule *)aModule 
++ (JSObjectionInjector *)createInjector:(JSObjectionModule *)module {
+  pthread_mutex_lock(&gObjectionMutex);
+  @try {
+    return [[[JSObjectionInjector alloc] initWithContext:gObjectionContext andModule:module] autorelease];
+  }
+  @finally {
+    pthread_mutex_unlock(&gObjectionMutex); 
+  }
+  
+  return nil;
+}
+
++ (JSObjectionInjector *) createInjectorWithModules:(JSObjectionModule *)first, ...
 {
   pthread_mutex_lock(&gObjectionMutex);
   @try {
-    return [[[JSObjectionInjector alloc] initWithContext:gObjectionContext andModule:aModule] autorelease];
+    va_list va_modules;
+    NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+    
+    JSObjectionModule *module;
+    while ((module = va_arg( va_modules, JSObjectionModule *) )) {
+      [modules addObject:module];
+    }
+    
+    va_end(va_modules);
+    return [[[JSObjectionInjector alloc] initWithContext:gObjectionContext andModules:modules] autorelease];
   }
   @finally {
     pthread_mutex_unlock(&gObjectionMutex); 

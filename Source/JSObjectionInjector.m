@@ -63,6 +63,18 @@
   return self;
 }
 
+- (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)modules 
+{
+  if ((self = [self initWithContext:theGlobalContext])) {
+    for (JSObjectionModule *module in modules) {
+      [self configureModule:module];      
+    }
+    [self initializeEagerSingletons];
+  }
+  return self;  
+}
+
+
 - (id)getObject:(id)classOrProtocol 
 {
   @synchronized(self) {
