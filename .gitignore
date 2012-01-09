@@ -18,3 +18,4 @@ _site
 !Objection.xcworkspace
 run
 pkg
+.DS_Store
