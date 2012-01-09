@@ -3,3 +3,5 @@ build
 *.xcodeproj
 run
 .xcworkspace
+.DS_Store
+pkg
