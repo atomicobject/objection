@@ -64,7 +64,10 @@ extern BOOL gEagerSingletonHook;
 - (void)processNumber:(NSString *)number;
 @end
 
-@interface VisaCCProcessor : NSObject<CreditCardProcessor> {
+@interface BaseCreditCardProcessor : NSObject<CreditCardProcessor>
+@end
+
+@interface VisaCCProcessor : BaseCreditCardProcessor<CreditCardProcessor> {
   CreditCardValidator *_validator;
 }
 @property (nonatomic, retain) CreditCardValidator *validator;

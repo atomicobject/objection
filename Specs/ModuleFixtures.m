@@ -48,6 +48,7 @@ objection_register_singleton(EagerSingleton)
   [self bind:_engine toClass:[Engine class]];
   [self bind:_gearBox toProtocol:@protocol(GearBox)];
   [self bindClass:[VisaCCProcessor class] toProtocol:@protocol(CreditCardProcessor)];
+  [self bindClass:[VisaCCProcessor class] toClass:[BaseCreditCardProcessor class]];
   if (self.instrumentInvalidMetaClass) {
     [self bindMetaClass:(id)@"sneaky" toProtocol:@protocol(MetaCar)];
   } else {
@@ -115,6 +116,12 @@ objection_register_singleton(EagerSingleton)
 
 @end
 
+@implementation BaseCreditCardProcessor
+- (void)processNumber:(NSString *)number {
+  
+}
+@end
+
 @implementation CreditCardValidator
 @end
 
@@ -125,7 +132,7 @@ objection_requires(@"validator")
 @synthesize validator = _validator;
 
 - (void)processNumber:(NSString *)number {
-  
+  [super processNumber:number];
 }
 
 - (void)dealloc {
@@ -133,6 +140,7 @@ objection_requires(@"validator")
   [super dealloc];
 }
 @end
+
 
 @implementation FirstModule
 - (void)configure {  

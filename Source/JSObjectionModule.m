@@ -4,14 +4,14 @@
 #import <objc/runtime.h>
 #import "JSObjectionInjector.h"
 
-@interface __JSClassToProtoclProvider : NSObject<JSObjectionProvider>
+@interface __JSClassProvider : NSObject<JSObjectionProvider>
 {
   Class _class;
 }
 - (id)initWithClass:(Class)aClass;
 @end
 
-@implementation __JSClassToProtoclProvider
+@implementation __JSClassProvider
 
 - (id)initWithClass:(Class)aClass
 {
@@ -90,10 +90,18 @@
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol
 {
   NSString *key = [self protocolKey:aProtocol];
-  __JSClassToProtoclProvider *provider = [[[__JSClassToProtoclProvider alloc] initWithClass:aClass] autorelease];
+  __JSClassProvider *provider = [[[__JSClassProvider alloc] initWithClass:aClass] autorelease];
   JSObjectionProviderEntry *entry = [[[JSObjectionProviderEntry alloc] initWithProvider:provider] autorelease];
   [_bindings setObject:entry forKey:key];  
 }
+
+- (void)bindClass:(Class)aClass toClass:(Class)toClass {
+  NSString *key = NSStringFromClass(toClass);
+  __JSClassProvider *provider = [[[__JSClassProvider alloc] initWithClass:aClass] autorelease];
+  JSObjectionProviderEntry *entry = [[[JSObjectionProviderEntry alloc] initWithProvider:provider] autorelease];
+  [_bindings setObject:entry forKey:key];    
+}
+
 
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass
 {
