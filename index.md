@@ -33,6 +33,8 @@ objection is a lightweight [dependency injection](http://en.wikipedia.org/wiki/D
 For a technical overview of the framework please visit the [GitHub page](https://github.com/atomicobject/objection/)
 
 ## Installation
+Download the latest [here](https://github.com/atomicobject/objection/downloads) __or__
+
     git clone git://github.com/atomicobject/objection.git
     git checkout 0.11.0
      
