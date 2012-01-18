@@ -217,10 +217,13 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 Installation
 =======
 
+Download the latest [here](https://github.com/atomicobject/objection/downloads) __or__
+
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.11.0
+    git checkout 0.12.0
     
 ### iOS
+
 
 1. rake artifact:ios
 2. cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}
