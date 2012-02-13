@@ -204,9 +204,8 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 @end
 ```
 ## TODO
-              
-* Automate tagging and pushing releases
-* Allow a subclass to be bound to a superclass definition
+
+* Support 'static' injection to help workaround poorly implemented APIs              
 * Resolve circular dependencies
 * Add contribution section
 * Re-factor the method for declaring dependencies
