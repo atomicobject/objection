@@ -187,7 +187,7 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 #### Example
 ```objective-c
 @implementation CarProvider
-- (id)createInstance:(JSObjectionInjector *)context {
+- (id)provide:(JSObjectionInjector *)context {
   // Manually build object
   return car;
 }
