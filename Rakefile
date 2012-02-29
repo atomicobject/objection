@@ -64,6 +64,9 @@ task :build_all do
 end
 
 namespace :specs do
+  desc "All Specs"
+  task :all => [:osx, :ios]
+
   desc "OS X Specs"
   task :osx do
     stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_specs.output") if (ENV['IS_CI_BOX'])

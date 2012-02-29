@@ -26,7 +26,7 @@
   if (_block) {
     return _block(self.injector);
   }
-  return [_provider createInstance:self.injector];
+  return [_provider provide:self.injector];
 }
 
 - (void)dealloc

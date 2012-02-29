@@ -3,7 +3,7 @@
 @class JSObjectionInjector;
 
 @protocol JSObjectionProvider<NSObject>
-- (id)createInstance:(JSObjectionInjector *)context;
+- (id)provide:(JSObjectionInjector *)context;
 @end
 
 

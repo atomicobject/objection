@@ -72,7 +72,7 @@ objection_register_singleton(EagerSingleton)
 @end
 
 @implementation CarProvider
-- (id)createInstance:(JSObjectionInjector *)context
+- (id)provide:(JSObjectionInjector *)context
 {
   Car *car = [context getObject:[ManualCar class]];
   car.engine = (id)@"my engine";
@@ -81,7 +81,7 @@ objection_register_singleton(EagerSingleton)
 @end
 
 @implementation GearBoxProvider
-- (id)createInstance:(JSObjectionInjector *)context
+- (id)provide:(JSObjectionInjector *)context
 {
   return [[[AfterMarketGearBox alloc] init] autorelease];
 }

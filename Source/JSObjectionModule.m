@@ -21,7 +21,7 @@
   return self;
 }
 
-- (id)createInstance:(JSObjectionInjector *)context
+- (id)provide:(JSObjectionInjector *)context
 {
   return [context getObject:_class];
 }
