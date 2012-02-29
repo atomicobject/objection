@@ -5,7 +5,7 @@ UI_SPECS_TARGET_NAME = "Specs-iOS"
 SDK_DIR = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk"
 
 def xcodebuild_executable
-  "/Developer/usr/bin/xcodebuild"  
+  ENV['XCODEBUILD'] || "xcodebuild"
 end
 
 def build_dir(effective_platform_name)
