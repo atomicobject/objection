@@ -205,6 +205,7 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 ```
 ## TODO
 
+* Add support for custom initializers
 * Support 'static' injection to help workaround poorly implemented APIs              
 * Resolve circular dependencies
 * Add contribution section
