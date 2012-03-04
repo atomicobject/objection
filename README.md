@@ -205,8 +205,9 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 ```
 ## TODO
 
-* Add support for custom initializers
-* Support 'static' injection to help workaround poorly implemented APIs              
+* Add support for alternate initializers
+  * <code>objection\_initializer(initWithNibName:bundle, @"Nib", nil)</code>
+* Support 'static' injection
 * Resolve circular dependencies
 * Add contribution section
 * Re-factor the method for declaring dependencies

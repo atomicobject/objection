@@ -9,5 +9,6 @@
 
 - (id)initWithContext:(NSDictionary *)theGlobalContext;
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule;
+- (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)modules;
 - (id)getObject:(id)classOrProtocol;
 @end

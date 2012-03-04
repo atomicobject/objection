@@ -3,7 +3,7 @@
 @class JSObjectionInjector;
 
 @protocol JSObjectionProvider<NSObject>
-- (id)createInstance:(JSObjectionInjector *)context;
+- (id)provide:(JSObjectionInjector *)context;
 @end
 
 
@@ -21,6 +21,7 @@
 - (void)bindProvider:(id<JSObjectionProvider>)provider toClass:(Class)aClass;
 - (void)bindProvider:(id<JSObjectionProvider>)provider toProtocol:(Protocol *)aProtocol;
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol;
+- (void)bindClass:(Class)aClass toClass:(Class)toClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol;
 - (void)registerEagerSingleton:(Class)klass;
