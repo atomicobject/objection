@@ -4,13 +4,13 @@
 
 SPEC_BEGIN(CircularDependencySpecs)
 
-describe(@"Circular Dependency", ^{
+describe(@"circular dependencies", ^{
   beforeEach(^{
     JSObjectionInjector *injector = [JSObjection createInjector];
     [JSObjection setGlobalInjector:injector];
   });
 
-  it(@"will be resolved for singletons", ^{
+  it(@"are resolved between singletons", ^{
     SingletonFoo *foo = [[JSObjection globalInjector] getObject:[SingletonFoo class]];
     SingletonBar *bar = [[JSObjection globalInjector] getObject:[SingletonBar class]];
 
