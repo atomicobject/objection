@@ -66,3 +66,13 @@
 @interface JSObjectFactoryHolder : NSObject
 @property (nonatomic, retain) JSObjectFactory *objectFactory;
 @end
+
+@class SingletonBar;
+
+@interface SingletonFoo : NSObject
+{
+  SingletonBar *bar;
+}
+@property(nonatomic, retain) SingletonBar *bar;
+
+@end

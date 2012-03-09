@@ -254,6 +254,10 @@
 		4BED513212AA8BF300CA6B36 /* JSObjectionInjectorEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* JSObjectionInjectorEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BED513312AA8BF300CA6B36 /* JSObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* JSObjectionInjector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BED513412AA8BF300CA6B36 /* JSObjectionBindingEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* JSObjectionBindingEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2AAC07E0554694100DB5193 /* CircularDependencySpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5192 /* CircularDependencySpecs.m */; };
+		D2AAC07E0554694100DB5194 /* CircularDependencySpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5192 /* CircularDependencySpecs.m */; };
+		D2AAC07E0554694100DB5196 /* CircularDependencyFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5195 /* CircularDependencyFixtures.m */; };
+		D2AAC07E0554694100DB5197 /* CircularDependencyFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5195 /* CircularDependencyFixtures.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -486,6 +490,9 @@
 		4BF451E21291AD28006EB2D5 /* InjectionErrorsSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectionErrorsSpecs.m; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libObjection-StaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libObjection-StaticLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2AAC07E0554694100DB5192 /* CircularDependencySpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularDependencySpecs.m; sourceTree = "<group>"; };
+		D2AAC07E0554694100DB5195 /* CircularDependencyFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularDependencyFixtures.m; sourceTree = "<group>"; };
+		D2AAC07E0554694100DB5198 /* CircularDependencyFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularDependencyFixtures.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -809,6 +816,7 @@
 		4BF45123129197F3006EB2D5 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				D2AAC07E0554694100DB5192 /* CircularDependencySpecs.m */,
 				4B42587C13F56EA3006BC001 /* Specs-OSX */,
 				4B42580C13F56CC0006BC001 /* Specs-iOS */,
 				4B42571213F5665C006BC001 /* Kiwi */,
@@ -824,6 +832,8 @@
 		4BF452461291AFEA006EB2D5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D2AAC07E0554694100DB5198 /* CircularDependencyFixtures.h */,
+				D2AAC07E0554694100DB5195 /* CircularDependencyFixtures.m */,
 				4BF4514C129198C6006EB2D5 /* SpecHelper.h */,
 				4BF451AB12919CAD006EB2D5 /* Fixtures.h */,
 				4BF451AC12919CAD006EB2D5 /* Fixtures.m */,
@@ -1155,6 +1165,8 @@
 				4B42585813F56D26006BC001 /* NSObject+KiwiVerifierAdditions.m in Sources */,
 				4B42585913F56D26006BC001 /* NSValue+KiwiAdditions.m in Sources */,
 				4BE78764145647EF00BD705E /* JSObjectFactory.m in Sources */,
+				D2AAC07E0554694100DB5193 /* CircularDependencySpecs.m in Sources */,
+				D2AAC07E0554694100DB5196 /* CircularDependencyFixtures.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1247,6 +1259,8 @@
 				4B4258CB13F56F2D006BC001 /* NSObject+KiwiVerifierAdditions.m in Sources */,
 				4B4258CC13F56F2D006BC001 /* NSValue+KiwiAdditions.m in Sources */,
 				4BE78765145647EF00BD705E /* JSObjectFactory.m in Sources */,
+				D2AAC07E0554694100DB5194 /* CircularDependencySpecs.m in Sources */,
+				D2AAC07E0554694100DB5197 /* CircularDependencyFixtures.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,6 @@
 #import "Fixtures.h"
 #import "Objection.h"
+#import "CircularDependencyFixtures.h"
 
 @implementation Engine
 objection_register(Engine)
@@ -56,3 +57,9 @@ objection_requires(@"objectFactory")
 @synthesize objectFactory;
 @end
 
+@implementation SingletonFoo
+objection_register_singleton(SingletonFoo)
+objection_requires(@"bar")
+
+@synthesize bar;
+@end
