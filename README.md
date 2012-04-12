@@ -205,6 +205,7 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 ```
 ## TODO
 
+* ARCify for iOS
 * Add support for alternate initializers
   * <code>objection\_initializer(initWithNibName:bundle, @"Nib", nil)</code>
 * Support 'static' injection
