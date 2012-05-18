@@ -1,9 +1,9 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-  JSObjectionInstantiationRuleNone = -1,
-  JSObjectionInstantiationRuleNormal,
-  JSObjectionInstantiationRuleSingleton  
+      JSObjectionInstantiationRuleNone = -1,
+      JSObjectionInstantiationRuleNormal,
+      JSObjectionInstantiationRuleSingleton  
 } JSObjectionInstantiationRule;
 
 
@@ -18,7 +18,7 @@ typedef enum {
 
 @interface JSObjectionEntry : NSObject<JSObjectionEntry>
 {
-  id _injector;  
+    id _injector;  
 }
 
 @end

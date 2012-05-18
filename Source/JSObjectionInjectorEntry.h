@@ -3,8 +3,8 @@
 
 @interface JSObjectionInjectorEntry : JSObjectionEntry {
 	Class _classEntry;
-  JSObjectionInstantiationRule _lifeCycle;
-  id _storageCache;
+    JSObjectionInstantiationRule _lifeCycle;
+    id _storageCache;
 }
 
 @property (nonatomic, readonly) Class classEntry;

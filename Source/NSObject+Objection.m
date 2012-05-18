@@ -2,8 +2,7 @@
 
 
 @implementation NSObject(JSObjection)
-- (void)awakeFromObjection 
-{
+- (void)awakeFromObjection {
   
 }
 @end

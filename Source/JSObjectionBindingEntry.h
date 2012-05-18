@@ -2,7 +2,7 @@
 #import "JSObjectionEntry.h"
 
 @interface JSObjectionBindingEntry : JSObjectionEntry {
-	id _instance;
+    id _instance;
 }
 
 - (id)initWithObject:(id)theObject;

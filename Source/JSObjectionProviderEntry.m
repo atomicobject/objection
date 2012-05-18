@@ -3,36 +3,32 @@
 
 @implementation JSObjectionProviderEntry
 
-- (id)initWithProvider:(id<JSObjectionProvider>)theProvider
-{
-  if ((self = [super init])) {
-    _provider = [theProvider retain];
-  }
-  
-  return self;
+- (id)initWithProvider:(id<JSObjectionProvider>)theProvider {
+    if ((self = [super init])) {
+        _provider = [theProvider retain];
+    }
+
+    return self;
 }
 
-- (id)initWithBlock:(id(^)(JSObjectionInjector *context))theBlock
-{
-  if ((self = [super init])) {
-    _block = [theBlock copy];
-  }
+- (id)initWithBlock:(id(^)(JSObjectionInjector *context))theBlock {
+    if ((self = [super init])) {
+        _block = [theBlock copy];
+    }
 
-  return self;  
+    return self;  
 }
 
-- (id)extractObject
-{
-  if (_block) {
-    return _block(self.injector);
-  }
-  return [_provider provide:self.injector];
+- (id)extractObject {
+    if (_block) {
+        return _block(self.injector);
+    }
+    return [_provider provide:self.injector];
 }
 
-- (void)dealloc
-{
-  [_provider release];
-  [_block release];
-  [super dealloc];
+- (void)dealloc {
+    [_provider release];
+    [_block release];
+    [super dealloc];
 }
 @end

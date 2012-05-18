@@ -3,7 +3,7 @@
 @class JSObjectionInjector;
 
 @interface JSObjectFactory : NSObject {
-  JSObjectionInjector *_injector;
+    JSObjectionInjector *_injector;
 }
 
 @property (nonatomic, readonly, retain) JSObjectionInjector *injector;

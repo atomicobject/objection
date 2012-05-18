@@ -2,9 +2,9 @@
 #import "JSObjectionModule.h"
 
 @interface JSObjectionInjector : NSObject {
-  NSDictionary *_globalContext;
-  NSMutableDictionary *_context;
-  NSSet *_eagerSingletons;
+      NSDictionary *_globalContext;
+      NSMutableDictionary *_context;
+      NSSet *_eagerSingletons;
 }
 
 - (id)initWithContext:(NSDictionary *)theGlobalContext;

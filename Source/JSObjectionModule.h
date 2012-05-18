@@ -8,8 +8,8 @@
 
 
 @interface JSObjectionModule : NSObject {
-  NSMutableDictionary *_bindings;
-  NSMutableSet *_eagerSingletons;
+    NSMutableDictionary *_bindings;
+    NSMutableSet *_eagerSingletons;
 }
 
 @property (nonatomic, readonly) NSDictionary *bindings;
