@@ -6,51 +6,51 @@ SPEC_BEGIN(ModuleUsageSpecs)
 __block MyModule *module = nil;
 
 beforeEach(^{
-  Engine *engine = [[[Engine alloc] init] autorelease];
-  id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
-  
-  module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
-  JSObjectionInjector *injector = [JSObjection createInjector:module];
-  [JSObjection setDefaultInjector:injector];
+    Engine *engine = [[[Engine alloc] init] autorelease];
+    id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
+
+    module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
+    JSObjectionInjector *injector = [JSObjection createInjector:module];
+    [JSObjection setDefaultInjector:injector];
 });
 
 it(@"merges the modules instance bindings with the injector's context", ^{
-  assertThat([[JSObjection defaultInjector] getObject:[Engine class]], is(sameInstance(module.engine)));
+    assertThat([[JSObjection defaultInjector] getObject:[Engine class]], is(sameInstance(module.engine)));
 });
 
 it(@"uses the module's bounded instance to fill out other objects dependencies", ^{
-  ManualCar *car = [[JSObjection defaultInjector] getObject:[ManualCar class]];
-  
-  assertThat(car.engine, is(sameInstance(module.engine)));    
-  assertThat(car.gearBox, is(sameInstance(module.gearBox)));    
+    ManualCar *car = [[JSObjection defaultInjector] getObject:[ManualCar class]];
+
+    assertThat(car.engine, is(sameInstance(module.engine)));    
+    assertThat(car.gearBox, is(sameInstance(module.gearBox)));    
 });
 
 it(@"supports binding an instance to a protocol", ^{
-  assertThat([[JSObjection defaultInjector] getObject:@protocol(GearBox)], is(sameInstance(module.gearBox)));    
+    assertThat([[JSObjection defaultInjector] getObject:@protocol(GearBox)], is(sameInstance(module.gearBox)));    
 });
 
 it(@"throws an exception if the instance does not conform to the protocol", ^{
-  Engine *engine = [[[Engine alloc] init] autorelease];
-  
-  [[theBlock(^{
+    Engine *engine = [[[Engine alloc] init] autorelease];
+
+    [[theBlock(^{
     MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"] autorelease];    
     [module configure];      
-  }) should] raiseWithReason:@"Instance does not conform to the GearBox protocol"];
+    }) should] raiseWithReason:@"Instance does not conform to the GearBox protocol"];
 });
 
 it(@"supports eager singletons", ^{
-  assertThatBool(gEagerSingletonHook, equalToBool(YES));
+    assertThatBool(gEagerSingletonHook, equalToBool(YES));
 });
 
 it(@"throws an exception if an attempt is made to register an eager singleton that was not registered as a singleton", ^{
-  Engine *engine = [[[Engine alloc] init] autorelease];
+    Engine *engine = [[[Engine alloc] init] autorelease];
 
-  [[theBlock(^{
-    id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
-    MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
-    module.instrumentInvalidEagerSingleton = YES;
-    [JSObjection createInjector:module];
-  }) should] raiseWithReason:@"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton"];
+    [[theBlock(^{
+        id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
+        MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
+        module.instrumentInvalidEagerSingleton = YES;
+        [JSObjection createInjector:module];
+    }) should] raiseWithReason:@"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton"];
 
 });
 

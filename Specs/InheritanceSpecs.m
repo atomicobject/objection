@@ -48,19 +48,19 @@ objection_requires(@"something")
 
 SPEC_BEGIN(InheritanceSpecs)
 beforeEach(^{
-  JSObjectionInjector *injector = [JSObjection createInjector];
-  [JSObjection setDefaultInjector:injector];
+      JSObjectionInjector *injector = [JSObjection createInjector];
+      [JSObjection setDefaultInjector:injector];
 });
 
 it(@"coalesces dependencies from parent to child", ^{
-  Programmer *programmer = [[JSObjection defaultInjector] getObject:[Programmer class]];
-  assertThat(programmer, is(notNilValue()));
-  assertThat(programmer.favoriteLanguages, is(notNilValue()));
-  assertThat(programmer.attributes, is(notNilValue()));
+      Programmer *programmer = [[JSObjection defaultInjector] getObject:[Programmer class]];
+      assertThat(programmer, is(notNilValue()));
+      assertThat(programmer.favoriteLanguages, is(notNilValue()));
+      assertThat(programmer.attributes, is(notNilValue()));
 });
 
 it(@"does not throw a fit if the base class does not implement .objectionRequires", ^{
-  NoInheritance *noParentObjectWithRequires = [[JSObjection defaultInjector] getObject:[NoInheritance class]];
-  assertThat(noParentObjectWithRequires.something, is(notNilValue()));
+      NoInheritance *noParentObjectWithRequires = [[JSObjection defaultInjector] getObject:[NoInheritance class]];
+      assertThat(noParentObjectWithRequires.something, is(notNilValue()));
 });
 SPEC_END
