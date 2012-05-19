@@ -41,8 +41,7 @@ static JSObjectionPropertyInfo FindClassOrProtocolForProperty(objc_property_t pr
     return propertyInfo;      
 }
 
-static NSSet* BuildDependenciesForClass(Class klass, NSSet *requirements) 
-{
+static NSSet* BuildDependenciesForClass(Class klass, NSSet *requirements) {
     Class superClass = class_getSuperclass([klass class]);
     if([superClass respondsToSelector:@selector(objectionRequires)]) {
         NSSet *parentsRequirements = [superClass performSelector:@selector(objectionRequires)];
@@ -53,8 +52,11 @@ static NSSet* BuildDependenciesForClass(Class klass, NSSet *requirements)
     return requirements;  
 }
 
-static objc_property_t GetProperty(Class klass, NSString *propertyName) 
-{
+static NSDictionary* BuildInitializer(SEL selector, NSArray *defaultArguments) {
+    return nil;
+}
+
+static objc_property_t GetProperty(Class klass, NSString *propertyName) {
     objc_property_t property = class_getProperty(klass, (const char *)[propertyName UTF8String]);
     if (property == NULL) {
         @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Unable to find property declaration: '%@'", propertyName] userInfo:nil];
@@ -65,5 +67,6 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName)
 const struct JSObjectionUtils JSObjectionUtils = {
     .findClassOrProtocolForProperty = FindClassOrProtocolForProperty,
     .propertyForClass = GetProperty,
-    .buildDependenciesForClass = BuildDependenciesForClass
+    .buildDependenciesForClass = BuildDependenciesForClass,
+    .buildInitializer = BuildInitializer
 };

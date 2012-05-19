@@ -68,7 +68,7 @@
 }
 
 
-- (id)getObject:(id)classOrProtocol {
+- (id)getObject:(id)classOrProtocol, ... {
     @synchronized(self) {    
         if (!classOrProtocol) {
             return nil;
