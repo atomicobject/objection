@@ -28,7 +28,9 @@
         }
 
 #define objection_requires(args...) \
-      + (NSSet *)objectionRequires { \
-          NSSet *requirements = [NSSet setWithObjects: args, nil]; \
-          return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
-        }
+  + (NSSet *)objectionRequires { \
+      NSMutableSet *requirements = [NSMutableSet setWithObjects: args, nil]; \
+      if ([super resolveClassMethod:@selector(objectionRequires)])  \
+          [props unionSet:[super objectionRequires]];\
+      return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
+    }
