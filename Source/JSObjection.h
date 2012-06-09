@@ -10,7 +10,7 @@
 + (JSObjectionInjector *)createInjector:(JSObjectionModule *)module;
 + (JSObjectionInjector *)createInjector;
 + (void)registerClass:(Class)theClass lifeCycle:(JSObjectionInstantiationRule)lifeCycle;
-+ (void)setGlobalInjector:(JSObjectionInjector *)anInjector;
-+ (JSObjectionInjector *)globalInjector;
++ (void)setDefaultInjector:(JSObjectionInjector *)anInjector;
++ (JSObjectionInjector *)defaultInjector;
 + (void)reset;
 @end

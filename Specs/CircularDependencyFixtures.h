@@ -5,7 +5,7 @@
 
 @interface SingletonBar : NSObject <BarProtocol>
 {
-  SingletonFoo *foo;
+    SingletonFoo *foo;
 }
 
 @property(nonatomic, retain) SingletonFoo *foo;

@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
 @interface UnsupportedPropertyObject : NSObject {
-	NSInteger myInteger;  
+    NSInteger myInteger;  
 }
 
 @property(nonatomic, assign) NSInteger myInteger;
@@ -9,7 +9,7 @@
 
 @interface BadPropertyObject : NSObject
 {
-  NSObject *someObject;
+    NSObject *someObject;
 }
 
 @property(nonatomic, retain) NSObject *someObject;
@@ -18,7 +18,7 @@
 
 @interface ReadOnlyPropertyObject : NSObject
 {
-  NSObject *_someObject;
+    NSObject *_someObject;
 }
 
 @property(nonatomic, readonly) NSObject *someObject;
