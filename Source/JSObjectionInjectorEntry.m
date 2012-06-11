@@ -26,8 +26,7 @@
   return self;
 }
 
-- (id)extractObject 
-{
+- (id)extractObject:(NSArray *)arguments {
   if (self.lifeCycle == JSObjectionInstantiationRuleNormal || !_storageCache) {
   	return [self buildObject];  
   }
@@ -45,8 +44,7 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)notifyObjectThatItIsReady: (id) object 
-{
+- (void)notifyObjectThatItIsReady:(id)object {
   if([object respondsToSelector:@selector(awakeFromObjection)]) {
     [object performSelector:@selector(awakeFromObjection)];
   }
@@ -55,7 +53,7 @@
 - (id)buildObject {
     id objectUnderConstruction = [[[self.classEntry alloc] init] autorelease];
 
-    if (self.lifeCycle != JSObjectionInstantiationRuleNormal) {
+    if (self.lifeCycle == JSObjectionInstantiationRuleSingleton) {
         _storageCache = [objectUnderConstruction retain];
     }
 

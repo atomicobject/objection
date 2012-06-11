@@ -3,6 +3,9 @@
 
 static NSString *const JSObjectionException = @"JSObjectionException";
 
+NSString *const JSObjectionInitializerKey = @"initializer";
+NSString *const JSObjectionDefaultArgumentsKey = @"arguments";
+
 static JSObjectionPropertyInfo FindClassOrProtocolForProperty(objc_property_t property) {
     NSString *attributes = [NSString stringWithCString: property_getAttributes(property) encoding: NSASCIIStringEncoding];  
     NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
@@ -53,7 +56,20 @@ static NSSet* BuildDependenciesForClass(Class klass, NSSet *requirements) {
 }
 
 static NSDictionary* BuildInitializer(SEL selector, NSArray *defaultArguments) {
-    return nil;
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+                NSStringFromSelector(selector), JSObjectionInitializerKey,
+                defaultArguments, JSObjectionDefaultArgumentsKey
+            , nil];
+}
+
+static NSArray* TransformVariadicArgsToArray(va_list va_arguments) {
+    NSMutableArray *arguments = [NSMutableArray array];    
+    id object;
+    while ((object = va_arg( va_arguments, id ))) {
+        [arguments addObject:object];
+    }
+    
+    return [[arguments copy] autorelease];
 }
 
 static objc_property_t GetProperty(Class klass, NSString *propertyName) {
@@ -68,5 +84,6 @@ const struct JSObjectionUtils JSObjectionUtils = {
     .findClassOrProtocolForProperty = FindClassOrProtocolForProperty,
     .propertyForClass = GetProperty,
     .buildDependenciesForClass = BuildDependenciesForClass,
-    .buildInitializer = BuildInitializer
+    .buildInitializer = BuildInitializer,
+    .transformVariadicArgsToArray = TransformVariadicArgsToArray
 };

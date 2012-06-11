@@ -19,7 +19,7 @@
     return self;  
 }
 
-- (id)extractObject {
+- (id)extractObject:(NSArray *)arguments {
     if (_block) {
         return _block(self.injector);
     }

@@ -1,6 +1,7 @@
 #import "JSObjectionInjector.h"
 #import "JSObjectionEntry.h"
 #import "JSObjectFactory.h"
+#import "JSObjectionUtils.h"
 
 #import <pthread.h>
 #import <objc/runtime.h>
@@ -95,7 +96,11 @@
         }
 
         if (classOrProtocol && injectorEntry) {
-            return [injectorEntry extractObject];
+            va_list va_arguments;
+            va_start(va_arguments, classOrProtocol);
+            NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(va_arguments);
+            va_end(va_arguments);
+            return [injectorEntry extractObject:arguments];
         } 
 
         return nil;    

@@ -4,7 +4,7 @@
 @synthesize injector = _injector;
 @dynamic lifeCycle;
 
-- (id)extractObject {
+- (id)extractObject:(NSArray *)arguments {
     return nil;
 }
 
