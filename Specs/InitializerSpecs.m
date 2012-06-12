@@ -17,7 +17,7 @@ it(@"instantiates the object with the default initializer arguments", ^{
 });
 
 it(@"will override the default arguments if arguments are passed to the injector", ^{
-    ViewController *controller = [injector getObject:[ViewController class], @"AnotherNib", @"pretendBundle", nil];
+    ViewController *controller = [injector getObjectWithArgs:[ViewController class], @"AnotherNib", @"pretendBundle", nil];
     
     [[controller.nibName should] equal:@"MyNib"];
     [[controller.bundle should] equal:@"pretendBundle"];

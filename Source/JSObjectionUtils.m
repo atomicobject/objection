@@ -64,6 +64,7 @@ static NSDictionary* BuildInitializer(SEL selector, NSArray *defaultArguments) {
 
 static NSArray* TransformVariadicArgsToArray(va_list va_arguments) {
     NSMutableArray *arguments = [NSMutableArray array];    
+    
     id object;
     while ((object = va_arg( va_arguments, id ))) {
         [arguments addObject:object];

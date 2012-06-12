@@ -69,23 +69,23 @@
 }
 
 
-- (id)getObject:(id)classOrProtocol, ... {
+- (id)getObjectWithArgs:(id)classOrProtocol, ... {
     @synchronized(self) {    
         if (!classOrProtocol) {
             return nil;
         }
-            
+        
         NSString *key = nil;
         if (class_isMetaClass(object_getClass(classOrProtocol))) {
             key = NSStringFromClass(classOrProtocol);
         } else {
             key = [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(classOrProtocol)];
         }
-
-
+        
+        
         id<JSObjectionEntry> injectorEntry = [_context objectForKey:key];
         injectorEntry.injector = self;
-
+        
         if (!injectorEntry) {
             id<JSObjectionEntry> entry = [_globalContext objectForKey:key];
             if (entry) {
@@ -94,7 +94,7 @@
                 [_context setObject:injectorEntry forKey:key];              
             }
         }
-
+        
         if (classOrProtocol && injectorEntry) {
             va_list va_arguments;
             va_start(va_arguments, classOrProtocol);
@@ -102,11 +102,16 @@
             va_end(va_arguments);
             return [injectorEntry extractObject:arguments];
         } 
-
+        
         return nil;    
     }
-
+    
     return nil;
+
+}
+
+- (id)getObject:(id)classOrProtocol {
+    return [self getObjectWithArgs:classOrProtocol, nil];
 }
 
 #pragma mark - Private
