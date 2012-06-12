@@ -65,7 +65,7 @@ A global injector can be registered with Objection which can be used throughout 
 }
 
 - (void)viewDidLoad {
-  id myModel = [[JSObjection globalInjector] getObject:[MyModel class]];
+  id myModel = [[JSObjection defaultInjector] getObject:[MyModel class]];
 }
 ```
 ### Awaking from Objection
