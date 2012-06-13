@@ -70,6 +70,18 @@
 
 
 - (id)getObjectWithArgs:(id)classOrProtocol, ... {
+    va_list va_arguments;
+    va_start(va_arguments, classOrProtocol);
+    id object = [self getObject:classOrProtocol arguments:va_arguments];
+    va_end(va_arguments);
+    return object;
+}
+
+- (id)getObject:(id)classOrProtocol {
+    return [self getObjectWithArgs:classOrProtocol, nil];
+}
+
+- (id)getObject:(id)classOrProtocol arguments:(va_list)argList {
     @synchronized(self) {    
         if (!classOrProtocol) {
             return nil;
@@ -96,10 +108,7 @@
         }
         
         if (classOrProtocol && injectorEntry) {
-            va_list va_arguments;
-            va_start(va_arguments, classOrProtocol);
-            NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(va_arguments);
-            va_end(va_arguments);
+            NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(argList);
             return [injectorEntry extractObject:arguments];
         } 
         
@@ -110,9 +119,6 @@
 
 }
 
-- (id)getObject:(id)classOrProtocol {
-    return [self getObjectWithArgs:classOrProtocol, nil];
-}
 
 #pragma mark - Private
 

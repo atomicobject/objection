@@ -1,6 +1,7 @@
 #import "SpecHelper.h"
 #import <objc/runtime.h>
 #import "Fixtures.h"
+#import "InitializerFixtures.h"
 
 SPEC_BEGIN(BasicUsageSpecs)
 beforeEach(^{
@@ -77,17 +78,32 @@ it(@"calls awakeFromObjection when an object has been constructed", ^{
       assertThatBool([car awake], equalToBool(YES));
 });
 
-it(@"returns a JSObjectFactory for the given injector context", ^{
-      JSObjectionInjector *injector1 = [JSObjection createInjector];
-      JSObjectionInjector *injector2 = [JSObjection defaultInjector];
-      
-      JSObjectFactoryHolder *holder1 = [injector1 getObject:[JSObjectFactoryHolder class]];
-      JSObjectFactoryHolder *holder2 = [injector2 getObject:[JSObjectFactoryHolder class]];
-      
-      SingletonItem *item1 = [holder1.objectFactory getObject:[SingletonItem class]];
-      SingletonItem *item2 = [holder2.objectFactory getObject:[SingletonItem class]];
+
+describe(@"object factory", ^{
+    it(@"injector returns a JSObjectFactory for the given injector context", ^{
+        JSObjectionInjector *injector1 = [JSObjection createInjector];
+        JSObjectionInjector *injector2 = [JSObjection defaultInjector];
         
-      [[item1 shouldNot] equal:item2];
+        JSObjectFactoryHolder *holder1 = [injector1 getObject:[JSObjectFactoryHolder class]];
+        JSObjectFactoryHolder *holder2 = [injector2 getObject:[JSObjectFactoryHolder class]];
+        
+        SingletonItem *item1 = [holder1.objectFactory getObject:[SingletonItem class]];
+        SingletonItem *item2 = [holder2.objectFactory getObject:[SingletonItem class]];
+        
+        [[item1 shouldNot] equal:item2];
+    });    
+    
+    it(@"can take variadic arguments and pass them along to the injector", ^{
+        JSObjectionInjector *injector = [JSObjection defaultInjector];
+        JSObjectFactory *factory = [injector getObject:[JSObjectFactory class]];
+        
+        ConfigurableCar *car = [factory getObjectWithArgs:[ConfigurableCar class], @"Model", @"Power", @"Year", nil];
+        
+        [[car.model should] equal:@"Model"];
+        [[car.horsePower should] equal:@"Power"];
+        [[car.year should] equal:@"Year"];
+        
+    });
 });
 
 SPEC_END

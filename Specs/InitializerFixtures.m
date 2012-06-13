@@ -1,5 +1,10 @@
 #import "InitializerFixtures.h"
 
+@implementation BadInitializer
+objection_register(BadInitializer)
+objection_initializer(initWithNonExistentInitializer)
+@end
+
 @implementation ViewController
 objection_register(ViewController)
 objection_requires(@"car")
@@ -26,7 +31,7 @@ objection_initializer(initWithNibName:bundle:, @"MyNib")
 
 @implementation ConfigurableCar
 objection_register(ConfigurableCar)
-objection_requires(@"car", @"engine")
+objection_requires(@"engine")
 objection_initializer(initWithModel:horsePower:andYear:)
 
 @synthesize car = _car;

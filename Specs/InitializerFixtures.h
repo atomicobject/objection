@@ -21,3 +21,6 @@
 - (id)initWithModel:(NSString *)model horsePower:(NSNumber *)horsePower andYear:(NSNumber *)year;
 @end
 
+@interface BadInitializer : NSObject
+@end
+

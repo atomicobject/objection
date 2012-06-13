@@ -24,8 +24,19 @@ it(@"will override the default arguments if arguments are passed to the injector
     [[controller.car should] beMemberOfClass:[Car class]];    
 });
 
-it(@"is happy to instantiate an object with a number of initializer arguments", ^{
+it(@"is OK to register an object with an initializer without any default arguments", ^{
+    ConfigurableCar *car = [injector getObjectWithArgs:[ConfigurableCar class], @"Passat", [NSNumber numberWithInt:200], [NSNumber numberWithInt:2002], nil];
     
+    [[car.horsePower should] equal:[NSNumber numberWithInt:200]];
+    [[car.model should] equal:@"Passat"];
+    [[car.year should] equal:[NSNumber numberWithInt:2002]];
+    [[car.engine should] beMemberOfClass:[Engine class]];    
+});
+
+it(@"raises an exception if the initializer is not valid", ^{
+   [[theBlock(^{
+       [injector getObject:[BadInitializer class]];
+   }) should] raiseWithReason:@"Could not find initializer 'initWithNonExistentInitializer' on BadInitializer"];
 });
 
 SPEC_END
