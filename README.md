@@ -242,14 +242,7 @@ objection_initializer(initWithMake:model:)
 ## TODO
 
 * ARCify for iOS
-* Add support for alternate initializers
-  * <code>objection\_initializer(initWithNibName:bundle, @"Nib", nil)</code>
-* Support 'static' injection
-* Add contribution section
-* Re-factor the method for declaring dependencies
-  * The current implementation relies on extending (via _objection\_requires_) the class interface
-  * The re-factored form should delegate directly to Objection (e.g. _[JSObjection registerClass:[TheClass class] withDependencies:@"collaborator", nil]_)
-  * This form would allow for alternative registration mechanisms
+* Pass along arguments to providers
 
 Installation
 =======
