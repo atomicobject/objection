@@ -20,4 +20,5 @@ extern const struct JSObjectionUtils {
     NSSet* (*buildDependenciesForClass)(Class klass, NSSet *requirements);
     NSDictionary* (*buildInitializer)(SEL selector, NSArray *arguments);
     NSArray* (*transformVariadicArgsToArray)(va_list va_arguments);
+    id (*buildObjectWithInitializer)(Class klass, SEL initializer, NSArray *arguments);
 } JSObjectionUtils;

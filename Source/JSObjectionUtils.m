@@ -81,10 +81,27 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName) {
     return property;
 }
 
+
+static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments) {
+    id instance = [klass alloc];
+    NSMethodSignature *signature = [klass instanceMethodSignatureForSelector:initializer];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setTarget:instance];
+    [invocation setSelector:initializer];
+    for (int i = 0; i < arguments.count; i++) {
+        id argument = [arguments objectAtIndex:i];
+        [invocation setArgument:&argument atIndex:i + 2];
+    }
+    [invocation invoke];
+    [invocation getReturnValue:&instance];
+    return [instance autorelease];
+}
+
 const struct JSObjectionUtils JSObjectionUtils = {
     .findClassOrProtocolForProperty = FindClassOrProtocolForProperty,
     .propertyForClass = GetProperty,
     .buildDependenciesForClass = BuildDependenciesForClass,
     .buildInitializer = BuildInitializer,
-    .transformVariadicArgsToArray = TransformVariadicArgsToArray
+    .transformVariadicArgsToArray = TransformVariadicArgsToArray,
+    .buildObjectWithInitializer = BuildObjectWithInitializer
 };

@@ -4,7 +4,9 @@
 
 @interface JSObjectionInjectorEntry()
 - (void)notifyObjectThatItIsReady: (id)object;
-- (id)buildObject;
+- (id)buildObject:(NSArray *)arguments;
+- (id)argumentsForObject:(NSArray *)givenArguments;
+- (SEL)initializerForObject;
 @end
 
 
@@ -28,7 +30,7 @@
 
 - (id)extractObject:(NSArray *)arguments {
   if (self.lifeCycle == JSObjectionInstantiationRuleNormal || !_storageCache) {
-  	return [self buildObject];  
+      return [self buildObject:arguments];  
   }
   
   return _storageCache;
@@ -50,8 +52,14 @@
   }
 }
 
-- (id)buildObject {
-    id objectUnderConstruction = [[[self.classEntry alloc] init] autorelease];
+- (id)buildObject:(NSArray *)arguments {
+    
+    id objectUnderConstruction = nil;    
+    if ([self.classEntry respondsToSelector:@selector(objectionInitializer)]) {
+        objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
+    } else {
+        objectUnderConstruction = [[[self.classEntry alloc] init] autorelease];
+    }
 
     if (self.lifeCycle == JSObjectionInstantiationRuleSingleton) {
         _storageCache = [objectUnderConstruction retain];
@@ -91,6 +99,14 @@
 
     [self notifyObjectThatItIsReady: objectUnderConstruction];
     return objectUnderConstruction;
+}
+
+- (SEL)initializerForObject {
+    return NSSelectorFromString([[self.classEntry performSelector:@selector(objectionInitializer)] objectForKey:JSObjectionInitializerKey]);
+}
+
+- (NSArray *)argumentsForObject:(NSArray *)givenArguments {
+    return givenArguments.count > 0 ? givenArguments : [[self.classEntry performSelector:@selector(objectionInitializer)] objectForKey:JSObjectionDefaultArgumentsKey];
 }
 
 #pragma mark Class Methods
