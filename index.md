@@ -25,6 +25,8 @@ objection is a lightweight [dependency injection](http://en.wikipedia.org/wiki/D
   * Instance Bindings
 * Lazily instantiates dependencies
 * Eager Singletons
+* Initializers
+  * Default and custom arguments
 
 <script src="https://gist.github.com/806214.js"> </script>
 
@@ -36,7 +38,7 @@ For a technical overview of the framework please visit the [GitHub page](https:/
 Download the latest [here](https://github.com/atomicobject/objection/downloads) __or__
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.11.0
+    git checkout 0.13.0
      
 ### iOS
 
