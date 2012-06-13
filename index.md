@@ -25,8 +25,7 @@ objection is a lightweight [dependency injection](http://en.wikipedia.org/wiki/D
   * Instance Bindings
 * Lazily instantiates dependencies
 * Eager Singletons
-* Initializers
-  * Default and custom arguments
+* Alternate Initializer Support
 
 <script src="https://gist.github.com/806214.js"> </script>
 
