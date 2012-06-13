@@ -14,6 +14,8 @@ Features
   * Instance Bindings
 * Lazily instantiates dependencies
 * Eager Singletons
+* Initializer Support
+  * Default and custom arguments
 
 Using Objection
 ========
@@ -203,6 +205,40 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 }
 @end
 ```
+
+#### Initializers
+
+By default, Objection allocates objects with the default initializer <code>init</code>. If you'd like to instantiate an object with an alternate ininitializer the <code>objection_initializer</code> macro can be used to do so. The macro supports passing in default arguments (scalar values are not currently supported) as well.
+      
+#### Default Arguments Example
+```objective-c
+@implementation ViewController
+objection_register(ViewController)
+objection_initializer(initWithNibName:bundle:, @"ViewController")
+@end
+```
+
+###  Custom Arguments Example
+```objective-c
+@implementation ConfigurableCar
+objection_register(ConfigurableCar)
+objection_requires(@"engine", @"brakes")
+objection_initializer(initWithMake:model:)
+
+@synthesize make;
+@synthesize model;
+
+- (id)initWithMake:(NSString *)make model:(NSString *)model {
+  ...
+}
+@end
+
+- (void)buildCar {
+  ConfigurableCar *car = [self.objectFactory getObjectWithArgs:[ConfigurableCar class], @"VW", @"Passat", nil];
+  NSLog(@"Make: %@ Model: %@", car.make, car.model);
+}
+```
+
 ## TODO
 
 * ARCify for iOS
