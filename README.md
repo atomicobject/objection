@@ -218,7 +218,7 @@ objection_initializer(initWithNibName:bundle:, @"ViewController")
 @end
 ```
 
-###  Custom Arguments Example
+####  Custom Arguments Example
 ```objective-c
 @implementation ConfigurableCar
 objection_register(ConfigurableCar)
