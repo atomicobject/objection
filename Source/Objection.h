@@ -14,21 +14,29 @@
 #import "JSObjection.h"
 
 #define objection_register(value)			\
-      + (void)initialize { \
+    + (void)initialize { \
         if (self == [value class]) { \
-          [JSObjection registerClass:[value class] lifeCycle: JSObjectionInstantiationRuleNormal]; \
+            [JSObjection registerClass:[value class] lifeCycle: JSObjectionInstantiationRuleNormal]; \
         } \
-      }
+    }
 
 #define objection_register_singleton(value) \
-      + (void)initialize { \
-          if (self == [value class]) { \
+    + (void)initialize { \
+        if (self == [value class]) { \
             [JSObjection registerClass:[value class] lifeCycle: JSObjectionInstantiationRuleSingleton]; \
-          } \
-        }
+        } \
+    }
 
 #define objection_requires(args...) \
-      + (NSSet *)objectionRequires { \
-          NSSet *requirements = [NSSet setWithObjects: args, nil]; \
-          return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
-        }
+    + (NSSet *)objectionRequires { \
+        NSSet *requirements = [NSSet setWithObjects: args, nil]; \
+        return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
+    }
+
+#define objection_initializer(selectorSymbol, args...) \
+    + (NSDictionary *)objectionInitializer { \
+        id objs[]= {args}; \
+        NSArray *defaultArguments = [NSArray arrayWithObjects: objs count:sizeof(objs)/sizeof(id)]; \
+        return JSObjectionUtils.buildInitializer(@selector(selectorSymbol), defaultArguments); \
+    }
+    

@@ -14,4 +14,13 @@
 - (id)getObject:(id)classOrProtocol {
     return [self.injector getObject:classOrProtocol];
 }
+
+- (id)getObjectWithArgs:(id)classOrProtocol, ... {
+    va_list va_arguments;
+    va_start(va_arguments, classOrProtocol);
+    id object = [self.injector getObject:classOrProtocol arguments:va_arguments];
+    va_end(va_arguments);
+    return object;
+}
+
 @end

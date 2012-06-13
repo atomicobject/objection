@@ -199,6 +199,10 @@
 		4B4258DC13F56F45006BC001 /* JSObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */; };
 		4B4258DD13F56F45006BC001 /* JSObjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D310213DF613500C81C45 /* JSObjection.m */; };
 		4B4258DF13F56F51006BC001 /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4258DE13F56F51006BC001 /* OCHamcrest.framework */; };
+		4B4289311567F3EC004F73D3 /* InitializerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4289301567F3EC004F73D3 /* InitializerSpecs.m */; };
+		4B4289321567F3EC004F73D3 /* InitializerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4289301567F3EC004F73D3 /* InitializerSpecs.m */; };
+		4B428935156806E6004F73D3 /* InitializerFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B428934156806E6004F73D3 /* InitializerFixtures.m */; };
+		4B428936156806E6004F73D3 /* InitializerFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B428934156806E6004F73D3 /* InitializerFixtures.m */; };
 		4B496E6C12B0F3E50053F2A3 /* JSObjectionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B496E6A12B0F3E50053F2A3 /* JSObjectionUtils.m */; };
 		4B496E6D12B0F3E50053F2A3 /* JSObjectionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B496E6A12B0F3E50053F2A3 /* JSObjectionUtils.m */; };
 		4B4B21A41342B78E00833077 /* JSObjectionEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B4B21A31342B78E00833077 /* JSObjectionEntry.h */; };
@@ -453,6 +457,9 @@
 		4B42588013F56EA3006BC001 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B42588213F56EA3006BC001 /* Specs-OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-OSX-Prefix.pch"; sourceTree = "<group>"; };
 		4B4258DE13F56F51006BC001 /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = Vendor/OCHamcrest.framework; sourceTree = "<group>"; };
+		4B4289301567F3EC004F73D3 /* InitializerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitializerSpecs.m; sourceTree = "<group>"; };
+		4B428933156806E6004F73D3 /* InitializerFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializerFixtures.h; sourceTree = "<group>"; };
+		4B428934156806E6004F73D3 /* InitializerFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitializerFixtures.m; sourceTree = "<group>"; };
 		4B496E6A12B0F3E50053F2A3 /* JSObjectionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjectionUtils.m; sourceTree = "<group>"; };
 		4B4B21A31342B78E00833077 /* JSObjectionEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectionEntry.h; sourceTree = "<group>"; };
 		4B4B21A71342B79E00833077 /* JSObjectionEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjectionEntry.m; sourceTree = "<group>"; };
@@ -825,6 +832,7 @@
 				4BF451E21291AD28006EB2D5 /* InjectionErrorsSpecs.m */,
 				4B7300D712AA8F3400903427 /* InheritanceSpecs.m */,
 				4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */,
+				4B4289301567F3EC004F73D3 /* InitializerSpecs.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -842,6 +850,8 @@
 				4B53482E12F31E93000480AB /* SpecHelper.m */,
 				4B81F90B135D0ACF00221A88 /* ModuleFixtures.h */,
 				4B81F90C135D0ACF00221A88 /* ModuleFixtures.m */,
+				4B428933156806E6004F73D3 /* InitializerFixtures.h */,
+				4B428934156806E6004F73D3 /* InitializerFixtures.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1167,6 +1177,8 @@
 				4BE78764145647EF00BD705E /* JSObjectFactory.m in Sources */,
 				D2AAC07E0554694100DB5193 /* CircularDependencySpecs.m in Sources */,
 				D2AAC07E0554694100DB5196 /* CircularDependencyFixtures.m in Sources */,
+				4B4289311567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
+				4B428935156806E6004F73D3 /* InitializerFixtures.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,6 +1273,8 @@
 				4BE78765145647EF00BD705E /* JSObjectFactory.m in Sources */,
 				D2AAC07E0554694100DB5194 /* CircularDependencySpecs.m in Sources */,
 				D2AAC07E0554694100DB5197 /* CircularDependencyFixtures.m in Sources */,
+				4B4289321567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
+				4B428936156806E6004F73D3 /* InitializerFixtures.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1456,6 +1470,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1484,6 +1499,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -1516,6 +1532,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1545,6 +1562,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;

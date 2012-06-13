@@ -10,7 +10,7 @@
     return self;
 }
 
-- (id)extractObject {
+- (id)extractObject:(NSArray *)arguments {
     return _instance;
 }
 
