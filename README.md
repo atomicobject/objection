@@ -56,12 +56,12 @@ An object can be fetched from objection by creating an injector and then asking 
 }
 ```
 
-A global injector can be registered with Objection which can be used throughout your application or library.
+A default injector can be registered with Objection which can be used throughout your application or library.
 
 ```objective-c    
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
   JSObjectionInjector *injector = [JSObjection createInjector];
-  [JSObjection setGlobalInjector:injector];
+  [JSObjection setDefaultInjector:injector];
 }
 
 - (void)viewDidLoad {
@@ -141,7 +141,7 @@ Objection supports associating an object outside the context of Objection by con
 @end
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
   JSObjectionInjector *injector = [JSObjection createInjector:[[[MyAppModule alloc] init] autorelease]];
-  [JSObjection setGlobalInjector:injector];
+  [JSObjection setDefaultInjector:injector];
 }
 ```
 #### Meta Class Bindings
