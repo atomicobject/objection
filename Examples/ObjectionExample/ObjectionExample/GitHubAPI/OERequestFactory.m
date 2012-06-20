@@ -1,6 +1,6 @@
 #import "OERequestFactory.h"
 
-NSString *const kBaseURL = @"http://github.com/api/v2/json/commits/list/";
+NSString *const kBaseURL = @"https://api.github.com/repos/";
 NSString *const kContentType = @"application/json";
 NSString *const kContentEncoding = @"UTF-8";
 
@@ -11,6 +11,7 @@ objection_register(OERequestFactory)
 	NSURL *url = [NSURL URLWithString:relativeURL relativeToURL:[NSURL URLWithString:kBaseURL]];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	
+    NSLog(@"Requesting Commits: %@", [url absoluteString]);
 	// Extra headers - ensure correct values
 	[request addRequestHeader:@"Accept" value:kContentType];
 	[request addRequestHeader:@"Accept-Charset" value:kContentEncoding];
