@@ -5,11 +5,11 @@
 objection_register(OEGitHubObjectBuilder)
 
 - (OECommit *)buildCommit:(NSDictionary *)commitDictionary {
-	OECommit *commit = [[[OECommit alloc] init] autorelease];
-  commit.authorName = [[commitDictionary objectForKey:@"author"] objectForKey:@"name"];
-  commit.authoredDate = [self parseGitHubDateString:[commitDictionary objectForKey:@"authored_date"]];
-  commit.message = [commitDictionary objectForKey:@"message"];
-  return commit;
+    OECommit *commit = [[[OECommit alloc] init] autorelease];
+    commit.authorName = [[commitDictionary objectForKey:@"author"] objectForKey:@"name"];
+    commit.authoredDate = [self parseGitHubDateString:[[commitDictionary objectForKey:@"author"] objectForKey:@"date"]];
+    commit.message = [commitDictionary objectForKey:@"message"];
+    return commit;
 }
 
 - (NSDate *)parseGitHubDateString:(NSString *)dateString {
