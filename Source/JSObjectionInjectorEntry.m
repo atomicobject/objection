@@ -56,7 +56,7 @@
     
     id objectUnderConstruction = nil;    
     if ([self.classEntry respondsToSelector:@selector(objectionInitializer)]) {
-        objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
+        objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments], self.injector);
     } else {
         objectUnderConstruction = [[[self.classEntry alloc] init] autorelease];
     }

@@ -1,5 +1,6 @@
 #import <objc/runtime.h>
 #import "JSObjectionUtils.h"
+#import "Objection.h"
 
 static NSString *const JSObjectionException = @"JSObjectionException";
 
@@ -81,11 +82,27 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName) {
     return property;
 }
 
+static void replaceArgumentDependencies(NSArray** pArgs, JSObjectionInjector* injector)
+{
+    NSMutableArray * arguments = [NSMutableArray arrayWithArray:*pArgs];
+    *pArgs = arguments;
+    for (NSUInteger i = 0 ; i < arguments.count ; i++)
+    {
+        id arg = [arguments objectAtIndex:i];
+        if ([arg isKindOfClass:[JSObjectionDependency class]])
+        {
+            id classOrProtocol = ((JSObjectionDependency *)arg).dependentType;
+            id object = [injector getObject:classOrProtocol];
+            [arguments replaceObjectAtIndex:i withObject:object];
+        }
+    }
+}
 
-static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments) {
+static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments, JSObjectionInjector * injector) {
     id instance = [klass alloc];
     NSMethodSignature *signature = [klass instanceMethodSignatureForSelector:initializer];
     if (signature) {
+        replaceArgumentDependencies(&arguments, injector);
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setTarget:instance];
         [invocation setSelector:initializer];

@@ -11,6 +11,7 @@
 #import "JSObjectionUtils.h"
 #import "JSObjectionProviderEntry.h"
 #import "JSObjectFactory.h"
+#import "JSObjectionDependency.h"
 #import "JSObjection.h"
 
 #define objection_register(value)			\

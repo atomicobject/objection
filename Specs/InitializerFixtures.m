@@ -57,13 +57,12 @@ objection_initializer(initWithModel:horsePower:andYear:)
     [super dealloc];
 }
 @end
-
 @implementation ServiceWithInitializerDependencies
 {
     Engine* _car;
 }
 objection_register(ServiceWithInitializerDependencies)
-objection_initializer(initWithEngine:)
+objection_initializer(initWithEngine:, [JSObjectionDependency for:[Engine class]])
 
 - (id)initWithEngine:(Engine *)engine
 {
