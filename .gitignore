@@ -19,3 +19,4 @@ _site
 run
 pkg
 .DS_Store
+.idea
