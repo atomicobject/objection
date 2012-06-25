@@ -57,3 +57,29 @@ objection_initializer(initWithModel:horsePower:andYear:)
     [super dealloc];
 }
 @end
+
+@implementation ServiceWithInitializerDependencies
+{
+    Engine* _car;
+}
+objection_register(ServiceWithInitializerDependencies)
+objection_initializer(initWithEngine:)
+
+- (id)initWithEngine:(Engine *)engine
+{
+    self = [super init];
+    if (self)
+        _car = [engine retain];
+    return self;
+}
+
+- (BOOL)hasEngine
+{ return _car != nil;}
+- (void)dealloc
+{
+    [_car release];
+    [super dealloc];
+}
+
+
+@end

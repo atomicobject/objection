@@ -39,4 +39,9 @@ it(@"raises an exception if the initializer is not valid", ^{
    }) should] raiseWithReason:@"Could not find initializer 'initWithNonExistentInitializer' on BadInitializer"];
 });
 
+it(@"uses configured dependencies when calling initializer", ^{
+    ServiceWithInitializerDependencies * service = [injector getObject:[ServiceWithInitializerDependencies class]];
+    [[theValue(service.hasEngine) should] beTrue];
+});
+
 SPEC_END

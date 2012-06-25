@@ -24,3 +24,10 @@
 @interface BadInitializer : NSObject
 @end
 
+@interface ServiceWithInitializerDependencies : NSObject
+@property (readonly, assign) BOOL hasEngine;
+
+- (id) initWithEngine:(Engine *)engine;
+
+@end
+
