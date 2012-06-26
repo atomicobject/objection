@@ -65,5 +65,14 @@ it(@"allows overriding a default argument with a dependency" , ^{
     [service.gearBox shouldNotBeNil];
 });
 
+it(@"throws when passing in a dependency that is not registered" , ^{
+    [[theBlock(^{
+        [injector getObjectWithArgs:[CarWithInitializerDependencies class],
+                                           [JSObjectionDependency for:[Engine class]],
+                                           [JSObjectionDependency for:@protocol(GearBox)], nil];}
+    ) should] raiseWithReason:@"A required initializer dependency was not found"];
 
-SPEC_END
+});
+
+
+        SPEC_END

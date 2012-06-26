@@ -93,6 +93,10 @@ static void replaceArgumentDependencies(NSArray** pArgs, JSObjectionInjector* in
         {
             id classOrProtocol = ((JSObjectionDependency *)arg).dependentType;
             id object = [injector getObject:classOrProtocol];
+            if (!object)
+                @throw [NSException exceptionWithName:@"JSObjectionException"
+                                               reason:@"A required initializer dependency was not found"
+                                             userInfo:nil];
             [arguments replaceObjectAtIndex:i withObject:object];
         }
     }
