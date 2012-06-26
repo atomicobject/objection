@@ -24,10 +24,10 @@
 @interface BadInitializer : NSObject
 @end
 
-@interface ServiceWithInitializerDependencies : NSObject
+@interface CarWithInitializerDependencies : NSObject
 @property (readonly, assign) BOOL hasEngine;
-
-- (id) initWithEngine:(Engine *)engine;
+@property (readonly, nonatomic, retain) id <GearBox> gearBox;
+@property (readonly, nonatomic, retain) Engine* engine;
+- (id)initWithEngine:(Engine *)engine gearBox:(id <GearBox>)gearBox;
 
 @end
-

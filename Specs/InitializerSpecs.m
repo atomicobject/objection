@@ -1,5 +1,6 @@
 #import "SpecHelper.h"
 #import "InitializerFixtures.h"
+#import "ModuleFixtures.h"
 
 SPEC_BEGIN(InitializerSpecs)
 __block JSObjectionInjector *injector = nil;
@@ -40,8 +41,29 @@ it(@"raises an exception if the initializer is not valid", ^{
 });
 
 it(@"uses configured dependencies when calling initializer", ^{
-    ServiceWithInitializerDependencies * service = [injector getObject:[ServiceWithInitializerDependencies class]];
+    CarWithInitializerDependencies * service = [injector getObject:[CarWithInitializerDependencies class]];
     [[theValue(service.hasEngine) should] beTrue];
+    [service.gearBox shouldNotBeNil];
 });
+
+it(@"will override the default arguments also for initializer dependencies", ^{
+    Engine * eng = [[Engine new] autorelease];
+    CarWithInitializerDependencies * service = [injector getObjectWithArgs:[CarWithInitializerDependencies class],
+                    eng, [[AfterMarketGearBox new] autorelease], nil];
+
+    [[eng should] equal:service.engine];
+});
+
+it(@"allows overriding a default argument with a dependency" , ^{
+    ProviderModule *const module = [[ProviderModule new] autorelease];
+    injector = [JSObjection createInjectorWithModules:module, nil];
+
+    CarWithInitializerDependencies * service = [injector getObjectWithArgs:[CarWithInitializerDependencies class],
+            [JSObjectionDependency for:[Engine class]],
+            [JSObjectionDependency for:@protocol(GearBox)], nil];
+
+    [service.gearBox shouldNotBeNil];
+});
+
 
 SPEC_END
