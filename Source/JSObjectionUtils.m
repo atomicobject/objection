@@ -82,10 +82,9 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName) {
     return property;
 }
 
-static void ReplaceArgumentDependencies(NSArray** pArgs, JSObjectionInjector* injector)
+static NSArray* ReplaceArgumentDependencies(NSArray* originalArgs, JSObjectionInjector* injector)
 {
-    NSMutableArray * arguments = [NSMutableArray arrayWithArray:*pArgs];
-    *pArgs = arguments;
+    NSMutableArray * arguments = [NSMutableArray arrayWithArray:originalArgs];
     for (NSUInteger i = 0 ; i < arguments.count ; i++)
     {
         id arg = [arguments objectAtIndex:i];
@@ -100,13 +99,14 @@ static void ReplaceArgumentDependencies(NSArray** pArgs, JSObjectionInjector* in
             [arguments replaceObjectAtIndex:i withObject:object];
         }
     }
+    return arguments;
 }
 
 static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments, JSObjectionInjector * injector) {
     id instance = [klass alloc];
     NSMethodSignature *signature = [klass instanceMethodSignatureForSelector:initializer];
     if (signature) {
-        ReplaceArgumentDependencies(&arguments, injector);
+        arguments = ReplaceArgumentDependencies(arguments, injector);
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setTarget:instance];
         [invocation setSelector:initializer];
