@@ -59,8 +59,8 @@ it(@"allows overriding a default argument with a dependency" , ^{
     injector = [JSObjection createInjectorWithModules:module, nil];
 
     CarWithInitializerDependencies * service = [injector getObjectWithArgs:[CarWithInitializerDependencies class],
-            [JSObjectionDependency for:[Engine class]],
-            [JSObjectionDependency for:@protocol(GearBox)], nil];
+                    classDependency(Engine),
+                    protocolDependency(GearBox), nil];
 
     [service.gearBox shouldNotBeNil];
 });
@@ -68,8 +68,9 @@ it(@"allows overriding a default argument with a dependency" , ^{
 it(@"throws when passing in a dependency that is not registered" , ^{
     [[theBlock(^{
         [injector getObjectWithArgs:[CarWithInitializerDependencies class],
-                                           [JSObjectionDependency for:[Engine class]],
-                                           [JSObjectionDependency for:@protocol(GearBox)], nil];}
+                        classDependency(Engine),
+                        protocolDependency(GearBox), nil];
+    }
     ) should] raiseWithReason:@"A required initializer dependency was not found"];
 
 });

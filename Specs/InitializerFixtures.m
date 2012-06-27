@@ -71,7 +71,7 @@ objection_initializer(initWithModel:horsePower:andYear:)
 @synthesize gearBox = _gearBox;
 @synthesize engine = _engine;
 objection_register(CarWithInitializerDependencies)
-objection_initializer(initWithEngine:gearBox:, [JSObjectionDependency for:[Engine class]], [AfterMarketGearBox new])
+objection_initializer(initWithEngine:gearBox:, classDependency(Engine), [AfterMarketGearBox new])
 
 - (id)initWithEngine:(Engine *)engine gearBox:(id <GearBox>)gearBox
 {
