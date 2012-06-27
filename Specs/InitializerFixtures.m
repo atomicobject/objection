@@ -61,7 +61,7 @@ objection_initializer(initWithModel:horsePower:andYear:)
 
 @interface CarWithInitializerDependencies ()
 @property(readwrite, nonatomic, retain) Engine *engine;
-@property(readwrite, nonatomic, retain) id <GearBox> gearBox;
+@property(readwrite, nonatomic, retain) NSObject <GearBox> *gearBox;
 
 @end
 
@@ -73,7 +73,7 @@ objection_initializer(initWithModel:horsePower:andYear:)
 objection_register(CarWithInitializerDependencies)
 objection_initializer(initWithEngine:gearBox:, classDependency(Engine), [AfterMarketGearBox new])
 
-- (id)initWithEngine:(Engine *)engine gearBox:(id <GearBox>)gearBox
+- (id)initWithEngine:(Engine *)engine gearBox:(NSObject <GearBox>*)gearBox
 {
     self = [super init];
     if (self)

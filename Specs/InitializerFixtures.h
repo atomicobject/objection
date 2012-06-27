@@ -26,8 +26,8 @@
 
 @interface CarWithInitializerDependencies : NSObject
 @property (readonly, assign) BOOL hasEngine;
-@property (readonly, nonatomic, retain) id <GearBox> gearBox;
+@property (readonly, nonatomic, retain) NSObject <GearBox> *gearBox;
 @property (readonly, nonatomic, retain) Engine* engine;
-- (id)initWithEngine:(Engine *)engine gearBox:(id <GearBox>)gearBox;
+- (id)initWithEngine:(Engine *)engine gearBox:(NSObject <GearBox>*)gearBox;
 
 @end
