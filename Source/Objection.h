@@ -11,6 +11,7 @@
 #import "JSObjectionUtils.h"
 #import "JSObjectionProviderEntry.h"
 #import "JSObjectFactory.h"
+#import "JSObjectionDependency.h"
 #import "JSObjection.h"
 
 #define objection_register(value)			\
@@ -39,4 +40,6 @@
         NSArray *defaultArguments = [NSArray arrayWithObjects: objs count:sizeof(objs)/sizeof(id)]; \
         return JSObjectionUtils.buildInitializer(@selector(selectorSymbol), defaultArguments); \
     }
-    
+
+#define classDependency(klass) [JSObjectionDependency for:[klass class]]
+#define protocolDependency(protocolDefinition) [JSObjectionDependency for:@protocol(protocolDefinition)]

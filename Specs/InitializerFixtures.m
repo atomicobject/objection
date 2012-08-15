@@ -1,4 +1,5 @@
 #import "InitializerFixtures.h"
+#import "ModuleFixtures.h"
 
 @implementation BadInitializer
 objection_register(BadInitializer)
@@ -56,4 +57,40 @@ objection_initializer(initWithModel:horsePower:andYear:)
     [_year release];
     [super dealloc];
 }
+@end
+
+@interface CarWithInitializerDependencies ()
+@property(readwrite, nonatomic, retain) Engine *engine;
+@property(readwrite, nonatomic, retain) NSObject <GearBox> *gearBox;
+
+@end
+
+@implementation CarWithInitializerDependencies
+{
+}
+@synthesize gearBox = _gearBox;
+@synthesize engine = _engine;
+objection_register(CarWithInitializerDependencies)
+objection_initializer(initWithEngine:gearBox:, classDependency(Engine), [AfterMarketGearBox new])
+
+- (id)initWithEngine:(Engine *)engine gearBox:(NSObject <GearBox>*)gearBox
+{
+    self = [super init];
+    if (self)
+    {
+        self.engine = engine;
+        self.gearBox = gearBox;
+    }
+    return self;
+}
+
+- (BOOL)hasEngine { return _engine != nil;}
+
+- (void)dealloc
+{
+    [_engine release];
+    [_gearBox release];
+    [super dealloc];
+}
+
 @end
