@@ -262,6 +262,12 @@
 		D2AAC07E0554694100DB5194 /* CircularDependencySpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5192 /* CircularDependencySpecs.m */; };
 		D2AAC07E0554694100DB5196 /* CircularDependencyFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5195 /* CircularDependencyFixtures.m */; };
 		D2AAC07E0554694100DB5197 /* CircularDependencyFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5195 /* CircularDependencyFixtures.m */; };
+		D2AAC07E0554694100DB519A /* JSObjectionDependency.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5199 /* JSObjectionDependency.m */; };
+		D2AAC07E0554694100DB519B /* JSObjectionDependency.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5199 /* JSObjectionDependency.m */; };
+		D2AAC07E0554694100DB519C /* JSObjectionDependency.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5199 /* JSObjectionDependency.m */; };
+		D2AAC07E0554694100DB519D /* JSObjectionDependency.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB5199 /* JSObjectionDependency.m */; };
+		D2AAC07E0554694100DB519F /* JSObjectionDependency.h in Headers */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB519E /* JSObjectionDependency.h */; };
+		D2AAC07E0554694100DB51A0 /* JSObjectionDependency.h in Headers */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB519E /* JSObjectionDependency.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -500,6 +506,8 @@
 		D2AAC07E0554694100DB5192 /* CircularDependencySpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularDependencySpecs.m; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB5195 /* CircularDependencyFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularDependencyFixtures.m; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB5198 /* CircularDependencyFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularDependencyFixtures.h; sourceTree = "<group>"; };
+		D2AAC07E0554694100DB5199 /* JSObjectionDependency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjectionDependency.m; sourceTree = "<group>"; };
+		D2AAC07E0554694100DB519E /* JSObjectionDependency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectionDependency.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -584,6 +592,7 @@
 		08FB77AEFE84172EC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D2AAC07E0554694100DB5199 /* JSObjectionDependency.m */,
 				4B81F8DC135D06C200221A88 /* JSObjectionProviderEntry.m */,
 				4B4B21A71342B79E00833077 /* JSObjectionEntry.m */,
 				4B53471812F316A4000480AB /* NSObject+Objection.m */,
@@ -804,6 +813,7 @@
 		4BED512E12AA8BD600CA6B36 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				D2AAC07E0554694100DB519E /* JSObjectionDependency.h */,
 				4BE7875E145647EF00BD705E /* JSObjectFactory.h */,
 				4B9D30FE13DF5FAC00C81C45 /* JSObjectionUtils.h */,
 				4B4B21A31342B78E00833077 /* JSObjectionEntry.h */,
@@ -874,6 +884,7 @@
 				4B81F8D5135D06A300221A88 /* JSObjectionProviderEntry.h in Headers */,
 				4BE78761145647EF00BD705E /* JSObjectFactory.h in Headers */,
 				4B9D310413DF613600C81C45 /* JSObjection.h in Headers */,
+				D2AAC07E0554694100DB51A0 /* JSObjectionDependency.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,6 +903,7 @@
 				4B9D30FF13DF5FAC00C81C45 /* JSObjectionUtils.h in Headers */,
 				4B9D310313DF613600C81C45 /* JSObjection.h in Headers */,
 				4BE78760145647EF00BD705E /* JSObjectFactory.h in Headers */,
+				D2AAC07E0554694100DB519F /* JSObjectionDependency.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,7 +987,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Objection" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1179,6 +1191,7 @@
 				D2AAC07E0554694100DB5196 /* CircularDependencyFixtures.m in Sources */,
 				4B4289311567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
 				4B428935156806E6004F73D3 /* InitializerFixtures.m in Sources */,
+				D2AAC07E0554694100DB519C /* JSObjectionDependency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1275,6 +1288,7 @@
 				D2AAC07E0554694100DB5197 /* CircularDependencyFixtures.m in Sources */,
 				4B4289321567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
 				4B428936156806E6004F73D3 /* InitializerFixtures.m in Sources */,
+				D2AAC07E0554694100DB519D /* JSObjectionDependency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1292,6 +1306,7 @@
 				4B81F8E0135D06C200221A88 /* JSObjectionProviderEntry.m in Sources */,
 				4B9D310713DF613600C81C45 /* JSObjection.m in Sources */,
 				4BE78763145647EF00BD705E /* JSObjectFactory.m in Sources */,
+				D2AAC07E0554694100DB519B /* JSObjectionDependency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1309,6 +1324,7 @@
 				4B81F8DE135D06C200221A88 /* JSObjectionProviderEntry.m in Sources */,
 				4B9D310513DF613600C81C45 /* JSObjection.m in Sources */,
 				4BE78762145647EF00BD705E /* JSObjectFactory.m in Sources */,
+				D2AAC07E0554694100DB519A /* JSObjectionDependency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1509,6 +1525,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -1542,6 +1559,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1571,6 +1589,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1598,6 +1617,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;

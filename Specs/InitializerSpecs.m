@@ -1,5 +1,6 @@
 #import "SpecHelper.h"
 #import "InitializerFixtures.h"
+#import "ModuleFixtures.h"
 
 SPEC_BEGIN(InitializerSpecs)
 __block JSObjectionInjector *injector = nil;
@@ -39,4 +40,40 @@ it(@"raises an exception if the initializer is not valid", ^{
    }) should] raiseWithReason:@"Could not find initializer 'initWithNonExistentInitializer' on BadInitializer"];
 });
 
-SPEC_END
+it(@"uses configured dependencies when calling initializer", ^{
+    CarWithInitializerDependencies * service = [injector getObject:[CarWithInitializerDependencies class]];
+    [[theValue(service.hasEngine) should] beTrue];
+    [service.gearBox shouldNotBeNil];
+});
+
+it(@"will override the default arguments also for initializer dependencies", ^{
+    Engine * eng = [[Engine new] autorelease];
+    CarWithInitializerDependencies * service = [injector getObjectWithArgs:[CarWithInitializerDependencies class],
+                    eng, [[AfterMarketGearBox new] autorelease], nil];
+
+    [[eng should] equal:service.engine];
+});
+
+it(@"allows overriding a default argument with a dependency" , ^{
+    ProviderModule *const module = [[ProviderModule new] autorelease];
+    injector = [JSObjection createInjectorWithModules:module, nil];
+
+    CarWithInitializerDependencies * service = [injector getObjectWithArgs:[CarWithInitializerDependencies class],
+                    classDependency(Engine),
+                    protocolDependency(GearBox), nil];
+
+    [service.gearBox shouldNotBeNil];
+});
+
+it(@"throws when passing in a dependency that is not registered" , ^{
+    [[theBlock(^{
+        [injector getObjectWithArgs:[CarWithInitializerDependencies class],
+                        classDependency(Engine),
+                        protocolDependency(GearBox), nil];
+    }
+    ) should] raiseWithReason:@"A required initializer dependency was not found"];
+
+});
+
+
+        SPEC_END

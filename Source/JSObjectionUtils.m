@@ -1,5 +1,6 @@
 #import <objc/runtime.h>
 #import "JSObjectionUtils.h"
+#import "Objection.h"
 
 static NSString *const JSObjectionException = @"JSObjectionException";
 
@@ -81,11 +82,31 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName) {
     return property;
 }
 
+static NSArray* ReplaceArgumentDependencies(NSArray* originalArgs, JSObjectionInjector* injector)
+{
+    NSMutableArray * arguments = [NSMutableArray arrayWithArray:originalArgs];
+    for (NSUInteger i = 0 ; i < arguments.count ; i++)
+    {
+        id arg = [arguments objectAtIndex:i];
+        if ([arg isKindOfClass:[JSObjectionDependency class]])
+        {
+            id classOrProtocol = ((JSObjectionDependency *)arg).dependentType;
+            id object = [injector getObject:classOrProtocol];
+            if (!object)
+                @throw [NSException exceptionWithName:@"JSObjectionException"
+                                               reason:@"A required initializer dependency was not found"
+                                             userInfo:nil];
+            [arguments replaceObjectAtIndex:i withObject:object];
+        }
+    }
+    return arguments;
+}
 
-static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments) {
+static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments, JSObjectionInjector * injector) {
     id instance = [klass alloc];
     NSMethodSignature *signature = [klass instanceMethodSignatureForSelector:initializer];
     if (signature) {
+        arguments = ReplaceArgumentDependencies(arguments, injector);
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setTarget:instance];
         [invocation setSelector:initializer];

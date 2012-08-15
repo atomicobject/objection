@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
+@class JSObjectionInjector;
+
 NSString *const JSObjectionInitializerKey;
 NSString *const JSObjectionDefaultArgumentsKey;
 
@@ -20,5 +22,5 @@ extern const struct JSObjectionUtils {
     NSSet* (*buildDependenciesForClass)(Class klass, NSSet *requirements);
     NSDictionary* (*buildInitializer)(SEL selector, NSArray *arguments);
     NSArray* (*transformVariadicArgsToArray)(va_list va_arguments);
-    id (*buildObjectWithInitializer)(Class klass, SEL initializer, NSArray *arguments);
+    id (*buildObjectWithInitializer)(Class klass, SEL initializer, NSArray *arguments, JSObjectionInjector* injector);
 } JSObjectionUtils;
