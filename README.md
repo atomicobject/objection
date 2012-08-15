@@ -243,6 +243,7 @@ objection_initializer(initWithMake:model:)
 
 * ARCify for iOS
 * Pass along arguments to providers
+* Add a motivation section that speaks to _why_ Objection was created
 
 Installation
 =======
