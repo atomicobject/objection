@@ -100,7 +100,7 @@ objection_register_singleton(EagerSingleton)
 
 - (void)configure
 {
-    NSString *myEngine = [NSString stringWithString:@"My Engine"];
+    NSString *myEngine = @"My Engine";
 
     [self bindBlock:^(JSObjectionInjector *context) {
         Car *car = [context getObject:[ManualCar class]];
