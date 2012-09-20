@@ -251,7 +251,7 @@ Installation
 Download the latest [here](https://github.com/atomicobject/objection/downloads) __or__
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.13.0
+    git checkout 0.13.1
     
 ### iOS
 
