@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-NSString *const JSObjectionInitializerKey;
-NSString *const JSObjectionDefaultArgumentsKey;
+extern NSString *const JSObjectionInitializerKey;
+extern NSString *const JSObjectionDefaultArgumentsKey;
 
 typedef enum {
     JSObjectionTypeClass,
