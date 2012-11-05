@@ -294,6 +294,6 @@ Authors
 Applications that use Objection
 ===============================
 
-* [Bubble Island](https://itunes.apple.com/de/app/bubble-island/id531354582) and other [Wooga](wooga.com) games
+* [Bubble Island](https://itunes.apple.com/de/app/bubble-island/id531354582) and other [Wooga](http://wooga.com) games
 * [SideReel](https://itunes.apple.com/us/app/sidereel/id417270961?mt=8)
 
