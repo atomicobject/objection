@@ -290,3 +290,10 @@ Authors
 * Justin DeWind (dewind@atomicobject.com, @dewind on Twitter)
 * © 2009-2012 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
+
+Applications that use Objection
+===============================
+
+* [Bubble Island](https://itunes.apple.com/de/app/bubble-island/id531354582) and other [Wooga](wooga.com) games
+* [SideReel](https://itunes.apple.com/us/app/sidereel/id417270961?mt=8)
+
