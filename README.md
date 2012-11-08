@@ -20,6 +20,7 @@ Features
 Using Objection
 ========
 
+For questions, visit the [mailing list](https://groups.google.com/forum/?fromgroups#!forum/objection-framework)
 ### Basic Usage
 
 A class can be registered with objection using the macros *objection_register* or *objection_register_singleton*. The *objection_requires* macro can be used to declare what dependencies objection should provide to all instances it creates of that class. *objection_requires* can be used safely with inheritance.
