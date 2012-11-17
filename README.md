@@ -59,17 +59,6 @@ An object can be fetched from objection by creating an injector and then asking 
 }
 ```
 
-### Subscripting
-
-Objection has support for the subscriptiong operator to retrieve objects from the injection context.
-
-```objective-c
-- (void)someMethod {
-  JSObjectionInjector *injector = [JSObjection createInjector];
-  id car = injector[[Car class]];
-}
-```
-
 A default injector can be registered with Objection which can be used throughout your application or library.
 
 ```objective-c    
@@ -82,6 +71,18 @@ A default injector can be registered with Objection which can be used throughout
   id myModel = [[JSObjection defaultInjector] getObject:[MyModel class]];
 }
 ```
+
+#### Subscripting
+
+Objection has support for the subscriptiong operator to retrieve objects from the injection context.
+
+```objective-c
+- (void)someMethod {
+  JSObjectionInjector *injector = [JSObjection createInjector];
+  id car = injector[[Car class]];
+}
+```
+
 ### Awaking from Objection
 
 If an object is interested in knowing when it has been fully instantiated by objection it can implement the method
