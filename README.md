@@ -20,6 +20,7 @@ Features
 Using Objection
 ========
 
+For questions, visit the [mailing list](https://groups.google.com/forum/?fromgroups#!forum/objection-framework)
 ### Basic Usage
 
 A class can be registered with objection using the macros *objection_register* or *objection_register_singleton*. The *objection_requires* macro can be used to declare what dependencies objection should provide to all instances it creates of that class. *objection_requires* can be used safely with inheritance.
@@ -241,6 +242,7 @@ objection_initializer(initWithMake:model:)
 
 ## TODO
 
+* Add subscript support to injectors
 * ARCify for iOS
 * Pass along arguments to providers
 * Add a motivation section that speaks to _why_ Objection was created
@@ -289,3 +291,10 @@ Authors
 * Justin DeWind (dewind@atomicobject.com, @dewind on Twitter)
 * © 2009-2012 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
+
+Applications that use Objection
+===============================
+
+* [Bubble Island](http://www.wooga.com/games/bubble-island/) and other [Wooga](http://wooga.com) games
+* [SideReel](https://itunes.apple.com/us/app/sidereel/id417270961?mt=8)
+
