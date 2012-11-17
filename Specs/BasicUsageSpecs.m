@@ -40,6 +40,13 @@ it(@"defaults to returning a new instance", ^{
       assertThat(thomas, isNot(sameInstance(gordan)));
 });
 
+it(@"supports the subscript operator", ^{
+    Car *car = [JSObjection defaultInjector][[Car class]];
+    
+    assertThat(car, isNot(nilValue()));
+    assertThat(car.engine, is(instanceOf([Engine class])));
+});
+
 it(@"will return the same instance if it is registered as a singleton", ^{
       id carFactory1 = [[JSObjection defaultInjector] getObject:[CarFactory class]];
       id carFactory2 = [[JSObjection defaultInjector] getObject:[CarFactory class]];
@@ -87,7 +94,7 @@ describe(@"object factory", ^{
         JSObjectFactoryHolder *holder1 = [injector1 getObject:[JSObjectFactoryHolder class]];
         JSObjectFactoryHolder *holder2 = [injector2 getObject:[JSObjectFactoryHolder class]];
         
-        SingletonItem *item1 = [holder1.objectFactory getObject:[SingletonItem class]];
+        SingletonItem *item1 = holder1.objectFactory[[SingletonItem class]];
         SingletonItem *item2 = [holder2.objectFactory getObject:[SingletonItem class]];
         
         [[item1 shouldNot] equal:item2];

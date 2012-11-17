@@ -2,7 +2,7 @@ PROJECT_NAME = "Objection"
 CONFIGURATION = "Debug"
 SPECS_TARGET_NAME = "Specs-OSX"
 UI_SPECS_TARGET_NAME = "Specs-iOS"
-SDK_DIR = "iphonesimulator5.1"
+SDK_DIR = "iphonesimulator6.0"
 
 def xcodebuild_executable
   ENV['XCODEBUILD'] || "xcodebuild"

@@ -77,6 +77,10 @@
     return object;
 }
 
+- (id)objectForKeyedSubscript: (id)key {
+    return [self getObjectWithArgs:key, nil];
+}
+
 - (id)getObject:(id)classOrProtocol {
     return [self getObjectWithArgs:classOrProtocol, nil];
 }

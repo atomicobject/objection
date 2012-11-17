@@ -13,4 +13,5 @@
 - (id)getObject:(id)classOrProtocol;
 - (id)getObjectWithArgs:(id)classOrProtocol, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)getObject:(id)classOrProtocol arguments:(va_list)argList;
+- (id)objectForKeyedSubscript: (id)key;
 @end
