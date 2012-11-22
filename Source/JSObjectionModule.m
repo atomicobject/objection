@@ -3,6 +3,7 @@
 #import "JSObjectionProviderEntry.h"
 #import <objc/runtime.h>
 #import "JSObjectionInjector.h"
+#import "Objection.h"
 
 @interface __JSClassProvider : NSObject<JSObjectionProvider>
 {
@@ -106,8 +107,9 @@
     [_bindings setObject:entry forKey:key];    
 }
 
-- (void) registerEagerSingleton:(Class)klass  {
-    [_eagerSingletons addObject:NSStringFromClass(klass)];
+- (void)registerEagerSingleton:(Class)aClass {
+    [JSObjection registerClass:aClass lifeCycle:JSObjectionInstantiationRuleSingleton];
+    [_eagerSingletons addObject:NSStringFromClass(aClass)];
 }
 
 - (void) configure {

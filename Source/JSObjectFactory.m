@@ -19,7 +19,6 @@
     return [self getObject:key];
 }
 
-
 - (id)getObjectWithArgs:(id)classOrProtocol, ... {
     va_list va_arguments;
     va_start(va_arguments, classOrProtocol);

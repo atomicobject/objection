@@ -24,6 +24,6 @@
 - (void)bindClass:(Class)aClass toClass:(Class)toClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol;
-- (void)registerEagerSingleton:(Class)klass;
+- (void)registerEagerSingleton:(Class)aClass;
 - (void)configure;
 @end

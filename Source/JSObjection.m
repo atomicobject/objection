@@ -93,4 +93,20 @@ static JSObjectionInjector *gGlobalInjector;
 + (JSObjectionInjector *) defaultInjector {  
     return [[gGlobalInjector retain] autorelease];
 }
+
+#pragma mark edit sschmid
+
++ (void)unRegisterClass:(Class)theClass {
+    [self unRegisterClassName:NSStringFromClass(theClass)];
+}
+
++ (void)unRegisterClassName:(NSString *)aName {
+    pthread_mutex_lock(&gObjectionMutex);
+    if ([gObjectionContext objectForKey:aName]) {
+        [gObjectionContext removeObjectForKey:aName];
+    }
+    pthread_mutex_unlock(&gObjectionMutex);
+
+}
+
 @end
