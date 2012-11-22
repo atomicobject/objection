@@ -1,3 +1,27 @@
+Embed:
+--
+Setting up CocoaPods:
+
+```
+$ gem install
+$ pod setup
+```
+
+To embed this library with [CocoaPods] please add this repository.
+```
+$ pod repo add sschmid-cocoapods-specs https://github.com/sschmid/cocoapods-specs
+```
+
+Create a pod file and insert
+```
+pod 'GUObjection'
+```
+
+Install
+```
+$ pod install
+```
+
 Description
 ===========
 
@@ -309,4 +333,7 @@ Applications that use Objection
 
 * [Bubble Island](http://www.wooga.com/games/bubble-island/) and other [Wooga](http://wooga.com) games
 * [SideReel](https://itunes.apple.com/us/app/sidereel/id417270961?mt=8)
+
+
+[cocoapods]: http://cocoapods.org/
 
