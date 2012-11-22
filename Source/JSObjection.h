@@ -13,4 +13,8 @@
 + (void)setDefaultInjector:(JSObjectionInjector *)anInjector;
 + (JSObjectionInjector *)defaultInjector;
 + (void)reset;
+
+#pragma mark edit sschmid
++ (void)unRegisterClass:(Class)theClass;
++ (void)unRegisterClassName:(NSString *)aName;
 @end
