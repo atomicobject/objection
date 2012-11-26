@@ -77,6 +77,14 @@ static JSObjectionInjector *gGlobalInjector;
     pthread_mutex_unlock(&gObjectionMutex);
 }
 
++ (void)unRegisterClass:(Class)theClass {
+    pthread_mutex_lock(&gObjectionMutex);
+    NSString *key = NSStringFromClass(theClass);
+    if ([gObjectionContext objectForKey:key])
+        [gObjectionContext removeObjectForKey:key];
+    pthread_mutex_unlock(&gObjectionMutex);
+}
+
 + (void) reset {
     pthread_mutex_lock(&gObjectionMutex);
     [gObjectionContext removeAllObjects];
@@ -92,5 +100,17 @@ static JSObjectionInjector *gGlobalInjector;
 
 + (JSObjectionInjector *) defaultInjector {  
     return [[gGlobalInjector retain] autorelease];
+}
+
++ (void)dumpContext {
+    NSArray *keys = [gObjectionContext allKeys];
+    NSLog(@"JSObjection gContext (%u entries)::: ", keys.count);
+    for (NSString *key in keys)
+        NSLog(@"- %@ : %@", key, [gObjectionContext objectForKey:key]);
+    NSLog(@"JSObjection end:::");
+}
+
++ (BOOL)hasEntryForClass:(Class)aClass {
+    return [[gObjectionContext allKeys] containsObject:NSStringFromClass(aClass)];
 }
 @end
