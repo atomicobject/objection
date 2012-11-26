@@ -11,6 +11,7 @@
 + (JSObjectionInjector *)createInjector;
 + (void)unRegisterClass:(Class)theClass;
 + (void)registerClass:(Class)theClass lifeCycle:(JSObjectionInstantiationRule)lifeCycle;
++ (void)unRegisterClass:(Class)theClass;
 + (void)setDefaultInjector:(JSObjectionInjector *)anInjector;
 + (JSObjectionInjector *)defaultInjector;
 + (void)reset;
