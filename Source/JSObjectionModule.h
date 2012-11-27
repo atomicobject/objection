@@ -27,6 +27,7 @@
 - (void)registerEagerSingleton:(Class)aClass;
 - (void)configure:(JSObjectionInjector *)injector;
 
+- (void)unload;
 - (void)reset;
 
 @end

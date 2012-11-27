@@ -117,9 +117,13 @@
 - (void)configure:(JSObjectionInjector *)injector {
 }
 
+- (void)unload {
+}
+
 - (void)reset {
     [_bindings removeAllObjects];
     [_eagerSingletons removeAllObjects];
+    [self unload];
 }
 
 - (void)dealloc {

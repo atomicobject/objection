@@ -159,13 +159,14 @@
     JSObjectionModule *module = [_modules objectForKey:name];
     if (module) {
         [self unConfigureModule:module];
+        [module unload];
         [_modules removeObjectForKey:name];
     }
 }
 
 - (void)removeAllModules {
     for (NSString *moduleKey in [_modules allKeys])
-        [self removeModuleClass:NSClassFromString(moduleKey)];
+        [self removeModuleWithName:moduleKey];
 }
 
 - (BOOL)hasModuleClass:(Class)aClass {
