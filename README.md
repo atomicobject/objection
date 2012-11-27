@@ -74,7 +74,7 @@ A default injector can be registered with Objection which can be used throughout
 
 #### Subscripting
 
-Objection has support for the subscriptiong operator to retrieve objects from the injection context.
+Objection has support for the subscripting operator to retrieve objects from the injection context.
 
 ```objective-c
 - (void)someMethod {
