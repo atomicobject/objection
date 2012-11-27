@@ -13,20 +13,6 @@
 #import "JSObjectFactory.h"
 #import "JSObjection.h"
 
-#define objection_register(value)			\
-    + (void)initialize { \
-        if (self == [value class]) { \
-            [JSObjection registerClass:[value class] lifeCycle: JSObjectionInstantiationRuleNormal]; \
-        } \
-    }
-
-#define objection_register_singleton(value) \
-    + (void)initialize { \
-        if (self == [value class]) { \
-            [JSObjection registerClass:[value class] lifeCycle: JSObjectionInstantiationRuleSingleton]; \
-        } \
-    }
-
 #define objection_requires(args...) \
     + (NSSet *)objectionRequires { \
         NSSet *requirements = [NSSet setWithObjects: args, nil]; \

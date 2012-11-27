@@ -114,7 +114,7 @@
     [_bindings setObject:[JSObjectionInjectorEntry entryWithClass:aClass lifeCycle:JSObjectionInstantiationRuleSingleton] forKey:key];
 }
 
-- (void) configure {
+- (void)configure:(JSObjectionInjector *)injector {
 }
 
 - (void)reset {

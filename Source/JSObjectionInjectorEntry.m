@@ -12,7 +12,7 @@
 @implementation JSObjectionInjectorEntry
 @synthesize lifeCycle = _lifeCycle;
 @synthesize classEntry = _classEntry;
-@synthesize autoRegisteredClasses = _autoRegisteredClasses;
+@synthesize autoRegisteredModules = _autoRegisteredModules;
 
 
 
@@ -25,7 +25,7 @@
     _lifeCycle = theLifeCycle;
     _classEntry = theClass;
     _storageCache = nil;
-    _autoRegisteredClasses = [[NSMutableArray alloc] init];
+    _autoRegisteredModules = [[NSMutableArray alloc] init];
   }
 
   return self;
@@ -42,7 +42,7 @@
 - (void)dealloc
 {
   [_storageCache release]; _storageCache = nil;
-  [_autoRegisteredClasses release];
+  [_autoRegisteredModules release];
   [super dealloc];
 }
 
@@ -87,9 +87,12 @@
             id theObject = [self.injector getObject:desiredClassOrProtocol];
 
             if(theObject == nil && propertyInfo.type == JSObjectionTypeClass) {
-                [JSObjection registerClass:desiredClassOrProtocol lifeCycle: JSObjectionInstantiationRuleNormal];
+                JSObjectionModule *module = [[JSObjectionModule alloc] init];
+                [module bindClass:desiredClassOrProtocol toClass:desiredClassOrProtocol asSingleton:NO];
+                [_injector addModule:module withName:[NSString stringWithFormat:@"__autoRegisteredModule_%u", arc4random() % 10000000]];
+                [_autoRegisteredModules addObject:module];
+                [module release];
                 theObject = [_injector getObject:desiredClassOrProtocol];
-                [_autoRegisteredClasses addObject:desiredClassOrProtocol];
             } else if (!theObject) {
                 @throw [NSException exceptionWithName:@"JSObjectionException"
                                                reason:[NSString stringWithFormat:@"Cannot find an instance that is bound to the protocol '%@' to assign to the property '%@'", NSStringFromProtocol(desiredClassOrProtocol), propertyName]
