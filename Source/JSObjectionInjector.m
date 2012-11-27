@@ -108,7 +108,7 @@
 }
 
 - (void)configureModule:(JSObjectionModule *)module {
-    [module configure:nil];
+    [module configure:self];
     for (NSString *singleton in module.eagerSingletons)
         [_eagerSingletons addObject:singleton];
     [_context addEntriesFromDictionary:module.bindings];
