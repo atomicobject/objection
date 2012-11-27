@@ -265,7 +265,7 @@ Installation
 Download the latest [here](https://github.com/atomicobject/objection/downloads) __or__
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.13.1
+    git checkout 0.13.2
     
 ### iOS
 
@@ -303,6 +303,11 @@ Authors
 * Justin DeWind (dewind@atomicobject.com, @dewind on Twitter)
 * © 2009-2012 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
+
+Other Dependency Injection Libraries
+==================================
+
+One only has to [search GitHub](https://github.com/search?l=Objective-C&p=1&q=dependency+injection&repo=&type=Repositories)
 
 Applications that use Objection
 ===============================
