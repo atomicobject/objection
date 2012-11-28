@@ -108,6 +108,10 @@
     [_bindings setObject:entry forKey:key];    
 }
 
+- (void)registerSingleton:(Class)aClass {
+    [self bindClass:aClass toClass:aClass asSingleton:YES];
+}
+
 - (void)registerEagerSingleton:(Class)aClass {
     NSString *key = NSStringFromClass(aClass);
     [_eagerSingletons addObject:key];

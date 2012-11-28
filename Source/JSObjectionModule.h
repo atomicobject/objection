@@ -24,7 +24,10 @@
 - (void)bindClass:(Class)aClass toClass:(Class)toClass asSingleton:(BOOL)singleton;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol;
+
+- (void)registerSingleton:(Class)aClass;
 - (void)registerEagerSingleton:(Class)aClass;
+
 - (void)configure:(JSObjectionInjector *)injector;
 
 - (void)unload;
