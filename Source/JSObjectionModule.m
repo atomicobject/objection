@@ -3,6 +3,7 @@
 #import "JSObjectionProviderEntry.h"
 #import <objc/runtime.h>
 #import "JSObjectionInjector.h"
+#import "Objection.h"
 
 @interface __JSClassProvider : NSObject<JSObjectionProvider>
 {
@@ -79,20 +80,21 @@
     [_bindings setObject:entry forKey:key];  
 }
 
-- (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol {
+- (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol asSingleton:(BOOL)singleton {
     NSString *key = [self protocolKey:aProtocol];
     __JSClassProvider *provider = [[[__JSClassProvider alloc] initWithClass:aClass] autorelease];
     JSObjectionProviderEntry *entry = [[[JSObjectionProviderEntry alloc] initWithProvider:provider] autorelease];
-    [_bindings setObject:entry forKey:key];  
+    [_bindings setObject:entry forKey:key];
+    [_bindings setObject:[JSObjectionInjectorEntry entryWithClass:aClass lifeCycle:singleton ? JSObjectionInstantiationRuleSingleton : JSObjectionInstantiationRuleNormal] forKey:NSStringFromClass(aClass)];
 }
 
-- (void)bindClass:(Class)aClass toClass:(Class)toClass {
+- (void)bindClass:(Class)aClass toClass:(Class)toClass asSingleton:(BOOL)singleton {
     NSString *key = NSStringFromClass(toClass);
     __JSClassProvider *provider = [[[__JSClassProvider alloc] initWithClass:aClass] autorelease];
     JSObjectionProviderEntry *entry = [[[JSObjectionProviderEntry alloc] initWithProvider:provider] autorelease];
-    [_bindings setObject:entry forKey:key];    
+    [_bindings setObject:entry forKey:key];
+    [_bindings setObject:[JSObjectionInjectorEntry entryWithClass:aClass lifeCycle:singleton ? JSObjectionInstantiationRuleSingleton : JSObjectionInstantiationRuleNormal] forKey:NSStringFromClass(aClass)];
 }
-
 
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass {
     NSString *key = NSStringFromClass(aClass);
@@ -106,11 +108,26 @@
     [_bindings setObject:entry forKey:key];    
 }
 
-- (void) registerEagerSingleton:(Class)klass  {
-    [_eagerSingletons addObject:NSStringFromClass(klass)];
+- (void)registerSingleton:(Class)aClass {
+    [self bindClass:aClass toClass:aClass asSingleton:YES];
 }
 
-- (void) configure {
+- (void)registerEagerSingleton:(Class)aClass {
+    NSString *key = NSStringFromClass(aClass);
+    [_eagerSingletons addObject:key];
+    [_bindings setObject:[JSObjectionInjectorEntry entryWithClass:aClass lifeCycle:JSObjectionInstantiationRuleSingleton] forKey:key];
+}
+
+- (void)configure:(JSObjectionInjector *)injector {
+}
+
+- (void)unload {
+}
+
+- (void)reset {
+    [_bindings removeAllObjects];
+    [_eagerSingletons removeAllObjects];
+    [self unload];
 }
 
 - (void)dealloc {

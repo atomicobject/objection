@@ -20,10 +20,17 @@
 - (void)bindMetaClass:(Class)metaClass toProtocol:(Protocol *)aProtocol;
 - (void)bindProvider:(id<JSObjectionProvider>)provider toClass:(Class)aClass;
 - (void)bindProvider:(id<JSObjectionProvider>)provider toProtocol:(Protocol *)aProtocol;
-- (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol;
-- (void)bindClass:(Class)aClass toClass:(Class)toClass;
+- (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol asSingleton:(BOOL)singleton;
+- (void)bindClass:(Class)aClass toClass:(Class)toClass asSingleton:(BOOL)singleton;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol;
-- (void)registerEagerSingleton:(Class)klass;
-- (void)configure;
+
+- (void)registerSingleton:(Class)aClass;
+- (void)registerEagerSingleton:(Class)aClass;
+
+- (void)configure:(JSObjectionInjector *)injector;
+
+- (void)unload;
+- (void)reset;
+
 @end

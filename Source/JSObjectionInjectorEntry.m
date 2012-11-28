@@ -9,36 +9,40 @@
 - (SEL)initializerForObject;
 @end
 
-
 @implementation JSObjectionInjectorEntry
-@synthesize lifeCycle = _lifeCycle; 
+@synthesize lifeCycle = _lifeCycle;
 @synthesize classEntry = _classEntry;
+@synthesize autoRegisteredModules = _autoRegisteredModules;
+
+
 
 #pragma mark Instance Methods
 #pragma mark -
 
-- (id)initWithClass:(Class)theClass lifeCycle:(JSObjectionInstantiationRule)theLifeCycle 
+- (id)initWithClass:(Class)theClass lifeCycle:(JSObjectionInstantiationRule)theLifeCycle
 {
   if ((self = [super init])) {
     _lifeCycle = theLifeCycle;
     _classEntry = theClass;
     _storageCache = nil;
+    _autoRegisteredModules = [[NSMutableArray alloc] init];
   }
-  
+
   return self;
 }
 
 - (id)extractObject:(NSArray *)arguments {
   if (self.lifeCycle == JSObjectionInstantiationRuleNormal || !_storageCache) {
-      return [self buildObject:arguments];  
+      return [self buildObject:arguments];
   }
-  
+
   return _storageCache;
 }
 
-- (void)dealloc 
+- (void)dealloc
 {
   [_storageCache release]; _storageCache = nil;
+  [_autoRegisteredModules release];
   [super dealloc];
 }
 
@@ -53,8 +57,8 @@
 }
 
 - (id)buildObject:(NSArray *)arguments {
-    
-    id objectUnderConstruction = nil;    
+
+    id objectUnderConstruction = nil;
     if ([self.classEntry respondsToSelector:@selector(objectionInitializer)]) {
         objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
     } else {
@@ -77,23 +81,27 @@
             // Using +load would force all registered classes to be initialized so we are
             // lazily initializing them.
             if (propertyInfo.type == JSObjectionTypeClass) {
-                [desiredClassOrProtocol class];        
+                [desiredClassOrProtocol class];
             }
 
             id theObject = [self.injector getObject:desiredClassOrProtocol];
 
             if(theObject == nil && propertyInfo.type == JSObjectionTypeClass) {
-                [JSObjection registerClass:desiredClassOrProtocol lifeCycle: JSObjectionInstantiationRuleNormal];
+                JSObjectionModule *module = [[JSObjectionModule alloc] init];
+                [module bindClass:desiredClassOrProtocol toClass:desiredClassOrProtocol asSingleton:NO];
+                [_injector addModule:module withName:[NSString stringWithFormat:@"__autoRegisteredModule_%u", arc4random() % 10000000]];
+                [_autoRegisteredModules addObject:module];
+                [module release];
                 theObject = [_injector getObject:desiredClassOrProtocol];
             } else if (!theObject) {
-                @throw [NSException exceptionWithName:@"JSObjectionException" 
-                                               reason:[NSString stringWithFormat:@"Cannot find an instance that is bound to the protocol '%@' to assign to the property '%@'", NSStringFromProtocol(desiredClassOrProtocol), propertyName] 
+                @throw [NSException exceptionWithName:@"JSObjectionException"
+                                               reason:[NSString stringWithFormat:@"Cannot find an instance that is bound to the protocol '%@' to assign to the property '%@'", NSStringFromProtocol(desiredClassOrProtocol), propertyName]
                                              userInfo:nil];
             }
-            
-            [propertiesDictionary setObject:theObject forKey:propertyName];      
+
+            [propertiesDictionary setObject:theObject forKey:propertyName];
         }
-        
+
         [objectUnderConstruction setValuesForKeysWithDictionary:propertiesDictionary];
     }
 
@@ -117,6 +125,6 @@
 }
 
 + (id)entryWithEntry:(JSObjectionInjectorEntry *)entry {
-    return [[[JSObjectionInjectorEntry alloc] initWithClass:entry.classEntry lifeCycle:entry.lifeCycle] autorelease];  
+    return [[[JSObjectionInjectorEntry alloc] initWithClass:entry.classEntry lifeCycle:entry.lifeCycle] autorelease];
 }
 @end
