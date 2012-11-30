@@ -243,6 +243,8 @@
 		4BA6DD1F12AAB3CD00CFFD70 /* JSObjectionInjectorEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* JSObjectionInjectorEntry.h */; };
 		4BA6DD2012AAB3CD00CFFD70 /* JSObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* JSObjectionInjector.h */; };
 		4BA6DD2112AAB3CD00CFFD70 /* JSObjectionBindingEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* JSObjectionBindingEntry.h */; };
+		4BB07D751668679A00D9BA1E /* AddAndRemoveModulesSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB07D741668679A00D9BA1E /* AddAndRemoveModulesSpecs.m */; };
+		4BB07D761668679A00D9BA1E /* AddAndRemoveModulesSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB07D741668679A00D9BA1E /* AddAndRemoveModulesSpecs.m */; };
 		4BE78760145647EF00BD705E /* JSObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE7875E145647EF00BD705E /* JSObjectFactory.h */; };
 		4BE78761145647EF00BD705E /* JSObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE7875E145647EF00BD705E /* JSObjectFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BE78762145647EF00BD705E /* JSObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7875F145647EF00BD705E /* JSObjectFactory.m */; };
@@ -480,6 +482,7 @@
 		4B9D310213DF613500C81C45 /* JSObjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjection.m; sourceTree = "<group>"; };
 		4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
 		4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = Vendor/OCHamcrest.framework; sourceTree = "<group>"; };
+		4BB07D741668679A00D9BA1E /* AddAndRemoveModulesSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAndRemoveModulesSpecs.m; sourceTree = "<group>"; };
 		4BE7875E145647EF00BD705E /* JSObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectFactory.h; sourceTree = "<group>"; };
 		4BE7875F145647EF00BD705E /* JSObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjectFactory.m; sourceTree = "<group>"; };
 		4BED511612AA8B7A00CA6B36 /* Objection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Objection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -823,16 +826,17 @@
 		4BF45123129197F3006EB2D5 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				D2AAC07E0554694100DB5192 /* CircularDependencySpecs.m */,
 				4B42587C13F56EA3006BC001 /* Specs-OSX */,
 				4B42580C13F56CC0006BC001 /* Specs-iOS */,
 				4B42571213F5665C006BC001 /* Kiwi */,
 				4BF452461291AFEA006EB2D5 /* Helpers */,
+				D2AAC07E0554694100DB5192 /* CircularDependencySpecs.m */,
 				4BF4516B129199AF006EB2D5 /* BasicUsageSpecs.m */,
 				4BF451E21291AD28006EB2D5 /* InjectionErrorsSpecs.m */,
 				4B7300D712AA8F3400903427 /* InheritanceSpecs.m */,
 				4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */,
 				4B4289301567F3EC004F73D3 /* InitializerSpecs.m */,
+				4BB07D741668679A00D9BA1E /* AddAndRemoveModulesSpecs.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -1179,6 +1183,7 @@
 				D2AAC07E0554694100DB5196 /* CircularDependencyFixtures.m in Sources */,
 				4B4289311567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
 				4B428935156806E6004F73D3 /* InitializerFixtures.m in Sources */,
+				4BB07D751668679A00D9BA1E /* AddAndRemoveModulesSpecs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1275,6 +1280,7 @@
 				D2AAC07E0554694100DB5197 /* CircularDependencyFixtures.m in Sources */,
 				4B4289321567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
 				4B428936156806E6004F73D3 /* InitializerFixtures.m in Sources */,
+				4BB07D761668679A00D9BA1E /* AddAndRemoveModulesSpecs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

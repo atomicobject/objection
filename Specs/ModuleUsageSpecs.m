@@ -10,6 +10,7 @@ beforeEach(^{
     id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
 
     module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
+    gEagerSingletonHook = NO;
     JSObjectionInjector *injector = [JSObjection createInjector:module];
     [JSObjection setDefaultInjector:injector];
 });

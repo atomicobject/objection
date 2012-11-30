@@ -43,6 +43,7 @@
     if ((self = [super init])) {
         _globalContext = [theGlobalContext retain];
         _context = [[NSMutableDictionary alloc] init];
+        _modules = [[NSMutableArray alloc] init];
         [self configureDefaultModule];
         [self initializeEagerSingletons];
     }
@@ -58,9 +59,9 @@
     return self;
 }
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)modules {
+- (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules {
     if ((self = [self initWithContext:theGlobalContext])) {
-        for (JSObjectionModule *module in modules) {
+        for (JSObjectionModule *module in theModules) {
             [self configureModule:module];      
         }
         [self initializeEagerSingletons];
@@ -123,6 +124,66 @@
 
 }
 
+- (id)withModule:(JSObjectionModule *)theModule {
+    return [self withModuleCollection:[NSArray arrayWithObject:theModule]];    
+}
+
+- (id)withModules:(JSObjectionModule *)first, ... {
+    va_list va_modules;
+    NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+    
+    JSObjectionModule *module;
+    while ((module = va_arg( va_modules, JSObjectionModule *) )) {
+        [modules addObject:module];
+    }
+    
+    va_end(va_modules);
+    return [self withModuleCollection:modules];
+   
+}
+
+- (id)withModuleCollection:(NSArray *)theModules {
+    NSMutableArray *mergedModules = [NSMutableArray arrayWithArray:_modules];
+    [mergedModules addObjectsFromArray:theModules];
+    return [[[self class] alloc] initWithContext:_globalContext andModules:mergedModules];
+}
+
+- (id)withoutModuleOfType:(Class)moduleClass {
+    return [self withoutModuleCollection:[NSArray arrayWithObject:moduleClass]];
+}
+
+- (id)withoutModuleOfTypes:(Class)first, ... {
+    va_list va_modules;
+    NSMutableArray *classes = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+    
+    Class aClass;
+    while ((aClass = va_arg( va_modules, Class) )) {
+        [classes addObject:aClass];
+    }
+    
+    va_end(va_modules);
+    return [self withoutModuleCollection:classes];
+
+}
+
+- (id)withoutModuleCollection:(NSArray *)moduleClasses {
+    NSMutableArray *remainingModules = [NSMutableArray arrayWithArray:_modules];
+    NSMutableArray *withDefaultModule = [NSMutableArray arrayWithArray:moduleClasses];
+    [withDefaultModule addObject:[__JSObjectionInjectorDefaultModule class]];
+    for (JSObjectionModule *module in _modules) {
+        for (Class moduleClass in withDefaultModule) {
+            if([module isKindOfClass:moduleClass]) {
+                [remainingModules removeObject:module];
+            }
+        }
+    }
+    NSLog(@"Hello: %@", remainingModules);
+    return [[[self class] alloc] initWithContext:_globalContext andModules:remainingModules];
+}
+
+
 
 #pragma mark - Private
 
@@ -140,6 +201,7 @@
 }
 
 - (void)configureModule:(JSObjectionModule *)module {
+    [_modules addObject:module];
     [module configure];
     NSSet *mergedSet = [module.eagerSingletons setByAddingObjectsFromSet:_eagerSingletons];
     [_eagerSingletons release];
