@@ -304,6 +304,13 @@ Authors
 * © 2009-2012 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
 
+Contributors
+============
+
+* Simon Schmid (@sschmid)
+* Mattes Groeger (@MattesGroeger)
+* Shawn Anderson (@shawn42)
+
 Other Dependency Injection Libraries
 ==================================
 
