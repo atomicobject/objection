@@ -72,6 +72,19 @@ A default injector can be registered with Objection which can be used throughout
 }
 ```
 
+#### Injecting dependencies
+
+There may be instances where an object is allocated outside of the injector's life cycle. If the object's class declared its dependencies using *objection_requires* an injector can satisfy its dependcies via the *injectDependencies:* method.
+
+```objective-c
+@implementation JSTableModel
+objection_requires(@"RESTClient")
+- (void)awakeFromNib {
+  [[JSObjection defaultInjector] injectDependencies:self];
+}
+@end
+```
+
 #### Subscripting
 
 Objection has support for the subscripting operator to retrieve objects from the injection context.
