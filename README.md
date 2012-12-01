@@ -111,6 +111,7 @@ objection_register_singleton(Car)
   }
 @end  
 ```  
+
 ### Object Factory
 
 A class can get objects from the injector context through an object factory.
@@ -130,7 +131,7 @@ A class can get objects from the injector context through an object factory.
 }
 @end
 ```
-### Modules
+## Modules
 
 A module is a set of bindings which contributes additional configuration information to the injector. It is especially useful for integrating external depencies and binding protocols to classes or instances.
 
@@ -233,7 +234,20 @@ You can mark registered singleton classes as eager singletons. Eager singletons 
 @end
 ```  
 
-### Initializers
+### Deriving a new injector from an existing injector
+
+A new injector can be created from an existing injector using the *withModule:* method. A new injector will be created containing the same bindings as the injector it was derived from. The new injector will also contain additional bindings provided by the new module. 
+
+Conversley, if *withoutModuleOfType:* is used the new injector will _not_ contain the bindings of the removed module.
+
+### Example
+```objective-c
+injector = [otherInjector withModule:[[Level18Module alloc] init]] 
+                          withoutModuleOfType:[Level17Module class]];
+                          
+```
+
+## Initializers
 
 By default, Objection allocates objects with the default initializer <code>init</code>. If you'd like to instantiate an object with an alternate ininitializer the <code>objection_initializer</code> macro can be used to do so. The macro supports passing in default arguments (scalar values are not currently supported) as well.
       
