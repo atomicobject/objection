@@ -1,10 +1,8 @@
-Description
-===========
+## Description
 
 Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used Guice objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.
 
-Features
-==============
+## Features
 
 * "Annotation" Based Dependency Injection
 * Seamless support for integrating custom and external dependencies
@@ -17,8 +15,7 @@ Features
 * Initializer Support
   * Default and custom arguments
 
-Using Objection
-========
+## Using Objection
 
 For questions, visit the [mailing list](https://groups.google.com/forum/?fromgroups#!forum/objection-framework)
 ### Basic Usage
@@ -287,8 +284,7 @@ objection_initializer(initWithMake:model:)
 * Pass along arguments to providers
 * Add a motivation section that speaks to _why_ Objection was created
 
-Installation
-=======
+## Installation
 
 Download the latest [here](https://github.com/atomicobject/objection/downloads) __or__
 
@@ -328,33 +324,28 @@ Now you can install Objection
 
 Learn more at [CocoaPods](http://cocoapods.org).
 
-Requirements
-============
+## Requirements
 
 * MacOS X 10.6 +
 * iOS 4.0 +
 
-Authors
-=======
+## Authors
 
 * Justin DeWind (dewind@atomicobject.com, @dewind on Twitter)
 * © 2009-2012 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
 
-Contributors
-============
+## Contributors
 
 * Simon Schmid (@sschmid)
 * Mattes Groeger (@MattesGroeger)
 * Shawn Anderson (@shawn42)
 
-Other Dependency Injection Libraries
-==================================
+## Other Dependency Injection Libraries
 
 One only has to [search GitHub](https://github.com/search?l=Objective-C&p=1&q=dependency+injection&repo=&type=Repositories)
 
-Applications that use Objection
-===============================
+## Applications that use Objection
 
 * [Bubble Island](http://www.wooga.com/games/bubble-island/) and other [Wooga](http://wooga.com) games
 * [SideReel](https://itunes.apple.com/us/app/sidereel/id417270961?mt=8)
