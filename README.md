@@ -315,9 +315,18 @@ Download the latest [here](https://github.com/atomicobject/objection/downloads) 
 #### Include framework
     #import <Objection/Objection.h>
 
-### Installation Notes
+### CocoaPods
 
-* There is a glitch in XCode that will cause header files to not be copied properly. So, if you are building the iOS target you may have to run the build process a couple of times to get all of the proper header files copied.
+Edit your Pofile
+
+    edit Podfile
+    pod 'Objection', '0.14.0'
+
+Now you can install Objection
+    
+    pod install
+
+Learn more at [CocoaPods](http://cocoapods.org).
 
 Requirements
 ============
