@@ -130,9 +130,9 @@ A class can get objects from the injector context through an object factory.
 }
 @end
 ```
-### Integrating external dependencies
+### Modules
 
-Objection supports associating an object outside the context of Objection by configuring an JSObjectionModule.
+A module is a set of bindings which contributes additional configuration information to the injector. It is especially useful for integrating external depencies and binding protocols to classes or instances.
 
 #### Instance and Protocol Bindings
 
