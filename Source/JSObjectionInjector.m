@@ -186,11 +186,13 @@
             }
         }
     }
-    NSLog(@"Hello: %@", remainingModules);
     return [[[self class] alloc] initWithContext:_globalContext andModules:remainingModules];
 }
 
 
+- (void)injectDependencies:(id)object {
+    JSObjectionUtils.injectDependenciesIntoProperties(self, [object class], object);
+}
 
 #pragma mark - Private
 

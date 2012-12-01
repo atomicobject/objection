@@ -33,6 +33,21 @@ it(@"correctly builds and object with dependencies", ^{
       assertThat(car.brakes, is(instanceOf([Brakes class])));
 });
 
+it(@"will inject dependencies into properties of an existing instance", ^{
+    Car *car = [[[Car alloc] init] autorelease];
+    
+    assertThat(car.engine, is(nilValue()));
+    assertThat(car.brakes, is(nilValue()));
+
+    [[JSObjection defaultInjector] injectDependencies:car];
+
+    assertThat(car.engine, isNot(nilValue()));
+    assertThat(car.engine, is(instanceOf([Engine class])));
+    
+    assertThat(car.brakes, isNot(nilValue()));
+    assertThat(car.brakes, is(instanceOf([Brakes class])));
+});
+
 it(@"defaults to returning a new instance", ^{
       id thomas = [[JSObjection defaultInjector] getObject:[Engine class]];
       id gordan = [[JSObjection defaultInjector] getObject:[Engine class]];
