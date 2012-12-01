@@ -14,6 +14,8 @@ typedef struct objection_property_info {
     JSObjectionType type;
 } JSObjectionPropertyInfo;
 
+@class JSObjectionInjector;
+
 extern const struct JSObjectionUtils {
     JSObjectionPropertyInfo (*findClassOrProtocolForProperty)(objc_property_t property);
     objc_property_t (*propertyForClass)(Class klass, NSString *propertyName);
@@ -21,4 +23,5 @@ extern const struct JSObjectionUtils {
     NSDictionary* (*buildInitializer)(SEL selector, NSArray *arguments);
     NSArray* (*transformVariadicArgsToArray)(va_list va_arguments);
     id (*buildObjectWithInitializer)(Class klass, SEL initializer, NSArray *arguments);
+    void (*injectDependenciesIntoProperties)(JSObjectionInjector *injector, Class klass, id object);
 } JSObjectionUtils;

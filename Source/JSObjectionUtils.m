@@ -1,5 +1,7 @@
 #import <objc/runtime.h>
 #import "JSObjectionUtils.h"
+#import "JSObjectionInjector.h"
+#import "JSObjection.h"
 
 static NSString *const JSObjectionException = @"JSObjectionException";
 
@@ -103,11 +105,45 @@ static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *argu
     return nil;
 }
 
+static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Class klass, id object) {    
+    if ([klass respondsToSelector:@selector(objectionRequires)]) {
+        NSArray *properties = [klass performSelector:@selector(objectionRequires)];
+        NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
+        
+        for (NSString *propertyName in properties) {
+            objc_property_t property = JSObjectionUtils.propertyForClass(klass, propertyName);
+            JSObjectionPropertyInfo propertyInfo = JSObjectionUtils.findClassOrProtocolForProperty(property);
+            id desiredClassOrProtocol = propertyInfo.value;
+            // Ensure that the class is initialized before attempting to retrieve it.
+            // Using +load would force all registered classes to be initialized so we are
+            // lazily initializing them.
+            if (propertyInfo.type == JSObjectionTypeClass) {
+                [desiredClassOrProtocol class];
+            }
+            
+            id theObject = [injector getObject:desiredClassOrProtocol];
+            
+            // TODO: Refactor and remove this. An injector should auto register it.
+
+            if(theObject == nil && propertyInfo.type == JSObjectionTypeProtocol) {
+                @throw [NSException exceptionWithName:@"JSObjectionException"
+                                               reason:[NSString stringWithFormat:@"Cannot find an instance that is bound to the protocol '%@' to assign to the property '%@'", NSStringFromProtocol(desiredClassOrProtocol), propertyName]
+                                             userInfo:nil];
+            }
+            
+            [propertiesDictionary setObject:theObject forKey:propertyName];
+        }
+        
+        [object setValuesForKeysWithDictionary:propertiesDictionary];
+    }
+}
+
 const struct JSObjectionUtils JSObjectionUtils = {
     .findClassOrProtocolForProperty = FindClassOrProtocolForProperty,
     .propertyForClass = GetProperty,
     .buildDependenciesForClass = BuildDependenciesForClass,
     .buildInitializer = BuildInitializer,
     .transformVariadicArgsToArray = TransformVariadicArgsToArray,
-    .buildObjectWithInitializer = BuildObjectWithInitializer
+    .buildObjectWithInitializer = BuildObjectWithInitializer,
+    .injectDependenciesIntoProperties = InjectDependenciesIntoProperties
 };

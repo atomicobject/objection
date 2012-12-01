@@ -2,6 +2,7 @@
 #import "JSObjectionEntry.h"
 #import "JSObjectFactory.h"
 #import "JSObjectionUtils.h"
+#import "JSObjectionInjectorEntry.h"
 
 #import <pthread.h>
 #import <objc/runtime.h>
@@ -78,10 +79,6 @@
     return object;
 }
 
-- (id)objectForKeyedSubscript: (id)key {
-    return [self getObjectWithArgs:key, nil];
-}
-
 - (id)getObject:(id)classOrProtocol {
     return [self getObjectWithArgs:classOrProtocol, nil];
 }
@@ -93,7 +90,9 @@
         }
         
         NSString *key = nil;
-        if (class_isMetaClass(object_getClass(classOrProtocol))) {
+        BOOL isClass = class_isMetaClass(object_getClass(classOrProtocol));
+        
+        if (isClass) {
             key = NSStringFromClass(classOrProtocol);
         } else {
             key = [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(classOrProtocol)];
@@ -109,6 +108,9 @@
                 injectorEntry = [[entry class] entryWithEntry:entry];
                 injectorEntry.injector = self;
                 [_context setObject:injectorEntry forKey:key];              
+            } else if(isClass) {
+                injectorEntry = [[[JSObjectionInjectorEntry alloc] initWithClass:classOrProtocol lifeCycle:JSObjectionInstantiationRuleNormal] autorelease];
+                [_context setObject:injectorEntry forKey:key];
             }
         }
         
@@ -123,6 +125,11 @@
     return nil;
 
 }
+
+- (id)objectForKeyedSubscript: (id)key {
+    return [self getObjectWithArgs:key, nil];
+}
+
 
 - (id)withModule:(JSObjectionModule *)theModule {
     return [self withModuleCollection:[NSArray arrayWithObject:theModule]];    

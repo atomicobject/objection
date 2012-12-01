@@ -64,38 +64,8 @@
     if (self.lifeCycle == JSObjectionInstantiationRuleSingleton) {
         _storageCache = [objectUnderConstruction retain];
     }
-
-    if ([self.classEntry respondsToSelector:@selector(objectionRequires)]) {
-      NSArray *properties = [self.classEntry performSelector:@selector(objectionRequires)];
-      NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
-
-        for (NSString *propertyName in properties) {
-            objc_property_t property = JSObjectionUtils.propertyForClass(self.classEntry, propertyName);
-            JSObjectionPropertyInfo propertyInfo = JSObjectionUtils.findClassOrProtocolForProperty(property);
-            id desiredClassOrProtocol = propertyInfo.value;
-            // Ensure that the class is initialized before attempting to retrieve it.
-            // Using +load would force all registered classes to be initialized so we are
-            // lazily initializing them.
-            if (propertyInfo.type == JSObjectionTypeClass) {
-                [desiredClassOrProtocol class];        
-            }
-
-            id theObject = [self.injector getObject:desiredClassOrProtocol];
-
-            if(theObject == nil && propertyInfo.type == JSObjectionTypeClass) {
-                [JSObjection registerClass:desiredClassOrProtocol lifeCycle: JSObjectionInstantiationRuleNormal];
-                theObject = [_injector getObject:desiredClassOrProtocol];
-            } else if (!theObject) {
-                @throw [NSException exceptionWithName:@"JSObjectionException" 
-                                               reason:[NSString stringWithFormat:@"Cannot find an instance that is bound to the protocol '%@' to assign to the property '%@'", NSStringFromProtocol(desiredClassOrProtocol), propertyName] 
-                                             userInfo:nil];
-            }
-            
-            [propertiesDictionary setObject:theObject forKey:propertyName];      
-        }
-        
-        [objectUnderConstruction setValuesForKeysWithDictionary:propertiesDictionary];
-    }
+    
+    JSObjectionUtils.injectDependenciesIntoProperties(self.injector, self.classEntry, objectUnderConstruction);
 
     [self notifyObjectThatItIsReady: objectUnderConstruction];
     return objectUnderConstruction;

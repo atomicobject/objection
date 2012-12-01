@@ -15,10 +15,10 @@ it(@"correctly builds a registered object", ^{
       assertThat(engine, isNot(nilValue()));
 });
 
-it(@"returns nil for a non-registered object", ^{
+it(@"will auto register a class if it is not explicitly registered", ^{
       Class newClass = objc_allocateClassPair([NSObject class], "MyFooClass", 0);
       objc_registerClassPair(newClass);
-      assertThat([[JSObjection defaultInjector] getObject:newClass], is(nilValue()));
+      assertThat([[JSObjection defaultInjector] getObject:newClass], is(notNilValue()));
 });
 
 it(@"correctly builds and object with dependencies", ^{
