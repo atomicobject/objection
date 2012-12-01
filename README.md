@@ -98,19 +98,6 @@ objection_register_singleton(Car)
   }
 @end  
 ```  
-### Eager Singletons
-
-You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
-
-### Example
-```objective-c
-@implementation MyAppModule
-- (void)configure {
-  [self registerEagerSingleton:[Car class]];
-}
-
-@end
-```  
 ### Object Factory
 
 A class can get objects from the injector context through an object factory.
@@ -219,7 +206,21 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 @end
 ```
 
-#### Initializers
+### Eager Singletons
+
+You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
+
+### Example
+```objective-c
+@implementation MyAppModule
+- (void)configure {
+  [self registerEagerSingleton:[Car class]];
+}
+
+@end
+```  
+
+### Initializers
 
 By default, Objection allocates objects with the default initializer <code>init</code>. If you'd like to instantiate an object with an alternate ininitializer the <code>objection_initializer</code> macro can be used to do so. The macro supports passing in default arguments (scalar values are not currently supported) as well.
       
