@@ -279,7 +279,6 @@ objection_initializer(initWithMake:model:)
 
 ## TODO
 
-* Add subscript support to injectors
 * ARCify for iOS
 * Pass along arguments to providers
 * Add a motivation section that speaks to _why_ Objection was created
