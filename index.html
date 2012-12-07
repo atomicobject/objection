@@ -1,0 +1,419 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Objection by atomicobject</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Objection</h1>
+        <p>A lightweight dependency injection framework for Objective-C</p>
+
+        <p class="view"><a href="https://github.com/atomicobject/objection">View the Project on GitHub <small>atomicobject/objection</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/atomicobject/objection/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/atomicobject/objection/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/atomicobject/objection">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Description</h2>
+
+<p>Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used Guice objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.</p>
+
+<h2>Features</h2>
+
+<ul>
+<li>"Annotation" Based Dependency Injection</li>
+<li>Seamless support for integrating custom and external dependencies
+
+<ul>
+<li>Custom Object Providers</li>
+<li>Meta Class Bindings</li>
+<li>Protocol Bindings</li>
+<li>Instance Bindings</li>
+</ul>
+</li>
+<li>Lazily instantiates dependencies</li>
+<li>Eager Singletons</li>
+<li>Initializer Support
+
+<ul>
+<li>Default and custom arguments</li>
+</ul>
+</li>
+</ul><h2>Using Objection</h2>
+
+<p>For questions, visit the <a href="https://groups.google.com/forum/?fromgroups#!forum/objection-framework">mailing list</a></p>
+
+<h3>Basic Usage</h3>
+
+<p>A class can be registered with objection using the macros <em>objection_register</em> or <em>objection_register_singleton</em>. The <em>objection_requires</em> macro can be used to declare what dependencies objection should provide to all instances it creates of that class. <em>objection_requires</em> can be used safely with inheritance.</p>
+
+<h4>Example</h4>
+
+<div class="highlight"><pre><span class="k">@class</span> <span class="nc">Engine</span>, <span class="nc">Brakes</span>;
+
+<span class="k">@interface</span> <span class="nc">Car</span> : <span class="nc">NSObject</span>
+<span class="p">{</span>
+  <span class="n">Engine</span> <span class="o">*</span><span class="n">engine</span><span class="p">;</span>
+  <span class="n">Brakes</span> <span class="o">*</span><span class="n">brakes</span><span class="p">;</span>
+  <span class="kt">BOOL</span> <span class="n">awake</span><span class="p">;</span>  
+<span class="p">}</span>
+
+<span class="c1">// Will be filled in by objection</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">Engine</span> <span class="o">*</span><span class="n">engine</span><span class="p">;</span>
+<span class="c1">// Will be filled in by objection</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">Brakes</span> <span class="o">*</span><span class="n">brakes</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="kt">BOOL</span> <span class="n">awake</span><span class="p">;</span>
+
+<span class="k">@implementation</span> <span class="nc">Car</span>
+<span class="n">objection_register</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span>
+<span class="n">objection_requires</span><span class="p">(</span><span class="s">@"engine"</span><span class="p">,</span> <span class="s">@"brakes"</span><span class="p">)</span>
+<span class="k">@synthesize</span> <span class="n">engine</span><span class="p">,</span> <span class="n">brakes</span><span class="p">,</span> <span class="n">awake</span><span class="p">;</span>
+<span class="k">@end</span>
+</pre></div>
+
+<h3>Fetching Objects from Objection</h3>
+
+<p>An object can be fetched from objection by creating an injector and then asking for an instance of a particular class or protocol. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a <em>true</em> singleton.</p>
+
+<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someMethod</span> <span class="p">{</span>
+  <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="p">];</span>
+  <span class="kt">id</span> <span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">injector</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>A default injector can be registered with Objection which can be used throughout your application or library.</p>
+
+<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>    
+  <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="p">];</span>
+  <span class="p">[</span><span class="n">JSObjection</span> <span class="nl">setDefaultInjector:</span><span class="n">injector</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+  <span class="kt">id</span> <span class="n">myModel</span> <span class="o">=</span> <span class="p">[[</span><span class="n">JSObjection</span> <span class="n">defaultInjector</span><span class="p">]</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">MyModel</span> <span class="n">class</span><span class="p">]];</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4>Injecting dependencies</h4>
+
+<p>There may be instances where an object is allocated outside of the injector's life cycle. If the object's class declared its dependencies using <em>objection_requires</em> an injector can satisfy its dependcies via the <em>injectDependencies:</em> method.</p>
+
+<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">JSTableModel</span>
+<span class="n">objection_requires</span><span class="p">(</span><span class="s">@"RESTClient"</span><span class="p">)</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">awakeFromNib</span> <span class="p">{</span>
+  <span class="p">[[</span><span class="n">JSObjection</span> <span class="n">defaultInjector</span><span class="p">]</span> <span class="nl">injectDependencies:</span><span class="n">self</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+
+<h4>Subscripting</h4>
+
+<p>Objection has support for the subscripting operator to retrieve objects from the injection context.</p>
+
+<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someMethod</span> <span class="p">{</span>
+  <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="p">];</span>
+  <span class="kt">id</span> <span class="n">car</span> <span class="o">=</span> <span class="n">injector</span><span class="p">[[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>Awaking from Objection</h3>
+
+<p>If an object is interested in knowing when it has been fully instantiated by objection it can implement the method
+<em>awakeFromObjection</em>.</p>
+
+<h4>Example</h4>
+
+<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">Car</span>
+<span class="c1">//...</span>
+<span class="n">objection_register_singleton</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span>
+  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">awakeFromObjection</span> <span class="p">{</span>
+    <span class="n">awake</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="k">@end</span>  
+</pre></div>
+
+<h3>Object Factory</h3>
+
+<p>A class can get objects from the injector context through an object factory.</p>
+
+<h3>Example</h3>
+
+<div class="highlight"><pre><span class="k">@interface</span> <span class="nc">RequestDispatcher</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">JSObjectFactory</span> <span class="o">*</span><span class="n">objectFactory</span>
+<span class="k">@end</span>
+
+<span class="err">@</span><span class="n">implementation</span> <span class="n">RequestDispatcher</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">dispatch:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">params</span>
+<span class="p">{</span>
+  <span class="n">Request</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">objectFactory</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">Request</span> <span class="n">class</span><span class="p">]];</span>
+  <span class="n">request</span><span class="p">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">;</span>
+  <span class="p">[</span><span class="n">request</span> <span class="n">send</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+
+<h2>Modules</h2>
+
+<p>A module is a set of bindings which contributes additional configuration information to the injector. It is especially useful for integrating external depencies and binding protocols to classes or instances.</p>
+
+<h4>Instance and Protocol Bindings</h4>
+
+<ul>
+<li>Bind a protocol or class to a specific instance of that type</li>
+<li>Bind a class that is registered with Objection to a protocol</li>
+</ul><h4>Example</h4>
+
+<div class="highlight"><pre><span class="k">@interface</span> <span class="nc">MyAppModule</span> : <span class="nc">JSObjectionModule</span> <span class="p">{</span>
+
+<span class="p">}</span>
+<span class="k">@end</span>
+
+<span class="err">@</span><span class="n">implementation</span> <span class="n">MyAppModule</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">configure</span> <span class="p">{</span>
+  <span class="p">[</span><span class="n">self</span> <span class="nl">bind:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">toClass:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">class</span><span class="p">]];</span>
+  <span class="p">[</span><span class="n">self</span> <span class="nl">bind:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">delegate</span> <span class="nl">toProtocol:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">UIApplicationDelegate</span><span class="p">)];</span>
+  <span class="p">[</span><span class="n">self</span> <span class="nl">bindClass:</span><span class="p">[</span><span class="n">MyAPIService</span> <span class="n">class</span><span class="p">]</span> <span class="nl">toProtocol:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">APIService</span><span class="p">)];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nl">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="n">application</span> <span class="nl">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">launchOptions</span> <span class="p">{</span>    
+  <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="nl">createInjector:</span><span class="p">[[[</span><span class="n">MyAppModule</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">]];</span>
+  <span class="p">[</span><span class="n">JSObjection</span> <span class="nl">setDefaultInjector:</span><span class="n">injector</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4>Meta Class Bindings</h4>
+
+<p>There are times when a dependency -- usually external -- is implemented using only class methods. Objection can explicitly support binding to
+the meta class instance through a protocol. This avoids having to unnecessarily create a wrapper class that passes through to the class
+methods. The catch, of course, is that it requires a protocol definition so that Objection knows how to bind the meta class to objects
+in the injector context.</p>
+
+<h4>Example</h4>
+
+<div class="highlight"><pre><span class="k">@protocol</span> <span class="nc">ExternalUtility</span>
+  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">doSomething</span><span class="p">;</span>
+<span class="k">@end</span>
+
+<span class="k">@interface</span> <span class="nc">ExternalUtility</span>
+  <span class="o">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">doSomething</span><span class="p">;</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">ExternalUtility</span>
+  <span class="o">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">doSomething</span> <span class="p">{...}</span>
+<span class="k">@end</span>
+
+<span class="c1">// Module Configuration</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">configure</span> <span class="p">{</span>
+  <span class="p">[</span><span class="n">self</span> <span class="nl">bindMetaClass:</span><span class="p">[</span><span class="n">ExternalUtility</span> <span class="n">class</span><span class="p">]</span> <span class="nl">toProtocol:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">ExternalUtility</span><span class="p">)];</span>    
+<span class="p">}</span>
+
+<span class="err">@</span><span class="n">interface</span> <span class="n">SomeClass</span>
+<span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="c1">// Use 'assign' because a meta class is not subject to the normal retain/release lifecycle. </span>
+<span class="c1">// It will exist until the application is terminated (Class Initialization -&gt; Application Termination)</span>
+<span class="c1">// regardless of the number of objects in the runtime that reference it.</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">)</span> <span class="kt">id</span><span class="o">&lt;</span><span class="n">ExternalUtility</span><span class="o">&gt;</span> <span class="n">externalUtility</span>
+<span class="k">@end</span>
+</pre></div>
+
+<h4>Providers</h4>
+
+<p>Occasionally you'll want to manually construct an object within Objection. Providers allow you to use a custom mechanism for building objects that are bound to a type. You can create a class that <em>conforms</em> to the ObjectionProvider protocol or you can use a <em>block</em> to build the object.</p>
+
+<h4>Example</h4>
+
+<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">CarProvider</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">provide:</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="p">)</span><span class="nv">context</span> <span class="p">{</span>
+  <span class="c1">// Manually build object</span>
+  <span class="k">return</span> <span class="n">car</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">MyAppModule</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nl">bindProvider:</span><span class="p">[[[</span><span class="n">CarProvider</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">]</span> <span class="nl">toClass:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nl">bindBlock:</span><span class="o">^</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Manually build object</span>
+      <span class="k">return</span> <span class="n">car</span><span class="p">;</span>          
+    <span class="p">}</span> <span class="nl">toClass:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+
+<h3>Eager Singletons</h3>
+
+<p>You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.</p>
+
+<h3>Example</h3>
+
+<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
+  <span class="p">[</span><span class="n">self</span> <span class="nl">registerEagerSingleton:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre></div>
+
+<h3>Deriving a new injector from an existing injector</h3>
+
+<p>A new injector can be created from an existing injector using the <em>withModule:</em> method. A new injector will be created containing the same bindings as the injector it was derived from. The new injector will also contain additional bindings provided by the new module. </p>
+
+<p>Conversley, if <em>withoutModuleOfType:</em> is used the new injector will <em>not</em> contain the bindings of the removed module.</p>
+
+<h3>Example</h3>
+
+<div class="highlight"><pre><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">otherInjector</span> <span class="nl">withModule:</span><span class="p">[[</span><span class="n">Level18Module</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]]</span> 
+                          <span class="nl">withoutModuleOfType:</span><span class="p">[</span><span class="n">Level17Module</span> <span class="n">class</span><span class="p">]];</span>
+
+</pre></div>
+
+<h2>Initializers</h2>
+
+<p>By default, Objection allocates objects with the default initializer <code>init</code>. If you'd like to instantiate an object with an alternate ininitializer the <code>objection_initializer</code> macro can be used to do so. The macro supports passing in default arguments (scalar values are not currently supported) as well.</p>
+
+<h4>Default Arguments Example</h4>
+
+<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">ViewController</span>
+<span class="n">objection_register</span><span class="p">(</span><span class="n">ViewController</span><span class="p">)</span>
+<span class="n">objection_initializer</span><span class="p">(</span><span class="nl">initWithNibName:bundle:</span><span class="p">,</span> <span class="s">@"ViewController"</span><span class="p">)</span>
+<span class="k">@end</span>
+</pre></div>
+
+<h4>Custom Arguments Example</h4>
+
+<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">ConfigurableCar</span>
+<span class="n">objection_register</span><span class="p">(</span><span class="n">ConfigurableCar</span><span class="p">)</span>
+<span class="n">objection_requires</span><span class="p">(</span><span class="s">@"engine"</span><span class="p">,</span> <span class="s">@"brakes"</span><span class="p">)</span>
+<span class="n">objection_initializer</span><span class="p">(</span><span class="nl">initWithMake:model:</span><span class="p">)</span>
+
+<span class="k">@synthesize</span> <span class="n">make</span><span class="p">;</span>
+<span class="k">@synthesize</span> <span class="n">model</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">initWithMake:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">make</span> <span class="nf">model:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">model</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">buildCar</span> <span class="p">{</span>
+  <span class="n">ConfigurableCar</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">objectFactory</span> <span class="nl">getObjectWithArgs:</span><span class="p">[</span><span class="n">ConfigurableCar</span> <span class="n">class</span><span class="p">],</span> <span class="s">@"VW"</span><span class="p">,</span> <span class="s">@"Passat"</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+  <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Make: %@ Model: %@"</span><span class="p">,</span> <span class="n">car</span><span class="p">.</span><span class="n">make</span><span class="p">,</span> <span class="n">car</span><span class="p">.</span><span class="n">model</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>TODO</h2>
+
+<ul>
+<li>ARCify for iOS</li>
+<li>Pass along arguments to providers</li>
+<li>Add a motivation section that speaks to <em>why</em> Objection was created</li>
+</ul><h2>Installation</h2>
+
+<p>Download the latest <a href="https://github.com/atomicobject/objection/downloads">here</a> <strong>or</strong></p>
+
+<pre><code>git clone git://github.com/atomicobject/objection.git
+git checkout 0.14.0
+</code></pre>
+
+<h3>iOS</h3>
+
+<ol>
+<li>rake artifact:ios</li>
+<li>cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}</li>
+<li>In XCode -&gt; Project Icon -&gt; Your Target -&gt; Build Phases -&gt; Link Binary With Libraries -&gt; Add (+) -&gt; Add Other</li>
+<li>Add -ObjC and -all_load to Other Link Flags in your project</li>
+</ol><h4>Include framework</h4>
+
+<pre><code>#import &lt;Objection-iOS/Objection.h&gt;
+</code></pre>
+
+<h3>MacOS X</h3>
+
+<ol>
+<li>rake artifact:osx</li>
+<li>cp -R build/Release/Objection.framework ${DEST_DIR}</li>
+<li>In XCode -&gt; Project Icon -&gt; Your Target -&gt; Build Phases -&gt; Link Binary With Libraries -&gt; Add (+) -&gt; Add Other</li>
+</ol><h4>Include framework</h4>
+
+<pre><code>#import &lt;Objection/Objection.h&gt;
+</code></pre>
+
+<h3>CocoaPods</h3>
+
+<p>Edit your Pofile</p>
+
+<pre><code>edit Podfile
+pod 'Objection', '0.14.0'
+</code></pre>
+
+<p>Now you can install Objection</p>
+
+<pre><code>pod install
+</code></pre>
+
+<p>Learn more at <a href="http://cocoapods.org">CocoaPods</a>.</p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li>MacOS X 10.6 +</li>
+<li>iOS 4.0 +</li>
+</ul><h2>Authors</h2>
+
+<ul>
+<li>Justin DeWind (<a href="mailto:dewind@atomicobject.com">dewind@atomicobject.com</a>, <a href="https://github.com/dewind" class="user-mention">@dewind</a> on Twitter)</li>
+<li>© 2009-2012 <a href="http://www.atomicobject.com/">Atomic Object</a>
+</li>
+<li>More Atomic Object <a href="http://www.atomicobject.com/pages/Software+Commons">open source</a> projects</li>
+</ul><h2>Contributors</h2>
+
+<ul>
+<li>Simon Schmid (<a href="https://github.com/sschmid" class="user-mention">@sschmid</a>)</li>
+<li>Mattes Groeger (<a href="https://github.com/MattesGroeger" class="user-mention">@MattesGroeger</a>)</li>
+<li>Shawn Anderson (<a href="https://github.com/shawn42" class="user-mention">@shawn42</a>)</li>
+</ul><h2>Other Dependency Injection Libraries</h2>
+
+<p>One only has to <a href="https://github.com/search?l=Objective-C&amp;p=1&amp;q=dependency+injection&amp;repo=&amp;type=Repositories">search GitHub</a></p>
+
+<h2>Applications that use Objection</h2>
+
+<ul>
+<li>
+<a href="http://www.wooga.com/games/bubble-island/">Bubble Island</a> and other <a href="http://wooga.com">Wooga</a> games</li>
+<li><a href="https://itunes.apple.com/us/app/sidereel/id417270961?mt=8">SideReel</a></li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/atomicobject">atomicobject</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-22998718-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
