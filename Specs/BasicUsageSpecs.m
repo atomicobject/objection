@@ -10,32 +10,32 @@ beforeEach(^{
 });
 
 it(@"correctly builds a registered object", ^{
-      id engine = [[JSObjection defaultInjector] getObject:[Engine class]];
+    id engine = [[JSObjection defaultInjector] getObject:[Engine class]];
       
-      assertThat(engine, isNot(nilValue()));
+    assertThat(engine, isNot(nilValue()));
 });
 
 it(@"will auto register a class if it is not explicitly registered", ^{
-      Class newClass = objc_allocateClassPair([NSObject class], "MyFooClass", 0);
-      objc_registerClassPair(newClass);
-      assertThat([[JSObjection defaultInjector] getObject:newClass], is(notNilValue()));
+    UnregisteredCar *unregisteredCar = [[JSObjection defaultInjector] getObject:[UnregisteredCar class]];
+    assertThat(unregisteredCar, is(notNilValue()));
+    assertThat(unregisteredCar.engine, is(notNilValue()));
 });
 
 it(@"correctly builds and object with dependencies", ^{
-      Car *car = [[JSObjection defaultInjector] getObject:[Car class]];
-      
-      assertThat(car, isNot(nilValue()));
-      
-      assertThat(car.engine, isNot(nilValue()));
-      assertThat(car.engine, is(instanceOf([Engine class])));
-      
-      assertThat(car.brakes, isNot(nilValue()));
-      assertThat(car.brakes, is(instanceOf([Brakes class])));
+    Car *car = [[JSObjection defaultInjector] getObject:[Car class]];
+
+    assertThat(car, isNot(nilValue()));
+
+    assertThat(car.engine, isNot(nilValue()));
+    assertThat(car.engine, is(instanceOf([Engine class])));
+
+    assertThat(car.brakes, isNot(nilValue()));
+    assertThat(car.brakes, is(instanceOf([Brakes class])));
 });
 
 it(@"will inject dependencies into properties of an existing instance", ^{
     Car *car = [[[Car alloc] init] autorelease];
-    
+
     assertThat(car.engine, is(nilValue()));
     assertThat(car.brakes, is(nilValue()));
 
@@ -43,7 +43,7 @@ it(@"will inject dependencies into properties of an existing instance", ^{
 
     assertThat(car.engine, isNot(nilValue()));
     assertThat(car.engine, is(instanceOf([Engine class])));
-    
+
     assertThat(car.brakes, isNot(nilValue()));
     assertThat(car.brakes, is(instanceOf([Brakes class])));
 });

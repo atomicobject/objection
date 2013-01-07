@@ -28,6 +28,11 @@ objection_register(Car)
 objection_requires(@"engine", @"brakes")
 @end
 
+@implementation UnregisteredCar
+objection_requires(@"engine")
+@synthesize engine;
+@end
+
 @implementation ManualCar
 objection_register(ManualCar)
 

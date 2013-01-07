@@ -28,6 +28,10 @@
 
 @end
 
+@interface UnregisteredCar : NSObject
+@property(nonatomic, retain) Engine *engine;
+@end
+
 @protocol GearBox;
 @interface ManualCar : Car
 {
