@@ -110,6 +110,7 @@
                 [_context setObject:injectorEntry forKey:key];              
             } else if(isClass) {
                 injectorEntry = [[[JSObjectionInjectorEntry alloc] initWithClass:classOrProtocol lifeCycle:JSObjectionInstantiationRuleNormal] autorelease];
+                injectorEntry.injector = self;
                 [_context setObject:injectorEntry forKey:key];
             }
         }
