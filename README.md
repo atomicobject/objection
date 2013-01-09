@@ -285,10 +285,8 @@ objection_initializer(initWithMake:model:)
 
 ## Installation
 
-Download the latest [here](https://github.com/atomicobject/objection/downloads) __or__
-
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.14.0
+    git checkout 0.14.1
     
 ### iOS
 
@@ -315,7 +313,7 @@ Download the latest [here](https://github.com/atomicobject/objection/downloads) 
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '0.14.0'
+    pod 'Objection', '0.14.1'
 
 Now you can install Objection
     
