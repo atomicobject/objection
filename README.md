@@ -285,10 +285,16 @@ objection_initializer(initWithMake:model:)
 
 ## Installation
 
+### Static Framework
+
+You can download the static framework [here](http://objection-framework.org/files/Objection-0.14.1.tar.gz)
+
+### Building Static Framework
+
     git clone git://github.com/atomicobject/objection.git
     git checkout 0.14.1
     
-### iOS
+#### iOS
 
 
 1. rake artifact:ios
@@ -299,7 +305,7 @@ objection_initializer(initWithMake:model:)
 #### Include framework
     #import <Objection-iOS/Objection.h>
 
-### MacOS X
+#### MacOS X
 
 1. rake artifact:osx
 2. cp -R build/Release/Objection.framework ${DEST_DIR}
