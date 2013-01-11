@@ -327,37 +327,18 @@ in the injector context.</p>
 <span class="p">}</span>
 </pre></div>
 
-<h2>TODO</h2>
+<h2>Installation</h2>
 
-<ul>
-<li>ARCify for iOS</li>
-<li>Pass along arguments to providers</li>
-<li>Add a motivation section that speaks to <em>why</em> Objection was created</li>
-</ul><h2>Installation</h2>
+<h3>Static Framework</h3>
 
-<pre><code>git clone git://github.com/atomicobject/objection.git
-git checkout 0.14.1
-</code></pre>
+<p>You can download the static framework <a href="http://objection-framework.org/files/Objection-0.14.1.tar.gz">here</a></p>
 
-<h3>iOS</h3>
-
-<ol>
-<li>rake artifact:ios</li>
-<li>cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}</li>
-<li>In XCode -&gt; Project Icon -&gt; Your Target -&gt; Build Phases -&gt; Link Binary With Libraries -&gt; Add (+) -&gt; Add Other</li>
-<li>Add -ObjC and -all_load to Other Link Flags in your project</li>
-</ol><h4>Include framework</h4>
+<h4>Include iOS framework</h4>
 
 <pre><code>#import &lt;Objection-iOS/Objection.h&gt;
 </code></pre>
 
-<h3>MacOS X</h3>
-
-<ol>
-<li>rake artifact:osx</li>
-<li>cp -R build/Release/Objection.framework ${DEST_DIR}</li>
-<li>In XCode -&gt; Project Icon -&gt; Your Target -&gt; Build Phases -&gt; Link Binary With Libraries -&gt; Add (+) -&gt; Add Other</li>
-</ol><h4>Include framework</h4>
+<h4>Include OS X framework</h4>
 
 <pre><code>#import &lt;Objection/Objection.h&gt;
 </code></pre>
@@ -389,17 +370,7 @@ pod 'Objection', '0.14.1'
 <li>© 2009-2012 <a href="http://www.atomicobject.com/">Atomic Object</a>
 </li>
 <li>More Atomic Object <a href="http://www.atomicobject.com/pages/Software+Commons">open source</a> projects</li>
-</ul><h2>Contributors</h2>
-
-<ul>
-<li>Simon Schmid (<a href="https://github.com/sschmid" class="user-mention">@sschmid</a>)</li>
-<li>Mattes Groeger (<a href="https://github.com/MattesGroeger" class="user-mention">@MattesGroeger</a>)</li>
-<li>Shawn Anderson (<a href="https://github.com/shawn42" class="user-mention">@shawn42</a>)</li>
-</ul><h2>Other Dependency Injection Libraries</h2>
-
-<p>One only has to <a href="https://github.com/search?l=Objective-C&amp;p=1&amp;q=dependency+injection&amp;repo=&amp;type=Repositories">search GitHub</a></p>
-
-<h2>Applications that use Objection</h2>
+</ul><h2>Applications that use Objection</h2>
 
 <ul>
 <li>
