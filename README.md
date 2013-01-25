@@ -1,6 +1,6 @@
 ## Description
 
-Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used Guice objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.
+Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used Guice, Objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.
 
 ## Features
 
