@@ -17,7 +17,7 @@
 
 - (id)initWithInjector:(JSObjectionInjector *)injector {
     if ((self = [super init])) {
-        _injector = [injector retain];
+        _injector = injector;
     }
     return self;
 }
@@ -26,10 +26,6 @@
     [self bind:[[[JSObjectFactory alloc] initWithInjector:_injector] autorelease] toClass:[JSObjectFactory class]];
 }
 
-- (void)dealloc {
-    [_injector release];
-    [super dealloc];
-}
 @end
   
 @interface JSObjectionInjector(Private)
