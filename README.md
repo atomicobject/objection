@@ -285,14 +285,14 @@ objection_initializer(initWithMake:model:)
 
 ## Installation
 
-### Static Framework
+### Static Framework and Linkable Framework
 
-You can download the static framework [here](http://objection-framework.org/files/Objection-0.14.1.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-0.14.2.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.14.1
+    git checkout 0.14.2
     
 #### iOS
 
@@ -319,7 +319,7 @@ You can download the static framework [here](http://objection-framework.org/file
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '0.14.1'
+    pod 'Objection', '0.14.2'
 
 Now you can install Objection
     
@@ -330,19 +330,13 @@ Learn more at [CocoaPods](http://cocoapods.org).
 ## Requirements
 
 * MacOS X 10.6 +
-* iOS 4.0 +
+* iOS 5.0 +
 
 ## Authors
 
 * Justin DeWind (dewind@atomicobject.com, @dewind on Twitter)
 * © 2009-2012 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
-
-## Contributors
-
-* Simon Schmid (@sschmid)
-* Mattes Groeger (@MattesGroeger)
-* Shawn Anderson (@shawn42)
 
 ## Other Dependency Injection Libraries
 
