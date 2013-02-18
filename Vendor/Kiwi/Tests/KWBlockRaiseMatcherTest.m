@@ -8,7 +8,7 @@
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
-#if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
+#if KW_TESTS_ENABLED
 
 @interface KWBlockRaiseMatcherTest : SenTestCase
 
@@ -43,6 +43,24 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+    id matcher = [KWBlockRaiseMatcher matcherWithSubject:nil];
+    STAssertEqualObjects(@"raise nothing", [matcher description], @"description should match");
+
+    [matcher raise];
+    STAssertEqualObjects(@"raise exception", [matcher description], @"description should match");
+
+    [matcher raiseWithName:@"DummyException"];
+    STAssertEqualObjects(@"raise DummyException", [matcher description], @"description should match");
+
+    [matcher raiseWithReason:@"for testing purposes"];
+    STAssertEqualObjects(@"raise exception \"for testing purposes\"", [matcher description], @"description should match");
+
+    [matcher raiseWithName:@"DummyException" reason:@"for testing purposes"];
+    STAssertEqualObjects(@"raise DummyException \"for testing purposes\"", [matcher description], @"description should match");
+}
+
 @end
 
-#endif // #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
+#endif // #if KW_TESTS_ENABLED

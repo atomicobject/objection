@@ -47,14 +47,14 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
-- (void)testItShouldMatchValuesMatchUsingKeyValueCodingAndHamcrestMatcher {
+- (void)testItShouldMatchValuesMatchUsingKeyValueCodingAndGenericMatcher {
     id subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
     id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
     [matcher haveValue:hasPrefix(@"Alpha") forKey:@"callsign"];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldNotMatchValuesMatchUsingKeyValueCodingAndHamcrestMatcher {
+- (void)testItShouldNotMatchValuesMatchUsingKeyValueCodingAndGenericMatcher {
     id subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
     id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
     [matcher haveValue:hasPrefix(@"Foxtrot") forKey:@"callsign"];
@@ -88,6 +88,25 @@
     id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
     [matcher haveValueForKeyPath:@"engine.model"];
     STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
+- (void)testItShouldHaveHumanReadableDescription
+{
+  id matcher = [KWHaveValueMatcher matcherWithSubject:nil];
+
+  [matcher haveValueForKey:@"callsign"];
+  STAssertEqualObjects(@"have value for key \"callsign\"", [matcher description], @"description should match");
+
+  [matcher haveValue:@"alpha" forKey:@"callsign"];
+  STAssertEqualObjects(@"have value \"alpha\" for key \"callsign\"", [matcher description], @"description should match");
+
+  matcher = [KWHaveValueMatcher matcherWithSubject:nil];
+
+  [matcher haveValueForKeyPath:@"engine.model"];
+  STAssertEqualObjects(@"have value for keypath \"engine.model\"", [matcher description], @"description should match");
+
+  [matcher haveValue:@"version-one" forKeyPath:@"engine.model"];
+  STAssertEqualObjects(@"have value \"version-one\" for keypath \"engine.model\"", [matcher description], @"description should match");
 }
 
 @end

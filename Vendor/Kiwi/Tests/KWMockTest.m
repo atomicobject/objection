@@ -19,8 +19,7 @@
 @implementation KWMockTest
 
 - (void)tearDown {
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+    KWClearStubsAndSpies();
 }
 
 - (void)testItShouldInitializeForAClassWithANameAsANullObject {
@@ -57,6 +56,22 @@
     STAssertEquals([mock raiseShields], NO, @"expected method to be stubbed with the correct value");
 }
 
+- (void)testItShouldBeOkToStubOnSingletons {
+    TestSpy *firstSpy = [TestSpy testSpy];
+    KWMessagePattern *firstMessagePattern = [KWMessagePattern messagePatternWithSelector:@selector(notifyEarth)];
+    [[Galaxy sharedGalaxy] addMessageSpy:firstSpy forMessagePattern:firstMessagePattern];
+    
+    KWClearStubsAndSpies();
+    
+    TestSpy *secondSpy = [TestSpy testSpy];
+    KWMessagePattern *secondMessagePattern = [KWMessagePattern messagePatternWithSelector:@selector(notifyPlanet:)];
+    [[Galaxy sharedGalaxy] addMessageSpy:secondSpy forMessagePattern:secondMessagePattern];
+    
+    [[Galaxy sharedGalaxy] notifyEarth];
+    
+    STAssertTrue(secondSpy.wasNotified, @"expected first spy to never be called");
+}
+
 - (void)testItShouldStubWithASelectorAndReturnValue {
     id mock = [Cruiser mock];
     [mock stub:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42]];
@@ -68,6 +83,13 @@
     [mock stub:@selector(energyLevelInWarpCore:) andReturn:theValue(30.0f) withArguments:theValue(3)];
     STAssertEquals([mock energyLevelInWarpCore:3], 30.0f, @"expected method with arguments to be stubbed with the correct value");
     STAssertTrue([mock energyLevelInWarpCore:2] != 30.0f, @"expected method with arguments not to be stubbed");
+}
+
+- (void)testItShouldStubWithASelectorReturnValueAndAnyArguments {
+    id mock = [Cruiser nullMock];
+    [mock stub:@selector(energyLevelInWarpCore:) andReturn:theValue(30.0f) withArguments:any()];
+    STAssertEquals([mock energyLevelInWarpCore:3], 30.0f, @"expected method with any() arguments to be stubbed");
+    STAssertEquals([mock energyLevelInWarpCore:2], 30.0f, @"expected method with any() arguments to be stubbed");
 }
 
 - (void)testItShouldStubWithAMessage {
@@ -82,6 +104,17 @@
     STAssertNoThrow([[mock stubAndReturn:[KWValue valueWithFloat:42.0f]] energyLevelInWarpCore:3], @"expected mock to stub message");
     float ratio = [mock energyLevelInWarpCore:3];
     STAssertEquals(ratio, 42.0f, @"expected mock to have message stubbed");
+}
+
+- (void)testItShouldStubWithDifferentReturnValuesAndMessage {
+    id mock = [Cruiser mock];
+    STAssertNoThrow([[mock stubAndReturn:[KWValue valueWithFloat:42.0f] times:[KWValue valueWithInt:2] afterThatReturn:[KWValue valueWithFloat:43.0f]] energyLevelInWarpCore:3], @"expected mock to stub message");
+    float firstRatio = [mock energyLevelInWarpCore:3];
+    STAssertEquals(firstRatio, 42.0f, @"expected mock to have message stubbed");
+    float secondRatio = [mock energyLevelInWarpCore:3];
+    STAssertEquals(secondRatio, 42.0f, @"expected mock to have message stubbed");
+    float thirdRatio = [mock energyLevelInWarpCore:3];
+    STAssertEquals(thirdRatio, 43.0f, @"expected mock to have message stubbed and changed return value");
 }
 
 - (void)testItShouldClearStubbedMethods {
@@ -262,6 +295,56 @@
     [Cruiser stub:@selector(alloc) andReturn:mock];
     id cruiser = [[Cruiser alloc] init];
     STAssertEquals(cruiser, mock, @"expected init to be stubbed");
+}
+
+- (void)testItShouldNotRaiseWhenReceivingKVCMessagesAsANullMock {
+    id mock = [Cruiser nullMock];
+    STAssertNoThrow([mock valueForKey:@"foo"], @"expected valueForKey: not to raise");
+    STAssertNoThrow([mock setValue:@"bar" forKey:@"foo"], @"expected setValue:forKey not to raise");
+    STAssertNoThrow([mock valueForKeyPath:@"foo.bar"], @"expected valueForKeyPath: not to raise");
+    STAssertNoThrow([mock setValue:@"baz" forKeyPath:@"foo.bar"], @"expected setValue:forKeyPath: not to raise");
+}
+
+- (void)testItShouldAllowStubbingValueForKey {
+    id mock = [Cruiser mock];
+    id otherMock = [Cruiser mock];
+    [mock stub:@selector(valueForKey:) andReturn:otherMock withArguments:@"foo"];
+    id value = [mock valueForKey:@"foo"];
+    STAssertEquals(value, otherMock, @"expected valueForKey: to be stubbed");
+}
+
+- (void)testItShouldAllowStubbingValueForKeyPath {
+    id mock = [Cruiser mock];
+    id otherMock = [Cruiser mock];
+    [mock stub:@selector(valueForKeyPath:) andReturn:otherMock withArguments:@"foo.bar"];
+    id value = [mock valueForKeyPath:@"foo.bar"];
+    STAssertEquals(value, otherMock, @"expected valueForKeyPath: to be stubbed");
+}
+
+- (void)testItShouldAllowStubbingSetValueForKey {
+    id mock = [Cruiser mock];
+    __block BOOL called = NO;
+    [mock stub:@selector(setValue:forKey:) withBlock:^id(NSArray *params) {
+        STAssertEquals([params objectAtIndex:0], @"baz", @"expected arg 1 of setValue:forKey: to be 'baz'");
+        STAssertEquals([params objectAtIndex:1], @"foo", @"expected arg 2 of setValue:forKey: to be 'foo'");
+        called = YES;
+        return nil;
+    }];
+    [mock setValue:@"baz" forKey:@"foo"];
+    STAssertTrue(called, @"expected setValue:forKey: to be stubbed");
+}
+
+- (void)testItShouldAllowStubbingSetValueForKeyPath {
+    id mock = [Cruiser mock];
+    __block BOOL called = NO;
+    [mock stub:@selector(setValue:forKeyPath:) withBlock:^id(NSArray *params) {
+        STAssertEquals([params objectAtIndex:0], @"baz", @"expected arg 1 of setValue:forKeyPath: to be 'baz'");
+        STAssertEquals([params objectAtIndex:1], @"foo.bar", @"expected arg 2 of setValue:forKey: to be 'foo.bar'");
+        called = YES;
+        return nil;
+    }];
+    [mock setValue:@"baz" forKeyPath:@"foo.bar"];
+    STAssertTrue(called, @"expected setValue:forKeyPath: to be stubbed");
 }
 
 @end

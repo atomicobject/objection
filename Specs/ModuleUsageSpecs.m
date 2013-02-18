@@ -34,8 +34,8 @@ it(@"throws an exception if the instance does not conform to the protocol", ^{
     Engine *engine = [[[Engine alloc] init] autorelease];
 
     [[theBlock(^{
-    MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"] autorelease];    
-    [module configure];      
+        MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"] autorelease];
+        [module configure];
     }) should] raiseWithReason:@"Instance does not conform to the GearBox protocol"];
 });
 

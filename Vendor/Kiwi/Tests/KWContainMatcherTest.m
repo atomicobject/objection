@@ -61,7 +61,7 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
-- (void)testItShouldMatchContainedElementsWithHamcrestMatcher
+- (void)testItShouldMatchContainedElementsWithGenericMatcher
 {
     id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
@@ -69,12 +69,26 @@
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldNotMatchContainedElementsWithHamcrestMatcher
+- (void)testItShouldNotMatchContainedElementsWithGenericMatcher
 {
     id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:hasPrefix(@"ele")];
     STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
+- (void)testItShouldHaveHumanReadableDescription
+{
+    id matcher = [KWContainMatcher matcherWithSubject:nil];
+
+    [matcher contain:@"liger"];
+    STAssertEqualObjects(@"contain \"liger\"", [matcher description], @"description should match");
+
+    [matcher containObjectsInArray:[NSArray arrayWithObjects:@"cat", @"lion", nil]];
+    STAssertEqualObjects(@"contain all of (\"cat\", \"lion\")", [matcher description], @"description should match");
+
+    [matcher contain:hasPrefix(@"ele")];
+    STAssertEqualObjects(@"contain a string with prefix 'ele'", [matcher description], @"description should match");
 }
 
 @end
