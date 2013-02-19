@@ -80,6 +80,8 @@
 		4B53471512F31660000480AB /* NSObject+Objection.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B53470E12F3165F000480AB /* NSObject+Objection.h */; };
 		4B53471A12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
 		4B53471B12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
+		4B5D00D116D3B4DD00823E20 /* KWSpec+FailWithException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D00D016D3B4DD00823E20 /* KWSpec+FailWithException.m */; };
+		4B5D00D216D3B4DD00823E20 /* KWSpec+FailWithException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D00D016D3B4DD00823E20 /* KWSpec+FailWithException.m */; };
 		4B5D260C16D2E17600E862AA /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5D260516D2E13200E862AA /* libKiwi.a */; };
 		4B5D260F16D2E1CA00E862AA /* libKiwi-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5D260716D2E13200E862AA /* libKiwi-OSX.a */; };
 		4B81F8D0135D06A300221A88 /* JSObjectionProviderEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B81F8CE135D06A300221A88 /* JSObjectionProviderEntry.h */; };
@@ -223,6 +225,8 @@
 		4B53470E12F3165F000480AB /* NSObject+Objection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Objection.h"; sourceTree = "<group>"; };
 		4B53471812F316A4000480AB /* NSObject+Objection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Objection.m"; sourceTree = "<group>"; };
 		4B53482E12F31E93000480AB /* SpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecHelper.m; sourceTree = "<group>"; };
+		4B5D00CF16D3B4DD00823E20 /* KWSpec+FailWithException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KWSpec+FailWithException.h"; sourceTree = "<group>"; };
+		4B5D00D016D3B4DD00823E20 /* KWSpec+FailWithException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KWSpec+FailWithException.m"; sourceTree = "<group>"; };
 		4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kiwi.xcodeproj; path = Vendor/Kiwi/Kiwi.xcodeproj; sourceTree = "<group>"; };
 		4B7300D712AA8F3400903427 /* InheritanceSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InheritanceSpecs.m; sourceTree = "<group>"; };
 		4B81F8CE135D06A300221A88 /* JSObjectionProviderEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectionProviderEntry.h; sourceTree = "<group>"; };
@@ -467,6 +471,8 @@
 				4B81F90C135D0ACF00221A88 /* ModuleFixtures.m */,
 				4B428933156806E6004F73D3 /* InitializerFixtures.h */,
 				4B428934156806E6004F73D3 /* InitializerFixtures.m */,
+				4B5D00CF16D3B4DD00823E20 /* KWSpec+FailWithException.h */,
+				4B5D00D016D3B4DD00823E20 /* KWSpec+FailWithException.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -760,6 +766,7 @@
 				4B4289311567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
 				4B428935156806E6004F73D3 /* InitializerFixtures.m in Sources */,
 				4BB07D751668679A00D9BA1E /* AddAndRemoveModulesSpecs.m in Sources */,
+				4B5D00D116D3B4DD00823E20 /* KWSpec+FailWithException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +797,7 @@
 				4B4289321567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
 				4B428936156806E6004F73D3 /* InitializerFixtures.m in Sources */,
 				4BB07D761668679A00D9BA1E /* AddAndRemoveModulesSpecs.m in Sources */,
+				4B5D00D216D3B4DD00823E20 /* KWSpec+FailWithException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

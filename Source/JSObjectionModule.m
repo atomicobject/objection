@@ -35,13 +35,11 @@
 @implementation JSObjectionModule
 @synthesize bindings = _bindings;
 @synthesize eagerSingletons = _eagerSingletons;
-@synthesize scopes = _scopes;
 
 - (id)init {
     if ((self = [super init])) {
         _bindings = [[NSMutableDictionary alloc] init];
         _eagerSingletons = [[NSMutableSet alloc] init];
-        _scopes = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -110,7 +108,7 @@
 }
 
 - (id)bindClass:(Class)aClass inScope:(JSObjectionScope)scope {
-    [_scopes addObject:[[[JSObjectionInjectorEntry alloc] initWithClass:aClass lifeCycle:scope] autorelease]];
+    [_bindings setObject:[[[JSObjectionInjectorEntry alloc] initWithClass:aClass lifeCycle:scope] autorelease] forKey:NSStringFromClass(aClass)];
     return [[self retain] autorelease];
 }
 
@@ -124,7 +122,6 @@
 - (void)dealloc {
     [_bindings release]; _bindings = nil;
     [_eagerSingletons release]; _eagerSingletons = nil;
-    [_scopes release]; _scopes = nil;
     [super dealloc];
 }
 

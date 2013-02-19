@@ -159,7 +159,7 @@ objection_requires(@"validator")
 
 - (void)configure {
     [self bindClass:[VisaCCProcessor class] inScope:JSObjectionScopeNormal];
-    [self bindClass:[Car class] inScope:JSObjectionScopeNormal];
+    [self bindClass:[Car class] inScope:JSObjectionScopeSingleton];
 }
 
 @end

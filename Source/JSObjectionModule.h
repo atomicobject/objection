@@ -10,12 +10,10 @@
 
 @interface JSObjectionModule : NSObject {
     NSMutableDictionary *_bindings;
-    NSMutableSet *_scopes;
     NSMutableSet *_eagerSingletons;
 }
 
 @property (nonatomic, readonly) NSDictionary *bindings;
-@property (nonatomic, readonly) NSSet *scopes;
 @property (nonatomic, readonly) NSSet *eagerSingletons;
 
 - (void)bind:(id)instance toClass:(Class)aClass;

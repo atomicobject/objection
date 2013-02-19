@@ -167,11 +167,11 @@ describe(@"scopes", ^{
     });
     
     it(@"can bind a class in singleton scope", ^{
-        assertThat(injector[[VisaCCProcessor class]], isNot(sameInstance(injector[[VisaCCProcessor class]])));
+        assertThat(injector[[Car class]], is(sameInstance(injector[[Car class]])));
     });
     
     it(@"can bind a class in a normal scope", ^{
-        assertThat(injector[[Car class]], is(sameInstance(injector[[Car class]])));
+        assertThat(injector[[VisaCCProcessor class]], isNot(sameInstance(injector[[VisaCCProcessor class]])));
     });
 });
 
