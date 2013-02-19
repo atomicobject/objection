@@ -329,7 +329,7 @@ Learn more at [CocoaPods](http://cocoapods.org).
 
 ## Requirements
 
-* MacOS X 10.6 +
+* MacOS X 10.7 +
 * iOS 5.0 +
 
 ## Authors
