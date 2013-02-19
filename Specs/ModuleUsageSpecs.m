@@ -156,4 +156,23 @@ describe(@"multiple modules", ^{
       assertThatBool(gEagerSingletonHook, equalToBool(YES));
     });
 });
+
+describe(@"scopes", ^{
+    __block ScopeModule *scopeModule = nil;
+    __block JSObjectionInjector *injector = nil;
+    
+    beforeEach(^{
+        scopeModule = [[[ScopeModule alloc] init] autorelease];
+        injector = [JSObjection createInjector:scopeModule];
+    });
+    
+    it(@"can bind a class in singleton scope", ^{
+        assertThat(injector[[VisaCCProcessor class]], isNot(sameInstance(injector[[VisaCCProcessor class]])));
+    });
+    
+    it(@"can bind a class in a normal scope", ^{
+        assertThat(injector[[Car class]], is(sameInstance(injector[[Car class]])));
+    });
+});
+
 SPEC_END

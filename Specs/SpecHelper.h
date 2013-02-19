@@ -1,7 +1,6 @@
 #define __SPEC_HELPER
 
 #define HC_SHORTHAND
-#define KIWI_DISABLE_MACRO_API
 
 #if TARGET_OS_IPHONE
 #import <OCHamcrest-iPhone/OCHamcrest.h>

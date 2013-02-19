@@ -14,8 +14,8 @@
     return _instance;
 }
 
-- (JSObjectionInstantiationRule)lifeCycle {
-    return JSObjectionInstantiationRuleSingleton;
+- (JSObjectionScope)lifeCycle {
+    return JSObjectionScopeSingleton;
 }
 
 - (void)dealloc {

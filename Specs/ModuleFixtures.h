@@ -79,6 +79,10 @@ extern BOOL gEagerSingletonHook;
 @interface SecondModule : JSObjectionModule
 @end
 
+@interface ScopeModule : JSObjectionModule
+
+@end
+
 
 
 

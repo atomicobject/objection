@@ -154,3 +154,12 @@ objection_requires(@"validator")
     [self bind:[[[AfterMarketGearBox alloc] init] autorelease] toProtocol:@protocol(GearBox)];  
 }
 @end
+
+@implementation ScopeModule
+
+- (void)configure {
+    [self bindClass:[VisaCCProcessor class] inScope:JSObjectionScopeNormal];
+    [self bindClass:[Car class] inScope:JSObjectionScopeNormal];
+}
+
+@end

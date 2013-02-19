@@ -105,7 +105,7 @@
                 injectorEntry.injector = self;
                 [_context setObject:injectorEntry forKey:key];              
             } else if(isClass) {
-                injectorEntry = [[[JSObjectionInjectorEntry alloc] initWithClass:classOrProtocol lifeCycle:JSObjectionInstantiationRuleNormal] autorelease];
+                injectorEntry = [[[JSObjectionInjectorEntry alloc] initWithClass:classOrProtocol lifeCycle:JSObjectionScopeNormal] autorelease];
                 injectorEntry.injector = self;
                 [_context setObject:injectorEntry forKey:key];
             }
@@ -196,7 +196,7 @@
 - (void)initializeEagerSingletons {
     for (NSString *eagerSingletonKey in _eagerSingletons) {
         id entry = [_globalContext objectForKey:eagerSingletonKey];
-        if ([entry lifeCycle] == JSObjectionInstantiationRuleSingleton) {
+        if ([entry lifeCycle] == JSObjectionScopeSingleton) {
             [self getObject:NSClassFromString(eagerSingletonKey)];      
         } else {
             @throw [NSException exceptionWithName:@"JSObjectionException" 

@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "JSObjectionEntry.h"
 
 @class JSObjectionInjector;
 
@@ -9,10 +10,12 @@
 
 @interface JSObjectionModule : NSObject {
     NSMutableDictionary *_bindings;
+    NSMutableSet *_scopes;
     NSMutableSet *_eagerSingletons;
 }
 
 @property (nonatomic, readonly) NSDictionary *bindings;
+@property (nonatomic, readonly) NSSet *scopes;
 @property (nonatomic, readonly) NSSet *eagerSingletons;
 
 - (void)bind:(id)instance toClass:(Class)aClass;
@@ -24,6 +27,7 @@
 - (void)bindClass:(Class)aClass toClass:(Class)toClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol;
-- (void)registerEagerSingleton:(Class)klass;
+- (id)bindClass:(Class)aClass inScope:(JSObjectionScope)scope;
+- (void)registerEagerSingleton:(Class)aClass;
 - (void)configure;
 @end

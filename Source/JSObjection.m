@@ -65,9 +65,9 @@ static JSObjectionInjector *gGlobalInjector;
     }
 }
 
-+ (void) registerClass:(Class)theClass lifeCycle:(JSObjectionInstantiationRule)lifeCycle {
++ (void) registerClass:(Class)theClass lifeCycle:(JSObjectionScope)lifeCycle {
     pthread_mutex_lock(&gObjectionMutex);
-    if (lifeCycle != JSObjectionInstantiationRuleSingleton && lifeCycle != JSObjectionInstantiationRuleNormal) {
+    if (lifeCycle != JSObjectionScopeSingleton && lifeCycle != JSObjectionScopeNormal) {
         @throw [NSException exceptionWithName:@"JSObjectionInjectorException" reason:@"Invalid Instantiation Rule" userInfo:nil];
     }
 

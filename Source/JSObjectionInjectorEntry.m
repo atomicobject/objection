@@ -17,7 +17,7 @@
 #pragma mark Instance Methods
 #pragma mark -
 
-- (id)initWithClass:(Class)theClass lifeCycle:(JSObjectionInstantiationRule)theLifeCycle 
+- (id)initWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle 
 {
   if ((self = [super init])) {
     _lifeCycle = theLifeCycle;
@@ -29,7 +29,7 @@
 }
 
 - (id)extractObject:(NSArray *)arguments {
-  if (self.lifeCycle == JSObjectionInstantiationRuleNormal || !_storageCache) {
+  if (self.lifeCycle == JSObjectionScopeNormal || !_storageCache) {
       return [self buildObject:arguments];  
   }
   
@@ -61,7 +61,7 @@
         objectUnderConstruction = [[[self.classEntry alloc] init] autorelease];
     }
 
-    if (self.lifeCycle == JSObjectionInstantiationRuleSingleton) {
+    if (self.lifeCycle == JSObjectionScopeSingleton) {
         _storageCache = [objectUnderConstruction retain];
     }
     
@@ -82,7 +82,7 @@
 #pragma mark Class Methods
 #pragma mark -
 
-+ (id)entryWithClass:(Class)theClass lifeCycle:(JSObjectionInstantiationRule)theLifeCycle  {
++ (id)entryWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle  {
     return [[[JSObjectionInjectorEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle] autorelease];
 }
 

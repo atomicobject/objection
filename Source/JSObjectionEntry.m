@@ -12,7 +12,7 @@
     return [[entry retain] autorelease];
 }
 
-- (JSObjectionInstantiationRule)lifeCycle {
-    return JSObjectionInstantiationRuleNone;
+- (JSObjectionScope)lifeCycle {
+    return JSObjectionScopeNone;
 }
 @end

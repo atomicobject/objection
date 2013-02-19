@@ -89,7 +89,7 @@ it(@"returns nil if the class is nil", ^{
 });
 
 it(@"doesn't blow up if a nil class is passed into register", ^{
-    [JSObjection registerClass:nil lifeCycle:JSObjectionInstantiationRuleSingleton];
+    [JSObjection registerClass:nil lifeCycle:JSObjectionScopeSingleton];
 });
 
 it(@"calls awakeFromObjection when an object has been constructed", ^{
