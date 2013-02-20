@@ -82,7 +82,7 @@
 #pragma mark Class Methods
 #pragma mark -
 
-+ (id)entryWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle  {
++ (id)entryWithClass:(Class)theClass scope:(JSObjectionScope)theLifeCycle  {
     return [[[JSObjectionInjectorEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle] autorelease];
 }
 

@@ -107,9 +107,8 @@
     [_bindings setObject:entry forKey:key];    
 }
 
-- (id)bindClass:(Class)aClass inScope:(JSObjectionScope)scope {
-    [_bindings setObject:[[[JSObjectionInjectorEntry alloc] initWithClass:aClass lifeCycle:scope] autorelease] forKey:NSStringFromClass(aClass)];
-    return [[self retain] autorelease];
+- (void)bindClass:(Class)aClass inScope:(JSObjectionScope)scope {
+    [_bindings setObject:[JSObjectionInjectorEntry entryWithClass:aClass scope:scope] forKey:NSStringFromClass(aClass)];
 }
 
 - (void) registerEagerSingleton:(Class)aClass  {

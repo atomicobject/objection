@@ -65,14 +65,14 @@ static JSObjectionInjector *gGlobalInjector;
     }
 }
 
-+ (void) registerClass:(Class)theClass lifeCycle:(JSObjectionScope)lifeCycle {
++ (void) registerClass:(Class)theClass scope:(JSObjectionScope)scope {
     pthread_mutex_lock(&gObjectionMutex);
-    if (lifeCycle != JSObjectionScopeSingleton && lifeCycle != JSObjectionScopeNormal) {
+    if (scope != JSObjectionScopeSingleton && scope != JSObjectionScopeNormal) {
         @throw [NSException exceptionWithName:@"JSObjectionInjectorException" reason:@"Invalid Instantiation Rule" userInfo:nil];
     }
 
     if (theClass && [gObjectionContext objectForKey:NSStringFromClass(theClass)] == nil) {
-        [gObjectionContext setObject:[JSObjectionInjectorEntry entryWithClass:theClass lifeCycle:lifeCycle] forKey:NSStringFromClass(theClass)];
+        [gObjectionContext setObject:[JSObjectionInjectorEntry entryWithClass:theClass scope:scope] forKey:NSStringFromClass(theClass)];
     } 
     pthread_mutex_unlock(&gObjectionMutex);
 }

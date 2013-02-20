@@ -16,14 +16,14 @@
 #define objection_register(value)			\
     + (void)initialize { \
         if (self == [value class]) { \
-            [JSObjection registerClass:[value class] lifeCycle: JSObjectionScopeNormal]; \
+            [JSObjection registerClass:[value class] scope: JSObjectionScopeNormal]; \
         } \
     }
 
 #define objection_register_singleton(value) \
     + (void)initialize { \
         if (self == [value class]) { \
-            [JSObjection registerClass:[value class] lifeCycle: JSObjectionScopeSingleton]; \
+            [JSObjection registerClass:[value class] scope: JSObjectionScopeSingleton]; \
         } \
     }
 

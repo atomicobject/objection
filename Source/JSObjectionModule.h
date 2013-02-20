@@ -25,7 +25,7 @@
 - (void)bindClass:(Class)aClass toClass:(Class)toClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol;
-- (id)bindClass:(Class)aClass inScope:(JSObjectionScope)scope;
+- (void)bindClass:(Class)aClass inScope:(JSObjectionScope)scope;
 - (void)registerEagerSingleton:(Class)aClass;
 - (void)configure;
 @end

@@ -29,7 +29,7 @@ it(@"throws if an object requires a protocol that does not exist in the context"
 
 it(@"throws if instantiation rule is not valid", ^{  
       [[theBlock(^{
-          [JSObjection registerClass:[CarFactory class] lifeCycle:3];  
+          [JSObjection registerClass:[CarFactory class] scope:3];  
       }) should] raiseWithReason:@"Invalid Instantiation Rule"];
 });
 
