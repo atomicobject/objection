@@ -41,7 +41,7 @@
       <section>
         <h2>Description</h2>
 
-<p>Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used Guice objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.</p>
+<p>Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used <a href="http://code.google.com/p/google-guice/">Guice</a>, Objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.</p>
 
 <h2>Features</h2>
 
@@ -267,6 +267,20 @@ in the injector context.</p>
 <span class="k">@end</span>
 </pre></div>
 
+<h3>Scopes</h3>
+
+<p>A class can be scoped as a singleton in a module. Conversely, a registered singleton can be demoted to a normal lifecycle with in the injector's context.</p>
+
+<h3>Example</h3>
+
+<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nl">bindClass:</span><span class="p">[</span><span class="n">Singleton</span> <span class="n">class</span><span class="p">]</span> <span class="nl">inScope:</span><span class="n">JSObjectionScopeNormal</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nl">bindClass:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]</span> <span class="nl">inScope:</span><span class="n">JSObjectionScopeSingleton</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+
 <h3>Eager Singletons</h3>
 
 <p>You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.</p>
@@ -327,18 +341,43 @@ in the injector context.</p>
 <span class="p">}</span>
 </pre></div>
 
-<h2>Installation</h2>
+<h2>TODO</h2>
 
-<h3>Static Framework</h3>
+<ul>
+<li>ARCify for iOS</li>
+<li>Pass along arguments to providers</li>
+<li>Add a motivation section that speaks to <em>why</em> Objection was created</li>
+</ul><h2>Installation</h2>
 
-<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-0.14.2.tar.gz">here</a></p>
+<h3>Static Framework and Linkable Framework</h3>
 
-<h4>Include iOS framework</h4>
+<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-0.15.0.tar.gz">here</a></p>
+
+<h3>Building Static Framework</h3>
+
+<pre><code>git clone git://github.com/atomicobject/objection.git
+git checkout 0.15.0
+</code></pre>
+
+<h4>iOS</h4>
+
+<ol>
+<li>rake artifact:ios</li>
+<li>cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}</li>
+<li>In XCode -&gt; Project Icon -&gt; Your Target -&gt; Build Phases -&gt; Link Binary With Libraries -&gt; Add (+) -&gt; Add Other</li>
+<li>Add -ObjC and -all_load to Other Link Flags in your project</li>
+</ol><h4>Include framework</h4>
 
 <pre><code>#import &lt;Objection-iOS/Objection.h&gt;
 </code></pre>
 
-<h4>Include OS X framework</h4>
+<h4>MacOS X</h4>
+
+<ol>
+<li>rake artifact:osx</li>
+<li>cp -R build/Release/Objection.framework ${DEST_DIR}</li>
+<li>In XCode -&gt; Project Icon -&gt; Your Target -&gt; Build Phases -&gt; Link Binary With Libraries -&gt; Add (+) -&gt; Add Other</li>
+</ol><h4>Include framework</h4>
 
 <pre><code>#import &lt;Objection/Objection.h&gt;
 </code></pre>
@@ -348,7 +387,7 @@ in the injector context.</p>
 <p>Edit your Pofile</p>
 
 <pre><code>edit Podfile
-pod 'Objection', '0.14.2'
+pod 'Objection', '0.15.0'
 </code></pre>
 
 <p>Now you can install Objection</p>
@@ -361,7 +400,7 @@ pod 'Objection', '0.14.2'
 <h2>Requirements</h2>
 
 <ul>
-<li>MacOS X 10.6 +</li>
+<li>MacOS X 10.7 +</li>
 <li>iOS 5.0 +</li>
 </ul><h2>Authors</h2>
 
