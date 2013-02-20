@@ -217,6 +217,20 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 @end
 ```
 
+### Scopes
+
+A class can be scoped as a singleton in a module. Conversely, a registered singleton can be demoted to a normal lifecycle with in the injector's context.
+
+### Example
+```objective-c
+@implementation MyAppModule
+- (void)configure {
+    [self bindClass:[Singleton class] inScope:JSObjectionScopeNormal];
+    [self bindClass:[Car class] inScope:JSObjectionScopeSingleton];
+}
+@end
+```
+
 ### Eager Singletons
 
 You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
