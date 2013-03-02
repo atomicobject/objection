@@ -20,7 +20,7 @@ Objection is a lightweight dependency injection framework for Objective-C for Ma
 For questions, visit the [mailing list](https://groups.google.com/forum/?fromgroups#!forum/objection-framework)
 ### Basic Usage
 
-A class can be registered with objection using the macros *objection_register* or *objection_register_singleton*. The *objection_requires* macro can be used to declare what dependencies objection should provide to all instances it creates of that class. *objection_requires* can be used safely with inheritance.
+A class can be registered with objection using the macros *objection_register* (optional) or *objection_register_singleton*. The *objection_requires* macro can be used to declare what dependencies objection should provide to all instances it creates of that class. *objection_requires* can be used safely with inheritance.
 
 #### Example
 ```objective-c
@@ -40,7 +40,6 @@ A class can be registered with objection using the macros *objection_register* o
 @property(nonatomic) BOOL awake;
 
 @implementation Car
-objection_register(Car)
 objection_requires(@"engine", @"brakes")
 @synthesize engine, brakes, awake;
 @end
@@ -265,7 +264,6 @@ By default, Objection allocates objects with the default initializer <code>init<
 #### Default Arguments Example
 ```objective-c
 @implementation ViewController
-objection_register(ViewController)
 objection_initializer(initWithNibName:bundle:, @"ViewController")
 @end
 ```
@@ -273,7 +271,6 @@ objection_initializer(initWithNibName:bundle:, @"ViewController")
 ####  Custom Arguments Example
 ```objective-c
 @implementation ConfigurableCar
-objection_register(ConfigurableCar)
 objection_requires(@"engine", @"brakes")
 objection_initializer(initWithMake:model:)
 
