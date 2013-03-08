@@ -11,14 +11,12 @@ extern BOOL gEagerSingletonHook;
 @protocol GearBox<NSObject>
 - (void)shiftUp;
 - (void)shiftDown;
-@optional // ;-)
+@optional
 - (void)engageClutch;
 @end
 
 
 @interface Car(Meta)
-// Perfect example of why factories are OK alternatives to class methods. 
-// Car that manufactures a...car?
 + (id)manufacture;
 @end
 

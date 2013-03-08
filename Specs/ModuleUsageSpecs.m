@@ -20,7 +20,7 @@ it(@"merges the modules instance bindings with the injector's context", ^{
 });
 
 it(@"uses the module's bounded instance to fill out other objects dependencies", ^{
-    ManualCar *car = [[JSObjection defaultInjector] getObject:[ManualCar class]];
+    FiveSpeedCar *car = [[JSObjection defaultInjector] getObject:[FiveSpeedCar class]];
 
     assertThat(car.engine, is(sameInstance(module.engine)));    
     assertThat(car.gearBox, is(sameInstance(module.gearBox)));    
@@ -65,9 +65,9 @@ describe(@"provider bindings", ^{
   });
   
   it(@"allows a bound protocol to be created through a provider", ^{
-    ManualCar *car = [[JSObjection defaultInjector] getObject:[Car class]];
+    FiveSpeedCar *car = [[JSObjection defaultInjector] getObject:[Car class]];
     
-    assertThat(car, is(instanceOf([ManualCar class])));
+    assertThat(car, is(instanceOf([FiveSpeedCar class])));
     assertThat(car.brakes, is(instanceOf([Brakes class])));
     assertThat(car.engine, is(@"my engine"));
   });
@@ -88,9 +88,9 @@ describe(@"block bindings", ^{
   });
   
   it(@"allows a bound protocol to be created using a block", ^{
-    ManualCar *car = [[JSObjection defaultInjector] getObject:[Car class]];
+    FiveSpeedCar *car = [[JSObjection defaultInjector] getObject:[Car class]];
     
-    assertThat(car, is(instanceOf([ManualCar class])));
+    assertThat(car, is(instanceOf([FiveSpeedCar class])));
     assertThat(car.brakes, is(instanceOf([Brakes class])));
     assertThat(car.engine, is(@"My Engine"));      
   });
@@ -152,7 +152,7 @@ describe(@"multiple modules", ^{
       Car *car = [[JSObjection defaultInjector] getObject:[Car class]];
       
       assertThat(gearBox, is(instanceOf([AfterMarketGearBox class])));
-      assertThat(car, is(instanceOf([ManualCar class])));
+      assertThat(car, is(instanceOf([FiveSpeedCar class])));
       assertThatBool(gEagerSingletonHook, equalToBool(YES));
     });
 });

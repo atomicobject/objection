@@ -33,8 +33,8 @@ objection_requires(@"engine")
 @synthesize engine;
 @end
 
-@implementation ManualCar
-objection_register(ManualCar)
+@implementation FiveSpeedCar
+objection_register(FiveSpeedCar)
 
 @synthesize gearBox;
 

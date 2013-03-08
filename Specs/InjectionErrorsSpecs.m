@@ -23,7 +23,7 @@ it(@"throws an exception if property cannot be found", ^{
 
 it(@"throws if an object requires a protocol that does not exist in the context", ^{
       [[theBlock(^{
-          [[JSObjection defaultInjector] getObject:[ManualCar class]];
+          [[JSObjection defaultInjector] getObject:[FiveSpeedCar class]];
       }) should] raiseWithReason:@"Cannot find an instance that is bound to the protocol 'GearBox' to assign to the property 'gearBox'"];  
 });
 

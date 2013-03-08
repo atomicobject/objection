@@ -74,7 +74,7 @@ objection_register_singleton(EagerSingleton)
 @implementation CarProvider
 - (id)provide:(JSObjectionInjector *)context
 {
-    Car *car = [context getObject:[ManualCar class]];
+    Car *car = [context getObject:[FiveSpeedCar class]];
     car.engine = (id)@"my engine";
     return car;
 }
@@ -103,7 +103,7 @@ objection_register_singleton(EagerSingleton)
     NSString *myEngine = @"My Engine";
 
     [self bindBlock:^(JSObjectionInjector *context) {
-        Car *car = [context getObject:[ManualCar class]];
+        Car *car = [context getObject:[FiveSpeedCar class]];
         car.engine = (id)myEngine;
         return (id)car;    
     } toClass:[Car class]];
@@ -144,7 +144,7 @@ objection_requires(@"validator")
 
 @implementation FirstModule
 - (void)configure {  
-    [self bind:[[[ManualCar alloc] init] autorelease] toClass:[Car class]];
+    [self bind:[[[FiveSpeedCar alloc] init] autorelease] toClass:[Car class]];
     [self registerEagerSingleton:[EagerSingleton class]];
 }
 @end

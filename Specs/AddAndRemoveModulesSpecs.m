@@ -15,7 +15,7 @@ beforeEach(^{
 
 it(@"builds a new injector with new modules", ^{
     assertThat([injector getObject:@protocol(GearBox)], is(instanceOf([AfterMarketGearBox class])));
-    assertThat([injector getObject:[Car class]], isNot(instanceOf([ManualCar class])));    
+    assertThat([injector getObject:[Car class]], isNot(instanceOf([FiveSpeedCar class])));    
     assertThatBool(gEagerSingletonHook, equalToBool(NO));
     
     injector = [injector withModules:
@@ -23,7 +23,7 @@ it(@"builds a new injector with new modules", ^{
                     [[[FirstModule alloc] init] autorelease], nil];
 
     assertThat([injector getObject:@protocol(GearBox)], is(instanceOf([AfterMarketGearBox class])));
-    assertThat([injector getObject:[Car class]], is(instanceOf([ManualCar class])));
+    assertThat([injector getObject:[Car class]], is(instanceOf([FiveSpeedCar class])));
     assertThatBool(gEagerSingletonHook, equalToBool(YES));
 });
 
@@ -32,12 +32,12 @@ it(@"builds a new module without the module types", ^{
                 [[[ProviderModule alloc] init] autorelease], nil];
 
     assertThat([injector getObject:@protocol(GearBox)], is(instanceOf([AfterMarketGearBox class])));
-    assertThat([injector getObject:[Car class]], is(instanceOf([ManualCar class])));
+    assertThat([injector getObject:[Car class]], is(instanceOf([FiveSpeedCar class])));
 
     injector = [injector withoutModuleOfTypes:[SecondModule class], [ProviderModule class], nil];
     
     assertThat([injector getObject:@protocol(GearBox)], is(nilValue()));
-    assertThat([injector getObject:[Car class]], isNot(instanceOf([ManualCar class])));
+    assertThat([injector getObject:[Car class]], isNot(instanceOf([FiveSpeedCar class])));
 });
 
 SPEC_END
