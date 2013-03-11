@@ -18,7 +18,7 @@ it(@"throws an exception if property type is not an object", ^{
 it(@"throws an exception if property cannot be found", ^{
       [[theBlock(^{
           [[JSObjection defaultInjector] getObject:[BadPropertyObject class]];
-      }) should] raiseWithReason:@"Unable to find property declaration: 'badProperty'"];
+      }) should] raiseWithReason:@"Unable to find property declaration: 'badProperty' for class 'BadPropertyObject'"];
 });
 
 it(@"throws if an object requires a protocol that does not exist in the context", ^{

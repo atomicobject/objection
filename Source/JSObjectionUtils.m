@@ -78,7 +78,7 @@ static NSArray* TransformVariadicArgsToArray(va_list va_arguments) {
 static objc_property_t GetProperty(Class klass, NSString *propertyName) {
     objc_property_t property = class_getProperty(klass, (const char *)[propertyName UTF8String]);
     if (property == NULL) {
-        @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Unable to find property declaration: '%@'", propertyName] userInfo:nil];
+        @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Unable to find property declaration: '%@' for class '%@'", propertyName, NSStringFromClass(klass)] userInfo:nil];
     }
     return property;
 }
