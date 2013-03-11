@@ -70,7 +70,7 @@
 
 <h3>Basic Usage</h3>
 
-<p>A class can be registered with objection using the macros <em>objection_register</em> or <em>objection_register_singleton</em>. The <em>objection_requires</em> macro can be used to declare what dependencies objection should provide to all instances it creates of that class. <em>objection_requires</em> can be used safely with inheritance.</p>
+<p>A class can be registered with objection using the macros <em>objection_register</em> (optional) or <em>objection_register_singleton</em>. The <em>objection_requires</em> macro can be used to declare what dependencies objection should provide to all instances it creates of that class. <em>objection_requires</em> can be used safely with inheritance.</p>
 
 <h4>Example</h4>
 
@@ -90,7 +90,6 @@
 <span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="kt">BOOL</span> <span class="n">awake</span><span class="p">;</span>
 
 <span class="k">@implementation</span> <span class="nc">Car</span>
-<span class="n">objection_register</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span>
 <span class="n">objection_requires</span><span class="p">(</span><span class="s">@"engine"</span><span class="p">,</span> <span class="s">@"brakes"</span><span class="p">)</span>
 <span class="k">@synthesize</span> <span class="n">engine</span><span class="p">,</span> <span class="n">brakes</span><span class="p">,</span> <span class="n">awake</span><span class="p">;</span>
 <span class="k">@end</span>
@@ -102,7 +101,7 @@
 
 <div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someMethod</span> <span class="p">{</span>
   <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="p">];</span>
-  <span class="kt">id</span> <span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">injector</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+  <span class="kt">id</span> <span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">injector</span> <span class="n">getObject</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -110,11 +109,11 @@
 
 <div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>    
   <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="p">];</span>
-  <span class="p">[</span><span class="n">JSObjection</span> <span class="nl">setDefaultInjector:</span><span class="n">injector</span><span class="p">];</span>
+  <span class="p">[</span><span class="n">JSObjection</span> <span class="n">setDefaultInjector</span><span class="o">:</span><span class="n">injector</span><span class="p">];</span>
 <span class="p">}</span>
 
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
-  <span class="kt">id</span> <span class="n">myModel</span> <span class="o">=</span> <span class="p">[[</span><span class="n">JSObjection</span> <span class="n">defaultInjector</span><span class="p">]</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">MyModel</span> <span class="n">class</span><span class="p">]];</span>
+  <span class="kt">id</span> <span class="n">myModel</span> <span class="o">=</span> <span class="p">[[</span><span class="n">JSObjection</span> <span class="n">defaultInjector</span><span class="p">]</span> <span class="n">getObject</span><span class="o">:</span><span class="p">[</span><span class="n">MyModel</span> <span class="n">class</span><span class="p">]];</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -125,7 +124,7 @@
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">JSTableModel</span>
 <span class="n">objection_requires</span><span class="p">(</span><span class="s">@"RESTClient"</span><span class="p">)</span>
 <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">awakeFromNib</span> <span class="p">{</span>
-  <span class="p">[[</span><span class="n">JSObjection</span> <span class="n">defaultInjector</span><span class="p">]</span> <span class="nl">injectDependencies:</span><span class="n">self</span><span class="p">];</span>
+  <span class="p">[[</span><span class="n">JSObjection</span> <span class="n">defaultInjector</span><span class="p">]</span> <span class="n">injectDependencies</span><span class="o">:</span><span class="n">self</span><span class="p">];</span>
 <span class="p">}</span>
 <span class="k">@end</span>
 </pre></div>
@@ -151,7 +150,7 @@
 <span class="c1">//...</span>
 <span class="n">objection_register_singleton</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span>
   <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">awakeFromObjection</span> <span class="p">{</span>
-    <span class="n">awake</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+    <span class="n">awake</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="k">@end</span>  
 </pre></div>
@@ -166,10 +165,10 @@
 <span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">JSObjectFactory</span> <span class="o">*</span><span class="n">objectFactory</span>
 <span class="k">@end</span>
 
-<span class="err">@</span><span class="n">implementation</span> <span class="n">RequestDispatcher</span>
-<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">dispatch:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">params</span>
+<span class="k">@implementation</span> <span class="nc">RequestDispatcher</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">dispatch:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">params</span>
 <span class="p">{</span>
-  <span class="n">Request</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">objectFactory</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">Request</span> <span class="n">class</span><span class="p">]];</span>
+  <span class="n">Request</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">objectFactory</span> <span class="n">getObject</span><span class="o">:</span><span class="p">[</span><span class="n">Request</span> <span class="n">class</span><span class="p">]];</span>
   <span class="n">request</span><span class="p">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">;</span>
   <span class="p">[</span><span class="n">request</span> <span class="n">send</span><span class="p">];</span>
 <span class="p">}</span>
@@ -192,17 +191,17 @@
 <span class="p">}</span>
 <span class="k">@end</span>
 
-<span class="err">@</span><span class="n">implementation</span> <span class="n">MyAppModule</span>
-<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">configure</span> <span class="p">{</span>
-  <span class="p">[</span><span class="n">self</span> <span class="nl">bind:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">toClass:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">class</span><span class="p">]];</span>
-  <span class="p">[</span><span class="n">self</span> <span class="nl">bind:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">delegate</span> <span class="nl">toProtocol:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">UIApplicationDelegate</span><span class="p">)];</span>
-  <span class="p">[</span><span class="n">self</span> <span class="nl">bindClass:</span><span class="p">[</span><span class="n">MyAPIService</span> <span class="n">class</span><span class="p">]</span> <span class="nl">toProtocol:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">APIService</span><span class="p">)];</span>
+<span class="k">@implementation</span> <span class="nc">MyAppModule</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
+  <span class="p">[</span><span class="n">self</span> <span class="n">bind</span><span class="o">:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">toClass</span><span class="o">:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">class</span><span class="p">]];</span>
+  <span class="p">[</span><span class="n">self</span> <span class="n">bind</span><span class="o">:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">delegate</span> <span class="n">toProtocol</span><span class="o">:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">UIApplicationDelegate</span><span class="p">)];</span>
+  <span class="p">[</span><span class="n">self</span> <span class="n">bindClass</span><span class="o">:</span><span class="p">[</span><span class="n">MyAPIService</span> <span class="n">class</span><span class="p">]</span> <span class="n">toProtocol</span><span class="o">:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">APIService</span><span class="p">)];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
-<span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nl">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="n">application</span> <span class="nl">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">launchOptions</span> <span class="p">{</span>    
-  <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="nl">createInjector:</span><span class="p">[[[</span><span class="n">MyAppModule</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">]];</span>
-  <span class="p">[</span><span class="n">JSObjection</span> <span class="nl">setDefaultInjector:</span><span class="n">injector</span><span class="p">];</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">application</span><span class="o">:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="n">application</span> <span class="n">didFinishLaunchingWithOptions</span><span class="o">:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">launchOptions</span> <span class="p">{</span>    
+  <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="o">:</span><span class="p">[[[</span><span class="n">MyAppModule</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">]];</span>
+  <span class="p">[</span><span class="n">JSObjection</span> <span class="n">setDefaultInjector</span><span class="o">:</span><span class="n">injector</span><span class="p">];</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -229,10 +228,10 @@ in the injector context.</p>
 
 <span class="c1">// Module Configuration</span>
 <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">configure</span> <span class="p">{</span>
-  <span class="p">[</span><span class="n">self</span> <span class="nl">bindMetaClass:</span><span class="p">[</span><span class="n">ExternalUtility</span> <span class="n">class</span><span class="p">]</span> <span class="nl">toProtocol:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">ExternalUtility</span><span class="p">)];</span>    
+  <span class="p">[</span><span class="n">self</span> <span class="n">bindMetaClass</span><span class="o">:</span><span class="p">[</span><span class="n">ExternalUtility</span> <span class="n">class</span><span class="p">]</span> <span class="n">toProtocol</span><span class="o">:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">ExternalUtility</span><span class="p">)];</span>    
 <span class="p">}</span>
 
-<span class="err">@</span><span class="n">interface</span> <span class="n">SomeClass</span>
+<span class="k">@interface</span> <span class="nc">SomeClass</span>
 <span class="p">{</span>
   <span class="p">...</span>
 <span class="p">}</span>
@@ -258,11 +257,11 @@ in the injector context.</p>
 
 <span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
-    <span class="p">[</span><span class="n">self</span> <span class="nl">bindProvider:</span><span class="p">[[[</span><span class="n">CarProvider</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">]</span> <span class="nl">toClass:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
-    <span class="p">[</span><span class="n">self</span> <span class="nl">bindBlock:</span><span class="o">^</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">self</span> <span class="n">bindProvider</span><span class="o">:</span><span class="p">[[[</span><span class="n">CarProvider</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">]</span> <span class="n">toClass</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="n">bindBlock</span><span class="o">:^</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Manually build object</span>
       <span class="k">return</span> <span class="n">car</span><span class="p">;</span>          
-    <span class="p">}</span> <span class="nl">toClass:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+    <span class="p">}</span> <span class="n">toClass</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
 <span class="p">}</span>
 <span class="k">@end</span>
 </pre></div>
@@ -275,8 +274,8 @@ in the injector context.</p>
 
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
-    <span class="p">[</span><span class="n">self</span> <span class="nl">bindClass:</span><span class="p">[</span><span class="n">Singleton</span> <span class="n">class</span><span class="p">]</span> <span class="nl">inScope:</span><span class="n">JSObjectionScopeNormal</span><span class="p">];</span>
-    <span class="p">[</span><span class="n">self</span> <span class="nl">bindClass:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]</span> <span class="nl">inScope:</span><span class="n">JSObjectionScopeSingleton</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="n">bindClass</span><span class="o">:</span><span class="p">[</span><span class="n">Singleton</span> <span class="n">class</span><span class="p">]</span> <span class="n">inScope</span><span class="o">:</span><span class="n">JSObjectionScopeNormal</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="n">bindClass</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]</span> <span class="n">inScope</span><span class="o">:</span><span class="n">JSObjectionScopeSingleton</span><span class="p">];</span>
 <span class="p">}</span>
 <span class="k">@end</span>
 </pre></div>
@@ -289,7 +288,7 @@ in the injector context.</p>
 
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
-  <span class="p">[</span><span class="n">self</span> <span class="nl">registerEagerSingleton:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+  <span class="p">[</span><span class="n">self</span> <span class="n">registerEagerSingleton</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
@@ -303,8 +302,8 @@ in the injector context.</p>
 
 <h3>Example</h3>
 
-<div class="highlight"><pre><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">otherInjector</span> <span class="nl">withModule:</span><span class="p">[[</span><span class="n">Level18Module</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]]</span> 
-                          <span class="nl">withoutModuleOfType:</span><span class="p">[</span><span class="n">Level17Module</span> <span class="n">class</span><span class="p">]];</span>
+<div class="highlight"><pre><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">otherInjector</span> <span class="n">withModule</span><span class="o">:</span><span class="p">[[</span><span class="n">Level18Module</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]]</span> 
+                          <span class="n">withoutModuleOfType</span><span class="o">:</span><span class="p">[</span><span class="n">Level17Module</span> <span class="n">class</span><span class="p">]];</span>
 
 </pre></div>
 
@@ -315,17 +314,15 @@ in the injector context.</p>
 <h4>Default Arguments Example</h4>
 
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">ViewController</span>
-<span class="n">objection_register</span><span class="p">(</span><span class="n">ViewController</span><span class="p">)</span>
-<span class="n">objection_initializer</span><span class="p">(</span><span class="nl">initWithNibName:bundle:</span><span class="p">,</span> <span class="s">@"ViewController"</span><span class="p">)</span>
+<span class="n">objection_initializer</span><span class="p">(</span><span class="n">initWithNibName</span><span class="o">:</span><span class="n">bundle</span><span class="o">:</span><span class="p">,</span> <span class="s">@"ViewController"</span><span class="p">)</span>
 <span class="k">@end</span>
 </pre></div>
 
 <h4>Custom Arguments Example</h4>
 
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">ConfigurableCar</span>
-<span class="n">objection_register</span><span class="p">(</span><span class="n">ConfigurableCar</span><span class="p">)</span>
 <span class="n">objection_requires</span><span class="p">(</span><span class="s">@"engine"</span><span class="p">,</span> <span class="s">@"brakes"</span><span class="p">)</span>
-<span class="n">objection_initializer</span><span class="p">(</span><span class="nl">initWithMake:model:</span><span class="p">)</span>
+<span class="n">objection_initializer</span><span class="p">(</span><span class="n">initWithMake</span><span class="o">:</span><span class="n">model</span><span class="o">:</span><span class="p">)</span>
 
 <span class="k">@synthesize</span> <span class="n">make</span><span class="p">;</span>
 <span class="k">@synthesize</span> <span class="n">model</span><span class="p">;</span>
@@ -335,8 +332,8 @@ in the injector context.</p>
 <span class="p">}</span>
 <span class="k">@end</span>
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">buildCar</span> <span class="p">{</span>
-  <span class="n">ConfigurableCar</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">objectFactory</span> <span class="nl">getObjectWithArgs:</span><span class="p">[</span><span class="n">ConfigurableCar</span> <span class="n">class</span><span class="p">],</span> <span class="s">@"VW"</span><span class="p">,</span> <span class="s">@"Passat"</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">buildCar</span> <span class="p">{</span>
+  <span class="n">ConfigurableCar</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">objectFactory</span> <span class="n">getObjectWithArgs</span><span class="o">:</span><span class="p">[</span><span class="n">ConfigurableCar</span> <span class="n">class</span><span class="p">],</span> <span class="s">@"VW"</span><span class="p">,</span> <span class="s">@"Passat"</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
   <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Make: %@ Model: %@"</span><span class="p">,</span> <span class="n">car</span><span class="p">.</span><span class="n">make</span><span class="p">,</span> <span class="n">car</span><span class="p">.</span><span class="n">model</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -351,12 +348,12 @@ in the injector context.</p>
 
 <h3>Static Framework and Linkable Framework</h3>
 
-<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-0.15.0.tar.gz">here</a></p>
+<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-0.15.1.tar.gz">here</a></p>
 
 <h3>Building Static Framework</h3>
 
 <pre><code>git clone git://github.com/atomicobject/objection.git
-git checkout 0.15.0
+git checkout 0.15.1
 </code></pre>
 
 <h4>iOS</h4>
@@ -387,7 +384,7 @@ git checkout 0.15.0
 <p>Edit your Pofile</p>
 
 <pre><code>edit Podfile
-pod 'Objection', '0.15.0'
+pod 'Objection', '0.15.1'
 </code></pre>
 
 <p>Now you can install Objection</p>
