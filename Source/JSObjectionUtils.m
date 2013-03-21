@@ -131,6 +131,10 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
                                              userInfo:nil];
             }
             
+            if (theObject == nil) {
+                theObject = [NSNull null];
+            }
+            
             [propertiesDictionary setObject:theObject forKey:propertyName];
         }
         
