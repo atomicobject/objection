@@ -41,6 +41,8 @@
 @interface FiveSpeedCar : Car<ManualCar>
 @end
 
+@interface SixSpeedCar : Car<ManualCar>
+@end
 
 @interface CarFactory : NSObject
 {

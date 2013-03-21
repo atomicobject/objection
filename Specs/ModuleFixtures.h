@@ -53,6 +53,9 @@ extern BOOL gEagerSingletonHook;
 @end
 
 @interface BlockModule : JSObjectionModule
+
+@property (nonatomic, assign) BOOL instrumentNilBlock;
+
 @end
 
 @interface CreditCardValidator : NSObject

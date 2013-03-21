@@ -101,11 +101,26 @@ objection_register_singleton(EagerSingleton)
 - (void)configure
 {
     NSString *myEngine = @"My Engine";
-
+    Brakes *myBrakes = [[Brakes alloc] init];
+    
     [self bindBlock:^(JSObjectionInjector *context) {
-        Car *car = [context getObject:[FiveSpeedCar class]];
-        car.engine = (id)myEngine;
-        return (id)car;    
+        if (_instrumentNilBlock) {
+            return (id)nil;
+        }
+        
+        return (id)myBrakes;
+    } toClass:[Brakes class]];
+    
+    [self bindBlock:^(JSObjectionInjector *context) {
+        Car *car = nil;
+        if (_instrumentNilBlock) {
+            car = [context getObject:[SixSpeedCar class]];            
+        }
+        else {
+            car = [context getObject:[FiveSpeedCar class]];
+            car.engine = (id)myEngine;
+        }
+        return (id)car;
     } toClass:[Car class]];
 
     AfterMarketGearBox *gearBox = [[[AfterMarketGearBox alloc] init] autorelease];

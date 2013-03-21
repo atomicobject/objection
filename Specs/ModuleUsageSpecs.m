@@ -98,7 +98,28 @@ describe(@"block bindings", ^{
   it(@"allows a bound class to be created using a block", ^{
     AfterMarketGearBox *gearBox = [[JSObjection defaultInjector] getObject:@protocol(GearBox)];      
     assertThat(gearBox, is(instanceOf([AfterMarketGearBox class])));
-  });    
+  });
+});
+
+describe(@"block bindings properties nil", ^{
+    __block BlockModule *blockModule = nil;
+    
+    beforeEach(^{
+        blockModule = [[[BlockModule alloc] init] autorelease];
+        blockModule.instrumentNilBlock = YES;
+        JSObjectionInjector *injector = [JSObjection createInjector:blockModule];
+        [JSObjection setDefaultInjector:injector];
+    });
+    
+    it(@"allows a returned nil value from bindBlock", ^{
+        // attempt to inject dependencies into Car via InjectDependenciesIntoProperties
+        // ensure that Car is successfully dependency injected and property brakes
+        // returned from bindBlock is set as nil on Car if that was the intention
+        Car *car = [[JSObjection defaultInjector] getObject:[Car class]];
+        assertThat(car, notNilValue());
+        assertThat(car, is(instanceOf([SixSpeedCar class])));
+        assertThat(car.brakes, nilValue());
+    });
 });
 
 describe(@"meta class bindings", ^{
