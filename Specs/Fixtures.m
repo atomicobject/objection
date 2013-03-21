@@ -41,6 +41,11 @@ objection_register(FiveSpeedCar)
 objection_requires(@"gearBox")
 @end
 
+@implementation SixSpeedCar
+objection_register(SixSpeedCar)
+
+@end
+
 @implementation CarFactory
 objection_register_singleton(CarFactory)
 @end
