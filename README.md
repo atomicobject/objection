@@ -355,6 +355,7 @@ One only has to [search GitHub](https://github.com/search?l=Objective-C&p=1&q=de
 
 ## Applications that use Objection
 
-* [Bubble Island](http://www.wooga.com/games/bubble-island/) and other [Wooga](http://wooga.com) games
+* [Bubble Island](http://www.wooga.com/games/bubble-island/)
+* [Monster World](http://www.wooga.com/games/monster-world/)
 * [SideReel](https://itunes.apple.com/us/app/sidereel/id417270961?mt=8)
 
