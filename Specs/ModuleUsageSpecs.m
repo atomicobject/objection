@@ -113,7 +113,7 @@ describe(@"block bindings properties nil", ^{
     
     it(@"allows a returned nil value from bindBlock", ^{
         // attempt to inject dependencies into Car via InjectDependenciesIntoProperties
-        // ensure that Car is successfully dependency injected and property brakes
+        // ensure that Car is successfully injected and property brakes
         // returned from bindBlock is set as nil on Car if that was the intention
         Car *car = [[JSObjection defaultInjector] getObject:[Car class]];
         assertThat(car, notNilValue());

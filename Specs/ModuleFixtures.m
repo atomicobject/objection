@@ -101,7 +101,7 @@ objection_register_singleton(EagerSingleton)
 - (void)configure
 {
     NSString *myEngine = @"My Engine";
-    Brakes *myBrakes = [[Brakes alloc] init];
+    Brakes *myBrakes = [[[Brakes alloc] init] autorelease];
     
     [self bindBlock:^(JSObjectionInjector *context) {
         if (_instrumentNilBlock) {

@@ -43,7 +43,7 @@ objection_requires(@"gearBox")
 
 @implementation SixSpeedCar
 objection_register(SixSpeedCar)
-
+@synthesize gearBox;
 @end
 
 @implementation CarFactory
