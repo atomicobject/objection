@@ -71,6 +71,8 @@ extern BOOL gEagerSingletonHook;
 @interface VisaCCProcessor : BaseCreditCardProcessor<CreditCardProcessor> {
   CreditCardValidator *_validator;
 }
+- (id)initWithCreditCardNumber:(NSString *)aCCNumber;
+@property (nonatomic, retain) NSString *CCNumber;
 @property (nonatomic, retain) CreditCardValidator *validator;
 @end
 

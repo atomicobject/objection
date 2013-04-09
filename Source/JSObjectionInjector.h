@@ -14,6 +14,7 @@
 - (id)getObject:(id)classOrProtocol;
 - (id)getObjectWithArgs:(id)classOrProtocol, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)getObject:(id)classOrProtocol arguments:(va_list)argList;
+- (id)getObject:(id)classOrProtocol argumentList:(NSArray *)argumentList;
 - (id)withModule:(JSObjectionModule *)theModule;
 - (id)withModules:(JSObjectionModule *)first, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)withModuleCollection:(NSArray *)theModules;

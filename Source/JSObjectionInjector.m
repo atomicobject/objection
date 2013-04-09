@@ -79,8 +79,8 @@
     return [self getObjectWithArgs:classOrProtocol, nil];
 }
 
-- (id)getObject:(id)classOrProtocol arguments:(va_list)argList {
-    @synchronized(self) {    
+- (id)getObject:(id)classOrProtocol argumentList:(NSArray *)argumentList {
+    @synchronized(self) {
         if (!classOrProtocol) {
             return nil;
         }
@@ -103,7 +103,7 @@
             if (entry) {
                 injectorEntry = [[entry class] entryWithEntry:entry];
                 injectorEntry.injector = self;
-                [_context setObject:injectorEntry forKey:key];              
+                [_context setObject:injectorEntry forKey:key];
             } else if(isClass) {
                 injectorEntry = [JSObjectionInjectorEntry entryWithClass:classOrProtocol scope:JSObjectionScopeNormal];
                 injectorEntry.injector = self;
@@ -112,15 +112,19 @@
         }
         
         if (classOrProtocol && injectorEntry) {
-            NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(argList);
-            return [injectorEntry extractObject:arguments];
-        } 
+            return [injectorEntry extractObject:argumentList];
+        }
         
-        return nil;    
+        return nil;
     }
     
     return nil;
+    
+}
 
+- (id)getObject:(id)classOrProtocol arguments:(va_list)argList {
+    NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(argList);
+    return [self getObject:classOrProtocol argumentList:arguments];
 }
 
 - (id)objectForKeyedSubscript: (id)key {

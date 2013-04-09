@@ -153,10 +153,11 @@ describe(@"class to protocol bindings", ^{
 
 describe(@"subclass to superclass bindings", ^{
   it(@"supports associating a concrete class with a protocol", ^{
-    VisaCCProcessor *processor = [[JSObjection defaultInjector] getObject:[BaseCreditCardProcessor class]];
+    VisaCCProcessor *processor = [[JSObjection defaultInjector] getObjectWithArgs:[BaseCreditCardProcessor class], @"12414", nil];
     
     assertThat(processor, is(instanceOf([VisaCCProcessor class])));
     assertThat(processor.validator, is(instanceOf([CreditCardValidator class])));
+    assertThat(processor.CCNumber, equalTo(@"12414"));
   });  
 });
 

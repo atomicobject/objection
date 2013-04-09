@@ -4,7 +4,7 @@
 @class JSObjectionInjector;
 
 @protocol JSObjectionProvider<NSObject>
-- (id)provide:(JSObjectionInjector *)context;
+- (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments;
 @end
 
 

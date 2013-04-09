@@ -72,7 +72,7 @@ objection_register_singleton(EagerSingleton)
 @end
 
 @implementation CarProvider
-- (id)provide:(JSObjectionInjector *)context
+- (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments
 {
     Car *car = [context getObject:[FiveSpeedCar class]];
     car.engine = (id)@"my engine";
@@ -81,7 +81,7 @@ objection_register_singleton(EagerSingleton)
 @end
 
 @implementation GearBoxProvider
-- (id)provide:(JSObjectionInjector *)context
+- (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments
 {
     return [[[AfterMarketGearBox alloc] init] autorelease];
 }
@@ -142,10 +142,18 @@ objection_register_singleton(EagerSingleton)
 
 @implementation VisaCCProcessor
 objection_register_singleton(VisaCCProcessor)
+objection_initializer(initWithCreditCardNumber:, @"Default")
 objection_requires(@"validator")
 
 @synthesize validator = _validator;
+@synthesize CCNumber;
 
+- (id)initWithCreditCardNumber:(NSString *)aCCNumber {
+    if ((self = [super init])) {
+        self.CCNumber = aCCNumber;
+    }
+    return self;
+}
 - (void)processNumber:(NSString *)number {
     [super processNumber:number];
 }

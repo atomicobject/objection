@@ -21,8 +21,8 @@
     return self;
 }
 
-- (id)provide:(JSObjectionInjector *)context {
-    return [context getObject:_class];
+- (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments {
+    return [context getObject:_class argumentList:arguments];
 }
 
 @end

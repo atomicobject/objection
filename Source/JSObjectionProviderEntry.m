@@ -23,7 +23,7 @@
     if (_block) {
         return _block(self.injector);
     }
-    return [_provider provide:self.injector];
+    return [_provider provide:self.injector arguments:arguments];
 }
 
 - (void)dealloc {
