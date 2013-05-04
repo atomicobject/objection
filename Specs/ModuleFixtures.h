@@ -29,14 +29,12 @@ extern BOOL gEagerSingletonHook;
 
 @interface MyModule : JSObjectionModule
 {
-  Engine *_engine;
-  id<GearBox> _gearBox;
   BOOL _instrumentInvalidEagerSingleton;
   BOOL _instrumentInvalidMetaClass;
 }
 
-@property(nonatomic, readonly) Engine *engine;
-@property(nonatomic, readonly) id<GearBox> gearBox;
+@property(weak, nonatomic, readonly) Engine *engine;
+@property(weak, nonatomic, readonly) id<GearBox> gearBox;
 @property(nonatomic, assign) BOOL instrumentInvalidEagerSingleton;
 @property (nonatomic, assign) BOOL instrumentInvalidMetaClass;
 
@@ -72,8 +70,8 @@ extern BOOL gEagerSingletonHook;
   CreditCardValidator *_validator;
 }
 - (id)initWithCreditCardNumber:(NSString *)aCCNumber;
-@property (nonatomic, retain) NSString *CCNumber;
-@property (nonatomic, retain) CreditCardValidator *validator;
+@property (nonatomic, strong) NSString *CCNumber;
+@property (nonatomic, strong) CreditCardValidator *validator;
 @end
 
 @interface FirstModule : JSObjectionModule

@@ -5,7 +5,7 @@ BOOL gEagerSingletonHook = NO;
 @implementation Car(Meta)
 
 + (id)manufacture {
-  return [[[Car alloc] init] autorelease];
+  return [[Car alloc] init];
 }
 
 @end
@@ -30,15 +30,15 @@ objection_register_singleton(EagerSingleton)
 
 
 @implementation MyModule
-@synthesize engine=_engine;
-@synthesize gearBox=_gearBox;
+@synthesize engine = _engine;
+@synthesize gearBox = _gearBox;
 @synthesize instrumentInvalidEagerSingleton=_instrumentInvalidEagerSingleton;
 @synthesize instrumentInvalidMetaClass = _instrumentInvalidMetaClass;
 
 - (id)initWithEngine:(Engine *)engine andGearBox:(id<GearBox>)gearBox {
   if ((self = [super init])) {
-    _engine = [engine retain];
-    _gearBox = [gearBox retain];
+    _engine = engine;
+    _gearBox = gearBox;
   }
   
   return self;
@@ -63,11 +63,6 @@ objection_register_singleton(EagerSingleton)
   
 }
 
-- (void)dealloc {
-  [_engine release];_engine = nil;
-  [_gearBox release];_gearBox = nil;
-  [super dealloc];
-}
 
 @end
 
@@ -83,7 +78,7 @@ objection_register_singleton(EagerSingleton)
 @implementation GearBoxProvider
 - (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments
 {
-    return [[[AfterMarketGearBox alloc] init] autorelease];
+    return [[AfterMarketGearBox alloc] init];
 }
 @end
 
@@ -91,8 +86,8 @@ objection_register_singleton(EagerSingleton)
 @implementation ProviderModule
 - (void)configure
 {
-    [self bindProvider:[[[CarProvider alloc] init] autorelease] toClass:[Car class]];
-    [self bindProvider:[[[GearBoxProvider alloc] init] autorelease] toProtocol:@protocol(GearBox)];
+    [self bindProvider:[[CarProvider alloc] init] toClass:[Car class]];
+    [self bindProvider:[[GearBoxProvider alloc] init] toProtocol:@protocol(GearBox)];
 }
 @end
 
@@ -101,7 +96,7 @@ objection_register_singleton(EagerSingleton)
 - (void)configure
 {
     NSString *myEngine = @"My Engine";
-    Brakes *myBrakes = [[[Brakes alloc] init] autorelease];
+    Brakes *myBrakes = [[Brakes alloc] init];
     
     [self bindBlock:^(JSObjectionInjector *context) {
         if (_instrumentNilBlock) {
@@ -123,7 +118,7 @@ objection_register_singleton(EagerSingleton)
         return (id)car;
     } toClass:[Car class]];
 
-    AfterMarketGearBox *gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
+    AfterMarketGearBox *gearBox = [[AfterMarketGearBox alloc] init];
     [self bindBlock:^(JSObjectionInjector *context) {
         return (id)gearBox;
     } toProtocol:@protocol(GearBox)];
@@ -158,23 +153,19 @@ objection_requires(@"validator")
     [super processNumber:number];
 }
 
-- (void)dealloc {
-  [_validator release];
-  [super dealloc];
-}
 @end
 
 
 @implementation FirstModule
 - (void)configure {  
-    [self bind:[[[FiveSpeedCar alloc] init] autorelease] toClass:[Car class]];
+    [self bind:[[FiveSpeedCar alloc] init] toClass:[Car class]];
     [self registerEagerSingleton:[EagerSingleton class]];
 }
 @end
 
 @implementation SecondModule
 - (void)configure {
-    [self bind:[[[AfterMarketGearBox alloc] init] autorelease] toProtocol:@protocol(GearBox)];  
+    [self bind:[[AfterMarketGearBox alloc] init] toProtocol:@protocol(GearBox)];  
 }
 @end
 

@@ -5,7 +5,7 @@
   NSDictionary *_attributes;
 }
 
-@property (nonatomic, retain) NSDictionary *attributes;
+@property (nonatomic, strong) NSDictionary *attributes;
 @end
 
 @implementation Person
@@ -18,7 +18,7 @@ objection_requires(@"attributes")
 {
   NSDictionary *_favoriteLanguages;
 }
-@property (nonatomic, retain) NSDictionary *favoriteLanguages;
+@property (nonatomic, strong) NSDictionary *favoriteLanguages;
 @end
 
 @implementation Programmer
@@ -33,7 +33,7 @@ objection_requires(@"favoriteLanguages")
   NSString *_something;
 }
 
-@property (nonatomic, retain) NSString *something;
+@property (nonatomic, strong) NSString *something;
 
 @end
 

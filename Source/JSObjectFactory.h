@@ -6,7 +6,7 @@
     JSObjectionInjector *_injector;
 }
 
-@property (nonatomic, readonly, retain) JSObjectionInjector *injector;
+@property (nonatomic, readonly, strong) JSObjectionInjector *injector;
 
 - (id)initWithInjector:(JSObjectionInjector *)injector;
 - (id)getObject:(id)classOrProtocol;

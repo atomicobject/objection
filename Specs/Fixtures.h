@@ -22,14 +22,14 @@
   BOOL awake; 
 }
 
-@property(nonatomic, retain) Engine *engine;
-@property(nonatomic, retain) Brakes *brakes;
+@property(nonatomic, strong) Engine *engine;
+@property(nonatomic, strong) Brakes *brakes;
 @property(nonatomic) BOOL awake;
 
 @end
 
 @interface UnregisteredCar : NSObject
-@property(nonatomic, retain) Engine *engine;
+@property(nonatomic, strong) Engine *engine;
 @end
 
 @protocol GearBox;
@@ -63,13 +63,13 @@
   SingletonItem *singletonItem;
 }
 
-@property(nonatomic, retain) SingletonItem *singletonItem;
+@property(nonatomic, strong) SingletonItem *singletonItem;
 @end
 
 @class JSObjectFactory;
 
 @interface JSObjectFactoryHolder : NSObject
-@property (nonatomic, retain) JSObjectFactory *objectFactory;
+@property (nonatomic, strong) JSObjectFactory *objectFactory;
 @end
 
 @class SingletonBar;
@@ -78,6 +78,6 @@
 {
   SingletonBar *bar;
 }
-@property(nonatomic, retain) SingletonBar *bar;
+@property(nonatomic, strong) SingletonBar *bar;
 
 @end

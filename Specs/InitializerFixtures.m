@@ -22,11 +22,6 @@ objection_initializer(initWithNibName:bundle:, @"MyNib")
     return self;
 }
 
-- (void)dealloc {
-    [_nibName release];
-    [_car release];
-    [super dealloc];
-}
 @end
 
 @implementation ConfigurableCar
@@ -50,10 +45,4 @@ objection_initializer(initWithModel:horsePower:andYear:)
     return self;
 }
 
-- (void)dealloc {
-    [_model release];
-    [_horsePower release];
-    [_year release];
-    [super dealloc];
-}
 @end

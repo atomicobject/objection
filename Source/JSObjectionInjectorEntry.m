@@ -38,8 +38,7 @@
 
 - (void)dealloc 
 {
-  [_storageCache release]; _storageCache = nil;
-  [super dealloc];
+   _storageCache = nil;
 }
 
 
@@ -58,11 +57,11 @@
     if ([self.classEntry respondsToSelector:@selector(objectionInitializer)]) {
         objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
     } else {
-        objectUnderConstruction = [[[self.classEntry alloc] init] autorelease];
+        objectUnderConstruction = [[self.classEntry alloc] init];
     }
 
     if (self.lifeCycle == JSObjectionScopeSingleton) {
-        _storageCache = [objectUnderConstruction retain];
+        _storageCache = objectUnderConstruction;
     }
     
     JSObjectionUtils.injectDependenciesIntoProperties(self.injector, self.classEntry, objectUnderConstruction);
@@ -83,10 +82,10 @@
 #pragma mark -
 
 + (id)entryWithClass:(Class)theClass scope:(JSObjectionScope)theLifeCycle  {
-    return [[[JSObjectionInjectorEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle] autorelease];
+    return [[JSObjectionInjectorEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle];
 }
 
 + (id)entryWithEntry:(JSObjectionInjectorEntry *)entry {
-    return [[[JSObjectionInjectorEntry alloc] initWithClass:entry.classEntry lifeCycle:entry.lifeCycle] autorelease];  
+    return [[JSObjectionInjectorEntry alloc] initWithClass:entry.classEntry lifeCycle:entry.lifeCycle];  
 }
 @end

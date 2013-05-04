@@ -8,7 +8,7 @@ __block SecondModule *module = nil;
 __block JSObjectionInjector *injector = nil;
 
 beforeEach(^{
-    module = [[[SecondModule alloc] init] autorelease];
+    module = [[SecondModule alloc] init];
     gEagerSingletonHook = NO;
     injector = [JSObjection createInjector:module];
 });
@@ -19,8 +19,8 @@ it(@"builds a new injector with new modules", ^{
     assertThatBool(gEagerSingletonHook, equalToBool(NO));
     
     injector = [injector withModules:
-                    [[[ProviderModule alloc] init] autorelease],
-                    [[[FirstModule alloc] init] autorelease], nil];
+                    [[ProviderModule alloc] init],
+                    [[FirstModule alloc] init], nil];
 
     assertThat([injector getObject:@protocol(GearBox)], is(instanceOf([AfterMarketGearBox class])));
     assertThat([injector getObject:[Car class]], is(instanceOf([FiveSpeedCar class])));
@@ -29,7 +29,7 @@ it(@"builds a new injector with new modules", ^{
 
 it(@"builds a new module without the module types", ^{
     injector = [injector withModules:
-                [[[ProviderModule alloc] init] autorelease], nil];
+                [[ProviderModule alloc] init], nil];
 
     assertThat([injector getObject:@protocol(GearBox)], is(instanceOf([AfterMarketGearBox class])));
     assertThat([injector getObject:[Car class]], is(instanceOf([FiveSpeedCar class])));

@@ -34,7 +34,7 @@ it(@"correctly builds and object with dependencies", ^{
 });
 
 it(@"will inject dependencies into properties of an existing instance", ^{
-    Car *car = [[[Car alloc] init] autorelease];
+    Car *car = [[Car alloc] init];
 
     assertThat(car.engine, is(nilValue()));
     assertThat(car.brakes, is(nilValue()));

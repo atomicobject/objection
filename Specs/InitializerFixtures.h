@@ -3,7 +3,7 @@
 #import "Fixtures.h"
 
 @interface ViewController : NSObject
-@property (nonatomic, retain) Car *car;
+@property (nonatomic, strong) Car *car;
 @property (nonatomic, copy) NSString *nibName;
 @property (nonatomic, copy) NSBundle *bundle;
 
@@ -11,8 +11,8 @@
 @end
 
 @interface ConfigurableCar : NSObject
-@property (nonatomic, retain) Car *car;
-@property (nonatomic, retain) Engine *engine;
+@property (nonatomic, strong) Car *car;
+@property (nonatomic, strong) Engine *engine;
 
 @property (nonatomic, copy) NSString *model;
 @property (nonatomic, copy) NSNumber *horsePower;

@@ -6,10 +6,10 @@ SPEC_BEGIN(ModuleUsageSpecs)
 __block MyModule *module = nil;
 
 beforeEach(^{
-    Engine *engine = [[[Engine alloc] init] autorelease];
-    id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
+    Engine *engine = [[Engine alloc] init];
+    id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
 
-    module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
+    module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];    
     gEagerSingletonHook = NO;
     JSObjectionInjector *injector = [JSObjection createInjector:module];
     [JSObjection setDefaultInjector:injector];
@@ -31,10 +31,10 @@ it(@"supports binding an instance to a protocol", ^{
 });
 
 it(@"throws an exception if the instance does not conform to the protocol", ^{
-    Engine *engine = [[[Engine alloc] init] autorelease];
+    Engine *engine = [[Engine alloc] init];
 
     [[theBlock(^{
-        MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"] autorelease];
+        MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"];
         [module configure];
     }) should] raiseWithReason:@"Instance does not conform to the GearBox protocol"];
 });
@@ -44,11 +44,11 @@ it(@"supports eager singletons", ^{
 });
 
 it(@"throws an exception if an attempt is made to register an eager singleton that was not registered as a singleton", ^{
-    Engine *engine = [[[Engine alloc] init] autorelease];
+    Engine *engine = [[Engine alloc] init];
 
     [[theBlock(^{
-        id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
-        MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
+        id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
+        MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];    
         module.instrumentInvalidEagerSingleton = YES;
         [JSObjection createInjector:module];
     }) should] raiseWithReason:@"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton"];
@@ -59,7 +59,7 @@ describe(@"provider bindings", ^{
   __block ProviderModule *providerModule = nil;
   
   beforeEach(^{
-    providerModule = [[[ProviderModule alloc] init] autorelease];    
+    providerModule = [[ProviderModule alloc] init];    
     JSObjectionInjector *injector = [JSObjection createInjector:providerModule];
     [JSObjection setDefaultInjector:injector];      
   });
@@ -82,7 +82,7 @@ describe(@"block bindings", ^{
   __block BlockModule *blockModule = nil;
   
   beforeEach(^{
-    blockModule = [[[BlockModule alloc] init] autorelease];    
+    blockModule = [[BlockModule alloc] init];    
     JSObjectionInjector *injector = [JSObjection createInjector:blockModule];
     [JSObjection setDefaultInjector:injector];      
   });
@@ -105,7 +105,7 @@ describe(@"block bindings properties nil", ^{
     __block BlockModule *blockModule = nil;
     
     beforeEach(^{
-        blockModule = [[[BlockModule alloc] init] autorelease];
+        blockModule = [[BlockModule alloc] init];
         blockModule.instrumentNilBlock = YES;
         JSObjectionInjector *injector = [JSObjection createInjector:blockModule];
         [JSObjection setDefaultInjector:injector];
@@ -130,11 +130,11 @@ describe(@"meta class bindings", ^{
   });
   
   it(@"throws an exception if the given object is not a meta class", ^{
-    id<GearBox> gearBox = [[[AfterMarketGearBox alloc] init] autorelease];
-    Engine *engine = [[[Engine alloc] init] autorelease];
+    id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
+    Engine *engine = [[Engine alloc] init];
 
     [[theBlock(^{
-      MyModule *module = [[[MyModule alloc] initWithEngine:engine andGearBox:gearBox] autorelease];    
+      MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];    
       module.instrumentInvalidMetaClass = YES;
       [module configure];
     }) should] raiseWithReason:@"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class"];
@@ -163,8 +163,8 @@ describe(@"subclass to superclass bindings", ^{
 
 describe(@"multiple modules", ^{
     beforeEach(^{
-      FirstModule *first = [[[FirstModule alloc] init] autorelease];
-      SecondModule *second = [[[SecondModule alloc] init] autorelease]; 
+      FirstModule *first = [[FirstModule alloc] init];
+      SecondModule *second = [[SecondModule alloc] init]; 
       JSObjectionInjector *injector = [JSObjection createInjectorWithModules:first, second, nil];
       [JSObjection setDefaultInjector:injector];
     });
@@ -184,7 +184,7 @@ describe(@"scopes", ^{
     __block JSObjectionInjector *injector = nil;
     
     beforeEach(^{
-        scopeModule = [[[ScopeModule alloc] init] autorelease];
+        scopeModule = [[ScopeModule alloc] init];
         injector = [JSObjection createInjector:scopeModule];
     });
     

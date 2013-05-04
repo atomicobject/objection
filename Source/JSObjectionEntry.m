@@ -1,7 +1,7 @@
 #import "JSObjectionEntry.h"
 
 @implementation JSObjectionEntry
-@synthesize injector = _injector;
+@synthesize injector;
 @dynamic lifeCycle;
 
 - (id)extractObject:(NSArray *)arguments {
@@ -9,7 +9,7 @@
 }
 
 + (id)entryWithEntry:(JSObjectionEntry *)entry {
-    return [[entry retain] autorelease];
+    return entry;
 }
 
 - (JSObjectionScope)lifeCycle {

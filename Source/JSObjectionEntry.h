@@ -18,7 +18,6 @@ typedef enum {
 
 @interface JSObjectionEntry : NSObject<JSObjectionEntry>
 {
-    id _injector;  
 }
 
 @end

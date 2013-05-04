@@ -41,7 +41,7 @@ static JSObjectionPropertyInfo FindClassOrProtocolForProperty(objc_property_t pr
     if(!classOrProtocol) {
         @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", classOrProtocolName, propertyName] userInfo:nil];            
     }
-    propertyInfo.value = classOrProtocol;
+    propertyInfo.value = (__bridge  void *)(classOrProtocol);
 
     return propertyInfo;      
 }
@@ -72,7 +72,7 @@ static NSArray* TransformVariadicArgsToArray(va_list va_arguments) {
         [arguments addObject:object];
     }
     
-    return [[arguments copy] autorelease];
+    return [arguments copy];
 }
 
 static objc_property_t GetProperty(Class klass, NSString *propertyName) {
@@ -92,14 +92,12 @@ static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *argu
         [invocation setTarget:instance];
         [invocation setSelector:initializer];
         for (int i = 0; i < arguments.count; i++) {
-            id argument = [arguments objectAtIndex:i];
+            __unsafe_unretained id argument = [arguments objectAtIndex:i];
             [invocation setArgument:&argument atIndex:i + 2];
         }
         [invocation invoke];
-        [invocation getReturnValue:&instance];
-        return [instance autorelease];        
+        return instance;
     } else {
-        [instance release];
         @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Could not find initializer '%@' on %@", NSStringFromSelector(initializer), NSStringFromClass(klass)] userInfo:nil]; 
     }
     return nil;
@@ -113,7 +111,7 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
         for (NSString *propertyName in properties) {
             objc_property_t property = JSObjectionUtils.propertyForClass(klass, propertyName);
             JSObjectionPropertyInfo propertyInfo = JSObjectionUtils.findClassOrProtocolForProperty(property);
-            id desiredClassOrProtocol = propertyInfo.value;
+            id desiredClassOrProtocol = (__bridge id)(propertyInfo.value);
             // Ensure that the class is initialized before attempting to retrieve it.
             // Using +load would force all registered classes to be initialized so we are
             // lazily initializing them.

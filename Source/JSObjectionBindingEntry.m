@@ -5,7 +5,7 @@
 
 - (id)initWithObject:(id)theObject {
     if ((self = [super init])) {
-        _instance = [theObject retain];    
+        _instance = theObject;    
     }
     return self;
 }
@@ -19,8 +19,7 @@
 }
 
 - (void)dealloc {
-    [_instance release]; _instance = nil;
-    [super dealloc];
+     _instance = nil;
 }
 
 @end

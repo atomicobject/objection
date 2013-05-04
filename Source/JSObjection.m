@@ -11,7 +11,7 @@ static JSObjectionInjector *gGlobalInjector;
 + (JSObjectionInjector *)createInjector:(JSObjectionModule *)module {
         pthread_mutex_lock(&gObjectionMutex);
         @try {
-            return [[[JSObjectionInjector alloc] initWithContext:gObjectionContext andModule:module] autorelease];
+            return [[JSObjectionInjector alloc] initWithContext:gObjectionContext andModule:module];
         }
         @finally {
             pthread_mutex_unlock(&gObjectionMutex); 
@@ -33,7 +33,7 @@ static JSObjectionInjector *gGlobalInjector;
         }
 
         va_end(va_modules);
-        return [[[JSObjectionInjector alloc] initWithContext:gObjectionContext andModules:modules] autorelease];
+        return [[JSObjectionInjector alloc] initWithContext:gObjectionContext andModules:modules];
     }
     @finally {
         pthread_mutex_unlock(&gObjectionMutex); 
@@ -45,7 +45,7 @@ static JSObjectionInjector *gGlobalInjector;
 + (JSObjectionInjector *)createInjector {
     pthread_mutex_lock(&gObjectionMutex);
     @try {
-        return [[[JSObjectionInjector alloc] initWithContext:gObjectionContext] autorelease];
+        return [[JSObjectionInjector alloc] initWithContext:gObjectionContext];
     }
     @finally {
         pthread_mutex_unlock(&gObjectionMutex); 
@@ -85,12 +85,11 @@ static JSObjectionInjector *gGlobalInjector;
 
 + (void)setDefaultInjector:(JSObjectionInjector *)anInjector {
     if (gGlobalInjector != anInjector) {
-        [gGlobalInjector release];
-        gGlobalInjector = [anInjector retain];
+        gGlobalInjector = anInjector;
     }
 }
 
 + (JSObjectionInjector *) defaultInjector {  
-    return [[gGlobalInjector retain] autorelease];
+    return gGlobalInjector;
 }
 @end

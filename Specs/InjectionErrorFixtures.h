@@ -12,16 +12,15 @@
     NSObject *someObject;
 }
 
-@property(nonatomic, retain) NSObject *someObject;
+@property(nonatomic, strong) NSObject *someObject;
 
 @end
 
 @interface ReadOnlyPropertyObject : NSObject
 {
-    NSObject *_someObject;
 }
 
-@property(nonatomic, readonly) NSObject *someObject;
+@property(weak, nonatomic, readonly) NSObject *someObject;
 
 @end
 

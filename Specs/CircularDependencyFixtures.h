@@ -8,6 +8,6 @@
     SingletonFoo *foo;
 }
 
-@property(nonatomic, retain) SingletonFoo *foo;
+@property(nonatomic, strong) SingletonFoo *foo;
 
 @end

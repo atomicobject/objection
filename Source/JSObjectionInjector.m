@@ -23,7 +23,7 @@
 }
 
 - (void)configure   {
-    [self bind:[[[JSObjectFactory alloc] initWithInjector:_injector] autorelease] toClass:[JSObjectFactory class]];
+    [self bind:[[JSObjectFactory alloc] initWithInjector:_injector] toClass:[JSObjectFactory class]];
 }
 
 @end
@@ -38,7 +38,7 @@
 
 - (id)initWithContext:(NSDictionary *)theGlobalContext {
     if ((self = [super init])) {
-        _globalContext = [theGlobalContext retain];
+        _globalContext = theGlobalContext;
         _context = [[NSMutableDictionary alloc] init];
         _modules = [[NSMutableArray alloc] init];
         [self configureDefaultModule];
@@ -214,23 +214,16 @@
     [_modules addObject:module];
     [module configure];
     NSSet *mergedSet = [module.eagerSingletons setByAddingObjectsFromSet:_eagerSingletons];
-    [_eagerSingletons release];
-    _eagerSingletons = [mergedSet retain];
+    _eagerSingletons = mergedSet;
     [_context addEntriesFromDictionary:module.bindings];
 }
 
 - (void)configureDefaultModule {
-    __JSObjectionInjectorDefaultModule *module = [[[__JSObjectionInjectorDefaultModule alloc] initWithInjector:self] autorelease];
+    __JSObjectionInjectorDefaultModule *module = [[__JSObjectionInjectorDefaultModule alloc] initWithInjector:self];
     [self configureModule:module];
 }
 
 #pragma mark - 
 
-- (void)dealloc {
-    [_globalContext release];
-    [_context release];  
-    [_eagerSingletons release];
-    [super dealloc];
-}
 
 @end
