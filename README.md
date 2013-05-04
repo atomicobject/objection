@@ -290,7 +290,6 @@ objection_initializer(initWithMake:model:)
 
 ## TODO
 
-* ARCify for iOS
 * Add a motivation section that speaks to _why_ Objection was created
 
 ## Installation
