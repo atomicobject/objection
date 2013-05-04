@@ -8,22 +8,20 @@
 #import <objc/runtime.h>
 
 @interface __JSObjectionInjectorDefaultModule : JSObjectionModule
-{
-    JSObjectionInjector *_injector;
-}
+@property (nonatomic, weak) JSObjectionInjector *injector;
 @end
 
 @implementation __JSObjectionInjectorDefaultModule
 
 - (id)initWithInjector:(JSObjectionInjector *)injector {
     if ((self = [super init])) {
-        _injector = injector;
+        self.injector = injector;
     }
     return self;
 }
 
 - (void)configure   {
-    [self bind:[[JSObjectFactory alloc] initWithInjector:_injector] toClass:[JSObjectFactory class]];
+    [self bind:[[JSObjectFactory alloc] initWithInjector:self.injector] toClass:[JSObjectFactory class]];
 }
 
 @end

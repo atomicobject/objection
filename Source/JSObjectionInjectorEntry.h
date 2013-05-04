@@ -2,7 +2,6 @@
 #import "JSObjectionEntry.h"
 
 @interface JSObjectionInjectorEntry : JSObjectionEntry {
-	Class _classEntry;
     JSObjectionScope _lifeCycle;
     id _storageCache;
 }
