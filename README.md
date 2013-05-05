@@ -34,9 +34,9 @@ A class can be registered with objection using the macros *objection_register* (
 }
 
 // Will be filled in by objection
-@property(nonatomic, retain) Engine *engine;
+@property(nonatomic, strong) Engine *engine;
 // Will be filled in by objection
-@property(nonatomic, retain) Brakes *brakes;
+@property(nonatomic, strong) Brakes *brakes;
 @property(nonatomic) BOOL awake;
 
 @implementation Car
@@ -115,7 +115,7 @@ A class can get objects from the injector context through an object factory.
 ### Example
 ```objective-c
 @interface RequestDispatcher
-@property(nonatomic, retain) JSObjectFactory *objectFactory
+@property(nonatomic, strong) JSObjectFactory *objectFactory
 @end
 
 @implementation RequestDispatcher
@@ -152,7 +152,7 @@ A module is a set of bindings which contributes additional configuration informa
 
 @end
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-  JSObjectionInjector *injector = [JSObjection createInjector:[[[MyAppModule alloc] init] autorelease]];
+  JSObjectionInjector *injector = [JSObjection createInjector:[[MyAppModule alloc] init]];
   [JSObjection setDefaultInjector:injector];
 }
 ```
@@ -207,7 +207,7 @@ Occasionally you'll want to manually construct an object within Objection. Provi
 
 @implementation MyAppModule
 - (void)configure {
-    [self bindProvider:[[[CarProvider alloc] init] autorelease] toClass:[Car class]];
+    [self bindProvider:[[CarProvider alloc] init] toClass:[Car class]];
     [self bindBlock:^(JSObjectionInjector *context) {
       // Manually build object
       return car;          
@@ -296,12 +296,12 @@ objection_initializer(initWithMake:model:)
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-0.15.2.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-0.16.0.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.15.2
+    git checkout 0.16.0
     
 #### iOS
 
@@ -328,7 +328,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-0.15.
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '0.15.2'
+    pod 'Objection', '0.16.0'
 
 Now you can install Objection
     
@@ -344,7 +344,7 @@ Learn more at [CocoaPods](http://cocoapods.org).
 ## Authors
 
 * Justin DeWind (dewind@atomicobject.com, @dewind on Twitter)
-* © 2009-2012 [Atomic Object](http://www.atomicobject.com/)
+* © 2013 [Atomic Object](http://www.atomicobject.com/)
 * More Atomic Object [open source](http://www.atomicobject.com/pages/Software+Commons) projects
 
 ## Other Dependency Injection Libraries
