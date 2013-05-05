@@ -84,9 +84,9 @@
 <span class="p">}</span>
 
 <span class="c1">// Will be filled in by objection</span>
-<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">Engine</span> <span class="o">*</span><span class="n">engine</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Engine</span> <span class="o">*</span><span class="n">engine</span><span class="p">;</span>
 <span class="c1">// Will be filled in by objection</span>
-<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">Brakes</span> <span class="o">*</span><span class="n">brakes</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Brakes</span> <span class="o">*</span><span class="n">brakes</span><span class="p">;</span>
 <span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="kt">BOOL</span> <span class="n">awake</span><span class="p">;</span>
 
 <span class="k">@implementation</span> <span class="nc">Car</span>
@@ -162,7 +162,7 @@
 <h3>Example</h3>
 
 <div class="highlight"><pre><span class="k">@interface</span> <span class="nc">RequestDispatcher</span>
-<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">JSObjectFactory</span> <span class="o">*</span><span class="n">objectFactory</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">JSObjectFactory</span> <span class="o">*</span><span class="n">objectFactory</span>
 <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">RequestDispatcher</span>
@@ -200,7 +200,7 @@
 
 <span class="k">@end</span>
 <span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">application</span><span class="o">:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="n">application</span> <span class="n">didFinishLaunchingWithOptions</span><span class="o">:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">launchOptions</span> <span class="p">{</span>    
-  <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="o">:</span><span class="p">[[[</span><span class="n">MyAppModule</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">]];</span>
+  <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="o">:</span><span class="p">[[</span><span class="n">MyAppModule</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]];</span>
   <span class="p">[</span><span class="n">JSObjection</span> <span class="n">setDefaultInjector</span><span class="o">:</span><span class="n">injector</span><span class="p">];</span>
 <span class="p">}</span>
 </pre></div>
@@ -257,7 +257,7 @@ in the injector context.</p>
 
 <span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
-    <span class="p">[</span><span class="n">self</span> <span class="n">bindProvider</span><span class="o">:</span><span class="p">[[[</span><span class="n">CarProvider</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">]</span> <span class="n">toClass</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="n">bindProvider</span><span class="o">:</span><span class="p">[[</span><span class="n">CarProvider</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">toClass</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
     <span class="p">[</span><span class="n">self</span> <span class="n">bindBlock</span><span class="o">:^</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Manually build object</span>
       <span class="k">return</span> <span class="n">car</span><span class="p">;</span>          
@@ -341,18 +341,17 @@ in the injector context.</p>
 <h2>TODO</h2>
 
 <ul>
-<li>ARCify for iOS</li>
 <li>Add a motivation section that speaks to <em>why</em> Objection was created</li>
 </ul><h2>Installation</h2>
 
 <h3>Static Framework and Linkable Framework</h3>
 
-<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-0.15.2.tar.gz">here</a></p>
+<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-0.16.0.tar.gz">here</a></p>
 
 <h3>Building Static Framework</h3>
 
 <pre><code>git clone git://github.com/atomicobject/objection.git
-git checkout 0.15.2
+git checkout 0.16.0
 </code></pre>
 
 <h4>iOS</h4>
@@ -383,7 +382,7 @@ git checkout 0.15.2
 <p>Edit your Pofile</p>
 
 <pre><code>edit Podfile
-pod 'Objection', '0.15.2'
+pod 'Objection', '0.16.0'
 </code></pre>
 
 <p>Now you can install Objection</p>
@@ -402,7 +401,7 @@ pod 'Objection', '0.15.2'
 
 <ul>
 <li>Justin DeWind (<a href="mailto:dewind@atomicobject.com">dewind@atomicobject.com</a>, <a href="https://github.com/dewind" class="user-mention">@dewind</a> on Twitter)</li>
-<li>© 2009-2012 <a href="http://www.atomicobject.com/">Atomic Object</a>
+<li>© 2013 <a href="http://www.atomicobject.com/">Atomic Object</a>
 </li>
 <li>More Atomic Object <a href="http://www.atomicobject.com/pages/Software+Commons">open source</a> projects</li>
 </ul><h2>Applications that use Objection</h2>
@@ -410,6 +409,7 @@ pod 'Objection', '0.15.2'
 <ul>
 <li><a href="http://www.wooga.com/games/bubble-island/">Bubble Island</a></li>
 <li><a href="http://www.wooga.com/games/monster-world/">Monster World</a></li>
+<li><a href="http://www.wooga.com/games/pocket-village/">Pocket Village</a></li>
 <li><a href="https://itunes.apple.com/us/app/sidereel/id417270961?mt=8">SideReel</a></li>
 </ul>
       </section>
