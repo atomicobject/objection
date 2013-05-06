@@ -8,4 +8,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Source'
   s.license      = "https://github.com/atomicobject/objection/blob/master/LICENSE"
   s.requires_arc = true
+
+  s.ios.deployment_target = '5.0'
+  s.osx.deployment_target = '10.7'
 end
