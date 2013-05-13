@@ -121,8 +121,6 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
             
             id theObject = [injector getObject:desiredClassOrProtocol];
             
-            // TODO: Refactor and remove this. An injector should auto register it.
-
             if(theObject == nil && propertyInfo.type == JSObjectionTypeProtocol) {
                 @throw [NSException exceptionWithName:@"JSObjectionException"
                                                reason:[NSString stringWithFormat:@"Cannot find an instance that is bound to the protocol '%@' to assign to the property '%@'", NSStringFromProtocol(desiredClassOrProtocol), propertyName]
