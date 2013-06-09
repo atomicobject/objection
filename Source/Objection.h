@@ -9,7 +9,6 @@
 #import "NSObject+Objection.h"
 #import "JSObjectionInjectorEntry.h"
 #import "JSObjectionUtils.h"
-#import "JSObjectionProviderEntry.h"
 #import "JSObjectFactory.h"
 #import "JSObjection.h"
 

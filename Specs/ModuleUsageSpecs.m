@@ -182,18 +182,56 @@ describe(@"multiple modules", ^{
 describe(@"scopes", ^{
     __block ScopeModule *scopeModule = nil;
     __block JSObjectionInjector *injector = nil;
-    
+
     beforeEach(^{
         scopeModule = [[ScopeModule alloc] init];
         injector = [JSObjection createInjector:scopeModule];
     });
-    
+
     it(@"can bind a class in singleton scope", ^{
         assertThat(injector[[Car class]], is(sameInstance(injector[[Car class]])));
     });
-    
+
     it(@"can bind a class in a normal scope", ^{
         assertThat(injector[[VisaCCProcessor class]], isNot(sameInstance(injector[[VisaCCProcessor class]])));
+    });
+});
+
+
+describe(@"provider scopes", ^{
+    __block ProviderScopeModule *providerScopeModule = nil;
+    __block JSObjectionInjector *injector = nil;
+
+    beforeEach(^{
+        providerScopeModule = [[ProviderScopeModule alloc] init];
+        injector = [JSObjection createInjector:providerScopeModule];
+    });
+
+    it(@"can bind a provider in singleton scope", ^{
+        assertThat(injector[[Car class]], is(sameInstance(injector[[Car class]])));
+    });
+
+    it(@"can bind a provider in a normal scope", ^{
+        assertThat(injector[@protocol(GearBox)], isNot(sameInstance(injector[@protocol(GearBox)])));
+    });
+});
+
+
+describe(@"block scopes", ^{
+    __block BlockScopeModule *blockScopeModule = nil;
+    __block JSObjectionInjector *injector = nil;
+
+    beforeEach(^{
+        blockScopeModule = [[BlockScopeModule alloc] init];
+        injector = [JSObjection createInjector:blockScopeModule];
+    });
+
+    it(@"can bind a block in singleton scope", ^{
+        assertThat(injector[[Car class]], is(sameInstance(injector[[Car class]])));
+    });
+
+    it(@"can bind a block in a normal scope", ^{
+        assertThat(injector[@protocol(GearBox)], isNot(sameInstance(injector[@protocol(GearBox)])));
     });
 });
 

@@ -1,8 +1,8 @@
 #import "JSObjectionModule.h"
 #import "JSObjectionBindingEntry.h"
-#import "JSObjectionProviderEntry.h"
 #import "JSObjectionInjectorEntry.h"
 #import <objc/runtime.h>
+#import <Objection/JSObjectionProviderEntry.h>
 #import "JSObjectionInjector.h"
 
 @interface __JSClassProvider : NSObject<JSObjectionProvider>
@@ -69,42 +69,55 @@
 }
 
 - (void)bindProvider:(id<JSObjectionProvider>)provider toClass:(Class)aClass {
-    NSString *key = NSStringFromClass(aClass);
-    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithProvider:provider];
-    [_bindings setObject:entry forKey:key];  
+    [self bindProvider:provider toClass:aClass inScope:JSObjectionScopeNormal];
 }
 
 - (void)bindProvider:(id<JSObjectionProvider>)provider toProtocol:(Protocol *)aProtocol {
+    [self bindProvider:provider toProtocol:aProtocol inScope:JSObjectionScopeNormal];
+}
+
+- (void)bindProvider:(id <JSObjectionProvider>)provider toClass:(Class)aClass inScope:(JSObjectionScope)scope {
+    NSString *key = NSStringFromClass(aClass);
+    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithProvider:provider lifeCycle:scope];
+    [_bindings setObject:entry forKey:key];
+}
+
+- (void)bindProvider:(id <JSObjectionProvider>)provider toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope {
     NSString *key = [self protocolKey:aProtocol];
-    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithProvider:provider];
-    [_bindings setObject:entry forKey:key];  
+    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithProvider:provider lifeCycle:scope];
+    [_bindings setObject:entry forKey:key];
 }
 
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol {
-    NSString *key = [self protocolKey:aProtocol];
+
     __JSClassProvider *provider = [[__JSClassProvider alloc] initWithClass:aClass];
-    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithProvider:provider];
-    [_bindings setObject:entry forKey:key];  
+    [self bindProvider:provider toProtocol:aProtocol];
 }
 
 - (void)bindClass:(Class)aClass toClass:(Class)toClass {
-    NSString *key = NSStringFromClass(toClass);
     __JSClassProvider *provider = [[__JSClassProvider alloc] initWithClass:aClass];
-    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithProvider:provider];
-    [_bindings setObject:entry forKey:key];    
+    [self bindProvider:provider toClass:toClass];
 }
 
 
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass {
-    NSString *key = NSStringFromClass(aClass);
-    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithBlock:block];
-    [_bindings setObject:entry forKey:key];    
+    [self bindBlock:block toClass:aClass inScope:JSObjectionScopeNormal];
 }
 
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol {
+    [self bindBlock:block toProtocol:aProtocol inScope:JSObjectionScopeNormal];
+}
+
+- (void)bindBlock:(id (^)(JSObjectionInjector *))block toClass:(Class)aClass inScope:(JSObjectionScope)scope {
+    NSString *key = NSStringFromClass(aClass);
+    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithBlock:block lifeCycle:scope];
+    [_bindings setObject:entry forKey:key];
+}
+
+- (void)bindBlock:(id (^)(JSObjectionInjector *))block toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope {
     NSString *key = [self protocolKey:aProtocol];
-    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithBlock:block];
-    [_bindings setObject:entry forKey:key];    
+    JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithBlock:block lifeCycle: scope];
+    [_bindings setObject:entry forKey:key];
 }
 
 - (void)bindClass:(Class)aClass inScope:(JSObjectionScope)scope {
