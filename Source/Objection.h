@@ -33,6 +33,17 @@
         return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
     }
 
+#define objection_requires_sel(args...) \
+    + (NSSet *)objectionRequires { \
+        SEL selectors[] = {args}; \
+        NSMutableSet *requirements = [NSMutableSet set]; \
+        for (int j = 0; j < sizeof(selectors)/ sizeof(SEL); j++) { \
+            SEL selector = selectors[j]; \
+            [requirements addObject:NSStringFromSelector(selector)]; \
+        } \
+    return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
+    }
+
 #define objection_initializer(selectorSymbol, args...) \
     + (NSDictionary *)objectionInitializer { \
         id objs[]= {args}; \
