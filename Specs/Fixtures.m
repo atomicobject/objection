@@ -73,3 +73,7 @@ objection_requires(@"bar")
 
 @synthesize bar;
 @end
+
+@implementation UnstoppableCar
+objection_requires_sel(@selector(engine))
+@end

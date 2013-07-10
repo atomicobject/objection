@@ -81,3 +81,7 @@
 @property(nonatomic, strong) SingletonBar *bar;
 
 @end
+
+@interface UnstoppableCar : NSObject
+@property(nonatomic, strong) Engine *engine;
+@end
