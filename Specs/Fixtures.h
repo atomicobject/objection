@@ -32,6 +32,9 @@
 @property(nonatomic, strong) Engine *engine;
 @end
 
+@protocol UnregisteredProtocol
+@end
+
 @protocol GearBox;
 
 @protocol ManualCar <NSObject>
