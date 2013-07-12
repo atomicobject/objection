@@ -197,4 +197,26 @@ describe(@"scopes", ^{
     });
 });
 
+describe(@"has binding", ^{
+    __block FirstModule *firstModule = nil;
+    __block SecondModule *secondModule = nil;
+
+    beforeEach(^{
+      firstModule = [[FirstModule alloc] init];
+      secondModule = [[SecondModule alloc] init];
+      [firstModule configure];
+      [secondModule configure];
+    });
+
+  it(@"returns correct value for hasBindingForClass:", ^{
+    assertThatBool([firstModule hasBindingForClass:[Car class]], equalToBool(YES));
+    assertThatBool([firstModule hasBindingForClass:[UnregisteredCar class]], equalToBool(NO));
+  });
+
+  it(@"returns correct value for hasBindingForProtocol", ^{
+    assertThatBool([secondModule hasBindingForProtocol:@protocol(GearBox)], equalToBool(YES));
+    assertThatBool([secondModule hasBindingForProtocol:@protocol(UnregisteredProtocol)], equalToBool(NO));
+  });
+});
+
 SPEC_END
