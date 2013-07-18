@@ -100,6 +100,20 @@
 <span class="k">@end</span>
 </pre></div>
 
+<h4>
+<a name="defining-dependencies-with-selectors" class="anchor" href="#defining-dependencies-with-selectors"><span class="octicon octicon-link"></span></a>Defining dependencies with selectors</h4>
+
+<p>You can alternatively use selectors to define dependencies. The compiler will generate a warning if a given selector is not visible or cannot be found.</p>
+
+<h4>
+<a name="example-1" class="anchor" href="#example-1"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">Car</span>
+<span class="n">objection_requires_sel</span><span class="p">(</span><span class="k">@selector</span><span class="p">(</span><span class="n">engine</span><span class="p">),</span> <span class="k">@selector</span><span class="p">(</span><span class="n">brakes</span><span class="p">))</span>
+<span class="k">@synthesize</span> <span class="n">engine</span><span class="p">,</span> <span class="n">brakes</span><span class="p">,</span> <span class="n">awake</span><span class="p">;</span>
+<span class="k">@end</span>
+</pre></div>
+
 <h3>
 <a name="fetching-objects-from-objection" class="anchor" href="#fetching-objects-from-objection"><span class="octicon octicon-link"></span></a>Fetching Objects from Objection</h3>
 
@@ -154,7 +168,7 @@
 <em>awakeFromObjection</em>.</p>
 
 <h4>
-<a name="example-1" class="anchor" href="#example-1"><span class="octicon octicon-link"></span></a>Example</h4>
+<a name="example-2" class="anchor" href="#example-2"><span class="octicon octicon-link"></span></a>Example</h4>
 
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">Car</span>
 <span class="c1">//...</span>
@@ -171,7 +185,7 @@
 <p>A class can get objects from the injector context through an object factory.</p>
 
 <h3>
-<a name="example-2" class="anchor" href="#example-2"><span class="octicon octicon-link"></span></a>Example</h3>
+<a name="example-3" class="anchor" href="#example-3"><span class="octicon octicon-link"></span></a>Example</h3>
 
 <div class="highlight"><pre><span class="k">@interface</span> <span class="nc">RequestDispatcher</span>
 <span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">JSObjectFactory</span> <span class="o">*</span><span class="n">objectFactory</span>
@@ -199,7 +213,7 @@
 <li>Bind a protocol or class to a specific instance of that type</li>
 <li>Bind a class that is registered with Objection to a protocol</li>
 </ul><h4>
-<a name="example-3" class="anchor" href="#example-3"><span class="octicon octicon-link"></span></a>Example</h4>
+<a name="example-4" class="anchor" href="#example-4"><span class="octicon octicon-link"></span></a>Example</h4>
 
 <div class="highlight"><pre><span class="k">@interface</span> <span class="nc">MyAppModule</span> : <span class="nc">JSObjectionModule</span> <span class="p">{</span>
 
@@ -229,7 +243,7 @@ methods. The catch, of course, is that it requires a protocol definition so that
 in the injector context.</p>
 
 <h4>
-<a name="example-4" class="anchor" href="#example-4"><span class="octicon octicon-link"></span></a>Example</h4>
+<a name="example-5" class="anchor" href="#example-5"><span class="octicon octicon-link"></span></a>Example</h4>
 
 <div class="highlight"><pre><span class="k">@protocol</span> <span class="nc">ExternalUtility</span>
   <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">doSomething</span><span class="p">;</span>
@@ -265,7 +279,7 @@ in the injector context.</p>
 <p>Occasionally you'll want to manually construct an object within Objection. Providers allow you to use a custom mechanism for building objects that are bound to a type. You can create a class that <em>conforms</em> to the ObjectionProvider protocol or you can use a <em>block</em> to build the object.</p>
 
 <h4>
-<a name="example-5" class="anchor" href="#example-5"><span class="octicon octicon-link"></span></a>Example</h4>
+<a name="example-6" class="anchor" href="#example-6"><span class="octicon octicon-link"></span></a>Example</h4>
 
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">CarProvider</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">provide:</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="p">)</span><span class="nv">context</span> <span class="p">{</span>
@@ -291,7 +305,7 @@ in the injector context.</p>
 <p>A class can be scoped as a singleton in a module. Conversely, a registered singleton can be demoted to a normal lifecycle with in the injector's context.</p>
 
 <h3>
-<a name="example-6" class="anchor" href="#example-6"><span class="octicon octicon-link"></span></a>Example</h3>
+<a name="example-7" class="anchor" href="#example-7"><span class="octicon octicon-link"></span></a>Example</h3>
 
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
@@ -307,7 +321,7 @@ in the injector context.</p>
 <p>You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.</p>
 
 <h3>
-<a name="example-7" class="anchor" href="#example-7"><span class="octicon octicon-link"></span></a>Example</h3>
+<a name="example-8" class="anchor" href="#example-8"><span class="octicon octicon-link"></span></a>Example</h3>
 
 <div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
@@ -325,7 +339,7 @@ in the injector context.</p>
 <p>Conversley, if <em>withoutModuleOfType:</em> is used the new injector will <em>not</em> contain the bindings of the removed module.</p>
 
 <h3>
-<a name="example-8" class="anchor" href="#example-8"><span class="octicon octicon-link"></span></a>Example</h3>
+<a name="example-9" class="anchor" href="#example-9"><span class="octicon octicon-link"></span></a>Example</h3>
 
 <div class="highlight"><pre><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">otherInjector</span> <span class="n">withModule</span><span class="o">:</span><span class="p">[[</span><span class="n">Level18Module</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]]</span> 
                           <span class="n">withoutModuleOfType</span><span class="o">:</span><span class="p">[</span><span class="n">Level17Module</span> <span class="n">class</span><span class="p">]];</span>
@@ -377,13 +391,13 @@ in the injector context.</p>
 <h3>
 <a name="static-framework-and-linkable-framework" class="anchor" href="#static-framework-and-linkable-framework"><span class="octicon octicon-link"></span></a>Static Framework and Linkable Framework</h3>
 
-<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-1.0.0.tar.gz">here</a></p>
+<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-1.0.1.tar.gz">here</a></p>
 
 <h3>
 <a name="building-static-framework" class="anchor" href="#building-static-framework"><span class="octicon octicon-link"></span></a>Building Static Framework</h3>
 
 <pre><code>git clone git://github.com/atomicobject/objection.git
-git checkout 1.0.0
+git checkout 1.0.1
 </code></pre>
 
 <h4>
@@ -419,7 +433,7 @@ git checkout 1.0.0
 <p>Edit your Pofile</p>
 
 <pre><code>edit Podfile
-pod 'Objection', '1.0.0'
+pod 'Objection', '1.0.1'
 </code></pre>
 
 <p>Now you can install Objection</p>
