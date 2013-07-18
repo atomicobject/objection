@@ -44,6 +44,19 @@ objection_requires(@"engine", @"brakes")
 @synthesize engine, brakes, awake;
 @end
 ```
+#### Defining dependencies with selectors
+
+You can alternatively use selectors to define dependencies. This is a more convenient way as it will generate a warning if a given selector is not visible in current scope. 
+
+#### Example
+
+```objective-c
+@implementation Car
+objection_requires_sel(@selector(engine), @selector(brakes))
+@synthesize engine, brakes, awake;
+@end
+```
+
 ### Fetching Objects from Objection
 
 An object can be fetched from objection by creating an injector and then asking for an instance of a particular class or protocol. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a *true* singleton.
