@@ -46,7 +46,7 @@ objection_requires(@"engine", @"brakes")
 ```
 #### Defining dependencies with selectors
 
-You can alternatively use selectors to define dependencies. This is a more convenient way as it will generate a warning if a given selector is not visible in current scope. 
+You can alternatively use selectors to define dependencies. The compiler will generate a warning if a given selector is not visible or cannot be found.
 
 #### Example
 
