@@ -109,8 +109,7 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
         NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
         
         for (NSString *propertyName in properties) {
-            objc_property_t property = JSObjectionUtils.propertyForClass(klass, propertyName);
-            JSObjectionPropertyInfo propertyInfo = JSObjectionUtils.findClassOrProtocolForProperty(property);
+            JSObjectionPropertyInfo propertyInfo = [JSObjection propertyForClass:klass andProperty:propertyName];
             id desiredClassOrProtocol = (__bridge id)(propertyInfo.value);
             // Ensure that the class is initialized before attempting to retrieve it.
             // Using +load would force all registered classes to be initialized so we are

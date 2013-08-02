@@ -14,6 +14,10 @@ typedef struct objection_property_info {
     JSObjectionType type;
 } JSObjectionPropertyInfo;
 
+@protocol JSObjectionPropertyReflector <NSObject>
+
+@end
+
 @class JSObjectionInjector;
 
 extern const struct JSObjectionUtils {

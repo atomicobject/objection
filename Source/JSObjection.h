@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "JSObjectionInjector.h"
 #import "JSObjectionEntry.h"
+#import "JSObjectionUtils.h"
 
 @interface JSObjection : NSObject {
     
@@ -13,4 +14,6 @@
 + (void)setDefaultInjector:(JSObjectionInjector *)anInjector;
 + (JSObjectionInjector *)defaultInjector;
 + (void)reset;
++ (JSObjectionPropertyInfo)propertyForClass:(Class)theClass andProperty:(NSString *)propertyName;
++ (void)setPropertyReflector:(Class)reflector;
 @end
