@@ -82,7 +82,6 @@
         if (!classOrProtocol) {
             return nil;
         }
-        
         NSString *key = nil;
         BOOL isClass = class_isMetaClass(object_getClass(classOrProtocol));
         

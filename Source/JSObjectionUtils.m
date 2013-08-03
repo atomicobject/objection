@@ -41,7 +41,7 @@ static JSObjectionPropertyInfo FindClassOrProtocolForProperty(objc_property_t pr
     if(!classOrProtocol) {
         @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", classOrProtocolName, propertyName] userInfo:nil];            
     }
-    propertyInfo.value = (__bridge  void *)(classOrProtocol);
+    propertyInfo.value = classOrProtocol;
 
     return propertyInfo;      
 }
@@ -110,7 +110,7 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
         
         for (NSString *propertyName in properties) {
             JSObjectionPropertyInfo propertyInfo = [JSObjection propertyForClass:klass andProperty:propertyName];
-            id desiredClassOrProtocol = (__bridge id)(propertyInfo.value);
+            id desiredClassOrProtocol = propertyInfo.value;
             // Ensure that the class is initialized before attempting to retrieve it.
             // Using +load would force all registered classes to be initialized so we are
             // lazily initializing them.
