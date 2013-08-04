@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Objection'
-  s.version      = '1.0.1'
+  s.version      = '1.0.2'
   s.summary      = 'A lightweight dependency injection framework for Objective-C.'
   s.author       = { 'Justin DeWind' => 'dewind@atomicobject.com' }
   s.source       = { :git => 'https://github.com/atomicobject/objection.git', :tag => "#{s.version}" }
