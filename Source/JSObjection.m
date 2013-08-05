@@ -22,26 +22,30 @@ static Class gPropertyReflector;
         return nil;
 }
 
-+ (JSObjectionInjector *)createInjectorWithModules:(JSObjectionModule *)first, ... {
++ (JSObjectionInjector *)createInjectorWithModulesArray:(NSArray *)modules {
     pthread_mutex_lock(&gObjectionMutex);
     @try {
-        va_list va_modules;
-        NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
-        va_start(va_modules, first);
-
-        JSObjectionModule *module;
-        while ((module = va_arg( va_modules, JSObjectionModule *) )) {
-            [modules addObject:module];
-        }
-
-        va_end(va_modules);
         return [[JSObjectionInjector alloc] initWithContext:gObjectionContext andModules:modules];
     }
     @finally {
-        pthread_mutex_unlock(&gObjectionMutex); 
+        pthread_mutex_unlock(&gObjectionMutex);
+    }
+    
+    return nil;
+}
+
++ (JSObjectionInjector *)createInjectorWithModules:(JSObjectionModule *)first, ... {
+    va_list va_modules;
+    NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+
+    JSObjectionModule *module;
+    while ((module = va_arg( va_modules, JSObjectionModule *) )) {
+        [modules addObject:module];
     }
 
-    return nil;
+    va_end(va_modules);
+    return [self createInjectorWithModulesArray:modules];
 }
 
 + (JSObjectionInjector *)createInjector {

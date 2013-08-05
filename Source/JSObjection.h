@@ -8,6 +8,7 @@
 }
 
 + (JSObjectionInjector *)createInjectorWithModules:(JSObjectionModule *)first, ... NS_REQUIRES_NIL_TERMINATION;
++ (JSObjectionInjector *)createInjectorWithModulesArray:(NSArray *)modules;
 + (JSObjectionInjector *)createInjector:(JSObjectionModule *)module;
 + (JSObjectionInjector *)createInjector;
 + (void)registerClass:(Class)theClass scope:(JSObjectionScope)scope;
