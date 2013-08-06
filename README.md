@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/atomicobject/objection.png)](https://travis-ci.org/atomicobject/objection)
+
 ## Description
 
 Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used [Guice](http://code.google.com/p/google-guice/), Objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.
