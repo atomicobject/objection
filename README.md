@@ -351,6 +351,14 @@ Now you can install Objection
 
 Learn more at [CocoaPods](http://cocoapods.org).
 
+### Ruby Motion
+
+A companion library for Objection was created called [motion-objection](https://github.com/atomicobject/motion-objection)
+
+```bash
+gem install motion-objection
+```
+
 ## Requirements
 
 * MacOS X 10.7 +
