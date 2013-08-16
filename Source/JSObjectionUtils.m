@@ -105,7 +105,7 @@ static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *argu
 
 static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Class klass, id object) {    
     if ([klass respondsToSelector:@selector(objectionRequires)]) {
-        NSArray *properties = [klass performSelector:@selector(objectionRequires)];
+        NSSet *properties = [klass performSelector:@selector(objectionRequires)];
         NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
         
         for (NSString *propertyName in properties) {
