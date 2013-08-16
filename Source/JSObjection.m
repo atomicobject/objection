@@ -1,12 +1,12 @@
 #import "JSObjection.h"
 #import <pthread.h>
 #import "JSObjectionInjectorEntry.h"
-#import "JSObjectionPropertyReflector.h"
+#import "JSObjectionRuntimePropertyReflector.h"
 
 static NSMutableDictionary *gObjectionContext;
 static pthread_mutex_t gObjectionMutex;
 static JSObjectionInjector *gGlobalInjector;
-static Class gPropertyReflector;
+static id<JSObjectionPropertyReflector> gPropertyReflector;
 
 @implementation JSObjection
 
@@ -63,7 +63,7 @@ static Class gPropertyReflector;
 + (void)initialize  {
     if (self == [JSObjection class]) {
         gObjectionContext = [[NSMutableDictionary alloc] init];
-        gPropertyReflector = [JSObjectionPropertyReflector class];
+        gPropertyReflector = [[JSObjectionRuntimePropertyReflector alloc] init];
         pthread_mutexattr_t mutexattr;
         pthread_mutexattr_init(&mutexattr);
         pthread_mutexattr_settype(&mutexattr, PTHREAD_MUTEX_RECURSIVE);
@@ -104,7 +104,7 @@ static Class gPropertyReflector;
     return [gPropertyReflector propertyForClass:theClass andProperty: propertyName];
 }
 
-+ (void)setPropertyReflector:(Class)reflector {
++ (void)setPropertyReflector:(id<JSObjectionPropertyReflector>)reflector {
     if(gPropertyReflector != reflector) {
         gPropertyReflector = reflector;
     }

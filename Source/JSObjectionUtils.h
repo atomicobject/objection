@@ -15,7 +15,7 @@ typedef struct JSObjectionPropertyInfo {
 } JSObjectionPropertyInfo;
 
 @protocol JSObjectionPropertyReflector <NSObject>
-
+- (JSObjectionPropertyInfo)propertyForClass:(Class)theClass andProperty:(NSString *)propertyName;
 @end
 
 @class JSObjectionInjector;

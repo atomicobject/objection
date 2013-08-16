@@ -15,6 +15,10 @@
     return [self.injector getObject:classOrProtocol];
 }
 
+- (id)getObject:(id)classOrProtocol withArgumentList:(NSArray *)arguments {
+    return [self.injector getObject:classOrProtocol argumentList:arguments];
+}
+
 - (id)objectForKeyedSubscript: (id)key {
     return [self getObject:key];
 }
