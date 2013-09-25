@@ -311,12 +311,12 @@ objection_initializer(initWithMake:model:)
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-1.1.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-1.2.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 1.1
+    git checkout 1.2
     
 #### iOS
 
@@ -343,7 +343,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-1.1.t
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '1.1'
+    pod 'Objection', '1.2'
 
 Now you can install Objection
     
