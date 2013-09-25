@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/atomicobject/objection.png)](https://travis-ci.org/atomicobject/objection)
+<!-- [![Build Status](https://travis-ci.org/atomicobject/objection.png)](https://travis-ci.org/atomicobject/objection) -->
 
 ## Description
 
