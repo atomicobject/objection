@@ -380,4 +380,5 @@ One only has to [search GitHub](https://github.com/search?l=Objective-C&p=1&q=de
 * [Monster World](http://www.wooga.com/games/monster-world/)
 * [Pocket Village](http://www.wooga.com/games/pocket-village/)
 * [SideReel](https://itunes.apple.com/us/app/sidereel/id417270961?mt=8)
+* [Google Wallet](http://www.google.com/wallet/)
 
