@@ -39,7 +39,9 @@
         <ul></ul>
       </nav>
       <section>
-        <h2>
+        <p><a href="https://travis-ci.org/atomicobject/objection"><img src="https://travis-ci.org/atomicobject/objection.png" alt="Build Status"></a></p>
+
+<h2>
 <a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
 
 <p>Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used <a href="http://code.google.com/p/google-guice/">Guice</a>, Objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.</p>
@@ -79,7 +81,7 @@
 <h4>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight"><pre><span class="k">@class</span> <span class="nc">Engine</span>, <span class="nc">Brakes</span>;
+<div class="highlight highlight-objective-c"><pre><span class="k">@class</span> <span class="nc">Engine</span>, <span class="nc">Brakes</span>;
 
 <span class="k">@interface</span> <span class="nc">Car</span> : <span class="nc">NSObject</span>
 <span class="p">{</span>
@@ -108,7 +110,7 @@
 <h4>
 <a name="example-1" class="anchor" href="#example-1"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">Car</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">Car</span>
 <span class="n">objection_requires_sel</span><span class="p">(</span><span class="k">@selector</span><span class="p">(</span><span class="n">engine</span><span class="p">),</span> <span class="k">@selector</span><span class="p">(</span><span class="n">brakes</span><span class="p">))</span>
 <span class="k">@synthesize</span> <span class="n">engine</span><span class="p">,</span> <span class="n">brakes</span><span class="p">,</span> <span class="n">awake</span><span class="p">;</span>
 <span class="k">@end</span>
@@ -119,7 +121,7 @@
 
 <p>An object can be fetched from objection by creating an injector and then asking for an instance of a particular class or protocol. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a <em>true</em> singleton.</p>
 
-<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someMethod</span> <span class="p">{</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someMethod</span> <span class="p">{</span>
   <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="p">];</span>
   <span class="kt">id</span> <span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">injector</span> <span class="n">getObject</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
 <span class="p">}</span>
@@ -127,7 +129,7 @@
 
 <p>A default injector can be registered with Objection which can be used throughout your application or library.</p>
 
-<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>    
+<div class="highlight highlight-objective-c"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>    
   <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="p">];</span>
   <span class="p">[</span><span class="n">JSObjection</span> <span class="n">setDefaultInjector</span><span class="o">:</span><span class="n">injector</span><span class="p">];</span>
 <span class="p">}</span>
@@ -142,7 +144,7 @@
 
 <p>There may be instances where an object is allocated outside of the injector's life cycle. If the object's class declared its dependencies using <em>objection_requires</em> an injector can satisfy its dependencies via the <em>injectDependencies:</em> method.</p>
 
-<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">JSTableModel</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">JSTableModel</span>
 <span class="n">objection_requires</span><span class="p">(</span><span class="s">@"RESTClient"</span><span class="p">)</span>
 <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">awakeFromNib</span> <span class="p">{</span>
   <span class="p">[[</span><span class="n">JSObjection</span> <span class="n">defaultInjector</span><span class="p">]</span> <span class="n">injectDependencies</span><span class="o">:</span><span class="n">self</span><span class="p">];</span>
@@ -155,7 +157,7 @@
 
 <p>Objection has support for the subscripting operator to retrieve objects from the injection context.</p>
 
-<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someMethod</span> <span class="p">{</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someMethod</span> <span class="p">{</span>
   <span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">JSObjection</span> <span class="n">createInjector</span><span class="p">];</span>
   <span class="kt">id</span> <span class="n">car</span> <span class="o">=</span> <span class="n">injector</span><span class="p">[[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
 <span class="p">}</span>
@@ -170,7 +172,7 @@
 <h4>
 <a name="example-2" class="anchor" href="#example-2"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">Car</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">Car</span>
 <span class="c1">//...</span>
 <span class="n">objection_register_singleton</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span>
   <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">awakeFromObjection</span> <span class="p">{</span>
@@ -187,7 +189,7 @@
 <h3>
 <a name="example-3" class="anchor" href="#example-3"><span class="octicon octicon-link"></span></a>Example</h3>
 
-<div class="highlight"><pre><span class="k">@interface</span> <span class="nc">RequestDispatcher</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@interface</span> <span class="nc">RequestDispatcher</span>
 <span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">JSObjectFactory</span> <span class="o">*</span><span class="n">objectFactory</span>
 <span class="k">@end</span>
 
@@ -215,7 +217,7 @@
 </ul><h4>
 <a name="example-4" class="anchor" href="#example-4"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight"><pre><span class="k">@interface</span> <span class="nc">MyAppModule</span> : <span class="nc">JSObjectionModule</span> <span class="p">{</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@interface</span> <span class="nc">MyAppModule</span> : <span class="nc">JSObjectionModule</span> <span class="p">{</span>
 
 <span class="p">}</span>
 <span class="k">@end</span>
@@ -245,7 +247,7 @@ in the injector context.</p>
 <h4>
 <a name="example-5" class="anchor" href="#example-5"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight"><pre><span class="k">@protocol</span> <span class="nc">ExternalUtility</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@protocol</span> <span class="nc">ExternalUtility</span>
   <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">doSomething</span><span class="p">;</span>
 <span class="k">@end</span>
 
@@ -281,7 +283,7 @@ in the injector context.</p>
 <h4>
 <a name="example-6" class="anchor" href="#example-6"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">CarProvider</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">CarProvider</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">provide:</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="p">)</span><span class="nv">context</span> <span class="p">{</span>
   <span class="c1">// Manually build object</span>
   <span class="k">return</span> <span class="n">car</span><span class="p">;</span>
@@ -307,7 +309,7 @@ in the injector context.</p>
 <h3>
 <a name="example-7" class="anchor" href="#example-7"><span class="octicon octicon-link"></span></a>Example</h3>
 
-<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
     <span class="p">[</span><span class="n">self</span> <span class="n">bindClass</span><span class="o">:</span><span class="p">[</span><span class="n">Singleton</span> <span class="n">class</span><span class="p">]</span> <span class="n">inScope</span><span class="o">:</span><span class="n">JSObjectionScopeNormal</span><span class="p">];</span>
     <span class="p">[</span><span class="n">self</span> <span class="n">bindClass</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]</span> <span class="n">inScope</span><span class="o">:</span><span class="n">JSObjectionScopeSingleton</span><span class="p">];</span>
@@ -323,7 +325,7 @@ in the injector context.</p>
 <h3>
 <a name="example-8" class="anchor" href="#example-8"><span class="octicon octicon-link"></span></a>Example</h3>
 
-<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
   <span class="p">[</span><span class="n">self</span> <span class="n">registerEagerSingleton</span><span class="o">:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
 <span class="p">}</span>
@@ -341,7 +343,7 @@ in the injector context.</p>
 <h3>
 <a name="example-9" class="anchor" href="#example-9"><span class="octicon octicon-link"></span></a>Example</h3>
 
-<div class="highlight"><pre><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">otherInjector</span> <span class="n">withModule</span><span class="o">:</span><span class="p">[[</span><span class="n">Level18Module</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]]</span> 
+<div class="highlight highlight-objective-c"><pre><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">otherInjector</span> <span class="n">withModule</span><span class="o">:</span><span class="p">[[</span><span class="n">Level18Module</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]]</span> 
                           <span class="n">withoutModuleOfType</span><span class="o">:</span><span class="p">[</span><span class="n">Level17Module</span> <span class="n">class</span><span class="p">]];</span>
 
 </pre></div>
@@ -354,7 +356,7 @@ in the injector context.</p>
 <h4>
 <a name="default-arguments-example" class="anchor" href="#default-arguments-example"><span class="octicon octicon-link"></span></a>Default Arguments Example</h4>
 
-<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">ViewController</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">ViewController</span>
 <span class="n">objection_initializer</span><span class="p">(</span><span class="n">initWithNibName</span><span class="o">:</span><span class="n">bundle</span><span class="o">:</span><span class="p">,</span> <span class="s">@"ViewController"</span><span class="p">)</span>
 <span class="k">@end</span>
 </pre></div>
@@ -362,7 +364,7 @@ in the injector context.</p>
 <h4>
 <a name="custom-arguments-example" class="anchor" href="#custom-arguments-example"><span class="octicon octicon-link"></span></a>Custom Arguments Example</h4>
 
-<div class="highlight"><pre><span class="k">@implementation</span> <span class="nc">ConfigurableCar</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">ConfigurableCar</span>
 <span class="n">objection_requires</span><span class="p">(</span><span class="s">@"engine"</span><span class="p">,</span> <span class="s">@"brakes"</span><span class="p">)</span>
 <span class="n">objection_initializer</span><span class="p">(</span><span class="n">initWithMake</span><span class="o">:</span><span class="n">model</span><span class="o">:</span><span class="p">)</span>
 
@@ -391,13 +393,13 @@ in the injector context.</p>
 <h3>
 <a name="static-framework-and-linkable-framework" class="anchor" href="#static-framework-and-linkable-framework"><span class="octicon octicon-link"></span></a>Static Framework and Linkable Framework</h3>
 
-<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-1.0.3.tar.gz">here</a></p>
+<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-1.2.tar.gz">here</a></p>
 
 <h3>
 <a name="building-static-framework" class="anchor" href="#building-static-framework"><span class="octicon octicon-link"></span></a>Building Static Framework</h3>
 
 <pre><code>git clone git://github.com/atomicobject/objection.git
-git checkout 1.0.3
+git checkout 1.2
 </code></pre>
 
 <h4>
@@ -433,7 +435,7 @@ git checkout 1.0.3
 <p>Edit your Pofile</p>
 
 <pre><code>edit Podfile
-pod 'Objection', '1.0.3'
+pod 'Objection', '1.2'
 </code></pre>
 
 <p>Now you can install Objection</p>
@@ -448,7 +450,7 @@ pod 'Objection', '1.0.3'
 
 <p>A companion library for Objection was created called <a href="https://github.com/atomicobject/motion-objection">motion-objection</a></p>
 
-<div class="highlight"><pre>gem install motion-objection
+<div class="highlight highlight-bash"><pre>gem install motion-objection
 </pre></div>
 
 <h2>
