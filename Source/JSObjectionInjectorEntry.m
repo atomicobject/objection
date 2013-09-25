@@ -1,6 +1,7 @@
 #import "JSObjectionInjectorEntry.h"
 #import "JSObjection.h"
 #import "JSObjectionUtils.h"
+#import "NSObject+Objection.h"
 
 @interface JSObjectionInjectorEntry()
 - (void)notifyObjectThatItIsReady: (id)object;
@@ -53,7 +54,7 @@
 
 - (id)buildObject:(NSArray *)arguments {
     
-    id objectUnderConstruction = nil;    
+    id objectUnderConstruction = nil;
     if ([self.classEntry respondsToSelector:@selector(objectionInitializer)]) {
         objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
     } else {
