@@ -50,4 +50,10 @@
         NSArray *defaultArguments = [NSArray arrayWithObjects: objs count:sizeof(objs)/sizeof(id)]; \
         return JSObjectionUtils.buildInitializer(@selector(selectorSymbol), defaultArguments); \
     }
-    
+ 
+#define objection_initializer_sel(selectorSymbol, args...) \
+    + (NSDictionary *)objectionInitializer { \
+        id objs[] = {args}; \
+        NSArray *defaultArguments = [NSArray arrayWithObjects: objs count:sizeof(objs)/sizeof(id)]; \
+        return JSObjectionUtils.buildInitializer(selectorSymbol, defaultArguments); \
+    }   
