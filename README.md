@@ -349,6 +349,9 @@ Now you can install Objection
     
     pod install
 
+#### Include framework
+    #import <Objection/Objection.h>
+
 Learn more at [CocoaPods](http://cocoapods.org).
 
 ### Ruby Motion
