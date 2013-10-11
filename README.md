@@ -213,8 +213,11 @@ Occasionally you'll want to manually construct an object within Objection. Provi
       
 #### Example
 ```objective-c
+@interface CarProvider : NSObject <JSObjectionProvider>
+@end
+
 @implementation CarProvider
-- (id)provide:(JSObjectionInjector *)context {
+- (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments {
   // Manually build object
   return car;
 }
