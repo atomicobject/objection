@@ -21,6 +21,13 @@
 - (id)withoutModuleOfType:(Class)moduleClass;
 - (id)withoutModuleOfTypes:(Class)first, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)withoutModuleCollection:(NSArray *)moduleClasses;
+- (void)appendModule:(JSObjectionModule *)module;
+- (void)appendModules:(JSObjectionModule *)first, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)appendModuleCollection:(NSArray *)modules;
+- (void)removeModule:(JSObjectionModule *)module;
+- (void)removeModules:(NSArray *)modules;
+- (void)removeModuleOfType:(Class)moduleClass;
+- (void)removeModuleOfTypes:(Class)first, ...;
 - (void)injectDependencies:(id)object;
 - (id)objectForKeyedSubscript: (id)key;
 @end
