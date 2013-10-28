@@ -37,7 +37,7 @@
     + (NSSet *)objectionRequires { \
         SEL selectors[] = {args}; \
         NSMutableSet *requirements = [NSMutableSet set]; \
-        for (int j = 0; j < sizeof(selectors)/ sizeof(SEL); j++) { \
+        for (NSUInteger j = 0; j < sizeof(selectors)/ sizeof(SEL); j++) { \
             SEL selector = selectors[j]; \
             [requirements addObject:NSStringFromSelector(selector)]; \
         } \
