@@ -27,7 +27,7 @@ objection_initializer(initWithNibName:bundle:, @"MyNib")
 @implementation ConfigurableCar
 objection_register(ConfigurableCar)
 objection_requires(@"engine")
-objection_initializer(initWithModel:horsePower:andYear:)
+objection_initializer_sel(@selector(initWithModel:horsePower:andYear:))
 
 @synthesize car = _car;
 @synthesize engine = _engine;

@@ -1,10 +1,12 @@
 #import "JSObjection.h"
 #import <pthread.h>
 #import "JSObjectionInjectorEntry.h"
+#import "JSObjectionRuntimePropertyReflector.h"
 
 static NSMutableDictionary *gObjectionContext;
 static pthread_mutex_t gObjectionMutex;
 static JSObjectionInjector *gGlobalInjector;
+static id<JSObjectionPropertyReflector> gPropertyReflector;
 
 @implementation JSObjection
 
@@ -20,26 +22,30 @@ static JSObjectionInjector *gGlobalInjector;
         return nil;
 }
 
-+ (JSObjectionInjector *)createInjectorWithModules:(JSObjectionModule *)first, ... {
++ (JSObjectionInjector *)createInjectorWithModulesArray:(NSArray *)modules {
     pthread_mutex_lock(&gObjectionMutex);
     @try {
-        va_list va_modules;
-        NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
-        va_start(va_modules, first);
-
-        JSObjectionModule *module;
-        while ((module = va_arg( va_modules, JSObjectionModule *) )) {
-            [modules addObject:module];
-        }
-
-        va_end(va_modules);
         return [[JSObjectionInjector alloc] initWithContext:gObjectionContext andModules:modules];
     }
     @finally {
-        pthread_mutex_unlock(&gObjectionMutex); 
+        pthread_mutex_unlock(&gObjectionMutex);
+    }
+    
+    return nil;
+}
+
++ (JSObjectionInjector *)createInjectorWithModules:(JSObjectionModule *)first, ... {
+    va_list va_modules;
+    NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+
+    JSObjectionModule *module;
+    while ((module = va_arg( va_modules, JSObjectionModule *) )) {
+        [modules addObject:module];
     }
 
-    return nil;
+    va_end(va_modules);
+    return [self createInjectorWithModulesArray:modules];
 }
 
 + (JSObjectionInjector *)createInjector {
@@ -57,6 +63,7 @@ static JSObjectionInjector *gGlobalInjector;
 + (void)initialize  {
     if (self == [JSObjection class]) {
         gObjectionContext = [[NSMutableDictionary alloc] init];
+        gPropertyReflector = [[JSObjectionRuntimePropertyReflector alloc] init];
         pthread_mutexattr_t mutexattr;
         pthread_mutexattr_init(&mutexattr);
         pthread_mutexattr_settype(&mutexattr, PTHREAD_MUTEX_RECURSIVE);
@@ -91,5 +98,15 @@ static JSObjectionInjector *gGlobalInjector;
 
 + (JSObjectionInjector *) defaultInjector {  
     return gGlobalInjector;
+}
+
++ (JSObjectionPropertyInfo)propertyForClass:(Class)theClass andProperty:(NSString *)propertyName {
+    return [gPropertyReflector propertyForClass:theClass andProperty: propertyName];
+}
+
++ (void)setPropertyReflector:(id<JSObjectionPropertyReflector>)reflector {
+    if(gPropertyReflector != reflector) {
+        gPropertyReflector = reflector;
+    }
 }
 @end

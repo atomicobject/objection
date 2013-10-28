@@ -128,6 +128,14 @@
     [_eagerSingletons addObject:NSStringFromClass(aClass)];
 }
 
+- (BOOL)hasBindingForClass:(Class)aClass {
+  return [_bindings objectForKey:NSStringFromClass(aClass)] != nil;
+}
+
+- (BOOL)hasBindingForProtocol:(Protocol *)protocol {
+  return [_bindings objectForKey:[self protocolKey:protocol]] != nil;
+}
+
 - (void) configure {
 }
 

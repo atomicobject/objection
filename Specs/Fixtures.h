@@ -32,6 +32,9 @@
 @property(nonatomic, strong) Engine *engine;
 @end
 
+@protocol UnregisteredProtocol
+@end
+
 @protocol GearBox;
 
 @protocol ManualCar <NSObject>
@@ -80,4 +83,8 @@
 }
 @property(nonatomic, strong) SingletonBar *bar;
 
+@end
+
+@interface UnstoppableCar : NSObject
+@property(nonatomic, strong) Engine *engine;
 @end

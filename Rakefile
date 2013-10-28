@@ -2,7 +2,8 @@ PROJECT_NAME = "Objection"
 CONFIGURATION = "Debug"
 SPECS_TARGET_NAME = "Specs-OSX"
 UI_SPECS_TARGET_NAME = "Specs-iOS"
-SDK_DIR = "iphonesimulator6.1"
+IOS_VERSION = "6.1"
+SDK_DIR = "iphonesimulator#{IOS_VERSION}"
 
 def xcodebuild_executable
   ENV['XCODEBUILD'] || "xcodebuild"
@@ -70,13 +71,13 @@ namespace :specs do
   desc "OS X Specs"
   task :osx do
     stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_specs.output") if (ENV['IS_CI_BOX'])
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target #{SPECS_TARGET_NAME} -configuration #{CONFIGURATION} build], stdout)
+    system_or_exit(%Q[#{xcodebuild_executable} test -project #{PROJECT_NAME}.xcodeproj -scheme #{SPECS_TARGET_NAME} -configuration #{CONFIGURATION}], stdout)
   end
 
   desc "iOS Specs"
   task :ios do
     stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_uispecs.output") if (ENV['IS_CI_BOX'])
     ENV["TEST_AFTER_BUILD"] = "Yes"
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target #{UI_SPECS_TARGET_NAME} -sdk #{SDK_DIR} -configuration #{CONFIGURATION} build], stdout)
+    system_or_exit(%Q[#{xcodebuild_executable} test -project #{PROJECT_NAME}.xcodeproj -scheme #{UI_SPECS_TARGET_NAME} -sdk #{SDK_DIR} -destination OS=#{IOS_VERSION},name=iPhone -configuration #{CONFIGURATION}], stdout)
   end
 end

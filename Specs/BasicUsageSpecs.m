@@ -1,5 +1,4 @@
 #import "SpecHelper.h"
-#import <objc/runtime.h>
 #import "Fixtures.h"
 #import "InitializerFixtures.h"
 
@@ -31,6 +30,12 @@ it(@"correctly builds and object with dependencies", ^{
 
     assertThat(car.brakes, isNot(nilValue()));
     assertThat(car.brakes, is(instanceOf([Brakes class])));
+});
+
+it(@"correctly builds objects with selector dependencies", ^{
+    UnstoppableCar *car = [[JSObjection defaultInjector] getObject:[UnstoppableCar class]];
+
+    assertThat(car.engine, is(instanceOf([Engine class])));
 });
 
 it(@"will inject dependencies into properties of an existing instance", ^{
@@ -124,7 +129,6 @@ describe(@"object factory", ^{
         [[car.model should] equal:@"Model"];
         [[car.horsePower should] equal:@"Power"];
         [[car.year should] equal:@"Year"];
-        
     });
 });
 

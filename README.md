@@ -1,3 +1,5 @@
+<!-- [![Build Status](https://travis-ci.org/atomicobject/objection.png)](https://travis-ci.org/atomicobject/objection) -->
+
 ## Description
 
 Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used [Guice](http://code.google.com/p/google-guice/), Objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.
@@ -44,6 +46,19 @@ objection_requires(@"engine", @"brakes")
 @synthesize engine, brakes, awake;
 @end
 ```
+#### Defining dependencies with selectors
+
+You can alternatively use selectors to define dependencies. The compiler will generate a warning if a given selector is not visible or cannot be found.
+
+#### Example
+
+```objective-c
+@implementation Car
+objection_requires_sel(@selector(engine), @selector(brakes))
+@synthesize engine, brakes, awake;
+@end
+```
+
 ### Fetching Objects from Objection
 
 An object can be fetched from objection by creating an injector and then asking for an instance of a particular class or protocol. An injector manages its own object context. Which means that a singleton is per injector and is not necessarily a *true* singleton.
@@ -198,8 +213,11 @@ Occasionally you'll want to manually construct an object within Objection. Provi
       
 #### Example
 ```objective-c
+@interface CarProvider : NSObject <JSObjectionProvider>
+@end
+
 @implementation CarProvider
-- (id)provide:(JSObjectionInjector *)context {
+- (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments {
   // Manually build object
   return car;
 }
@@ -296,12 +314,12 @@ objection_initializer(initWithMake:model:)
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-0.16.0.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-1.2.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 0.16.0
+    git checkout 1.2
     
 #### iOS
 
@@ -328,13 +346,24 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-0.16.
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '0.16.0'
+    pod 'Objection', '1.2'
 
 Now you can install Objection
     
     pod install
 
+#### Include framework
+    #import <Objection/Objection.h>
+
 Learn more at [CocoaPods](http://cocoapods.org).
+
+### Ruby Motion
+
+A companion library for Objection was created called [motion-objection](https://github.com/atomicobject/motion-objection)
+
+```bash
+gem install motion-objection
+```
 
 ## Requirements
 
@@ -357,4 +386,5 @@ One only has to [search GitHub](https://github.com/search?l=Objective-C&p=1&q=de
 * [Monster World](http://www.wooga.com/games/monster-world/)
 * [Pocket Village](http://www.wooga.com/games/pocket-village/)
 * [SideReel](https://itunes.apple.com/us/app/sidereel/id417270961?mt=8)
+* [Google Wallet](http://www.google.com/wallet/)
 

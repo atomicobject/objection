@@ -9,10 +9,14 @@ typedef enum {
     JSObjectionTypeProtocol
 } JSObjectionType;
 
-typedef struct objection_property_info {
-    void *value;
+typedef struct JSObjectionPropertyInfo {
+    __unsafe_unretained id value;
     JSObjectionType type;
 } JSObjectionPropertyInfo;
+
+@protocol JSObjectionPropertyReflector <NSObject>
+- (JSObjectionPropertyInfo)propertyForClass:(Class)theClass andProperty:(NSString *)propertyName;
+@end
 
 @class JSObjectionInjector;
 

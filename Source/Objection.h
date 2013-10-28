@@ -32,10 +32,22 @@
         return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
     }
 
-#define objection_initializer(selectorSymbol, args...) \
-    + (NSDictionary *)objectionInitializer { \
-        id objs[]= {args}; \
-        NSArray *defaultArguments = [NSArray arrayWithObjects: objs count:sizeof(objs)/sizeof(id)]; \
-        return JSObjectionUtils.buildInitializer(@selector(selectorSymbol), defaultArguments); \
+#define objection_requires_sel(args...) \
+    + (NSSet *)objectionRequires { \
+        SEL selectors[] = {args}; \
+        NSMutableSet *requirements = [NSMutableSet set]; \
+        for (int j = 0; j < sizeof(selectors)/ sizeof(SEL); j++) { \
+            SEL selector = selectors[j]; \
+            [requirements addObject:NSStringFromSelector(selector)]; \
+        } \
+    return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
     }
-    
+
+#define objection_initializer_sel(selectorSymbol, args...) \
+    + (NSDictionary *)objectionInitializer { \
+        id objs[] = {args}; \
+        NSArray *defaultArguments = [NSArray arrayWithObjects: objs count:sizeof(objs)/sizeof(id)]; \
+        return JSObjectionUtils.buildInitializer(selectorSymbol, defaultArguments); \
+    }   
+
+#define objection_initializer(selectorSymbol, args...) objection_initializer_sel(@selector(selectorSymbol), args)

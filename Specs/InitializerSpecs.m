@@ -2,7 +2,7 @@
 #import "InitializerFixtures.h"
 
 SPEC_BEGIN(InitializerSpecs)
-__weak __block JSObjectionInjector *injector = nil;
+__block JSObjectionInjector *injector = nil;
 
 beforeEach(^{
     injector = [JSObjection createInjector];

@@ -2,7 +2,7 @@
 #import "JSObjectionUtils.h"
 #import "JSObjectionInjector.h"
 #import "JSObjection.h"
-
+#import "NSObject+Objection.h"
 static NSString *const JSObjectionException = @"JSObjectionException";
 
 NSString *const JSObjectionInitializerKey = @"initializer";
@@ -41,7 +41,7 @@ static JSObjectionPropertyInfo FindClassOrProtocolForProperty(objc_property_t pr
     if(!classOrProtocol) {
         @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Unable get class for name '%@' for property '%@'", classOrProtocolName, propertyName] userInfo:nil];            
     }
-    propertyInfo.value = (__bridge  void *)(classOrProtocol);
+    propertyInfo.value = classOrProtocol;
 
     return propertyInfo;      
 }
@@ -105,13 +105,12 @@ static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *argu
 
 static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Class klass, id object) {    
     if ([klass respondsToSelector:@selector(objectionRequires)]) {
-        NSArray *properties = [klass performSelector:@selector(objectionRequires)];
+        NSSet *properties = [klass performSelector:@selector(objectionRequires)];
         NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
         
         for (NSString *propertyName in properties) {
-            objc_property_t property = JSObjectionUtils.propertyForClass(klass, propertyName);
-            JSObjectionPropertyInfo propertyInfo = JSObjectionUtils.findClassOrProtocolForProperty(property);
-            id desiredClassOrProtocol = (__bridge id)(propertyInfo.value);
+            JSObjectionPropertyInfo propertyInfo = [JSObjection propertyForClass:klass andProperty:propertyName];
+            id desiredClassOrProtocol = propertyInfo.value;
             // Ensure that the class is initialized before attempting to retrieve it.
             // Using +load would force all registered classes to be initialized so we are
             // lazily initializing them.
