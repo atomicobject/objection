@@ -306,6 +306,10 @@ objection_initializer(initWithMake:model:)
 }
 ```
 
+## Testing
+
+If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout [MSSpec](https://github.com/mindsnacks/MSSpec) to easily inject mocks into your specs.
+
 ## TODO
 
 * Add a motivation section that speaks to _why_ Objection was created
