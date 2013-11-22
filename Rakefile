@@ -78,6 +78,6 @@ namespace :specs do
   task :ios do
     stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_uispecs.output") if (ENV['IS_CI_BOX'])
     ENV["TEST_AFTER_BUILD"] = "Yes"
-    system_or_exit(%Q[#{xcodebuild_executable} -scheme #{UI_SPECS_TARGET_NAME} -sdk iphonesimulator -configuration #{CONFIGURATION} test ], stdout)
+    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -scheme #{UI_SPECS_TARGET_NAME} -sdk iphonesimulator -configuration #{CONFIGURATION} test ], stdout)
   end
 end
