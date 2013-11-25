@@ -8,7 +8,7 @@
 #import <objc/runtime.h>
 
 @interface __JSObjectionInjectorDefaultModule : JSObjectionModule
-@property (nonatomic, weak) JSObjectionInjector *injector;
+@property(nonatomic, weak) JSObjectionInjector *injector;
 @end
 
 @implementation __JSObjectionInjectorDefaultModule
@@ -20,13 +20,13 @@
     return self;
 }
 
-- (void)configure   {
+- (void)configure {
     [self bind:[[JSObjectFactory alloc] initWithInjector:self.injector] toClass:[JSObjectFactory class]];
 }
 
 @end
-  
-@interface JSObjectionInjector(Private)
+
+@interface JSObjectionInjector (Private)
 - (void)initializeEagerSingletons;
 - (void)configureDefaultModule;
 - (void)configureModule:(JSObjectionModule *)module;
@@ -57,11 +57,11 @@
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules {
     if ((self = [self initWithContext:theGlobalContext])) {
         for (JSObjectionModule *module in theModules) {
-            [self configureModule:module];      
+            [self configureModule:module];
         }
         [self initializeEagerSingletons];
     }
-    return self;  
+    return self;
 }
 
 
@@ -78,45 +78,45 @@
 }
 
 - (id)getObject:(id)classOrProtocol argumentList:(NSArray *)argumentList {
-    @synchronized(self) {
+    @synchronized (self) {
         if (!classOrProtocol) {
             return nil;
         }
         NSString *key = nil;
         BOOL isClass = class_isMetaClass(object_getClass(classOrProtocol));
-        
+
         if (isClass) {
             key = NSStringFromClass(classOrProtocol);
         } else {
             key = [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(classOrProtocol)];
         }
-        
-        
-        id<JSObjectionEntry> injectorEntry = [_context objectForKey:key];
+
+
+        id <JSObjectionEntry> injectorEntry = [_context objectForKey:key];
         injectorEntry.injector = self;
-        
+
         if (!injectorEntry) {
-            id<JSObjectionEntry> entry = [_globalContext objectForKey:key];
+            id <JSObjectionEntry> entry = [_globalContext objectForKey:key];
             if (entry) {
                 injectorEntry = [[entry class] entryWithEntry:entry];
                 injectorEntry.injector = self;
                 [_context setObject:injectorEntry forKey:key];
-            } else if(isClass) {
+            } else if (isClass) {
                 injectorEntry = [JSObjectionInjectorEntry entryWithClass:classOrProtocol scope:JSObjectionScopeNormal];
                 injectorEntry.injector = self;
                 [_context setObject:injectorEntry forKey:key];
             }
         }
-        
+
         if (classOrProtocol && injectorEntry) {
             return [injectorEntry extractObject:argumentList];
         }
-        
+
         return nil;
     }
-    
+
     return nil;
-    
+
 }
 
 - (id)getObject:(id)classOrProtocol arguments:(va_list)argList {
@@ -124,28 +124,28 @@
     return [self getObject:classOrProtocol argumentList:arguments];
 }
 
-- (id)objectForKeyedSubscript: (id)key {
+- (id)objectForKeyedSubscript:(id)key {
     return [self getObjectWithArgs:key, nil];
 }
 
 
 - (id)withModule:(JSObjectionModule *)theModule {
-    return [self withModuleCollection:[NSArray arrayWithObject:theModule]];    
+    return [self withModuleCollection:[NSArray arrayWithObject:theModule]];
 }
 
 - (id)withModules:(JSObjectionModule *)first, ... {
     va_list va_modules;
     NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
     va_start(va_modules, first);
-    
+
     JSObjectionModule *module;
     while ((module = va_arg( va_modules, JSObjectionModule *) )) {
         [modules addObject:module];
     }
-    
+
     va_end(va_modules);
     return [self withModuleCollection:modules];
-   
+
 }
 
 - (id)withModuleCollection:(NSArray *)theModules {
@@ -162,12 +162,12 @@
     va_list va_modules;
     NSMutableArray *classes = [NSMutableArray arrayWithObject:first];
     va_start(va_modules, first);
-    
+
     Class aClass;
     while ((aClass = va_arg( va_modules, Class) )) {
         [classes addObject:aClass];
     }
-    
+
     va_end(va_modules);
     return [self withoutModuleCollection:classes];
 
@@ -179,7 +179,7 @@
     [withDefaultModule addObject:[__JSObjectionInjectorDefaultModule class]];
     for (JSObjectionModule *module in _modules) {
         for (Class moduleClass in withDefaultModule) {
-            if([module isKindOfClass:moduleClass]) {
+            if ([module isKindOfClass:moduleClass]) {
                 [remainingModules removeObject:module];
             }
         }
@@ -192,16 +192,81 @@
     JSObjectionUtils.injectDependenciesIntoProperties(self, [object class], object);
 }
 
+- (void)appendModule:(JSObjectionModule *)module {
+    [self appendModuleCollection:[NSArray arrayWithObject:module]];
+}
+
+- (void)appendModules:(JSObjectionModule *)first, ... {
+    va_list va_modules;
+    NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+
+    JSObjectionModule *module;
+    while ((module = va_arg( va_modules, JSObjectionModule *) )) {
+        [modules addObject:module];
+    }
+
+    va_end(va_modules);
+    [self appendModuleCollection:modules];
+}
+
+- (void)appendModuleCollection:(NSArray *)modules {
+    for (JSObjectionModule *module in modules) {
+        [self configureModule:module];
+        [self initializeEagerSingletons];
+    }
+}
+
+- (void)removeModuleOfType:(Class)moduleClass {
+    [self removeModuleCollection:[NSArray arrayWithObject:moduleClass]];
+}
+
+- (void)removeModuleOfTypes:(Class)first, ... {
+    va_list va_modules;
+    NSMutableArray *classes = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+
+    Class aClass;
+    while ((aClass = va_arg( va_modules, Class) )) {
+        [classes addObject:aClass];
+    }
+
+    va_end(va_modules);
+    [self removeModuleCollection:classes];
+}
+
+- (void)removeModuleCollection:(NSArray *)moduleClasses {
+    NSMutableArray *modulesToBeRemoved = [[NSMutableArray alloc] init];
+    for (Class clazz in moduleClasses) {
+        for (JSObjectionModule *module in _modules) {
+            if ([module isKindOfClass:clazz]) {
+                [modulesToBeRemoved addObject:module];
+            }
+        }
+    }
+    [self removeModules:modulesToBeRemoved];
+}
+
+- (void)removeModule:(JSObjectionModule *)module {
+    [self removeModules:[NSArray arrayWithObject:module]];
+}
+
+- (void)removeModules:(NSArray *)modules {
+    for (JSObjectionModule *module in modules) {
+        [self deregisterModule:module];
+    }
+}
+
 #pragma mark - Private
 
 - (void)initializeEagerSingletons {
     for (NSString *eagerSingletonKey in _eagerSingletons) {
         id entry = [_globalContext objectForKey:eagerSingletonKey];
         if ([entry lifeCycle] == JSObjectionScopeSingleton) {
-            [self getObject:NSClassFromString(eagerSingletonKey)];      
+            [self getObject:NSClassFromString(eagerSingletonKey)];
         } else {
-            @throw [NSException exceptionWithName:@"JSObjectionException" 
-                                           reason:[NSString stringWithFormat:@"Unable to initialize eager singleton for the class '%@' because it was never registered as a singleton", eagerSingletonKey] 
+            @throw [NSException exceptionWithName:@"JSObjectionException"
+                                           reason:[NSString stringWithFormat:@"Unable to initialize eager singleton for the class '%@' because it was never registered as a singleton", eagerSingletonKey]
                                          userInfo:nil];
         }
     }
@@ -213,6 +278,14 @@
     NSSet *mergedSet = [module.eagerSingletons setByAddingObjectsFromSet:_eagerSingletons];
     _eagerSingletons = mergedSet;
     [_context addEntriesFromDictionary:module.bindings];
+}
+
+- (void)deregisterModule:(JSObjectionModule *)module {
+    NSMutableSet *mutableSingletons = [_eagerSingletons mutableCopy];
+    [mutableSingletons minusSet:module.eagerSingletons];
+    _eagerSingletons = mutableSingletons;
+    [_modules removeObject:module];
+    [_context removeObjectsForKeys:[module.bindings allKeys]];
 }
 
 - (void)configureDefaultModule {
