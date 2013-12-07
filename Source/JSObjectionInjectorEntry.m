@@ -46,12 +46,6 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)notifyObjectThatItIsReady:(id)object {
-  if([object respondsToSelector:@selector(awakeFromObjection)]) {
-    [object performSelector:@selector(awakeFromObjection)];
-  }
-}
-
 - (id)buildObject:(NSArray *)arguments {
     
     id objectUnderConstruction = nil;
@@ -66,8 +60,7 @@
     }
     
     JSObjectionUtils.injectDependenciesIntoProperties(self.injector, self.classEntry, objectUnderConstruction);
-
-    [self notifyObjectThatItIsReady: objectUnderConstruction];
+    
     return objectUnderConstruction;
 }
 

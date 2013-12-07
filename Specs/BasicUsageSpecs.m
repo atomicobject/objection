@@ -53,6 +53,15 @@ it(@"will inject dependencies into properties of an existing instance", ^{
     assertThat(car.brakes, is(instanceOf([Brakes class])));
 });
 
+it(@"calls awakeFromObjection when injecting dependencies into properties of an existing instance", ^{
+    Car *car = [[Car alloc] init];
+    
+    [[JSObjection defaultInjector] injectDependencies:car];
+
+    assertThatBool([car awake], equalToBool(YES));
+    assertThatBool([car.engine awake], equalToBool(YES));
+});
+
 it(@"defaults to returning a new instance", ^{
       id thomas = [[JSObjection defaultInjector] getObject:[Engine class]];
       id gordan = [[JSObjection defaultInjector] getObject:[Engine class]];

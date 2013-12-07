@@ -133,6 +133,10 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
         
         [object setValuesForKeysWithDictionary:propertiesDictionary];
     }
+    
+    if ([object respondsToSelector:@selector(awakeFromObjection)]) {
+        [object performSelector:@selector(awakeFromObjection)];
+    }
 }
 
 const struct JSObjectionUtils JSObjectionUtils = {
