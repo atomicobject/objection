@@ -39,7 +39,9 @@
         <ul></ul>
       </nav>
       <section>
-        <h2>
+        <p><a href="https://travis-ci.org/atomicobject/objection"><img src="https://travis-ci.org/atomicobject/objection.png" alt="Build Status"></a></p>
+
+<h2>
 <a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
 
 <p>Objection is a lightweight dependency injection framework for Objective-C for MacOS X and iOS. For those of you that have used <a href="http://code.google.com/p/google-guice/">Guice</a>, Objection will feel familiar. Objection was built to stay out of your way and alleviate the need to maintain a large XML container or manually construct objects.</p>
@@ -223,8 +225,8 @@
 <span class="k">@implementation</span> <span class="nc">MyAppModule</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure</span> <span class="p">{</span>
   <span class="p">[</span><span class="n">self</span> <span class="n">bind</span><span class="o">:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">toClass</span><span class="o">:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">class</span><span class="p">]];</span>
-  <span class="p">[</span><span class="n">self</span> <span class="n">bind</span><span class="o">:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">delegate</span> <span class="n">toProtocol</span><span class="o">:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">UIApplicationDelegate</span><span class="p">)];</span>
-  <span class="p">[</span><span class="n">self</span> <span class="n">bindClass</span><span class="o">:</span><span class="p">[</span><span class="n">MyAPIService</span> <span class="n">class</span><span class="p">]</span> <span class="n">toProtocol</span><span class="o">:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">APIService</span><span class="p">)];</span>
+  <span class="p">[</span><span class="n">self</span> <span class="n">bind</span><span class="o">:</span><span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">delegate</span> <span class="n">toProtocol</span><span class="o">:</span><span class="p">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">UIApplicationDelegate</span><span class="p">)];</span>
+  <span class="p">[</span><span class="n">self</span> <span class="n">bindClass</span><span class="o">:</span><span class="p">[</span><span class="n">MyAPIService</span> <span class="n">class</span><span class="p">]</span> <span class="n">toProtocol</span><span class="o">:</span><span class="p">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">APIService</span><span class="p">)];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
@@ -259,7 +261,7 @@ in the injector context.</p>
 
 <span class="c1">// Module Configuration</span>
 <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">configure</span> <span class="p">{</span>
-  <span class="p">[</span><span class="n">self</span> <span class="n">bindMetaClass</span><span class="o">:</span><span class="p">[</span><span class="n">ExternalUtility</span> <span class="n">class</span><span class="p">]</span> <span class="n">toProtocol</span><span class="o">:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">ExternalUtility</span><span class="p">)];</span>    
+  <span class="p">[</span><span class="n">self</span> <span class="n">bindMetaClass</span><span class="o">:</span><span class="p">[</span><span class="n">ExternalUtility</span> <span class="n">class</span><span class="p">]</span> <span class="n">toProtocol</span><span class="o">:</span><span class="p">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">ExternalUtility</span><span class="p">)];</span>    
 <span class="p">}</span>
 
 <span class="k">@interface</span> <span class="nc">SomeClass</span>
@@ -281,8 +283,11 @@ in the injector context.</p>
 <h4>
 <a name="example-6" class="anchor" href="#example-6"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">CarProvider</span>
-<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">provide:</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="p">)</span><span class="nv">context</span> <span class="p">{</span>
+<div class="highlight highlight-objective-c"><pre><span class="k">@interface</span> <span class="nc">CarProvider</span> : <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">JSObjectionProvider</span><span class="o">&gt;</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">CarProvider</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">provide:</span><span class="p">(</span><span class="n">JSObjectionInjector</span> <span class="o">*</span><span class="p">)</span><span class="nv">context</span> <span class="nf">arguments:</span><span class="p">(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nv">arguments</span> <span class="p">{</span>
   <span class="c1">// Manually build object</span>
   <span class="k">return</span> <span class="n">car</span><span class="p">;</span>
 <span class="p">}</span>
@@ -381,6 +386,11 @@ in the injector context.</p>
 </pre></div>
 
 <h2>
+<a name="testing" class="anchor" href="#testing"><span class="octicon octicon-link"></span></a>Testing</h2>
+
+<p>If you're using <a href="https://github.com/allending/Kiwi">Kiwi</a> for testing, checkout <a href="https://github.com/mindsnacks/MSSpec">MSSpec</a>. It provides a convenient way inject mocks into your specs using Objection.</p>
+
+<h2>
 <a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h2>
 
 <ul>
@@ -391,13 +401,13 @@ in the injector context.</p>
 <h3>
 <a name="static-framework-and-linkable-framework" class="anchor" href="#static-framework-and-linkable-framework"><span class="octicon octicon-link"></span></a>Static Framework and Linkable Framework</h3>
 
-<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-1.2.tar.gz">here</a></p>
+<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-1.2.1.tar.gz">here</a></p>
 
 <h3>
 <a name="building-static-framework" class="anchor" href="#building-static-framework"><span class="octicon octicon-link"></span></a>Building Static Framework</h3>
 
 <pre><code>git clone git://github.com/atomicobject/objection.git
-git checkout 1.2
+git checkout 1.2.1
 </code></pre>
 
 <h4>
@@ -433,12 +443,18 @@ git checkout 1.2
 <p>Edit your Pofile</p>
 
 <pre><code>edit Podfile
-pod 'Objection', '1.2'
+pod 'Objection', '1.2.1'
 </code></pre>
 
 <p>Now you can install Objection</p>
 
 <pre><code>pod install
+</code></pre>
+
+<h4>
+<a name="include-framework-2" class="anchor" href="#include-framework-2"><span class="octicon octicon-link"></span></a>Include framework</h4>
+
+<pre><code>#import &lt;Objection/Objection.h&gt;
 </code></pre>
 
 <p>Learn more at <a href="http://cocoapods.org">CocoaPods</a>.</p>
@@ -472,7 +488,8 @@ pod 'Objection', '1.2'
 <li><a href="http://www.wooga.com/games/bubble-island/">Bubble Island</a></li>
 <li><a href="http://www.wooga.com/games/monster-world/">Monster World</a></li>
 <li><a href="http://www.wooga.com/games/pocket-village/">Pocket Village</a></li>
-<li><a href="https://itunes.apple.com/us/app/sidereel/id417270961?mt=8">SideReel</a></li>
+<li><a href="https://itunes.apple.com/us/app/id417270961?mt=8">SideReel</a></li>
+<li><a href="http://www.google.com/wallet/">Google Wallet</a></li>
 </ul>
       </section>
       <footer>
