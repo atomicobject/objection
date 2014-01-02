@@ -96,6 +96,7 @@ static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *argu
             [invocation setArgument:&argument atIndex:i + 2];
         }
         [invocation invoke];
+		[invocation getReturnValue:&instance];
         return instance;
     } else {
         @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Could not find initializer '%@' on %@", NSStringFromSelector(initializer), NSStringFromClass(klass)] userInfo:nil]; 
