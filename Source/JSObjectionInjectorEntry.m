@@ -4,7 +4,6 @@
 #import "NSObject+Objection.h"
 
 @interface JSObjectionInjectorEntry()
-- (void)notifyObjectThatItIsReady: (id)object;
 - (id)buildObject:(NSArray *)arguments;
 - (id)argumentsForObject:(NSArray *)givenArguments;
 - (SEL)initializerForObject;

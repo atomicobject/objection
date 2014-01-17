@@ -85,17 +85,18 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName) {
 
 
 static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments) {
-	// is it a static method
 	NSMethodSignature *signature = [klass methodSignatureForSelector:initializer];
-	BOOL isStaticMethod = (signature != nil);
-	__autoreleasing id instance = nil;
-	if (!isStaticMethod) {
+	id instance = nil;
+    BOOL isStatic = signature != nil;
+    
+	if (!signature) {
 		instance = [klass alloc];
 		signature = [klass instanceMethodSignatureForSelector:initializer];
 	}
+    
     if (signature) {
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setTarget:isStaticMethod ? klass : instance];
+        [invocation setTarget:isStatic ? klass : instance];
         [invocation setSelector:initializer];
         for (int i = 0; i < arguments.count; i++) {
             __unsafe_unretained id argument = [arguments objectAtIndex:i];

@@ -39,4 +39,11 @@ it(@"raises an exception if the initializer is not valid", ^{
    }) should] raiseWithReason:@"Could not find initializer 'initWithNonExistentInitializer' on BadInitializer"];
 });
 
+it(@"supports initializing an object with a class method", ^{
+    Truck *truck = [injector getObjectWithArgs:[Truck class], @"Ford", nil];
+
+    [[truck shouldNot] beNil];
+    [[truck.name should] equal:@"Ford"];
+});
+
 SPEC_END

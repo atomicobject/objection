@@ -1,5 +1,17 @@
 #import "InitializerFixtures.h"
 
+@implementation Truck
+objection_register(Truck)
+objection_initializer(truck:, @"Chevy")
+
++ (id)truck: (NSString *)name {
+    NSLog(@"TRUCK!");
+    Truck *truck = [[self alloc] init];
+    truck.name = name;
+    return truck;    
+}
+@end
+
 @implementation BadInitializer
 objection_register(BadInitializer)
 objection_initializer(initWithNonExistentInitializer)
