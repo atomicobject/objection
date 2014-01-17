@@ -24,3 +24,8 @@
 @interface BadInitializer : NSObject
 @end
 
+@interface Truck : NSObject
+@property(nonatomic, strong) NSString *name;
++ (id)truck: (NSString *)name;
+@end
+

@@ -85,17 +85,25 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName) {
 
 
 static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments) {
-    id instance = [klass alloc];
-    NSMethodSignature *signature = [klass instanceMethodSignatureForSelector:initializer];
+	NSMethodSignature *signature = [klass methodSignatureForSelector:initializer];
+	id instance = nil;
+    BOOL isStatic = signature != nil;
+    
+	if (!signature) {
+		instance = [klass alloc];
+		signature = [klass instanceMethodSignatureForSelector:initializer];
+	}
+    
     if (signature) {
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setTarget:instance];
+        [invocation setTarget:isStatic ? klass : instance];
         [invocation setSelector:initializer];
         for (int i = 0; i < arguments.count; i++) {
             __unsafe_unretained id argument = [arguments objectAtIndex:i];
             [invocation setArgument:&argument atIndex:i + 2];
         }
         [invocation invoke];
+		[invocation getReturnValue:&instance];
         return instance;
     } else {
         @throw [NSException exceptionWithName:JSObjectionException reason:[NSString stringWithFormat:@"Could not find initializer '%@' on %@", NSStringFromSelector(initializer), NSStringFromClass(klass)] userInfo:nil]; 

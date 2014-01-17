@@ -318,12 +318,12 @@ If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout 
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-1.2.1.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-1.3.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 1.2.1
+    git checkout 1.3
     
 #### iOS
 
@@ -350,7 +350,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-1.2.1
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '1.2.1'
+    pod 'Objection', '1.3'
 
 Now you can install Objection
     
@@ -389,6 +389,6 @@ One only has to [search GitHub](https://github.com/search?l=Objective-C&p=1&q=de
 * [Bubble Island](http://www.wooga.com/games/bubble-island/)
 * [Monster World](http://www.wooga.com/games/monster-world/)
 * [Pocket Village](http://www.wooga.com/games/pocket-village/)
-* [SideReel](https://itunes.apple.com/us/app/sidereel/id41.2.170961?mt=8)
+* [SideReel](https://itunes.apple.com/us/app/id417270961?mt=8)
 * [Google Wallet](http://www.google.com/wallet/)
 
