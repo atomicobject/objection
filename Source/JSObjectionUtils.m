@@ -87,9 +87,9 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName) {
 static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments) {
 	NSMethodSignature *signature = [klass methodSignatureForSelector:initializer];
 	id instance = nil;
-    BOOL isStatic = signature != nil;
+    BOOL isStatic = (initializer != @selector(init) && (signature != nil));
     
-	if (!signature) {
+	if (!isStatic) {
 		instance = [klass alloc];
 		signature = [klass instanceMethodSignatureForSelector:initializer];
 	}

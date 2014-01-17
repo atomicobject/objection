@@ -4,9 +4,11 @@
 
 @implementation Engine
 objection_register(Engine)
+objection_initializer(init)
+
 @synthesize awake;
 
-- (void) awakeFromObjection {
+- (void)awakeFromObjection {
 	awake = YES;  
 }
 @end
