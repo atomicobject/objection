@@ -8,7 +8,7 @@ objection_initializer(init)
 
 @synthesize awake;
 
-- (void) awakeFromObjection {
+- (void)awakeFromObjection {
 	awake = YES;  
 }
 @end

@@ -5,7 +5,6 @@ objection_register(Truck)
 objection_initializer(truck:, @"Chevy")
 
 + (id)truck: (NSString *)name {
-    NSLog(@"TRUCK!");
     Truck *truck = [[self alloc] init];
     truck.name = name;
     return truck;    
