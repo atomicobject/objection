@@ -306,6 +306,18 @@ objection_initializer(initWithMake:model:)
 }
 ```
 
+#### Class Method Initializer
+```objective-c
+@implementation Truck
+objection_requires(@"engine", @"brakes")
+objection_initializer(truckWithMake:model:)
++ (id)truckWithMake:(NSString *) make model: (NSString *)model {
+  ...
+}
+@end
+
+```
+
 ## Testing
 
 If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout [MSSpec](https://github.com/mindsnacks/MSSpec). It provides a convenient way inject mocks into your specs using Objection.
