@@ -318,12 +318,12 @@ If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout 
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-1.3.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-1.3.1.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 1.3
+    git checkout 1.3.1
     
 #### iOS
 
@@ -350,7 +350,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-1.3.t
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '1.3'
+    pod 'Objection', '1.3.1'
 
 Now you can install Objection
     
