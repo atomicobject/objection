@@ -5,7 +5,6 @@ objection_register(Truck)
 objection_initializer(truck:, @"Chevy")
 
 + (id)truck: (NSString *)name {
-    NSLog(@"TRUCK!");
     Truck *truck = [[self alloc] init];
     truck.name = name;
     return truck;    
@@ -56,5 +55,10 @@ objection_initializer_sel(@selector(initWithModel:horsePower:andYear:))
     }
     return self;
 }
+
+@end
+
+@implementation FilterInitInitializer
+objection_initializer(init)
 
 @end

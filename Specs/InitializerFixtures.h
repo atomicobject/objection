@@ -29,3 +29,6 @@
 + (id)truck: (NSString *)name;
 @end
 
+@interface FilterInitInitializer : NSObject
+@end
+
