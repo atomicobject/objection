@@ -46,4 +46,9 @@ it(@"supports initializing an object with a class method", ^{
     [[truck.name should] equal:@"Ford"];
 });
 
+it(@"filters the init initializer as a class initializer option", ^{
+    FilterInitInitializer *obj = [injector getObject:[FilterInitInitializer class]];
+    [[obj shouldNot] beNil];
+});
+
 SPEC_END
