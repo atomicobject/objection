@@ -7,8 +7,10 @@
 @interface JSObjectionProviderEntry : JSObjectionEntry {
     id<JSObjectionProvider> _provider;
     id(^_block)(JSObjectionInjector *context);
+    JSObjectionScope _lifeCycle;
+    id _storageCache;
 }
 
-- (id)initWithProvider:(id<JSObjectionProvider>)theProvider;
-- (id)initWithBlock:(id(^)(JSObjectionInjector *context))theBlock;
+- (id)initWithProvider:(id<JSObjectionProvider>)theProvider lifeCycle:(JSObjectionScope)theLifeCycle;
+- (id)initWithBlock:(id(^)(JSObjectionInjector *context))theBlock lifeCycle:(JSObjectionScope)theLifeCycle;
 @end
