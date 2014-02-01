@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = 'Objection-SethLab'
+  s.name         = 'Objection'
   s.version      = '1.3.2'
   s.summary      = 'A lightweight dependency injection framework for Objective-C.'
   s.author       = { 'Justin DeWind' => 'dewind@atomicobject.com' }
