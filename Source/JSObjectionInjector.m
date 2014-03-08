@@ -64,6 +64,13 @@
     return self;  
 }
 
+- (id)getObject:(id)classOrProtocol {
+    return [self getObjectWithArgs:classOrProtocol, nil];
+}
+
+- (id)getObject:(id)classOrProtocol named:(NSString*)name {
+    return [self getObject:classOrProtocol namedWithArgs:name, nil];
+}
 
 - (id)getObjectWithArgs:(id)classOrProtocol, ... {
     va_list va_arguments;
@@ -73,28 +80,49 @@
     return object;
 }
 
-- (id)getObject:(id)classOrProtocol {
-    return [self getObjectWithArgs:classOrProtocol, nil];
+- (id)getObject:(id)classOrProtocol namedWithArgs:(NSString *)name, ... {
+    va_list va_arguments;
+    va_start(va_arguments, classOrProtocol);
+    id object = [self getObject:classOrProtocol named:name arguments:va_arguments];
+    va_end(va_arguments);
+    return object;
+}
+
+- (id)getObject:(id)classOrProtocol arguments:(va_list)argList {
+    return [self getObject:classOrProtocol named:nil arguments:argList];
+}
+
+- (id)getObject:(id)classOrProtocol named:name arguments:(va_list)argList {
+    NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(argList);
+    return [self getObject:classOrProtocol named:name argumentList:arguments];
 }
 
 - (id)getObject:(id)classOrProtocol argumentList:(NSArray *)argumentList {
-    @synchronized(self) {
+   return [self getObject:classOrProtocol named:nil argumentList:argumentList];
+}
+
+- (id)getObject:(id)classOrProtocol named:(NSString*)name argumentList:(NSArray *)argumentList {
+   @synchronized(self) {
         if (!classOrProtocol) {
             return nil;
         }
         NSString *key = nil;
         BOOL isClass = class_isMetaClass(object_getClass(classOrProtocol));
-        
+
         if (isClass) {
             key = NSStringFromClass(classOrProtocol);
         } else {
             key = [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(classOrProtocol)];
         }
-        
-        
+
+        if (name)
+        {
+            key = [NSString stringWithFormat:@"%@:%@",key,name];
+        }
+
         id<JSObjectionEntry> injectorEntry = [_context objectForKey:key];
         injectorEntry.injector = self;
-        
+
         if (!injectorEntry) {
             id<JSObjectionEntry> entry = [_globalContext objectForKey:key];
             if (entry) {
@@ -107,21 +135,15 @@
                 [_context setObject:injectorEntry forKey:key];
             }
         }
-        
+
         if (classOrProtocol && injectorEntry) {
             return [injectorEntry extractObject:argumentList];
         }
-        
+
         return nil;
     }
-    
-    return nil;
-    
-}
 
-- (id)getObject:(id)classOrProtocol arguments:(va_list)argList {
-    NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(argList);
-    return [self getObject:classOrProtocol argumentList:arguments];
+    return nil;
 }
 
 - (id)objectForKeyedSubscript: (id)key {

@@ -12,6 +12,7 @@ Objection is a lightweight dependency injection framework for Objective-C for Ma
   * Meta Class Bindings
   * Protocol Bindings
   * Instance Bindings
+  * Named Bindings
 * Lazily instantiates dependencies
 * Eager Singletons
 * Initializer Support
@@ -247,6 +248,36 @@ A class can be scoped as a singleton in a module. Conversely, a registered singl
 }
 @end
 ```
+
+### Named Bindings
+
+Dependencies of the same class or protocol can be identified using the *objection_requires_names* macro, which takes a dictionary of names to properties as a parameter. 
+
+#### Example
+```objective-c
+@interface ShinyCar : NSObject
+@property (nonatomic, strong) Headlight *leftHeadlight;
+@property (nonatomic, strong) Headlight *rightHeadlight;
+@end
+
+@implementation ShinyCar
+objection_register(ShinyCar)
+objection_requires_names((@{@"LeftHeadlight":@"leftHeadlight", @"RightHeadlight":@"rightHeadlight"}))
+@synthesize leftHeadlight, rightHeadlight;
+@end
+
+@implementation NamedModule
+
+- (void)configure
+{
+    [self bind:[[Headlight alloc]init] toClass:[Headlight class] named:@"RightHeadlight"];
+    [self bindClass:[HIDHeadlight class] toClass:[Headlight class] named:@"LeftHeadlight"];
+
+}
+@end
+
+```
+
 
 ### Eager Singletons
 

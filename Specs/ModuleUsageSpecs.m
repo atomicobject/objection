@@ -261,4 +261,43 @@ describe(@"has binding", ^{
 
 });
 
+describe(@"named binding", ^{
+
+    __block Headlight *rightHeadlight = nil;
+    __block NamedModule *namedModule = nil;
+    __block JSObjectionInjector *injector = nil;
+
+    beforeEach(^{
+        rightHeadlight = [[Headlight alloc] init];
+        namedModule = [[NamedModule alloc] initWithRightHeadlight:rightHeadlight];
+        injector = [JSObjection createInjector:namedModule];
+    });
+
+    it(@"can bind with a name", ^{
+        ShinyCar *shinyCar = injector[[ShinyCar class]];
+        assertThat(shinyCar.leftHeadlight, is(instanceOf([HIDHeadlight class])));
+        assertThat(shinyCar.rightHeadlight, is(sameInstance(rightHeadlight)));
+
+        FlashyCar *flashyCar = injector[[FlashyCar class]];
+        assertThat(flashyCar.leftBlinker.speed, is(equalTo(@1.092)));
+        assertThat(flashyCar.rightBlinker.speed, is(equalTo(@11)));
+    });
+
+    it(@"can bind with a name in a singleton scope", ^{
+        Headlight *headlight1 = [injector getObject:[Headlight class] named:@"My HID Headlight"];
+        Headlight *headlight2 = [injector getObject:[Headlight class] named:@"My HID Headlight"];
+        Headlight *headlight3 = [injector getObject:[Headlight class] named:@"Another Headlight"];
+        assertThat(headlight1, is(sameInstance(headlight2)));
+        assertThat(headlight1, isNot(sameInstance(headlight3)));
+    });
+
+    it(@"supports hasBindingForClass and hasBindingForProtocol", ^{
+        assertThatBool([namedModule hasBindingForClass:[Headlight class] withName:@"My HID Headlight"], equalToBool(YES));
+        assertThatBool([namedModule hasBindingForClass:[Headlight class] withName:@"Unregistered Headlight"], equalToBool(NO));
+
+        assertThatBool([namedModule hasBindingForProtocol:@protocol(Blinkable) withName:@"LeftBlinker"], equalToBool(YES));
+        assertThatBool([namedModule hasBindingForProtocol:@protocol(Blinkable) withName:@"Unregistered Blinker"], equalToBool(NO));
+    });
+});
+
 SPEC_END

@@ -43,6 +43,11 @@
     return JSObjectionUtils.buildDependenciesForClass(self, requirements); \
     }
 
+#define objection_requires_names(namedDependencies) \
+    + (NSDictionary *)objectionRequiresNames { \
+        return JSObjectionUtils.buildNamedDependenciesForClass(self, namedDependencies); \
+    }
+
 #define objection_initializer_sel(selectorSymbol, args...) \
     + (NSDictionary *)objectionInitializer { \
         id objs[] = {args}; \
