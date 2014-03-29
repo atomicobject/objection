@@ -87,7 +87,7 @@
 - (void)testItShouldStubTheNextMessage {
     NSString *callsign = @"Galactica";
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Avenger"];
-    [[cruiser stubAndReturn:callsign] callsign];
+    [cruiser stub:@selector(callsign) andReturn:callsign];
     STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
 }
 
@@ -95,10 +95,21 @@
     NSString *callsign = @"Galactica";
     NSString *secondCallsign = @"Andromeda";
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Avenger"];
-    [[cruiser stubAndReturn: callsign times:[KWValue valueWithInt:2] afterThatReturn:secondCallsign] callsign];
+    [cruiser stub:@selector(callsign) andReturn:callsign times:@2 afterThatReturn:secondCallsign];
     STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
     STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
     STAssertEqualObjects([cruiser callsign], secondCallsign, @"expected method to be stubbed and change return value");
+}
+
+- (void)testItShouldSubstituteMethodImplementationWithBlock {
+    __block BOOL shieldsRaised = NO;
+    Cruiser *cruiser = [Cruiser cruiser];
+    [cruiser stub:@selector(raiseShields) withBlock:(id) ^(NSArray *params) {
+        shieldsRaised = YES;
+        return NO;
+    }];
+    [cruiser raiseShields];
+    STAssertEquals(shieldsRaised, YES, @"expected method implementation to be substituted");
 }
 
 - (void)testItShouldPreserveClassResultWhenInstanceMethodStubbed {
@@ -159,13 +170,21 @@
 }
 
 - (void)testSpyWorksOnRealInterfaces {
-    Cruiser *cruiser = [Cruiser mock];
-    STAssertNoThrow([cruiser captureArgument:@selector(foo) atIndex:0], @"expected not to throw exception");
+    Fighter *cruiser = [Fighter mock];
+    STAssertNoThrow([cruiser captureArgument:@selector(cruiser) atIndex:0], @"expected not to throw exception");
 }
 
 - (void)testCallingCaptureArgumentOnRealObjectThrowsException {
+    Fighter *cruiser = [Fighter fighter];
+    STAssertThrows([cruiser captureArgument:@selector(cruiser) atIndex:0], @"expected to throw exception");
+}
+
+- (void)testItShouldStubWithBlock {
     Cruiser *cruiser = [Cruiser cruiser];
-    STAssertThrows([cruiser captureArgument:@selector(foo) atIndex:0], @"expected to throw exception");
+    [cruiser stub:@selector(classification) withBlock:^id(NSArray *params) {
+        return @"Enterprise";
+    }];
+    STAssertEquals([cruiser classification], @"Enterprise", @"expected method to be stubbed with block");
 }
 
 @end

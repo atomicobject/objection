@@ -178,6 +178,20 @@
 			remoteGlobalIDString = 832C8323157263B300F160D5;
 			remoteInfo = "Kiwi-OSX";
 		};
+		4BABED1818E65FCB002F266F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA084E7317E3838100592D5A;
+			remoteInfo = "Kiwi-XCTest";
+		};
+		4BABED1A18E65FCB002F266F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA084D3E17E3804200592D5A;
+			remoteInfo = KiwiXCTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -429,6 +443,8 @@
 				4B5D260516D2E13200E862AA /* libKiwi.a */,
 				4B5D260716D2E13200E862AA /* libKiwi-OSX.a */,
 				4B5D260916D2E13200E862AA /* KiwiTests.octest */,
+				4BABED1918E65FCB002F266F /* libKiwi-XCTest.a */,
+				4BABED1B18E65FCB002F266F /* KiwiXCTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -665,6 +681,20 @@
 			fileType = wrapper.cfbundle;
 			path = KiwiTests.octest;
 			remoteRef = 4B5D260816D2E13200E862AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4BABED1918E65FCB002F266F /* libKiwi-XCTest.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libKiwi-XCTest.a";
+			remoteRef = 4BABED1818E65FCB002F266F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4BABED1B18E65FCB002F266F /* KiwiXCTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KiwiXCTests.xctest;
+			remoteRef = 4BABED1A18E65FCB002F266F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1055,6 +1085,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -1072,7 +1103,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Vendor/Kiwi/Classes";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/Kiwi/Classes/**",
+					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
+				);
 				INFOPLIST_FILE = "Specs-OSX/Specs-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1092,6 +1126,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -1107,7 +1142,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Vendor/Kiwi/Classes";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/Kiwi/Classes/**",
+					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
+				);
 				INFOPLIST_FILE = "Specs-OSX/Specs-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (

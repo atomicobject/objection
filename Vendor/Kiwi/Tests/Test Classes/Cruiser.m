@@ -14,7 +14,8 @@
 #pragma mark Initializing
 
 - (id)initWithCallsign:(NSString *)aCallsign {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         callsign = [aCallsign copy];
     }
 
@@ -67,6 +68,10 @@
     }
 
     return nil;
+}
+
+- (Fighter *)fighterWithCallsignUTF8CString:(const char *)aCallsign {
+	return [self fighterWithCallsign:[NSString stringWithCString:aCallsign encoding:NSUTF8StringEncoding]];
 }
 
 - (NSArray *)fightersInSquadron:(NSString *)aSquadron {
