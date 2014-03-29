@@ -176,5 +176,27 @@ objection_requires(@"validator")
     [self bindClass:[Car class] inScope:JSObjectionScopeSingleton];
     [self registerEagerSingleton:[Car class]];
 }
+@end
 
+@implementation BlockScopeModule
+
+- (void)configure {
+    [self bindBlock:^(JSObjectionInjector *context) {
+        Car *car = [[Car alloc] init];
+        return (id)car;
+    } toClass:[Car class] inScope:JSObjectionScopeSingleton];
+
+    [self bindBlock:^(JSObjectionInjector *context) {
+        return [[AfterMarketGearBox alloc] init];
+    } toProtocol:@protocol(GearBox) inScope:JSObjectionScopeNormal];
+}
+
+@end
+
+@implementation ProviderScopeModule
+- (void)configure
+{
+    [self bindProvider:[[CarProvider alloc] init] toClass:[Car class] inScope:JSObjectionScopeSingleton];
+    [self bindProvider:[[GearBoxProvider alloc] init] toProtocol:@protocol(GearBox) inScope:JSObjectionScopeNormal];
+}
 @end

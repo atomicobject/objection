@@ -18,7 +18,7 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     id matcherStrings = [KWReceiveMatcher matcherStrings];
-    id expectedStrings = [NSArray arrayWithObjects:@"receive:",
+    id expectedStrings = @[@"receive:",
                                                    @"receive:withCount:",
                                                    @"receive:withCountAtLeast:",
                                                    @"receive:withCountAtMost:",
@@ -27,7 +27,7 @@
                                                    @"receive:andReturn:withCountAtLeast:",
                                                    @"receive:andReturn:withCountAtMost:",
                                                    @"receiveMessagePattern:countType:count:",
-                                                   @"receiveMessagePattern:andReturn:countType:count:", nil];
+                                                   @"receiveMessagePattern:andReturn:countType:count:"];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");
@@ -82,6 +82,23 @@
     [matcher receive:@selector(raiseShields) withCountAtLeast:2];
     [subject fighters];
     STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
+- (void)testItShouldStubForReceive {
+    id subject  = [Cruiser cruiser];
+    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    [matcher receive:@selector(crewComplement)];
+    NSUInteger value = [subject crewComplement];
+    STAssertTrue(value == 0, @"expected method to be stubbed");
+}
+
+- (void)testItShouldNotOverrideExistingStub {
+    id subject  = [Cruiser cruiser];
+    [subject stub:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:333]];
+    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    [matcher receive:@selector(crewComplement)];
+    NSUInteger value = [subject crewComplement];
+    STAssertTrue(value == 333, @"expected receive not to override existing stub");
 }
 
 - (void)testItShouldStubForReceiveAndReturn {

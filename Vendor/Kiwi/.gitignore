@@ -12,3 +12,11 @@ xcuserdata/
 *.perspectivev3
 *.pbxuser
 output
+
+# AppCode files
+.idea
+
+# raw logs
+xcodebuild.log
+xcodebuild_error.log
+

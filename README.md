@@ -306,6 +306,18 @@ objection_initializer(initWithMake:model:)
 }
 ```
 
+#### Class Method Initializer
+```objective-c
+@implementation Truck
+objection_requires(@"engine", @"brakes")
+objection_initializer(truckWithMake:model:)
++ (id)truckWithMake:(NSString *) make model: (NSString *)model {
+  ...
+}
+@end
+
+```
+
 ## Testing
 
 If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout [MSSpec](https://github.com/mindsnacks/MSSpec). It provides a convenient way inject mocks into your specs using Objection.
@@ -318,12 +330,12 @@ If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout 
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-1.3.1.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-1.4.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 1.3.1
+    git checkout 1.4
     
 #### iOS
 
@@ -350,7 +362,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-1.3.1
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '1.3.1'
+    pod 'Objection', '1.4'
 
 Now you can install Objection
     

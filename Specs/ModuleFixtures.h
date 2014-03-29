@@ -84,7 +84,13 @@ extern BOOL gEagerSingletonHook;
 
 @end
 
+@interface BlockScopeModule : JSObjectionModule
 
+@end
+
+@interface ProviderScopeModule : JSObjectionModule
+
+@end
 
 
 

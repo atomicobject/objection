@@ -22,7 +22,8 @@
 #pragma mark Initializing
 
 - (id)init {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         failures = [[NSMutableArray alloc] init];
     }
 
@@ -67,7 +68,7 @@
 }
 
 - (KWFailure *)onlyFailure {
-    return [self.failures objectAtIndex:0];
+    return (self.failures)[0];
 }
 
 @end
