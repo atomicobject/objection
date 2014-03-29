@@ -196,7 +196,7 @@
 
 - (void)initializeEagerSingletons {
     for (NSString *eagerSingletonKey in _eagerSingletons) {
-        id entry = [_globalContext objectForKey:eagerSingletonKey];
+        id entry = [_context objectForKey:eagerSingletonKey] ?: [_globalContext objectForKey:eagerSingletonKey];
         if ([entry lifeCycle] == JSObjectionScopeSingleton) {
             [self getObject:NSClassFromString(eagerSingletonKey)];      
         } else {
