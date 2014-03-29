@@ -1031,7 +1031,10 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Vendor/Kiwi/Classes";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/Kiwi/Classes/**",
+					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
+				);
 				INFOPLIST_FILE = "Specs-iOS/Specs-iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
@@ -1064,7 +1067,10 @@
 				GCC_PREFIX_HEADER = "Specs-iOS/Specs-iOS-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Vendor/Kiwi/Classes";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/Kiwi/Classes/**",
+					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
+				);
 				INFOPLIST_FILE = "Specs-iOS/Specs-iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
