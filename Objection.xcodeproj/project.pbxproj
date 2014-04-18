@@ -23,6 +23,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		23729B611901061000D1FA6B /* JSTestObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 23729B601901061000D1FA6B /* JSTestObjectionInjector.h */; };
+		23729B661901061900D1FA6B /* JSTestObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 23729B601901061000D1FA6B /* JSTestObjectionInjector.h */; };
+		23729B671901061A00D1FA6B /* JSTestObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 23729B601901061000D1FA6B /* JSTestObjectionInjector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		23729B691901068600D1FA6B /* JSTestObjectionInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = 23729B681901068600D1FA6B /* JSTestObjectionInjector.m */; };
 		4B42580A13F56CC0006BC001 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		4B42581113F56CC1006BC001 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B42580F13F56CC1006BC001 /* InfoPlist.strings */; };
 		4B42585A13F56D41006BC001 /* Fixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF451AC12919CAD006EB2D5 /* Fixtures.m */; };
@@ -202,6 +206,7 @@
 			dstSubfolderSpec = 0;
 			files = (
 				4B9D311413DF79FE00C81C45 /* JSObjectionUtils.h in Copy Header Files */,
+				23729B661901061900D1FA6B /* JSTestObjectionInjector.h in Copy Header Files */,
 				4B9D311513DF79FE00C81C45 /* JSObjection.h in Copy Header Files */,
 				4B9582C312AE755000CBF1EB /* JSObjectionModule.h in Copy Header Files */,
 				4B4F7B5814577AB50064EBFB /* JSObjectFactory.h in Copy Header Files */,
@@ -221,6 +226,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		23729B601901061000D1FA6B /* JSTestObjectionInjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTestObjectionInjector.h; sourceTree = "<group>"; };
+		23729B681901068600D1FA6B /* JSTestObjectionInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTestObjectionInjector.m; sourceTree = "<group>"; };
 		4B25BD491291BBE700821DC1 /* InjectionErrorFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InjectionErrorFixtures.h; sourceTree = "<group>"; };
 		4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectionErrorFixtures.m; sourceTree = "<group>"; };
 		4B4257EB13F56718006BC001 /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
@@ -382,6 +389,7 @@
 				4B496E6A12B0F3E50053F2A3 /* JSObjectionUtils.m */,
 				4BED511E12AA8BCC00CA6B36 /* JSObjectionInjectorEntry.m */,
 				4BED511F12AA8BCC00CA6B36 /* JSObjectionInjector.m */,
+				23729B681901068600D1FA6B /* JSTestObjectionInjector.m */,
 				4BED512012AA8BCC00CA6B36 /* JSObjectionBindingEntry.m */,
 				4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */,
 				4B9D310213DF613500C81C45 /* JSObjection.m */,
@@ -458,6 +466,7 @@
 				4B957EE612ADE26500CBF1EB /* Objection.h */,
 				4BED512F12AA8BF300CA6B36 /* JSObjectionInjectorEntry.h */,
 				4BED513012AA8BF300CA6B36 /* JSObjectionInjector.h */,
+				23729B601901061000D1FA6B /* JSTestObjectionInjector.h */,
 				4BED513112AA8BF300CA6B36 /* JSObjectionBindingEntry.h */,
 				4B957EC212ADDFC500CBF1EB /* JSObjectionModule.h */,
 				4B53470E12F3165F000480AB /* NSObject+Objection.h */,
@@ -516,6 +525,7 @@
 			files = (
 				4BED513212AA8BF300CA6B36 /* JSObjectionInjectorEntry.h in Headers */,
 				4BED513312AA8BF300CA6B36 /* JSObjectionInjector.h in Headers */,
+				23729B671901061A00D1FA6B /* JSTestObjectionInjector.h in Headers */,
 				4BED513412AA8BF300CA6B36 /* JSObjectionBindingEntry.h in Headers */,
 				4B957EC312ADDFC500CBF1EB /* JSObjectionModule.h in Headers */,
 				4B957EE712ADE26500CBF1EB /* Objection.h in Headers */,
@@ -535,6 +545,7 @@
 			files = (
 				4B81FA3A135D245B00221A88 /* Objection.h in Headers */,
 				4B81FA3B135D245B00221A88 /* JSObjectionInjectorEntry.h in Headers */,
+				23729B611901061000D1FA6B /* JSTestObjectionInjector.h in Headers */,
 				4B81FA3C135D245B00221A88 /* JSObjectionInjector.h in Headers */,
 				4B81FA3D135D245B00221A88 /* JSObjectionBindingEntry.h in Headers */,
 				4B81FA3E135D245B00221A88 /* JSObjectionModule.h in Headers */,
@@ -847,6 +858,7 @@
 				4BED512B12AA8BCC00CA6B36 /* JSObjectionInjector.m in Sources */,
 				4BED512C12AA8BCC00CA6B36 /* JSObjectionBindingEntry.m in Sources */,
 				4B957EC812ADE05D00CBF1EB /* JSObjectionModule.m in Sources */,
+				23729B691901068600D1FA6B /* JSTestObjectionInjector.m in Sources */,
 				4B496E6D12B0F3E50053F2A3 /* JSObjectionUtils.m in Sources */,
 				4B53471B12F316A4000480AB /* NSObject+Objection.m in Sources */,
 				4B4B21A91342B79E00833077 /* JSObjectionEntry.m in Sources */,
