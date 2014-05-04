@@ -261,4 +261,27 @@ describe(@"has binding", ^{
 
 });
 
+describe(@"supports unbinding", ^{
+    __block JSObjectionModule *module;
+    beforeEach(^{
+        module = [[JSObjectionModule alloc] init];
+    });
+    
+    it(@"supports class unbinding", ^{
+        id instance = [[NSObject alloc] init];
+        [module bind:instance toClass:[NSObject class]];
+        assertThatBool([module hasBindingForClass:[NSObject class]], equalToBool(YES));
+        [module unbindClass:[NSObject class]];
+        assertThatBool([module hasBindingForClass:[NSObject class]], equalToBool(NO));
+    });
+
+    it(@"supports protocol unbinding", ^{
+        id instance = [[NSObject alloc] init];
+        [module bind:instance toProtocol:@protocol(NSObject)];
+        assertThatBool([module hasBindingForProtocol:@protocol(NSObject)], equalToBool(YES));
+        [module unbindProtocol:@protocol(NSObject)];
+        assertThatBool([module hasBindingForProtocol:@protocol(NSObject)], equalToBool(NO));
+    });
+});
+
 SPEC_END

@@ -136,6 +136,16 @@
   return [_bindings objectForKey:[self protocolKey:protocol]] != nil;
 }
 
+- (void)unbindClass:(Class)aClass {
+    id key = NSStringFromClass(aClass);
+    [_bindings removeObjectForKey:key];
+}
+
+- (void)unbindProtocol:(Protocol *)aProtocol {
+    id key = [self protocolKey:aProtocol];
+    [_bindings removeObjectForKey:key];
+}
+
 - (void) configure {
 }
 
