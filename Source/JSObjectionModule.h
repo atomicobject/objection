@@ -30,6 +30,8 @@
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass inScope:(JSObjectionScope)scope;
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope;
 - (void)bindClass:(Class)aClass inScope:(JSObjectionScope)scope;
+- (void)unbindClass:(Class)aClass;
+- (void)unbindProtocol:(Protocol *)aProtocol;
 - (void)registerEagerSingleton:(Class)aClass;
 - (BOOL)hasBindingForClass:(Class)aClass;
 - (BOOL)hasBindingForProtocol:(Protocol *)protocol;
