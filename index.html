@@ -385,6 +385,19 @@ in the injector context.</p>
 <span class="p">}</span>
 </pre></div>
 
+<h4>
+<a name="class-method-initializer" class="anchor" href="#class-method-initializer"><span class="octicon octicon-link"></span></a>Class Method Initializer</h4>
+
+<div class="highlight highlight-objective-c"><pre><span class="k">@implementation</span> <span class="nc">Truck</span>
+<span class="n">objection_requires</span><span class="p">(</span><span class="s">@"engine"</span><span class="p">,</span> <span class="s">@"brakes"</span><span class="p">)</span>
+<span class="n">objection_initializer</span><span class="p">(</span><span class="n">truckWithMake</span><span class="o">:</span><span class="n">model</span><span class="o">:</span><span class="p">)</span>
+<span class="o">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">truckWithMake</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="n">make</span> <span class="n">model</span><span class="o">:</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">model</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+
+</pre></div>
+
 <h2>
 <a name="testing" class="anchor" href="#testing"><span class="octicon octicon-link"></span></a>Testing</h2>
 
@@ -401,13 +414,13 @@ in the injector context.</p>
 <h3>
 <a name="static-framework-and-linkable-framework" class="anchor" href="#static-framework-and-linkable-framework"><span class="octicon octicon-link"></span></a>Static Framework and Linkable Framework</h3>
 
-<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-1.2.1.tar.gz">here</a></p>
+<p>It can be downloaded <a href="http://objection-framework.org/files/Objection-1.4.tar.gz">here</a></p>
 
 <h3>
 <a name="building-static-framework" class="anchor" href="#building-static-framework"><span class="octicon octicon-link"></span></a>Building Static Framework</h3>
 
 <pre><code>git clone git://github.com/atomicobject/objection.git
-git checkout 1.2.1
+git checkout 1.4
 </code></pre>
 
 <h4>
@@ -443,7 +456,7 @@ git checkout 1.2.1
 <p>Edit your Pofile</p>
 
 <pre><code>edit Podfile
-pod 'Objection', '1.2.1'
+pod 'Objection', '1.4'
 </code></pre>
 
 <p>Now you can install Objection</p>
