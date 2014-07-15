@@ -192,6 +192,10 @@
     JSObjectionUtils.injectDependenciesIntoProperties(self, [object class], object);
 }
 
+- (NSArray *)modules {
+    return [_modules copy];
+}
+
 #pragma mark - Private
 
 - (void)initializeEagerSingletons {
