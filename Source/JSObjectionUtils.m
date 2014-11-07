@@ -34,6 +34,10 @@ static JSObjectionPropertyInfo FindClassOrProtocolForProperty(objc_property_t pr
         classOrProtocol = objc_getProtocol([classOrProtocolName UTF8String]);
         propertyInfo.type = JSObjectionTypeProtocol;
     } else {
+        if ([classOrProtocolName hasSuffix:@">"]) {
+            classOrProtocolName = [classOrProtocolName substringToIndex:[classOrProtocolName rangeOfString:@"<"].location];
+        }
+        
         classOrProtocol = NSClassFromString(classOrProtocolName);
         propertyInfo.type = JSObjectionTypeClass;
     }
