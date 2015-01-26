@@ -12,7 +12,7 @@ typedef enum {
 @protocol JSObjectionEntry<NSObject>
 @property (nonatomic, readonly) JSObjectionScope lifeCycle;
 @property (nonatomic, assign) JSObjectionInjector *injector;
-- (id)extractObject:(NSArray *)arguments;
+- (id)extractObject:(NSArray *)arguments context:(NSDictionary *) context;
 + (id)entryWithEntry:(JSObjectionEntry *)entry;
 @end
 
