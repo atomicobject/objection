@@ -1,6 +1,7 @@
 # 1.4
 
 **[Breaking changes](#breaking-changes)**
+
 Nothing in this version has changed that would cause those that are upgrading from 1.3.1 any problems
 
 **[Changes](#changes)**

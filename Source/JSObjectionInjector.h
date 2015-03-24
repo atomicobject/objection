@@ -23,4 +23,5 @@
 - (id)withoutModuleCollection:(NSArray *)moduleClasses;
 - (void)injectDependencies:(id)object;
 - (id)objectForKeyedSubscript: (id)key;
+- (NSArray *)modules;
 @end
