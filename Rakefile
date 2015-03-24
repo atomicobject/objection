@@ -35,7 +35,7 @@ namespace :artifact do
   
   desc "Build iOS Framework"
   task :ios  => :clean do
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build], nil)
+    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'] , nil)
   end                             
   
   require 'rake/clean'
