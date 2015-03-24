@@ -35,7 +35,7 @@ namespace :artifact do
   
   desc "Build iOS Framework"
   task :ios  => :clean do
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'] , nil)
+    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build] , nil)
   end                             
   
   require 'rake/clean'
@@ -78,6 +78,6 @@ namespace :specs do
   task :ios do
     stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_uispecs.output") if (ENV['IS_CI_BOX'])
     ENV["TEST_AFTER_BUILD"] = "Yes"
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -scheme #{UI_SPECS_TARGET_NAME} -sdk iphonesimulator -configuration #{CONFIGURATION} test ], stdout)
+    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -scheme #{UI_SPECS_TARGET_NAME} -sdk iphonesimulator -configuration #{CONFIGURATION} -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' test ], stdout)
   end
 end
