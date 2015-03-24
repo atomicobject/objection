@@ -32,11 +32,8 @@ it(@"supports binding an instance to a protocol", ^{
 
 it(@"throws an exception if the instance does not conform to the protocol", ^{
     Engine *engine = [[Engine alloc] init];
-
-    [[theBlock(^{
-        MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"];
-        [module configure];
-    }) should] raiseWithReason:@"Instance does not conform to the GearBox protocol"];
+    MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"];
+    expectAction([module configure]).to(raiseException().reason(@"Instance does not conform to the GearBox protocol"));
 });
 
 it(@"supports eager singletons", ^{
@@ -45,14 +42,10 @@ it(@"supports eager singletons", ^{
 
 it(@"throws an exception if an attempt is made to register an eager singleton that was not registered as a singleton", ^{
     Engine *engine = [[Engine alloc] init];
-
-    [[theBlock(^{
-        id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
-        MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];    
-        module.instrumentInvalidEagerSingleton = YES;
-        [JSObjection createInjector:module];
-    }) should] raiseWithReason:@"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton"];
-
+    id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
+    MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];
+    module.instrumentInvalidEagerSingleton = YES;
+    expectAction([JSObjection createInjector:module]).to(raiseException().reason(@"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton"));
 });
 
 describe(@"provider bindings", ^{
@@ -132,12 +125,9 @@ describe(@"meta class bindings", ^{
   it(@"throws an exception if the given object is not a meta class", ^{
     id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
     Engine *engine = [[Engine alloc] init];
-
-    [[theBlock(^{
-      MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];    
-      module.instrumentInvalidMetaClass = YES;
-      [module configure];
-    }) should] raiseWithReason:@"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class"];
+    MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];
+    module.instrumentInvalidMetaClass = YES;
+    expectAction([module configure]).to(raiseException().reason(@"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class"));
   });
   
 });

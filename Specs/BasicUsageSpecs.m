@@ -3,6 +3,7 @@
 #import "InitializerFixtures.h"
 
 QuickSpecBegin(BasicUsageSpecs)
+
 beforeEach(^{
       JSObjectionInjector *injector = [JSObjection createInjector];
       [JSObjection setDefaultInjector:injector];
@@ -126,9 +127,7 @@ describe(@"object factory", ^{
         SingletonItem *item1 = holder1.objectFactory[[SingletonItem class]];
         SingletonItem *item2 = [holder2.objectFactory getObject:[SingletonItem class]];
         
-//        [[expect(item1)] to: equal(item2)];
-//        expect(item1).to(equal(item2));
-        expect(item1).to(equal(item2));
+        expect(item1).toNot(equal(item2));
     });
     
     it(@"can take variadic arguments and pass them along to the injector", ^{
@@ -137,9 +136,9 @@ describe(@"object factory", ^{
         
         ConfigurableCar *car = [factory getObjectWithArgs:[ConfigurableCar class], @"Model", @"Power", @"Year", nil];
         
-        [[car.model should] equal:@"Model"];
-        [[car.horsePower should] equal:@"Power"];
-        [[car.year should] equal:@"Year"];
+        expect(car.model).to(equal(@"Model"));
+        expect(car.horsePower).to(equal(@"Power"));
+        expect(car.year).to(equal(@"Year"));
     });
 });
 

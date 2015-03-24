@@ -9,8 +9,8 @@
 #endif
 
 #import "Objection.h"
-#define QUICK_DISABLE_SHORT_SYNTAX 1
 #import <Quick/Quick.h>
+#import <Nimble/Nimble-Swift.h>
 #import <Nimble/Nimble.h>
 #import <Foundation/Foundation.h>
 

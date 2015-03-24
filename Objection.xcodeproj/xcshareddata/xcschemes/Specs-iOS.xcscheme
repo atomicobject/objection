@@ -17,7 +17,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4B42580713F56CC0006BC001"
-               BuildableName = "Specs-iOS.octest"
+               BuildableName = "Specs-iOS.xctest"
                BlueprintName = "Specs-iOS"
                ReferencedContainer = "container:Objection.xcodeproj">
             </BuildableReference>
