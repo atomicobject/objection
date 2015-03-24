@@ -1,41 +1,39 @@
 //
 //  OCHamcrest - HCIsIn.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
 @interface HCIsIn : HCBaseMatcher
-{
-    id collection;
-}
 
-+ (HCIsIn*) isInCollection:(id)aCollection;
-- (id) initWithCollection:(id)aCollection;
++ (instancetype)isInCollection:(id)collection;
+- (instancetype)initWithCollection:(id)collection;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_isIn(id collection);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+FOUNDATION_EXPORT id HC_isIn(id aCollection);
 
 /**
-    Shorthand for HC_isIn, available if HC_SHORTHAND is defined.
-*/
-#define isIn HC_isIn
-
+ isIn(aCollection) -
+ Matches if evaluated object is present in a given collection.
+ 
+ @param aCollection  The collection to search.
+ 
+ This matcher invokes @c -containsObject: on @a aCollection to determine if the evaluated object
+ is an element of the collection.
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_isIn instead.)
+ 
+ @ingroup collection_matchers
+ */
+#ifdef HC_SHORTHAND
+    #define isIn HC_isIn
 #endif

@@ -1,52 +1,42 @@
 //
 //  OCHamcrest - HCAnyOf.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
-/**
-    Calculates the logical disjunction of multiple matchers.
-    
-    Evaluation is shortcut, so the subsequent matchers are not called if an earlier matcher returns
-    @c YES.
-*/
 @interface HCAnyOf : HCBaseMatcher
-{
-    NSArray* matchers;
-}
 
-+ (HCAnyOf*) anyOf:(NSArray*)theMatchers;
-- (id) initWithMatchers:(NSArray*)theMatchers;
++ (instancetype)anyOf:(NSArray *)matchers;
+- (instancetype)initWithMatchers:(NSArray *)matchers;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+FOUNDATION_EXPORT id HC_anyOf(id match, ...) NS_REQUIRES_NIL_TERMINATION;
 
 /**
-    Evaluates to @c YES if @b any of the passed in matchers evaluate to @c YES.
-    
-    @param matcher Comma-separated list of matchers ending with @c nil.
-*/
-id<HCMatcher> HC_anyOf(id<HCMatcher> matcher, ...);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+ anyOf(firstMatcher, ...) -
+ Matches if any of the given matchers evaluate to @c YES.
+ 
+ @param firstMatcher,...  A comma-separated list of matchers ending with @c nil.
+ 
+ The matchers are evaluated from left to right using short-circuit evaluation, so evaluation
+ stops as soon as a matcher returns @c YES.
+ 
+ Any argument that is not a matcher is implicitly wrapped in an @ref equalTo matcher to check for
+ equality.
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_anyOf instead.)
+ 
+ @ingroup logical_matchers
+ */
 #ifdef HC_SHORTHAND
-
-/**
-    Shorthand for HC_anyOf, available if HC_SHORTHAND is defined.
-*/
-#define anyOf HC_anyOf
-
+    #define anyOf HC_anyOf
 #endif

@@ -1,42 +1,45 @@
 //
 //  OCHamcrest - HCStringContains.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCSubstringMatcher.h"
+#import <OCHamcrest/HCSubstringMatcher.h>
 
 
-/**
-    Tests if the argument is a string that contains a substring.
-*/
 @interface HCStringContains : HCSubstringMatcher
-{
-}
 
-+ (HCStringContains*) stringContains:(NSString*)aSubstring;
++ (id)stringContains:(NSString *)aSubstring;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_containsString(NSString* aSubstring);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+FOUNDATION_EXPORT id HC_containsString(NSString *aSubstring);
 
 /**
-    Shorthand for HC_containsString, available if HC_SHORTHAND is defined.
-*/
-#define containsString HC_containsString
-
+containsString(aString) -
+ Matches if object is a string containing a given string.
+ 
+ @param aString  The string to search for. This value must not be @c nil.
+ 
+ This matcher first checks whether the evaluated object is a string. If so, it checks whether it
+ contains @a aString.
+ 
+ Example:
+ 
+ @par
+ @ref containsString(@"def")
+ 
+ will match "abcdefg".
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_containsString instead.)
+ 
+ @ingroup text_matchers
+ */
+#ifdef HC_SHORTHAND
+    #define containsString HC_containsString
 #endif

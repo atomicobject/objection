@@ -1,21 +1,25 @@
 //
 //  OCHamcrest - HCBaseMatcher.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
 #import <Foundation/Foundation.h>
-#import "HCMatcher.h"
+#import <OCHamcrest/HCMatcher.h>
 
 
 /**
-    Base class for all Matcher implementations.
-    
-    Most implementations can just implement matches: and let matches:describingMismatchTo: call
-    it. But if it makes more sense to generate the mismatch description during the matching,
-    override matches:describingMismatchTo: and have matches: call it with a nil description.
-*/
-@interface HCBaseMatcher : NSObject<HCMatcher>
+ Base class for all HCMatcher implementations.
+ 
+ Most implementations can just implement @c -matches: and let
+ <code>-matches:describingMismatchTo:</code> call it. But if it makes more sense to generate the
+ mismatch description during the matching, override <code>-matches:describingMismatchTo:</code>
+ and have @c -matches: call it with a @c nil description.
+ 
+ @ingroup core
+ */
+@interface HCBaseMatcher : NSObject <HCMatcher, NSCopying>
 @end

@@ -1,55 +1,47 @@
 //
 //  OCHamcrest - HCIsNil.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
-/**
-    Is the value @c nil?
-*/
 @interface HCIsNil : HCBaseMatcher
-{
-}
 
-+ (HCIsNil*) isNil;
++ (id)isNil;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+FOUNDATION_EXPORT id HC_nilValue(void);
 
 /**
-    Matches if the value is @c nil.
-*/
-id<HCMatcher> HC_nilValue();
-
-/**
-    Matches if the value is not @c nil.
-*/
-id<HCMatcher> HC_notNilValue();
-
-#ifdef __cplusplus
-}
-#endif
-
-
+ Matches if object is @c nil.
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_nilValue instead.)
+ 
+ @ingroup object_matchers
+ */
 #ifdef HC_SHORTHAND
+    #define nilValue() HC_nilValue()
+#endif
+
+
+FOUNDATION_EXPORT id HC_notNilValue(void);
 
 /**
-    Shorthand for HC_nilValue, available if HC_SHORTHAND is defined.
-*/
-#define nilValue HC_nilValue
-
-/**
-    Shorthand for HC_notNilValue, available if HC_SHORTHAND is defined.
-*/
-#define notNilValue HC_notNilValue
-
+ Matches if object is not @c nil.
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_notNilValue instead.)
+ 
+ @ingroup object_matchers
+ */
+#ifdef HC_SHORTHAND
+    #define notNilValue() HC_notNilValue()
 #endif

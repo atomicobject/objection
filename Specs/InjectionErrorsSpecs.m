@@ -2,7 +2,7 @@
 #import "InjectionErrorFixtures.h"
 #import "Fixtures.h"
 
-SPEC_BEGIN(InjectionErrorsSpecs)
+QuickSpecBegin(InjectionErrorsSpecs)
 
 beforeEach(^{
       JSObjectionInjector *injector = [JSObjection createInjector];
@@ -34,4 +34,4 @@ it(@"throws if instantiation rule is not valid", ^{
 });
 
 
-SPEC_END
+QuickSpecEnd

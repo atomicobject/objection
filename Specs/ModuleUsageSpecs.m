@@ -2,7 +2,7 @@
 #import "Fixtures.h"
 #import "ModuleFixtures.h"
 
-SPEC_BEGIN(ModuleUsageSpecs)
+QuickSpecBegin(ModuleUsageSpecs)
 __block MyModule *module = nil;
 
 beforeEach(^{
@@ -261,4 +261,4 @@ describe(@"has binding", ^{
 
 });
 
-SPEC_END
+QuickSpecEnd

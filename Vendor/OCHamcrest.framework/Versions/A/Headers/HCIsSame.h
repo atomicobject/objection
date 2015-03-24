@@ -1,47 +1,39 @@
 //
 //  OCHamcrest - HCIsSame.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
-/**
-    Is the value the same object as another value?
-*/
 @interface HCIsSame : HCBaseMatcher
-{
-    id object;
-}
 
-+ (HCIsSame*) isSameAs:(id)anObject;
-- (id) initSameAs:(id)anObject;
++ (instancetype)isSameAs:(id)object;
+- (instancetype)initSameAs:(id)object;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+FOUNDATION_EXPORT id HC_sameInstance(id object);
 
 /**
-    Evaluates to @c YES only when the argument is this same object.
-*/
-id<HCMatcher> HC_sameInstance(id anObject);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+ sameInstance(anObject) -
+ Matches if evaluated object is the same instance as a given object.
+ 
+ @param anObject  The object to compare against as the expected value.
+ 
+ This matcher compares the address of the evaluated object to determine if it is the same object
+ as @a anObject.
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_sameInstance instead.)
+ 
+ @ingroup object_matchers
+ */
 #ifdef HC_SHORTHAND
-
-/**
-    Shorthand for HC_sameInstance, available if HC_SHORTHAND is defined.
-*/
-#define sameInstance HC_sameInstance
-
+    #define sameInstance HC_sameInstance
 #endif

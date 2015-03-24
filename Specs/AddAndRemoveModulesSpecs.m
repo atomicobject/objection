@@ -3,7 +3,7 @@
 #import "ModuleFixtures.h"
 
 
-SPEC_BEGIN(AddAndRemoveModulesSpecs)
+QuickSpecBegin(AddAndRemoveModulesSpecs)
 __block SecondModule *module = nil;
 __block JSObjectionInjector *injector = nil;
 
@@ -40,4 +40,4 @@ it(@"builds a new module without the module types", ^{
     assertThat([injector getObject:[Car class]], isNot(instanceOf([FiveSpeedCar class])));
 });
 
-SPEC_END
+QuickSpecEnd

@@ -1,19 +1,19 @@
 //
 //  OCHamcrest - HCSubstringMatcher.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
 @interface HCSubstringMatcher : HCBaseMatcher
-{
-    NSString* substring;
-}
 
-- (id) initWithSubstring:(NSString*)aSubstring;
+@property (nonatomic, readonly) NSString *substring;
+
+- (instancetype)initWithSubstring:(NSString *)aString;
 
 @end

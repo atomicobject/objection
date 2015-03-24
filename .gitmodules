@@ -1,0 +1,12 @@
+[submodule "Vendor/Vendor/Quick"]
+	path = Vendor/Vendor/Quick
+	url = git@github.com:Quick/Quick.git
+[submodule "Vendor/Vendor/Nimble"]
+	path = Vendor/Vendor/Nimble
+	url = git@github.com:Quick/Nimble.git
+[submodule "Vendor/Quick"]
+	path = Vendor/Quick
+	url = git@github.com:Quick/Quick.git
+[submodule "Vendor/Nimble"]
+	path = Vendor/Nimble
+	url = git@github.com:Quick/Nimble.git

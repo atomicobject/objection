@@ -1,7 +1,7 @@
 #import "SpecHelper.h"
 #import "InitializerFixtures.h"
 
-SPEC_BEGIN(InitializerSpecs)
+QuickSpecBegin(InitializerSpecs)
 __block JSObjectionInjector *injector = nil;
 
 beforeEach(^{
@@ -51,4 +51,4 @@ it(@"filters the init initializer as a class initializer option", ^{
     [[obj shouldNot] beNil];
 });
 
-SPEC_END
+QuickSpecEnd

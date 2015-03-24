@@ -1,61 +1,63 @@
 //
 //  OCHamcrest - HCIsAnything.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
-/**
-    A matcher that always returns @c YES.
-*/
 @interface HCIsAnything : HCBaseMatcher
 {
-    NSString* description;
+    NSString *description;
 }
 
-+ (HCIsAnything*) isAnything;
-+ (HCIsAnything*) isAnythingWithDescription:(NSString*)aDescription;
-- (id) init;
-- (id) initWithDescription:(NSString*)aDescription;
++ (instancetype)isAnything;
++ (instancetype)isAnythingWithDescription:(NSString *)aDescription;
+
+- (instancetype)init;
+- (instancetype)initWithDescription:(NSString *)aDescription;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+FOUNDATION_EXPORT id HC_anything(void);
 
 /**
-    This matcher always evaluates to @c YES.
-*/
-id<HCMatcher> HC_anything();
-
-/**
-    This matcher always evaluates to <code>YES</code>.
-    
-    @param aDescription A meaningful string used when describing itself.
-*/
-id<HCMatcher> HC_anythingWithDescription(NSString* aDescription);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+ Matches anything.
+ 
+ This matcher always evaluates to @c YES. Specify this in composite matchers when the value of a
+ particular element is unimportant.
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_anything instead.)
+ 
+ @ingroup logical_matchers
+ */
 #ifdef HC_SHORTHAND
+    #define anything() HC_anything()
+#endif
+
+
+FOUNDATION_EXPORT id HC_anythingWithDescription(NSString *aDescription);
 
 /**
-    Shorthand for HC_anything, available if HC_SHORTHAND is defined.
-*/
-#define anything HC_anything
-
-/**
-    Shorthand for HC_anythingWithDescription, available if HC_SHORTHAND is defined.
-*/
-#define anythingWithDescription HC_anythingWithDescription
-
+ anythingWithDescription(description) -
+ Matches anything.
+ 
+ @param description  A string used to describe this matcher.
+ 
+ This matcher always evaluates to @c YES. Specify this in collection matchers when the value of a
+ particular element in a collection is unimportant.
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_anything instead.)
+ 
+ @ingroup logical_matchers
+ */
+#ifdef HC_SHORTHAND
+    #define anythingWithDescription HC_anythingWithDescription
 #endif

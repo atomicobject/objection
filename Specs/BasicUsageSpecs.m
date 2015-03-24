@@ -2,7 +2,7 @@
 #import "Fixtures.h"
 #import "InitializerFixtures.h"
 
-SPEC_BEGIN(BasicUsageSpecs)
+QuickSpecBegin(BasicUsageSpecs)
 beforeEach(^{
       JSObjectionInjector *injector = [JSObjection createInjector];
       [JSObjection setDefaultInjector:injector];
@@ -126,8 +126,10 @@ describe(@"object factory", ^{
         SingletonItem *item1 = holder1.objectFactory[[SingletonItem class]];
         SingletonItem *item2 = [holder2.objectFactory getObject:[SingletonItem class]];
         
-        [[item1 shouldNot] equal:item2];
-    });    
+//        [[expect(item1)] to: equal(item2)];
+//        expect(item1).to(equal(item2));
+        expect(item1).to(equal(item2));
+    });
     
     it(@"can take variadic arguments and pass them along to the injector", ^{
         JSObjectionInjector *injector = [JSObjection defaultInjector];
@@ -141,4 +143,4 @@ describe(@"object factory", ^{
     });
 });
 
-SPEC_END
+QuickSpecEnd

@@ -1,47 +1,41 @@
 //
 //  OCHamcrest - HCIsInstanceOf.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCClassMatcher.h>
 
 
-/**
-    Tests whether the value is an instance of a class (including subclasses).
-*/
-@interface HCIsInstanceOf : HCBaseMatcher
-{
-    Class theClass;
-}
+@interface HCIsInstanceOf : HCClassMatcher
 
-+ (HCIsInstanceOf*) isInstanceOf:(Class)type;
-- (id) initWithType:(Class)type;
++ (id)isInstanceOf:(Class)type;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+FOUNDATION_EXPORT id HC_instanceOf(Class aClass);
 
 /**
-    Is the value an instance of a particular type?
-*/
-id<HCMatcher> HC_instanceOf(Class type);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+ instanceOf(aClass) -
+ Matches if object is an instance of, or inherits from, a given class.
+ 
+ @param aClass  The class to compare against as the expected class.
+ 
+ This matcher checks whether the evaluated object is an instance of @a aClass or an instance of
+ any class that inherits from @a aClass.
+ 
+ Example:
+ @li @ref instanceOf([NSString class])
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_instanceOf instead.)
+ 
+ @ingroup object_matchers
+ */
 #ifdef HC_SHORTHAND
-
-/**
-    Shorthand for HC_instanceOf, available if HC_SHORTHAND is defined.
-*/
-#define instanceOf HC_instanceOf
-
+    #define instanceOf HC_instanceOf
 #endif

@@ -1,52 +1,42 @@
 //
 //  OCHamcrest - HCAllOf.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
-/**
-    Calculates the logical conjunction of multiple matchers.
-    
-    Evaluation is shortcut, so subsequent matchers are not called if an earlier matcher returns
-    @c NO.
-*/
 @interface HCAllOf : HCBaseMatcher
-{
-    NSArray* matchers;
-}
 
-+ (HCAllOf*) allOf:(NSArray*)theMatchers;
-- (id) initWithMatchers:(NSArray*)theMatchers;
++ (instancetype)allOf:(NSArray *)matchers;
+- (instancetype)initWithMatchers:(NSArray *)matchers;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+FOUNDATION_EXPORT id HC_allOf(id match, ...) NS_REQUIRES_NIL_TERMINATION;
 
 /**
-    Evaluates to @c YES only if @b all of the passed in matchers evaluate to @c YES.
-    
-    @param matcher Comma-separated list of matchers ending with @c nil.
-*/
-id<HCMatcher> HC_allOf(id<HCMatcher> matcher, ...);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+ allOf(firstMatcher, ...) -
+ Matches if all of the given matchers evaluate to @c YES.
+ 
+ @param firstMatcher,...  A comma-separated list of matchers ending with @c nil.
+ 
+ The matchers are evaluated from left to right using short-circuit evaluation, so evaluation
+ stops as soon as a matcher returns @c NO.
+ 
+ Any argument that is not a matcher is implicitly wrapped in an @ref equalTo matcher to check for
+ equality.
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_allOf instead.)
+ 
+ @ingroup logical_matchers
+ */
 #ifdef HC_SHORTHAND
-
-/**
-    Shorthand for HC_allOf, available if HC_SHORTHAND is defined.
-*/
-#define allOf HC_allOf
-
+    #define allOf HC_allOf
 #endif

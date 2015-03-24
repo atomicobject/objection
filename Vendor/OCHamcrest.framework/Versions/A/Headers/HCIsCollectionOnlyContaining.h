@@ -1,60 +1,49 @@
 //
 //  OCHamcrest - HCIsCollectionOnlyContaining.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
-/**
-    Matches collections that only contain elements satisfying a given matcher.
-
-    This matcher will never match an empty collection.
-*/
 @interface HCIsCollectionOnlyContaining : HCBaseMatcher
-{
-    id<HCMatcher> matcher;
-}
 
-+ (HCIsCollectionOnlyContaining*) isCollectionOnlyContaining:(id<HCMatcher>)aMatcher;
-- (id) initWithMatcher:(id<HCMatcher>)aMatcher;
++ (instancetype)isCollectionOnlyContaining:(id <HCMatcher>)matcher;
+- (instancetype)initWithMatcher:(id <HCMatcher>)matcher;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+FOUNDATION_EXPORT id HC_onlyContains(id itemMatch, ...) NS_REQUIRES_NIL_TERMINATION;
 
 /**
-    Matches collections that only contain elements satisfying any of a list of items.
-
-    For example,
-    <code>[NSArray arrayWithObjects:@"a", "b", @"c", nil]</code>
-    would satisfy
-    <code>onlyContains(lessThan(@"d"), nil)</code>.
-    
-    If an item is not a matcher, it is equivalent to equalTo(item), so the array in the example
-    above would also satisfy
-    <code>onlyContains(@"a", @"b", @"c", nil)</code>.
-
-    @param item comma-separated list of items ending with nil.
-*/
-id<HCMatcher> HC_onlyContains(id item, ...);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+ onlyContains(firstMatcher, ...) -
+ Matches if each element of collection satisfies any of the given matchers.
+ 
+ @param firstMatcher,...  A comma-separated list of matchers ending with @c nil.
+ 
+ This matcher iterates the evaluated collection, confirming whether each element satisfies any of
+ the given matchers.
+ 
+ Any argument that is not a matcher is implicitly wrapped in an @ref equalTo matcher to check for
+ equality.
+ 
+ Example:
+ 
+ @par
+ @ref onlyContains(startsWith(@"Jo"), nil)
+ 
+ will match a collection [@"Jon", @"John", @"Johann"].
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_onlyContains instead.)
+ 
+ @ingroup collection_matchers
+ */
 #ifdef HC_SHORTHAND
-
-/**
-    Shorthand for HC_onlyContains, available if HC_SHORTHAND is defined.
-*/
-#define onlyContains HC_onlyContains
-
+    #define onlyContains HC_onlyContains
 #endif

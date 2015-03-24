@@ -1,44 +1,46 @@
 //
 //  OCHamcrest - HCIsEqualIgnoringCase.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2014 hamcrest.org. See LICENSE.txt
 //
-//  Created by: Jon Reid
+//  Created by: Jon Reid, http://qualitycoding.org/
+//  Docs: http://hamcrest.github.com/OCHamcrest/
+//  Source: https://github.com/hamcrest/OCHamcrest
 //
 
-    // Inherited
-#import "HCBaseMatcher.h"
+#import <OCHamcrest/HCBaseMatcher.h>
 
 
-/**
-    Tests if a string is equal to another string, regardless of the case.
-*/
 @interface HCIsEqualIgnoringCase : HCBaseMatcher
-{
-    NSString* string;
-}
 
-+ (HCIsEqualIgnoringCase*) isEqualIgnoringCase:(NSString*)aString;
-- (id) initWithString:(NSString*)aString;
++ (instancetype)isEqualIgnoringCase:(NSString *)string;
+- (instancetype)initWithString:(NSString *)string;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_equalToIgnoringCase(NSString* aString);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+FOUNDATION_EXPORT id HC_equalToIgnoringCase(NSString *aString);
 
 /**
-    Shorthand for HC_endsWith, available if HC_SHORTHAND is defined.
-*/
-#define equalToIgnoringCase HC_equalToIgnoringCase
-
+ equalToIgnoringCase(string) -
+ Matches if object is a string equal to a given string, ignoring case differences.
+ 
+ @param aString  The string to compare against as the expected value. This value must not be @c nil.
+ 
+ This matcher first checks whether the evaluated object is a string. If so, it compares it with
+ @a aString, ignoring differences of case.
+ 
+ Example:
+ 
+ @par
+ @ref equalToIgnoringCase(@"hello world")
+ 
+ will match "heLLo WorlD".
+ 
+ (In the event of a name clash, don't \#define @c HC_SHORTHAND and use the synonym
+ @c HC_equalToIgnoringCase instead.)
+ 
+ @ingroup text_matchers
+ */
+#ifdef HC_SHORTHAND
+    #define equalToIgnoringCase HC_equalToIgnoringCase
 #endif
