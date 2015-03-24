@@ -1,11 +1,5 @@
-//
-//  OCHamcrest - HCSelfDescribing.h
+//  OCHamcrest by Jon Reid, http://qualitycoding.org/about/
 //  Copyright 2014 hamcrest.org. See LICENSE.txt
-//
-//  Created by: Jon Reid, http://qualitycoding.org/
-//  Docs: http://hamcrest.github.com/OCHamcrest/
-//  Source: https://github.com/hamcrest/OCHamcrest
-//
 
 #import <Foundation/Foundation.h>
 
@@ -14,14 +8,14 @@
 
 /**
  The ability of an object to describe itself.
- 
+
  @ingroup core
  */
 @protocol HCSelfDescribing <NSObject>
 
 /**
  Generates a description of the object.
- 
+
  The description may be part of a description of a larger object of which this is just a
  component, so it should be worded appropriately.
 

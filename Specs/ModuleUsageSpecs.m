@@ -37,7 +37,7 @@ it(@"throws an exception if the instance does not conform to the protocol", ^{
 });
 
 it(@"supports eager singletons", ^{
-    assertThatBool(gEagerSingletonHook, equalToBool(YES));
+    assertThatBool(gEagerSingletonHook, isTrue());
 });
 
 it(@"throws an exception if an attempt is made to register an eager singleton that was not registered as a singleton", ^{
@@ -165,7 +165,7 @@ describe(@"multiple modules", ^{
       
       assertThat(gearBox, is(instanceOf([AfterMarketGearBox class])));
       assertThat(car, is(instanceOf([FiveSpeedCar class])));
-      assertThatBool(gEagerSingletonHook, equalToBool(YES));
+      assertThatBool(gEagerSingletonHook, isTrue());
     });
 });
 
@@ -240,13 +240,13 @@ describe(@"has binding", ^{
     });
 
   it(@"returns correct value for hasBindingForClass:", ^{
-    assertThatBool([firstModule hasBindingForClass:[Car class]], equalToBool(YES));
-    assertThatBool([firstModule hasBindingForClass:[UnregisteredCar class]], equalToBool(NO));
+    assertThatBool([firstModule hasBindingForClass:[Car class]], isTrue());
+    assertThatBool([firstModule hasBindingForClass:[UnregisteredCar class]], isFalse());
   });
 
   it(@"returns correct value for hasBindingForProtocol", ^{
-    assertThatBool([secondModule hasBindingForProtocol:@protocol(GearBox)], equalToBool(YES));
-    assertThatBool([secondModule hasBindingForProtocol:@protocol(UnregisteredProtocol)], equalToBool(NO));
+    assertThatBool([secondModule hasBindingForProtocol:@protocol(GearBox)], isTrue());
+    assertThatBool([secondModule hasBindingForProtocol:@protocol(UnregisteredProtocol)], isFalse());
   });
 
 });

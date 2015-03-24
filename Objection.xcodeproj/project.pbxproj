@@ -104,6 +104,7 @@
 		4B833AA11AC1B62200C84F00 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B833A951AC1B60C00C84F00 /* Quick.framework */; };
 		4B833AA61AC1BFCB00C84F00 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B833A841AC1B5FE00C84F00 /* Nimble.framework */; };
 		4B83A7E41A1FC19000C59E05 /* OCHamcrestIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B83A7E31A1FC19000C59E05 /* OCHamcrestIOS.framework */; };
+		4B8899FA1AC1EB7C00B548E9 /* OCHamcrest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B4258DE13F56F51006BC001 /* OCHamcrest.framework */; };
 		4B957EC312ADDFC500CBF1EB /* JSObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* JSObjectionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B957EC712ADE03900CBF1EB /* JSObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */; };
 		4B957EC812ADE05D00CBF1EB /* JSObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */; };
@@ -267,6 +268,16 @@
 				4B53383717AC1420004BDF83 /* JSObjectionRuntimePropertyReflector.m in Copy Header Files */,
 			);
 			name = "Copy Header Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B8899F91AC1EB5A00B548E9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				4B8899FA1AC1EB7C00B548E9 /* OCHamcrest.framework in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -634,6 +645,7 @@
 				4B42587013F56EA3006BC001 /* Sources */,
 				4B42587113F56EA3006BC001 /* Frameworks */,
 				4B42587213F56EA3006BC001 /* Resources */,
+				4B8899F91AC1EB5A00B548E9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
