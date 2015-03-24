@@ -46,7 +46,7 @@ objection_requires(@"something")
 @end
 
 
-SPEC_BEGIN(InheritanceSpecs)
+QuickSpecBegin(InheritanceSpecs)
 beforeEach(^{
       JSObjectionInjector *injector = [JSObjection createInjector];
       [JSObjection setDefaultInjector:injector];
@@ -63,4 +63,4 @@ it(@"does not throw a fit if the base class does not implement .objectionRequire
       NoInheritance *noParentObjectWithRequires = [[JSObjection defaultInjector] getObject:[NoInheritance class]];
       assertThat(noParentObjectWithRequires.something, is(notNilValue()));
 });
-SPEC_END
+QuickSpecEnd

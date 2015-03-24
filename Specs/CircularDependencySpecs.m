@@ -2,8 +2,9 @@
 #import "SpecHelper.h"
 #import "Fixtures.h"
 
-SPEC_BEGIN(CircularDependencySpecs)
+QuickSpecBegin(CircularDependencySpecs)
 describe(@"circular dependencies", ^{
+    
       beforeEach(^{
             JSObjectionInjector *injector = [JSObjection createInjector];
             [JSObjection setDefaultInjector:injector];
@@ -17,4 +18,4 @@ describe(@"circular dependencies", ^{
             assertThat(foo.bar, is(sameInstance(bar)));
       });
 });
-SPEC_END
+QuickSpecEnd
