@@ -92,6 +92,13 @@ extern BOOL gEagerSingletonHook;
 
 @end
 
+@interface BlinkerProvider : NSObject<JSObjectionProvider>
+@end
+
+@interface NamedModule : JSObjectionModule
+- (id)initWithRightHeadlight:(Headlight*)rightHeadlight;
+@end
+
 
 
 

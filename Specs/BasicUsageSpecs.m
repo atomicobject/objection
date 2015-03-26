@@ -142,4 +142,22 @@ describe(@"object factory", ^{
     });
 });
 
+describe(@"named instances", ^{
+    it(@"are separate instances", ^{
+        ShinyCar *shinyCar = [[JSObjection defaultInjector] getObject:[ShinyCar class]];
+        expect(shinyCar).toNot(equal(shinyCar.rightHeadlight));
+    });
+    
+    it(@"can be used alongside non-named instances", ^{
+        ShinyCar *shinyCar = [[JSObjection defaultInjector] getObject:[ShinyCar class]];
+        expect(shinyCar).toNot(beNil());
+    });
+    
+    it(@"respect singleton scope", ^{
+        BrightCar *brightCar = [[JSObjection defaultInjector] getObject:[BrightCar class]];
+        expect(brightCar.leftHighbeam).to(equal(brightCar.leftHighbeam));
+    });
+    
+});
+
 QuickSpecEnd

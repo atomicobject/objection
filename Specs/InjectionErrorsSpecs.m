@@ -26,5 +26,20 @@ it(@"throws if instantiation rule is not valid", ^{
     expectAction([JSObjection registerClass:[CarFactory class] scope:3]).to(raiseException().reason(@"Invalid Instantiation Rule"));
 });
 
+describe(@"named properties",^{
+      beforeEach(^{
+          JSObjectionInjector *injector = [JSObjection createInjector];
+          [JSObjection setDefaultInjector:injector];
+      });
+
+      it(@"throws an exception if property type is not an object", ^{
+            expectAction([[JSObjection defaultInjector] getObject:[NamedUnsupportedPropertyObject class]]).to(raiseException().reason(@"Unable to determine class type for property declaration: 'myInteger'"));
+      });
+
+      it(@"throws an exception if property cannot be found", ^{
+          expectAction([[JSObjection defaultInjector] getObject:[NamedBadPropertyObject class]]).to(raiseException().reason(@"Unable to find property declaration: 'badProperty' for class 'NamedBadPropertyObject'"));
+      });
+});
+
 
 QuickSpecEnd
