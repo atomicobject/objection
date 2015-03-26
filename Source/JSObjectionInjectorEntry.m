@@ -4,7 +4,7 @@
 #import "NSObject+Objection.h"
 
 @interface JSObjectionInjectorEntry()
-- (id)buildObject:(NSArray *)arguments;
+- (id)buildObject:(NSArray *)arguments context:(NSDictionary *) context;
 - (id)argumentsForObject:(NSArray *)givenArguments;
 - (SEL)initializerForObject;
 @end
@@ -28,9 +28,9 @@
   return self;
 }
 
-- (id)extractObject:(NSArray *)arguments {
+- (id)extractObject:(NSArray *)arguments context:(NSDictionary *) context {
   if (self.lifeCycle == JSObjectionScopeNormal || !_storageCache) {
-      return [self buildObject:arguments];  
+      return [self buildObject:arguments context:context];
   }
   
   return _storageCache;
@@ -45,11 +45,14 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (id)buildObject:(NSArray *)arguments {
+- (id)buildObject:(NSArray *)arguments context:(NSDictionary *) context {
     
     id objectUnderConstruction = nil;
     if ([self.classEntry respondsToSelector:@selector(objectionInitializer)]) {
-        objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
+        objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry,
+                                                                              [self initializerForObject],
+                                                                              [self argumentsForObject:arguments],
+                                                                              context);
     } else {
         objectUnderConstruction = [[self.classEntry alloc] init];
     }

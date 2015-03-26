@@ -109,7 +109,7 @@
         }
         
         if (classOrProtocol && injectorEntry) {
-            return [injectorEntry extractObject:argumentList];
+            return [injectorEntry extractObject:argumentList context:_context];
         }
         
         return nil;

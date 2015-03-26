@@ -84,7 +84,7 @@ static objc_property_t GetProperty(Class klass, NSString *propertyName) {
 }
 
 
-static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments) {
+static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *arguments, NSDictionary *context) {
 	NSMethodSignature *signature = [klass methodSignatureForSelector:initializer];
 	__autoreleasing id instance = nil;
     BOOL isClassMethod = signature != nil && initializer != @selector(init);
@@ -100,7 +100,20 @@ static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *argu
         [invocation setSelector:initializer];
         for (int i = 0; i < arguments.count; i++) {
             __unsafe_unretained id argument = [arguments objectAtIndex:i];
-            [invocation setArgument:&argument atIndex:i + 2];
+            
+            // If the argument is a string we look for a class in the context.
+            if ([argument isKindOfClass:[NSString class]]) {
+                NSString * potentialClassName = argument;
+                id<JSObjectionEntry> argumentEntry = context[potentialClassName];
+                if (argumentEntry == nil) {
+                    [invocation setArgument:&argument atIndex:i + 2];
+                } else {
+                    // There's a matching object.
+                    id injectableObject = [argumentEntry extractObject:arguments context:context];
+                    [invocation setArgument:&injectableObject atIndex:i + 2];
+                }
+            }
+            
         }
         [invocation invoke];
 		[invocation getReturnValue:&instance];
