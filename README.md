@@ -361,12 +361,12 @@ If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout 
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-1.4.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-1.5.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 1.4
+    git checkout 1.5
     
 #### iOS
 
@@ -393,7 +393,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-1.4.t
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '1.4'
+    pod 'Objection', '1.5'
 
 Now you can install Objection
     
@@ -414,8 +414,8 @@ gem install motion-objection
 
 ## Requirements
 
-* MacOS X 10.7 +
-* iOS 5.0 +
+* MacOS X 10.8 +
+* iOS 7.0 +
 
 ## Authors
 
