@@ -12,6 +12,7 @@ Objection is a lightweight dependency injection framework for Objective-C for Ma
   * Meta Class Bindings
   * Protocol Bindings
   * Instance Bindings
+  * Named Bindings
 * Lazily instantiates dependencies
 * Eager Singletons
 * Initializer Support
@@ -248,6 +249,36 @@ A class can be scoped as a singleton in a module. Conversely, a registered singl
 @end
 ```
 
+### Named Bindings
+
+Dependencies of the same class or protocol can be identified using the *objection_requires_names* macro, which takes a dictionary of names to properties as a parameter. 
+
+#### Example
+```objective-c
+@interface ShinyCar : NSObject
+@property (nonatomic, strong) Headlight *leftHeadlight;
+@property (nonatomic, strong) Headlight *rightHeadlight;
+@end
+
+@implementation ShinyCar
+objection_register(ShinyCar)
+objection_requires_names((@{@"LeftHeadlight":@"leftHeadlight", @"RightHeadlight":@"rightHeadlight"}))
+@synthesize leftHeadlight, rightHeadlight;
+@end
+
+@implementation NamedModule
+
+- (void)configure
+{
+    [self bind:[[Headlight alloc]init] toClass:[Headlight class] named:@"RightHeadlight"];
+    [self bindClass:[HIDHeadlight class] toClass:[Headlight class] named:@"LeftHeadlight"];
+
+}
+@end
+
+```
+
+
 ### Eager Singletons
 
 You can mark registered singleton classes as eager singletons. Eager singletons will be instantiated during the creation of the injector rather than being lazily instantiated.
@@ -330,12 +361,12 @@ If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout 
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-1.4.tar.gz)
+It can be downloaded [here](http://objection-framework.org/files/Objection-1.5.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 1.4
+    git checkout 1.5
     
 #### iOS
 
@@ -362,7 +393,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-1.4.t
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '1.4'
+    pod 'Objection', '1.5'
 
 Now you can install Objection
     
@@ -383,8 +414,8 @@ gem install motion-objection
 
 ## Requirements
 
-* MacOS X 10.7 +
-* iOS 5.0 +
+* MacOS X 10.8 +
+* iOS 7.0 +
 
 ## Authors
 

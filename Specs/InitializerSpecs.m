@@ -1,7 +1,7 @@
 #import "SpecHelper.h"
 #import "InitializerFixtures.h"
 
-SPEC_BEGIN(InitializerSpecs)
+QuickSpecBegin(InitializerSpecs)
 __block JSObjectionInjector *injector = nil;
 
 beforeEach(^{
@@ -11,44 +11,42 @@ beforeEach(^{
 it(@"instantiates the object with the default initializer arguments", ^{
     ViewController *controller = [injector getObject:[ViewController class]];
     
-    [[controller.nibName should] equal:@"MyNib"];
-    assertThat(controller.bundle, nilValue());
-    [[controller.car should] beMemberOfClass:[Car class]];
+    expect(controller.nibName).to(equal(@"MyNib"));
+    expect(controller.bundle).to(beNil());
+    expect(controller.car).to(beAKindOf([Car class]));
 });
 
 it(@"will override the default arguments if arguments are passed to the injector", ^{
     ViewController *controller = [injector getObjectWithArgs:[ViewController class], @"AnotherNib", @"pretendBundle", nil];
-    
-    [[controller.nibName should] equal:@"AnotherNib"];
-    [[controller.bundle should] equal:@"pretendBundle"];
-    [[controller.car should] beMemberOfClass:[Car class]];    
+
+    expect(controller.nibName).to(equal(@"AnotherNib"));
+    expect(controller.bundle).to(equal(@"pretendBundle"));
+    expect(controller.car).to(beAKindOf([Car class]));
 });
 
 it(@"is OK to register an object with an initializer without any default arguments", ^{
     ConfigurableCar *car = [injector getObjectWithArgs:[ConfigurableCar class], @"Passat", [NSNumber numberWithInt:200], [NSNumber numberWithInt:2002], nil];
     
-    [[car.horsePower should] equal:[NSNumber numberWithInt:200]];
-    [[car.model should] equal:@"Passat"];
-    [[car.year should] equal:[NSNumber numberWithInt:2002]];
-    [[car.engine should] beMemberOfClass:[Engine class]];    
+    expect(car.horsePower).to(equal(@200));
+    expect(car.model).to(equal(@"Passat"));
+    expect(car.year).to(equal(@2002));
+    expect(car.engine).to(beAKindOf([Engine class]));
 });
 
 it(@"raises an exception if the initializer is not valid", ^{
-   [[theBlock(^{
-       [injector getObject:[BadInitializer class]];
-   }) should] raiseWithReason:@"Could not find initializer 'initWithNonExistentInitializer' on BadInitializer"];
+    expect([injector getObject:[BadInitializer class]]).to(raiseException().reason(@"Could not find initializer 'initWithNonExistentInitializer' on BadInitializer"));
 });
 
 it(@"supports initializing an object with a class method", ^{
     Truck *truck = [injector getObjectWithArgs:[Truck class], @"Ford", nil];
 
-    [[truck shouldNot] beNil];
-    [[truck.name should] equal:@"Ford"];
+    expect(truck).toNot(beNil());
+    expect(truck.name).to(equal(@"Ford"));
 });
 
 it(@"filters the init initializer as a class initializer option", ^{
     FilterInitInitializer *obj = [injector getObject:[FilterInitInitializer class]];
-    [[obj shouldNot] beNil];
+    expect(obj).toNot(beNil());
 });
 
-SPEC_END
+QuickSpecEnd

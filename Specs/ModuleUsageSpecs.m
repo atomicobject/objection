@@ -2,7 +2,7 @@
 #import "Fixtures.h"
 #import "ModuleFixtures.h"
 
-SPEC_BEGIN(ModuleUsageSpecs)
+QuickSpecBegin(ModuleUsageSpecs)
 __block MyModule *module = nil;
 
 beforeEach(^{
@@ -32,27 +32,20 @@ it(@"supports binding an instance to a protocol", ^{
 
 it(@"throws an exception if the instance does not conform to the protocol", ^{
     Engine *engine = [[Engine alloc] init];
-
-    [[theBlock(^{
-        MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"];
-        [module configure];
-    }) should] raiseWithReason:@"Instance does not conform to the GearBox protocol"];
+    MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:(id)@"no go"];
+    expectAction([module configure]).to(raiseException().reason(@"Instance does not conform to the GearBox protocol"));
 });
 
 it(@"supports eager singletons", ^{
-    assertThatBool(gEagerSingletonHook, equalToBool(YES));
+    assertThatBool(gEagerSingletonHook, isTrue());
 });
 
 it(@"throws an exception if an attempt is made to register an eager singleton that was not registered as a singleton", ^{
     Engine *engine = [[Engine alloc] init];
-
-    [[theBlock(^{
-        id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
-        MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];    
-        module.instrumentInvalidEagerSingleton = YES;
-        [JSObjection createInjector:module];
-    }) should] raiseWithReason:@"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton"];
-
+    id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
+    MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];
+    module.instrumentInvalidEagerSingleton = YES;
+    expectAction([JSObjection createInjector:module]).to(raiseException().reason(@"Unable to initialize eager singleton for the class 'Car' because it was never registered as a singleton"));
 });
 
 describe(@"provider bindings", ^{
@@ -132,12 +125,9 @@ describe(@"meta class bindings", ^{
   it(@"throws an exception if the given object is not a meta class", ^{
     id<GearBox> gearBox = [[AfterMarketGearBox alloc] init];
     Engine *engine = [[Engine alloc] init];
-
-    [[theBlock(^{
-      MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];    
-      module.instrumentInvalidMetaClass = YES;
-      [module configure];
-    }) should] raiseWithReason:@"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class"];
+    MyModule *module = [[MyModule alloc] initWithEngine:engine andGearBox:gearBox];
+    module.instrumentInvalidMetaClass = YES;
+    expectAction([module configure]).to(raiseException().reason(@"\"sneaky\" can not be bound to the protocol \"MetaCar\" because it is not a meta class"));
   });
   
 });
@@ -175,7 +165,7 @@ describe(@"multiple modules", ^{
       
       assertThat(gearBox, is(instanceOf([AfterMarketGearBox class])));
       assertThat(car, is(instanceOf([FiveSpeedCar class])));
-      assertThatBool(gEagerSingletonHook, equalToBool(YES));
+      assertThatBool(gEagerSingletonHook, isTrue());
     });
 });
 
@@ -250,15 +240,53 @@ describe(@"has binding", ^{
     });
 
   it(@"returns correct value for hasBindingForClass:", ^{
-    assertThatBool([firstModule hasBindingForClass:[Car class]], equalToBool(YES));
-    assertThatBool([firstModule hasBindingForClass:[UnregisteredCar class]], equalToBool(NO));
+    assertThatBool([firstModule hasBindingForClass:[Car class]], isTrue());
+    assertThatBool([firstModule hasBindingForClass:[UnregisteredCar class]], isFalse());
   });
 
   it(@"returns correct value for hasBindingForProtocol", ^{
-    assertThatBool([secondModule hasBindingForProtocol:@protocol(GearBox)], equalToBool(YES));
-    assertThatBool([secondModule hasBindingForProtocol:@protocol(UnregisteredProtocol)], equalToBool(NO));
+    assertThatBool([secondModule hasBindingForProtocol:@protocol(GearBox)], isTrue());
+    assertThatBool([secondModule hasBindingForProtocol:@protocol(UnregisteredProtocol)], isFalse());
   });
 
 });
 
-SPEC_END
+describe(@"named binding", ^{
+    
+    __block Headlight *rightHeadlight = nil;
+    __block NamedModule *namedModule = nil;
+    __block JSObjectionInjector *injector = nil;
+    
+    beforeEach(^{
+        rightHeadlight = [[Headlight alloc] init];
+        namedModule = [[NamedModule alloc] initWithRightHeadlight:rightHeadlight];
+        injector = [JSObjection createInjector:namedModule];
+    });
+    
+    it(@"can bind with a name", ^{
+        ShinyCar *shinyCar = injector[[ShinyCar class]];
+        assertThat(shinyCar.leftHeadlight, is(instanceOf([HIDHeadlight class])));
+        assertThat(shinyCar.rightHeadlight, is(sameInstance(rightHeadlight)));
+        
+        FlashyCar *flashyCar = injector[[FlashyCar class]];
+        assertThat(flashyCar.leftBlinker.speed, is(equalTo(@1.092)));
+        assertThat(flashyCar.rightBlinker.speed, is(equalTo(@11)));
+    });
+    
+    it(@"can bind with a name in a singleton scope", ^{
+        Headlight *headlight1 = [injector getObject:[Headlight class] named:@"My HID Headlight"];
+        Headlight *headlight2 = [injector getObject:[Headlight class] named:@"My HID Headlight"];
+        Headlight *headlight3 = [injector getObject:[Headlight class] named:@"Another Headlight"];
+        assertThat(headlight1, is(sameInstance(headlight2)));
+        assertThat(headlight1, isNot(sameInstance(headlight3)));
+    });
+    
+    it(@"supports hasBindingForClass and hasBindingForProtocol", ^{
+        assertThatBool([namedModule hasBindingForClass:[Headlight class] withName:@"My HID Headlight"], isTrue());
+        assertThatBool([namedModule hasBindingForClass:[Headlight class] withName:@"Unregistered Headlight"], isFalse());
+        
+        assertThatBool([namedModule hasBindingForProtocol:@protocol(Blinkable) withName:@"LeftBlinker"], isTrue());
+        assertThatBool([namedModule hasBindingForProtocol:@protocol(Blinkable) withName:@"Unregistered Blinker"], isFalse());
+    });
+});
+QuickSpecEnd

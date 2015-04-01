@@ -12,9 +12,13 @@
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule;
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules;
 - (id)getObject:(id)classOrProtocol;
+- (id)getObject:(id)classOrProtocol named:(NSString*)name;
 - (id)getObjectWithArgs:(id)classOrProtocol, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)getObject:(id)classOrProtocol namedWithArgs:(NSString*)name, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)getObject:(id)classOrProtocol arguments:(va_list)argList;
+- (id)getObject:(id)classOrProtocol named:(NSString*)name arguments:(va_list)argList;
 - (id)getObject:(id)classOrProtocol argumentList:(NSArray *)argumentList;
+- (id)getObject:(id)classOrProtocol named:(NSString*)name argumentList:(NSArray *)argumentList;
 - (id)withModule:(JSObjectionModule *)theModule;
 - (id)withModules:(JSObjectionModule *)first, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)withModuleCollection:(NSArray *)theModules;
@@ -23,4 +27,5 @@
 - (id)withoutModuleCollection:(NSArray *)moduleClasses;
 - (void)injectDependencies:(id)object;
 - (id)objectForKeyedSubscript: (id)key;
+- (NSArray *)modules;
 @end

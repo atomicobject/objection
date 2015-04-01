@@ -23,6 +23,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4B2D26A01AC1E54400FF802F /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B833A881AC1B5FE00C84F00 /* Nimble.framework */; };
+		4B2D26A11AC1E54400FF802F /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B833A951AC1B60C00C84F00 /* Quick.framework */; };
 		4B42580A13F56CC0006BC001 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		4B42581113F56CC1006BC001 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B42580F13F56CC1006BC001 /* InfoPlist.strings */; };
 		4B42585A13F56D41006BC001 /* Fixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF451AC12919CAD006EB2D5 /* Fixtures.m */; };
@@ -41,7 +43,6 @@
 		4B42586713F56D42006BC001 /* JSObjectionBindingEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED512012AA8BCC00CA6B36 /* JSObjectionBindingEntry.m */; };
 		4B42586813F56D42006BC001 /* JSObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */; };
 		4B42586913F56D42006BC001 /* JSObjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D310213DF613500C81C45 /* JSObjection.m */; };
-		4B42586B13F56D71006BC001 /* OCHamcrest-iPhone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B42586A13F56D71006BC001 /* OCHamcrest-iPhone.framework */; };
 		4B42586C13F56D96006BC001 /* InjectionErrorFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */; };
 		4B42587713F56EA3006BC001 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B42587613F56EA3006BC001 /* Cocoa.framework */; };
 		4B42588113F56EA3006BC001 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B42587F13F56EA3006BC001 /* InfoPlist.strings */; };
@@ -88,10 +89,8 @@
 		4B53471512F31660000480AB /* NSObject+Objection.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B53470E12F3165F000480AB /* NSObject+Objection.h */; };
 		4B53471A12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
 		4B53471B12F316A4000480AB /* NSObject+Objection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53471812F316A4000480AB /* NSObject+Objection.m */; };
-		4B5D00D116D3B4DD00823E20 /* KWSpec+FailWithException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D00D016D3B4DD00823E20 /* KWSpec+FailWithException.m */; };
-		4B5D00D216D3B4DD00823E20 /* KWSpec+FailWithException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D00D016D3B4DD00823E20 /* KWSpec+FailWithException.m */; };
-		4B5D260C16D2E17600E862AA /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5D260516D2E13200E862AA /* libKiwi.a */; };
-		4B5D260F16D2E1CA00E862AA /* libKiwi-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5D260716D2E13200E862AA /* libKiwi-OSX.a */; };
+		4B75FA771AC1E3FD00060FE1 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75FA761AC1E3FD00060FE1 /* Stub.swift */; };
+		4B75FA781AC1E3FD00060FE1 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75FA761AC1E3FD00060FE1 /* Stub.swift */; };
 		4B81F8D0135D06A300221A88 /* JSObjectionProviderEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B81F8CE135D06A300221A88 /* JSObjectionProviderEntry.h */; };
 		4B81F8D2135D06A300221A88 /* JSObjectionProviderEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B81F8CE135D06A300221A88 /* JSObjectionProviderEntry.h */; };
 		4B81F8D5135D06A300221A88 /* JSObjectionProviderEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B81F8CE135D06A300221A88 /* JSObjectionProviderEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -102,6 +101,10 @@
 		4B81FA3C135D245B00221A88 /* JSObjectionInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* JSObjectionInjector.h */; };
 		4B81FA3D135D245B00221A88 /* JSObjectionBindingEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* JSObjectionBindingEntry.h */; };
 		4B81FA3E135D245B00221A88 /* JSObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* JSObjectionModule.h */; };
+		4B833AA11AC1B62200C84F00 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B833A951AC1B60C00C84F00 /* Quick.framework */; };
+		4B833AA61AC1BFCB00C84F00 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B833A841AC1B5FE00C84F00 /* Nimble.framework */; };
+		4B83A7E41A1FC19000C59E05 /* OCHamcrestIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B83A7E31A1FC19000C59E05 /* OCHamcrestIOS.framework */; };
+		4B8899FA1AC1EB7C00B548E9 /* OCHamcrest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B4258DE13F56F51006BC001 /* OCHamcrest.framework */; };
 		4B957EC312ADDFC500CBF1EB /* JSObjectionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B957EC212ADDFC500CBF1EB /* JSObjectionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B957EC712ADE03900CBF1EB /* JSObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */; };
 		4B957EC812ADE05D00CBF1EB /* JSObjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */; };
@@ -143,54 +146,103 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4B5D260416D2E13200E862AA /* PBXContainerItemProxy */ = {
+		4B2D269C1AC1E53B00FF802F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F5015B9F11583A77002E9A98;
-			remoteInfo = Kiwi;
-		};
-		4B5D260616D2E13200E862AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 832C83C7157263B300F160D5;
-			remoteInfo = "Kiwi-OSX";
-		};
-		4B5D260816D2E13200E862AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F5015C9E11584017002E9A98;
-			remoteInfo = KiwiTests;
-		};
-		4B5D260A16D2E16C00E862AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
+			containerPortal = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = F5015B9E11583A77002E9A98;
-			remoteInfo = Kiwi;
+			remoteGlobalIDString = DAEB6B8D1943873100289F44;
+			remoteInfo = "Quick-OSX";
 		};
-		4B5D260D16D2E1C400E862AA /* PBXContainerItemProxy */ = {
+		4B2D269E1AC1E53B00FF802F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
+			containerPortal = 4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 832C8323157263B300F160D5;
-			remoteInfo = "Kiwi-OSX";
+			remoteGlobalIDString = 1F925EAC195C0D6300ED456B;
+			remoteInfo = "Nimble-OSX";
 		};
-		4BABED1818E65FCB002F266F /* PBXContainerItemProxy */ = {
+		4B833A831AC1B5FE00C84F00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
+			containerPortal = 4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = DA084E7317E3838100592D5A;
-			remoteInfo = "Kiwi-XCTest";
+			remoteGlobalIDString = 1F1A74291940169200FFFC47;
+			remoteInfo = "Nimble-iOS";
 		};
-		4BABED1A18E65FCB002F266F /* PBXContainerItemProxy */ = {
+		4B833A851AC1B5FE00C84F00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
+			containerPortal = 4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = DA084D3E17E3804200592D5A;
-			remoteInfo = KiwiXCTests;
+			remoteGlobalIDString = 1F1A74341940169200FFFC47;
+			remoteInfo = "Nimble-iOSTests";
+		};
+		4B833A871AC1B5FE00C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F925EAD195C0D6300ED456B;
+			remoteInfo = "Nimble-OSX";
+		};
+		4B833A891AC1B5FE00C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F925EB7195C0D6300ED456B;
+			remoteInfo = "Nimble-OSXTests";
+		};
+		4B833A941AC1B60C00C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAEB6B8E1943873100289F44;
+			remoteInfo = "Quick-OSX";
+		};
+		4B833A961AC1B60C00C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAEB6B991943873100289F44;
+			remoteInfo = "Quick-OSXTests";
+		};
+		4B833A981AC1B60C00C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5663E81A4C8D8500193C88;
+			remoteInfo = "QuickFocused-OSXTests";
+		};
+		4B833A9A1AC1B60C00C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A5D117C19473F2100F6D13D;
+			remoteInfo = "Quick-iOS";
+		};
+		4B833A9C1AC1B60C00C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A5D118619473F2100F6D13D;
+			remoteInfo = "Quick-iOSTests";
+		};
+		4B833A9E1AC1B60C00C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA9876B21A4C70EB0004AA17;
+			remoteInfo = "QuickFocused-iOSTests";
+		};
+		4B833AA71AC1D68900C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A5D117B19473F2100F6D13D;
+			remoteInfo = "Quick-iOS";
+		};
+		4B833AA91AC1D68900C84F00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F1A74281940169200FFFC47;
+			remoteInfo = "Nimble-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -218,20 +270,26 @@
 			name = "Copy Header Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4B8899F91AC1EB5A00B548E9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				4B8899FA1AC1EB7C00B548E9 /* OCHamcrest.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4B25BD491291BBE700821DC1 /* InjectionErrorFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InjectionErrorFixtures.h; sourceTree = "<group>"; };
 		4B25BD4A1291BBE700821DC1 /* InjectionErrorFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectionErrorFixtures.m; sourceTree = "<group>"; };
-		4B4257EB13F56718006BC001 /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
-		4B4257FF13F56C67006BC001 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		4B42580113F56C70006BC001 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		4B42580813F56CC0006BC001 /* Specs-iOS.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Specs-iOS.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B42580813F56CC0006BC001 /* Specs-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Specs-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B42580E13F56CC0006BC001 /* Specs-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Specs-iOS-Info.plist"; sourceTree = "<group>"; };
 		4B42581013F56CC1006BC001 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B42581213F56CC1006BC001 /* Specs-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-iOS-Prefix.pch"; sourceTree = "<group>"; };
-		4B42586A13F56D71006BC001 /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
-		4B42587513F56EA3006BC001 /* Specs-OSX.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Specs-OSX.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B42587513F56EA3006BC001 /* Specs-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Specs-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B42587613F56EA3006BC001 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4B42587913F56EA3006BC001 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		4B42587A13F56EA3006BC001 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -251,14 +309,15 @@
 		4B53470E12F3165F000480AB /* NSObject+Objection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Objection.h"; sourceTree = "<group>"; };
 		4B53471812F316A4000480AB /* NSObject+Objection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Objection.m"; sourceTree = "<group>"; };
 		4B53482E12F31E93000480AB /* SpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecHelper.m; sourceTree = "<group>"; };
-		4B5D00CF16D3B4DD00823E20 /* KWSpec+FailWithException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KWSpec+FailWithException.h"; sourceTree = "<group>"; };
-		4B5D00D016D3B4DD00823E20 /* KWSpec+FailWithException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KWSpec+FailWithException.m"; sourceTree = "<group>"; };
-		4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kiwi.xcodeproj; path = Vendor/Kiwi/Kiwi.xcodeproj; sourceTree = "<group>"; };
 		4B7300D712AA8F3400903427 /* InheritanceSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InheritanceSpecs.m; sourceTree = "<group>"; };
+		4B75FA761AC1E3FD00060FE1 /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stub.swift; path = ../Stub.swift; sourceTree = "<group>"; };
 		4B81F8CE135D06A300221A88 /* JSObjectionProviderEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectionProviderEntry.h; sourceTree = "<group>"; };
 		4B81F8DC135D06C200221A88 /* JSObjectionProviderEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjectionProviderEntry.m; sourceTree = "<group>"; };
 		4B81F90B135D0ACF00221A88 /* ModuleFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleFixtures.h; sourceTree = "<group>"; };
 		4B81F90C135D0ACF00221A88 /* ModuleFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleFixtures.m; sourceTree = "<group>"; };
+		4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Vendor/Nimble/Nimble.xcodeproj; sourceTree = "<group>"; };
+		4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Vendor/Quick/Quick.xcodeproj; sourceTree = "<group>"; };
+		4B83A7E31A1FC19000C59E05 /* OCHamcrestIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrestIOS.framework; path = Vendor/OCHamcrestIOS.framework; sourceTree = "<group>"; };
 		4B957EC212ADDFC500CBF1EB /* JSObjectionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectionModule.h; sourceTree = "<group>"; };
 		4B957EC512ADE03900CBF1EB /* JSObjectionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjectionModule.m; sourceTree = "<group>"; };
 		4B957EE612ADE26500CBF1EB /* Objection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Objection.h; sourceTree = "<group>"; };
@@ -266,7 +325,6 @@
 		4B9D30FE13DF5FAC00C81C45 /* JSObjectionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectionUtils.h; sourceTree = "<group>"; };
 		4B9D310113DF613500C81C45 /* JSObjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjection.h; sourceTree = "<group>"; };
 		4B9D310213DF613500C81C45 /* JSObjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjection.m; sourceTree = "<group>"; };
-		4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCHamcrest-iPhone.framework"; path = "Vendor/OCHamcrest-iPhone.framework"; sourceTree = "<group>"; };
 		4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = Vendor/OCHamcrest.framework; sourceTree = "<group>"; };
 		4BB07D741668679A00D9BA1E /* AddAndRemoveModulesSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAndRemoveModulesSpecs.m; sourceTree = "<group>"; };
 		4BB428A116D3205C00710F1E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -297,8 +355,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B5D260C16D2E17600E862AA /* libKiwi.a in Frameworks */,
-				4B42586B13F56D71006BC001 /* OCHamcrest-iPhone.framework in Frameworks */,
+				4B833AA11AC1B62200C84F00 /* Quick.framework in Frameworks */,
+				4B833AA61AC1BFCB00C84F00 /* Nimble.framework in Frameworks */,
+				4B83A7E41A1FC19000C59E05 /* OCHamcrestIOS.framework in Frameworks */,
 				4B42580A13F56CC0006BC001 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,7 +366,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B5D260F16D2E1CA00E862AA /* libKiwi-OSX.a in Frameworks */,
+				4B2D26A01AC1E54400FF802F /* Nimble.framework in Frameworks */,
+				4B2D26A11AC1E54400FF802F /* Quick.framework in Frameworks */,
 				4B4258DF13F56F51006BC001 /* OCHamcrest.framework in Frameworks */,
 				4B42587713F56EA3006BC001 /* Cocoa.framework in Frameworks */,
 			);
@@ -335,8 +395,8 @@
 			children = (
 				D2AAC07E0554694100DB518D /* libObjection-StaticLib.a */,
 				4BED511612AA8B7A00CA6B36 /* Objection.framework */,
-				4B42580813F56CC0006BC001 /* Specs-iOS.octest */,
-				4B42587513F56EA3006BC001 /* Specs-OSX.octest */,
+				4B42580813F56CC0006BC001 /* Specs-iOS.xctest */,
+				4B42587513F56EA3006BC001 /* Specs-OSX.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -357,14 +417,11 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */,
+				4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */,
+				4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */,
+				4B83A7E31A1FC19000C59E05 /* OCHamcrestIOS.framework */,
 				4B4258DE13F56F51006BC001 /* OCHamcrest.framework */,
-				4B42586A13F56D71006BC001 /* OCHamcrest-iPhone.framework */,
-				4B4257EB13F56718006BC001 /* OCHamcrest-iPhone.framework */,
-				4B42580113F56C70006BC001 /* CoreGraphics.framework */,
-				4B4257FF13F56C67006BC001 /* UIKit.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
-				4BA9CFEB12AA86D300674F0E /* OCHamcrest-iPhone.framework */,
 				4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */,
 				4B42587613F56EA3006BC001 /* Cocoa.framework */,
 				4BB428A116D3205C00710F1E /* SenTestingKit.framework */,
@@ -437,14 +494,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4B5D25FB16D2E13200E862AA /* Products */ = {
+		4B833A7D1AC1B5FE00C84F00 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4B5D260516D2E13200E862AA /* libKiwi.a */,
-				4B5D260716D2E13200E862AA /* libKiwi-OSX.a */,
-				4B5D260916D2E13200E862AA /* KiwiTests.octest */,
-				4BABED1918E65FCB002F266F /* libKiwi-XCTest.a */,
-				4BABED1B18E65FCB002F266F /* KiwiXCTests.xctest */,
+				4B833A841AC1B5FE00C84F00 /* Nimble.framework */,
+				4B833A861AC1B5FE00C84F00 /* NimbleTests.xctest */,
+				4B833A881AC1B5FE00C84F00 /* Nimble.framework */,
+				4B833A8A1AC1B5FE00C84F00 /* NimbleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B833A8C1AC1B60C00C84F00 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B833A951AC1B60C00C84F00 /* Quick.framework */,
+				4B833A971AC1B60C00C84F00 /* Quick-OSXTests.xctest */,
+				4B833A991AC1B60C00C84F00 /* QuickFocused-OSXTests.xctest */,
+				4B833A9B1AC1B60C00C84F00 /* Quick.framework */,
+				4B833A9D1AC1B60C00C84F00 /* Quick-iOSTests.xctest */,
+				4B833A9F1AC1B60C00C84F00 /* QuickFocused-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -489,6 +558,7 @@
 		4BF452461291AFEA006EB2D5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4B75FA761AC1E3FD00060FE1 /* Stub.swift */,
 				D2AAC07E0554694100DB5198 /* CircularDependencyFixtures.h */,
 				D2AAC07E0554694100DB5195 /* CircularDependencyFixtures.m */,
 				4BF4514C129198C6006EB2D5 /* SpecHelper.h */,
@@ -501,8 +571,6 @@
 				4B81F90C135D0ACF00221A88 /* ModuleFixtures.m */,
 				4B428933156806E6004F73D3 /* InitializerFixtures.h */,
 				4B428934156806E6004F73D3 /* InitializerFixtures.m */,
-				4B5D00CF16D3B4DD00823E20 /* KWSpec+FailWithException.h */,
-				4B5D00D016D3B4DD00823E20 /* KWSpec+FailWithException.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -562,12 +630,13 @@
 			buildRules = (
 			);
 			dependencies = (
-				4B5D260B16D2E16C00E862AA /* PBXTargetDependency */,
+				4B833AA81AC1D68900C84F00 /* PBXTargetDependency */,
+				4B833AAA1AC1D68900C84F00 /* PBXTargetDependency */,
 			);
 			name = "Specs-iOS";
 			productName = "Specs-iOS";
-			productReference = 4B42580813F56CC0006BC001 /* Specs-iOS.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 4B42580813F56CC0006BC001 /* Specs-iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		4B42587413F56EA3006BC001 /* Specs-OSX */ = {
 			isa = PBXNativeTarget;
@@ -576,16 +645,18 @@
 				4B42587013F56EA3006BC001 /* Sources */,
 				4B42587113F56EA3006BC001 /* Frameworks */,
 				4B42587213F56EA3006BC001 /* Resources */,
+				4B8899F91AC1EB5A00B548E9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4B5D260E16D2E1C400E862AA /* PBXTargetDependency */,
+				4B2D269D1AC1E53B00FF802F /* PBXTargetDependency */,
+				4B2D269F1AC1E53B00FF802F /* PBXTargetDependency */,
 			);
 			name = "Specs-OSX";
 			productName = "Specs-OSX";
-			productReference = 4B42587513F56EA3006BC001 /* Specs-OSX.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 4B42587513F56EA3006BC001 /* Specs-OSX.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		4BED511512AA8B7A00CA6B36 /* Objection */ = {
 			isa = PBXNativeTarget;
@@ -628,7 +699,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Objection" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -646,8 +717,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4B5D25FB16D2E13200E862AA /* Products */;
-					ProjectRef = 4B5D25FA16D2E13200E862AA /* Kiwi.xcodeproj */;
+					ProductGroup = 4B833A7D1AC1B5FE00C84F00 /* Products */;
+					ProjectRef = 4B833A7C1AC1B5FE00C84F00 /* Nimble.xcodeproj */;
+				},
+				{
+					ProductGroup = 4B833A8C1AC1B60C00C84F00 /* Products */;
+					ProjectRef = 4B833A8B1AC1B60C00C84F00 /* Quick.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -662,39 +737,74 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4B5D260516D2E13200E862AA /* libKiwi.a */ = {
+		4B833A841AC1B5FE00C84F00 /* Nimble.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libKiwi.a;
-			remoteRef = 4B5D260416D2E13200E862AA /* PBXContainerItemProxy */;
+			fileType = wrapper.framework;
+			path = Nimble.framework;
+			remoteRef = 4B833A831AC1B5FE00C84F00 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4B5D260716D2E13200E862AA /* libKiwi-OSX.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libKiwi-OSX.a";
-			remoteRef = 4B5D260616D2E13200E862AA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4B5D260916D2E13200E862AA /* KiwiTests.octest */ = {
+		4B833A861AC1B5FE00C84F00 /* NimbleTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = KiwiTests.octest;
-			remoteRef = 4B5D260816D2E13200E862AA /* PBXContainerItemProxy */;
+			path = NimbleTests.xctest;
+			remoteRef = 4B833A851AC1B5FE00C84F00 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4BABED1918E65FCB002F266F /* libKiwi-XCTest.a */ = {
+		4B833A881AC1B5FE00C84F00 /* Nimble.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libKiwi-XCTest.a";
-			remoteRef = 4BABED1818E65FCB002F266F /* PBXContainerItemProxy */;
+			fileType = wrapper.framework;
+			path = Nimble.framework;
+			remoteRef = 4B833A871AC1B5FE00C84F00 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4BABED1B18E65FCB002F266F /* KiwiXCTests.xctest */ = {
+		4B833A8A1AC1B5FE00C84F00 /* NimbleTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = KiwiXCTests.xctest;
-			remoteRef = 4BABED1A18E65FCB002F266F /* PBXContainerItemProxy */;
+			path = NimbleTests.xctest;
+			remoteRef = 4B833A891AC1B5FE00C84F00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4B833A951AC1B60C00C84F00 /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = 4B833A941AC1B60C00C84F00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4B833A971AC1B60C00C84F00 /* Quick-OSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Quick-OSXTests.xctest";
+			remoteRef = 4B833A961AC1B60C00C84F00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4B833A991AC1B60C00C84F00 /* QuickFocused-OSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickFocused-OSXTests.xctest";
+			remoteRef = 4B833A981AC1B60C00C84F00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4B833A9B1AC1B60C00C84F00 /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = 4B833A9A1AC1B60C00C84F00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4B833A9D1AC1B60C00C84F00 /* Quick-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Quick-iOSTests.xctest";
+			remoteRef = 4B833A9C1AC1B60C00C84F00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4B833A9F1AC1B60C00C84F00 /* QuickFocused-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickFocused-iOSTests.xctest";
+			remoteRef = 4B833A9E1AC1B60C00C84F00 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -777,6 +887,7 @@
 				4B42586613F56D42006BC001 /* JSObjectionInjector.m in Sources */,
 				4B42586713F56D42006BC001 /* JSObjectionBindingEntry.m in Sources */,
 				4B42586813F56D42006BC001 /* JSObjectionModule.m in Sources */,
+				4B75FA771AC1E3FD00060FE1 /* Stub.swift in Sources */,
 				4B42586913F56D42006BC001 /* JSObjection.m in Sources */,
 				4BE78764145647EF00BD705E /* JSObjectFactory.m in Sources */,
 				D2AAC07E0554694100DB5193 /* CircularDependencySpecs.m in Sources */,
@@ -784,7 +895,6 @@
 				4B4289311567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
 				4B428935156806E6004F73D3 /* InitializerFixtures.m in Sources */,
 				4BB07D751668679A00D9BA1E /* AddAndRemoveModulesSpecs.m in Sources */,
-				4B5D00D116D3B4DD00823E20 /* KWSpec+FailWithException.m in Sources */,
 				4B53383917AC1420004BDF83 /* JSObjectionRuntimePropertyReflector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,6 +919,7 @@
 				4B4258DA13F56F45006BC001 /* JSObjectionInjector.m in Sources */,
 				4B4258DB13F56F45006BC001 /* JSObjectionBindingEntry.m in Sources */,
 				4B4258DC13F56F45006BC001 /* JSObjectionModule.m in Sources */,
+				4B75FA781AC1E3FD00060FE1 /* Stub.swift in Sources */,
 				4B4258DD13F56F45006BC001 /* JSObjection.m in Sources */,
 				4BE78765145647EF00BD705E /* JSObjectFactory.m in Sources */,
 				D2AAC07E0554694100DB5194 /* CircularDependencySpecs.m in Sources */,
@@ -816,7 +927,6 @@
 				4B4289321567F3EC004F73D3 /* InitializerSpecs.m in Sources */,
 				4B428936156806E6004F73D3 /* InitializerFixtures.m in Sources */,
 				4BB07D761668679A00D9BA1E /* AddAndRemoveModulesSpecs.m in Sources */,
-				4B5D00D216D3B4DD00823E20 /* KWSpec+FailWithException.m in Sources */,
 				4B53383A17AC1420004BDF83 /* JSObjectionRuntimePropertyReflector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -860,15 +970,25 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4B5D260B16D2E16C00E862AA /* PBXTargetDependency */ = {
+		4B2D269D1AC1E53B00FF802F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Kiwi;
-			targetProxy = 4B5D260A16D2E16C00E862AA /* PBXContainerItemProxy */;
+			name = "Quick-OSX";
+			targetProxy = 4B2D269C1AC1E53B00FF802F /* PBXContainerItemProxy */;
 		};
-		4B5D260E16D2E1C400E862AA /* PBXTargetDependency */ = {
+		4B2D269F1AC1E53B00FF802F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Kiwi-OSX";
-			targetProxy = 4B5D260D16D2E1C400E862AA /* PBXContainerItemProxy */;
+			name = "Nimble-OSX";
+			targetProxy = 4B2D269E1AC1E53B00FF802F /* PBXContainerItemProxy */;
+		};
+		4B833AA81AC1D68900C84F00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Quick-iOS";
+			targetProxy = 4B833AA71AC1D68900C84F00 /* PBXContainerItemProxy */;
+		};
+		4B833AAA1AC1D68900C84F00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Nimble-iOS";
+			targetProxy = 4B833AA91AC1D68900C84F00 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -896,7 +1016,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/Objection.dst;
@@ -910,10 +1033,11 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Objection-StaticLib";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 x86_64 arm64 armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -921,7 +1045,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/Objection.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -932,10 +1059,11 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Objection-StaticLib";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 x86_64 arm64 armv7s armv7";
 			};
 			name = Release;
 		};
@@ -947,7 +1075,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -959,6 +1089,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -970,7 +1101,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -980,6 +1113,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};
@@ -1018,11 +1152,15 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)/Vendor\"",
+					"$(PROJECT_DIR)/Vendor",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1036,18 +1174,20 @@
 					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
 				);
 				INFOPLIST_FILE = "Specs-iOS/Specs-iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-framework",
-					SenTestingKit,
+					XCTest,
 					"-ObjC",
 					"-lstdc++",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "x64_86 i386";
 			};
 			name = Debug;
 		};
@@ -1056,11 +1196,15 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)/Vendor\"",
+					"$(PROJECT_DIR)/Vendor",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1072,18 +1216,18 @@
 					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
 				);
 				INFOPLIST_FILE = "Specs-iOS/Specs-iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
-					SenTestingKit,
+					XCTest,
 					"-ObjC",
 					"-lstdc++",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				VALID_ARCHS = "x64_86 i386";
 			};
 			name = Release;
 		};
@@ -1092,12 +1236,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)/Vendor\"",
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1114,17 +1260,13 @@
 					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
 				);
 				INFOPLIST_FILE = "Specs-OSX/Specs-OSX-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1133,13 +1275,15 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)/Vendor\"",
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1153,16 +1297,11 @@
 					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
 				);
 				INFOPLIST_FILE = "Specs-OSX/Specs-OSX-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-					"-all_load",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

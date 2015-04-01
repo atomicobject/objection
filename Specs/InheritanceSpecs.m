@@ -1,52 +1,40 @@
 #import "SpecHelper.h"
 
 @interface Person : NSObject
-{
-  NSDictionary *_attributes;
-}
-
 @property (nonatomic, strong) NSDictionary *attributes;
+@property (nonatomic, strong) NSDictionary *namedAttributes;
 @end
 
 @implementation Person
 objection_register(Person)
 objection_requires(@"attributes")
-@synthesize attributes=_attributes;
+objection_requires_names((@{@"NamedAttributes":@"namedAttributes"}))
 @end
 
 @interface Programmer : Person
-{
-  NSDictionary *_favoriteLanguages;
-}
 @property (nonatomic, strong) NSDictionary *favoriteLanguages;
+@property (nonatomic, strong) NSDictionary *favoriteBooks;
 @end
 
 @implementation Programmer
 objection_register(Programmer)
 objection_requires(@"favoriteLanguages")
-@synthesize favoriteLanguages=_favoriteLanguages;
-
+objection_requires_names((@{@"FavoriteBooks":@"favoriteBooks"}))
 @end
 
 @interface NoInheritance : NSObject
-{
-  NSString *_something;
-}
-
 @property (nonatomic, strong) NSString *something;
-
+@property (nonatomic, strong) NSString *somethingElse;
 @end
 
 @implementation NoInheritance
 objection_register(NoInheritance)
 objection_requires(@"something")
-
-@synthesize something=_something;
-
+objection_requires_names((@{@"SomethingElse":@"somethingElse"}))
 @end
 
+QuickSpecBegin(InheritanceSpecs)
 
-SPEC_BEGIN(InheritanceSpecs)
 beforeEach(^{
       JSObjectionInjector *injector = [JSObjection createInjector];
       [JSObjection setDefaultInjector:injector];
@@ -56,11 +44,15 @@ it(@"coalesces dependencies from parent to child", ^{
       Programmer *programmer = [[JSObjection defaultInjector] getObject:[Programmer class]];
       assertThat(programmer, is(notNilValue()));
       assertThat(programmer.favoriteLanguages, is(notNilValue()));
+      assertThat(programmer.favoriteBooks, is(notNilValue()));
       assertThat(programmer.attributes, is(notNilValue()));
+      assertThat(programmer.namedAttributes, is(notNilValue()));
 });
 
 it(@"does not throw a fit if the base class does not implement .objectionRequires", ^{
       NoInheritance *noParentObjectWithRequires = [[JSObjection defaultInjector] getObject:[NoInheritance class]];
       assertThat(noParentObjectWithRequires.something, is(notNilValue()));
+      assertThat(noParentObjectWithRequires.somethingElse, is(notNilValue()));
 });
-SPEC_END
+
+QuickSpecEnd
