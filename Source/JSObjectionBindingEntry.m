@@ -1,5 +1,10 @@
 #import "JSObjectionBindingEntry.h"
 
+@interface JSObjectionBindingEntry () {
+  id _instance;
+}
+
+@end
 
 @implementation JSObjectionBindingEntry
 

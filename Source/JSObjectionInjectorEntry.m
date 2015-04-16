@@ -3,22 +3,27 @@
 #import "JSObjectionUtils.h"
 #import "NSObject+Objection.h"
 
-@interface JSObjectionInjectorEntry()
+@interface JSObjectionInjectorEntry() {
+  JSObjectionScope _lifeCycle;
+  id _storageCache;
+}
+
 - (id)buildObject:(NSArray *)arguments;
 - (id)argumentsForObject:(NSArray *)givenArguments;
 - (SEL)initializerForObject;
+
 @end
 
 
 @implementation JSObjectionInjectorEntry
-@synthesize lifeCycle = _lifeCycle; 
+
+@synthesize lifeCycle = _lifeCycle;
 @synthesize classEntry = _classEntry;
 
-#pragma mark Instance Methods
-#pragma mark -
 
-- (id)initWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle 
-{
+#pragma mark - Instance Methods
+
+- (id)initWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle {
   if ((self = [super init])) {
     _lifeCycle = theLifeCycle;
     _classEntry = theClass;
@@ -36,14 +41,12 @@
   return _storageCache;
 }
 
-- (void)dealloc 
-{
+- (void)dealloc  {
    _storageCache = nil;
 }
 
 
-#pragma mark -
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
 - (id)buildObject:(NSArray *)arguments {
     
@@ -71,8 +74,8 @@
     return givenArguments.count > 0 ? givenArguments : [[self.classEntry performSelector:@selector(objectionInitializer)] objectForKey:JSObjectionDefaultArgumentsKey];
 }
 
-#pragma mark Class Methods
-#pragma mark -
+
+#pragma mark - Class Methods
 
 + (id)entryWithClass:(Class)theClass scope:(JSObjectionScope)theLifeCycle  {
     return [[JSObjectionInjectorEntry alloc] initWithClass:theClass lifeCycle:theLifeCycle];

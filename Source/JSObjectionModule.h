@@ -4,14 +4,13 @@
 @class JSObjectionInjector;
 
 @protocol JSObjectionProvider<NSObject>
+
 - (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments;
+
 @end
 
 
-@interface JSObjectionModule : NSObject {
-    NSMutableDictionary *_bindings;
-    NSMutableSet *_eagerSingletons;
-}
+@interface JSObjectionModule : NSObject
 
 @property (nonatomic, readonly) NSDictionary *bindings;
 @property (nonatomic, readonly) NSSet *eagerSingletons;
@@ -50,4 +49,5 @@
 - (BOOL)hasBindingForProtocol:(Protocol *)protocol;
 - (BOOL)hasBindingForProtocol:(Protocol *)protocol withName:(NSString*)name;
 - (void)configure;
+
 @end

@@ -3,6 +3,7 @@
 #import "JSObjectionInjector.h"
 #import "JSObjection.h"
 #import "NSObject+Objection.h"
+
 static NSString *const JSObjectionException = @"JSObjectionException";
 
 NSString *const JSObjectionInitializerKey = @"initializer";
