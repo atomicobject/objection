@@ -1,12 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "JSObjectionModule.h"
 
-@interface JSObjectionInjector : NSObject {
-    NSDictionary *_globalContext;
-    NSMutableDictionary *_context;
-    NSSet *_eagerSingletons;
-    NSMutableArray *_modules;
-}
+@interface JSObjectionInjector : NSObject 
 
 - (id)initWithContext:(NSDictionary *)theGlobalContext;
 - (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule;
@@ -28,4 +23,5 @@
 - (void)injectDependencies:(id)object;
 - (id)objectForKeyedSubscript: (id)key;
 - (NSArray *)modules;
+
 @end

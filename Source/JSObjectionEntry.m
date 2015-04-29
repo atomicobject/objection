@@ -1,6 +1,7 @@
 #import "JSObjectionEntry.h"
 
 @implementation JSObjectionEntry
+
 @synthesize injector;
 @dynamic lifeCycle;
 

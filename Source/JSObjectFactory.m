@@ -2,7 +2,6 @@
 #import "Objection.h"
 
 @implementation JSObjectFactory
-@synthesize injector = _injector;
 
 - (id)initWithInjector:(JSObjectionInjector *)injector {
     if ((self = [super init])) {
@@ -19,10 +18,9 @@
     return [self.injector getObject:classOrProtocol argumentList:arguments];
 }
 
-- (id)objectForKeyedSubscript: (id)key {
+- (id)objectForKeyedSubscript:(id)key {
     return [self getObject:key];
 }
-
 
 - (id)getObjectWithArgs:(id)classOrProtocol, ... {
     va_list va_arguments;

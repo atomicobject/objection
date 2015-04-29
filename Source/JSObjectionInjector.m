@@ -8,7 +8,9 @@
 #import <objc/runtime.h>
 
 @interface __JSObjectionInjectorDefaultModule : JSObjectionModule
+
 @property (nonatomic, weak) JSObjectionInjector *injector;
+
 @end
 
 @implementation __JSObjectionInjectorDefaultModule
@@ -26,10 +28,17 @@
 
 @end
   
-@interface JSObjectionInjector(Private)
+@interface JSObjectionInjector() {
+  NSDictionary *_globalContext;
+  NSMutableDictionary *_context;
+  NSSet *_eagerSingletons;
+  NSMutableArray *_modules;
+}
+
 - (void)initializeEagerSingletons;
 - (void)configureDefaultModule;
 - (void)configureModule:(JSObjectionModule *)module;
+
 @end
 
 @implementation JSObjectionInjector
@@ -218,6 +227,7 @@
     return [_modules copy];
 }
 
+
 #pragma mark - Private
 
 - (void)initializeEagerSingletons {
@@ -246,7 +256,7 @@
     [self configureModule:module];
 }
 
-#pragma mark - 
+#pragma mark -
 
 
 @end

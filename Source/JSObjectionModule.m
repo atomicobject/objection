@@ -5,11 +5,12 @@
 #import <Objection/JSObjectionProviderEntry.h>
 #import "JSObjectionInjector.h"
 
-@interface __JSClassProvider : NSObject<JSObjectionProvider>
-{
+@interface __JSClassProvider : NSObject<JSObjectionProvider> {
     Class _class;
 }
+
 - (id)initWithClass:(Class)aClass;
+
 @end
 
 @implementation __JSClassProvider
@@ -27,13 +28,21 @@
 
 @end
 
-@interface JSObjectionModule()
+
+@interface JSObjectionModule() {
+  NSMutableDictionary *_bindings;
+  NSMutableSet *_eagerSingletons;
+}
+
 - (NSString *)classKey:(Class)class withName:(NSString*)name;
 - (NSString *)protocolKey:(Protocol *)aProtocol withName:(NSString*)name;
 - (void)ensureInstance:(id)instance conformsTo:(Protocol *)aProtocol;
+
 @end
 
+
 @implementation JSObjectionModule
+
 @synthesize bindings = _bindings;
 @synthesize eagerSingletons = _eagerSingletons;
 
@@ -207,8 +216,7 @@
 }
 
 
-#pragma mark Private
-#pragma mark -
+#pragma mark - Private
 
 - (void)ensureInstance:(id)instance conformsTo:(Protocol *)aProtocol {
     if (![instance conformsToProtocol:aProtocol]) {

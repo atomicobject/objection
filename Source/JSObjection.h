@@ -3,9 +3,7 @@
 #import "JSObjectionEntry.h"
 #import "JSObjectionUtils.h"
 
-@interface JSObjection : NSObject {
-    
-}
+@interface JSObjection : NSObject
 
 + (JSObjectionInjector *)createInjectorWithModules:(JSObjectionModule *)first, ... NS_REQUIRES_NIL_TERMINATION;
 + (JSObjectionInjector *)createInjectorWithModulesArray:(NSArray *)modules;
@@ -17,4 +15,5 @@
 + (void)reset;
 + (JSObjectionPropertyInfo)propertyForClass:(Class)theClass andProperty:(NSString *)propertyName;
 + (void)setPropertyReflector:(Class)reflector;
+
 @end
