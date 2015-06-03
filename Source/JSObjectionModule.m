@@ -2,7 +2,7 @@
 #import "JSObjectionBindingEntry.h"
 #import "JSObjectionInjectorEntry.h"
 #import <objc/runtime.h>
-#import <Objection/JSObjectionProviderEntry.h>
+#import "JSObjectionProviderEntry.h"
 #import "JSObjectionInjector.h"
 
 @interface __JSClassProvider : NSObject<JSObjectionProvider> {
