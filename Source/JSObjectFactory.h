@@ -6,7 +6,7 @@
 
 @property (nonatomic, readonly, weak) JSObjectionInjector *injector;
 
-- (id)initWithInjector:(JSObjectionInjector *)injector;
+- (instancetype)initWithInjector:(JSObjectionInjector *)injector;
 - (id)getObject:(id)classOrProtocol;
 - (id)getObject:(id)classOrProtocol withArgumentList:(NSArray *)arguments;
 - (id)objectForKeyedSubscript: (id)key;

@@ -3,9 +3,9 @@
 
 @interface JSObjectionInjector : NSObject 
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext;
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule;
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules;
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext;
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule;
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules;
 - (id)getObject:(id)classOrProtocol;
 - (id)getObject:(id)classOrProtocol named:(NSString*)name;
 - (id)getObjectWithArgs:(id)classOrProtocol, ... NS_REQUIRES_NIL_TERMINATION;

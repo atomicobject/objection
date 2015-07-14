@@ -5,7 +5,7 @@
 
 @property (nonatomic, readonly) Class classEntry;
 
-- (id)initWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle;
-+ (id)entryWithClass:(Class)theClass scope:(JSObjectionScope)theLifeCycle;
+- (instancetype)initWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle;
++ (instancetype)entryWithClass:(Class)theClass scope:(JSObjectionScope)theLifeCycle;
 
 @end

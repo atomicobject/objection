@@ -23,7 +23,7 @@
 
 #pragma mark - Instance Methods
 
-- (id)initWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle {
+- (instancetype)initWithClass:(Class)theClass lifeCycle:(JSObjectionScope)theLifeCycle {
   if ((self = [super init])) {
     _lifeCycle = theLifeCycle;
     _classEntry = theClass;
@@ -33,7 +33,7 @@
   return self;
 }
 
-- (id)extractObject:(NSArray *)arguments {
+- (instancetype)extractObject:(NSArray *)arguments {
   if (self.lifeCycle == JSObjectionScopeNormal || !_storageCache) {
       return [self buildObject:arguments];  
   }

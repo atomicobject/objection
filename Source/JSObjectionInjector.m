@@ -15,7 +15,7 @@
 
 @implementation __JSObjectionInjectorDefaultModule
 
-- (id)initWithInjector:(JSObjectionInjector *)injector {
+- (instancetype)initWithInjector:(JSObjectionInjector *)injector {
     if ((self = [super init])) {
         self.injector = injector;
     }
@@ -43,7 +43,7 @@
 
 @implementation JSObjectionInjector
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext {
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext {
     if ((self = [super init])) {
         _globalContext = theGlobalContext;
         _context = [[NSMutableDictionary alloc] init];
@@ -55,7 +55,7 @@
     return self;
 }
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule {
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule {
     if ((self = [self initWithContext:theGlobalContext])) {
         [self configureModule:theModule];
         [self initializeEagerSingletons];
@@ -63,7 +63,7 @@
     return self;
 }
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules {
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules {
     if ((self = [self initWithContext:theGlobalContext])) {
         for (JSObjectionModule *module in theModules) {
             [self configureModule:module];      

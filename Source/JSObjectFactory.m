@@ -3,7 +3,7 @@
 
 @implementation JSObjectFactory
 
-- (id)initWithInjector:(JSObjectionInjector *)injector {
+- (instancetype)initWithInjector:(JSObjectionInjector *)injector {
     if ((self = [super init])) {
         _injector = injector;
     }
