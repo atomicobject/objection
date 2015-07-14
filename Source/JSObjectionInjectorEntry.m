@@ -55,10 +55,10 @@
     
     id objectUnderConstruction = nil;
     
-    if ([self.classEntry respondsToSelector:@selector(objectionInitializer)] || initializer != nil) {
-        objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
-    } else if(initializer != nil) {
+    if(initializer != nil) {
         objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, initializer, arguments);
+    } else if ([self.classEntry respondsToSelector:@selector(objectionInitializer)]) {
+        objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
     } else {
         objectUnderConstruction = [[self.classEntry alloc] init];
     }
