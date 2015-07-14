@@ -37,6 +37,15 @@ it(@"raises an exception if the initializer is not valid", ^{
     expect([injector getObject:[BadInitializer class]]).to(raiseException().reason(@"Could not find initializer 'initWithNonExistentInitializer' on BadInitializer"));
 });
 
+it(@"injector supports passing a different initializer", ^{
+    ViewController *controller = [injector getObject:[ViewController class] initializer:@selector(initWithName:) argumentList:@[@"The Name"]];
+    expect(controller.name).to(equal(@"The Name"));
+    
+    controller = [injector getObject:[ViewController class] initializer:@selector(initWithName:) argumentList:@[]];
+    expect(controller.name).to(beNil());
+});
+
+
 it(@"supports initializing an object with a class method", ^{
     Truck *truck = [injector getObjectWithArgs:[Truck class], @"Ford", nil];
 

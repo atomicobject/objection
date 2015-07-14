@@ -8,7 +8,7 @@
 
 @implementation JSObjectionBindingEntry
 
-- (id)initWithObject:(id)theObject {
+- (instancetype)initWithObject:(id)theObject {
     if ((self = [super init])) {
         _instance = theObject;    
     }
