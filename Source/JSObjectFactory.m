@@ -18,6 +18,14 @@
     return [self.injector getObject:classOrProtocol argumentList:arguments];
 }
 
+- (id)getObject:(id)classOrProtocol initializer:(SEL)initializer withArgumentList:(NSArray *)arguments {
+    return [self.injector getObject:classOrProtocol named:nil initializer:initializer argumentList:arguments];
+}
+
+- (id)getObject:(id)classOrProtocol named:(NSString *)named withArgumentList:(NSArray *)arguments {
+    return [self.injector getObject:classOrProtocol named:named argumentList:arguments];
+}
+
 - (id)objectForKeyedSubscript:(id)key {
     return [self getObject:key];
 }

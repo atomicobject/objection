@@ -13,7 +13,9 @@
 - (id)getObject:(id)classOrProtocol arguments:(va_list)argList;
 - (id)getObject:(id)classOrProtocol named:(NSString*)name arguments:(va_list)argList;
 - (id)getObject:(id)classOrProtocol argumentList:(NSArray *)argumentList;
+- (id)getObject:(id)classOrProtocol initializer:(SEL)selector argumentList:(NSArray *)argumentList;
 - (id)getObject:(id)classOrProtocol named:(NSString*)name argumentList:(NSArray *)argumentList;
+- (id)getObject:(id)classOrProtocol named:(NSString*)name initializer:(SEL)selector argumentList:(NSArray *)argumentList;
 - (id)withModule:(JSObjectionModule *)theModule;
 - (id)withModules:(JSObjectionModule *)first, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)withModuleCollection:(NSArray *)theModules;

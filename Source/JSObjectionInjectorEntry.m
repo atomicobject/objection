@@ -8,7 +8,7 @@
   id _storageCache;
 }
 
-- (id)buildObject:(NSArray *)arguments;
+- (id)buildObject:(NSArray *)arguments initializer:(SEL)initializer;
 - (id)argumentsForObject:(NSArray *)givenArguments;
 - (SEL)initializerForObject;
 
@@ -33,12 +33,15 @@
   return self;
 }
 
+- (instancetype) extractObject:(NSArray *)arguments initializer:(SEL)initializer {
+    if (self.lifeCycle == JSObjectionScopeNormal || !_storageCache) {
+        return [self buildObject:arguments initializer: initializer];
+    }
+    return _storageCache;
+}
+
 - (instancetype)extractObject:(NSArray *)arguments {
-  if (self.lifeCycle == JSObjectionScopeNormal || !_storageCache) {
-      return [self buildObject:arguments];  
-  }
-  
-  return _storageCache;
+    return [self extractObject:arguments initializer:nil];
 }
 
 - (void)dealloc  {
@@ -48,11 +51,14 @@
 
 #pragma mark - Private Methods
 
-- (id)buildObject:(NSArray *)arguments {
+- (id)buildObject:(NSArray *)arguments initializer: (SEL) initializer {
     
     id objectUnderConstruction = nil;
-    if ([self.classEntry respondsToSelector:@selector(objectionInitializer)]) {
+    
+    if ([self.classEntry respondsToSelector:@selector(objectionInitializer)] || initializer != nil) {
         objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, [self initializerForObject], [self argumentsForObject:arguments]);
+    } else if(initializer != nil) {
+        objectUnderConstruction = JSObjectionUtils.buildObjectWithInitializer(self.classEntry, initializer, arguments);
     } else {
         objectUnderConstruction = [[self.classEntry alloc] init];
     }
