@@ -326,7 +326,7 @@ objection_initializer(initWithMake:model:)
 @synthesize make;
 @synthesize model;
 
-- (id)initWithMake:(NSString *)make model:(NSString *)model {
+- (instancetype)initWithMake:(NSString *)make model:(NSString *)model {
   ...
 }
 @end
@@ -342,11 +342,24 @@ objection_initializer(initWithMake:model:)
 @implementation Truck
 objection_requires(@"engine", @"brakes")
 objection_initializer(truckWithMake:model:)
-+ (id)truckWithMake:(NSString *) make model: (NSString *)model {
++ (instancetype)truckWithMake:(NSString *) make model: (NSString *)model {
   ...
 }
 @end
 
+```
+
+#### Ad-Hoc Initializer
+```objective-c
+@implementation ConfigurableCar
+- (instancetype) initWithModel:(NSString *)model {
+    //....
+}
+@end
+
+- (void)buildCar {
+  ConfigurableCar *car = [self.objectFactory getObject:[ConfigurableCar class], initializer: @selector(initWithModel:) withArgumentList:@[@"VW", @"Passat"]];
+}
 ```
 
 ## Testing
@@ -393,7 +406,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-1.5.t
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '1.5'
+    pod 'Objection', '1.6'
 
 Now you can install Objection
     

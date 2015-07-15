@@ -1,8 +1,15 @@
 #import "JSObjectionProviderEntry.h"
 
+@interface JSObjectionProviderEntry () {
+  id<JSObjectionProvider> _provider;
+  id(^_block)(JSObjectionInjector *context);
+  JSObjectionScope _lifeCycle;
+  id _storageCache;
+}
+
+@end
 
 @implementation JSObjectionProviderEntry
-@synthesize lifeCycle = _lifeCycle;
 
 - (id)initWithProvider:(id<JSObjectionProvider>)theProvider lifeCycle:(JSObjectionScope)theLifeCycle {
     if ((self = [super init])) {
@@ -24,7 +31,6 @@
     return self;  
 }
 
-
 - (id)extractObject:(NSArray *)arguments {
     if (self.lifeCycle == JSObjectionScopeNormal || !_storageCache) {
         return [self buildObject:arguments];
@@ -33,8 +39,7 @@
     return _storageCache;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     _storageCache = nil;
 }
 
