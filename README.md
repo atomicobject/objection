@@ -358,7 +358,9 @@ objection_initializer(truckWithMake:model:)
 @end
 
 - (void)buildCar {
-  ConfigurableCar *car = [self.objectFactory getObject:[ConfigurableCar class], initializer: @selector(initWithModel:) withArgumentList:@[@"VW", @"Passat"]];
+  ConfigurableCar *car = [self.objectFactory getObject:[ConfigurableCar class], 
+                                           initializer: @selector(initWithModel:) 
+                                           withArgumentList:@[@"Passat"]];
 }
 ```
 
