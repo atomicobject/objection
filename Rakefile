@@ -64,6 +64,11 @@ task :build_all do
   system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -alltargets -configuration #{CONFIGURATION} build], stdout)
 end
 
+task :publish do
+  system_or_exit %Q[pod trunk publish Objection.podspec --allow-warnings]
+end
+
+
 namespace :specs do
   desc "All Specs"
   task :all => [:osx, :ios]
