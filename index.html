@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Objection by atomicobject</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Objection</h1>
-      <h2 class="project-tagline">A lightweight dependency injection framework for Objective-C</h2>
-      <a href="https://github.com/atomicobject/objection" class="btn">View on GitHub</a>
-      <a href="https://github.com/atomicobject/objection/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/atomicobject/objection/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<html>
 
-    <section class="main-content">
-      <p><a href="https://travis-ci.org/atomicobject/objection"><img src="https://travis-ci.org/atomicobject/objection.png" alt="Build Status"></a></p>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Objection : A lightweight dependency injection framework for Objective-C">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Objection</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/atomicobject/objection">View on GitHub</a>
+
+          <h1 id="project_title">Objection</h1>
+          <h2 id="project_tagline">A lightweight dependency injection framework for Objective-C</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/atomicobject/objection/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/atomicobject/objection/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p><a href="https://travis-ci.org/atomicobject/objection"><img src="https://travis-ci.org/atomicobject/objection.png" alt="Build Status"></a></p>
 
 <h2>
 <a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
@@ -374,7 +386,7 @@ objection_initializer(initWithMake:model:)
 @synthesize make;
 <span class="pl-k">@synthesize</span> model;
 
-- (<span class="pl-k">id</span>)<span class="pl-en">initWithMake</span><span class="pl-en">:</span>(<span class="pl-c1">NSString</span> *)<span class="pl-smi">make</span> <span class="pl-en">model</span><span class="pl-en">:</span>(<span class="pl-c1">NSString</span> *)<span class="pl-smi">model</span> {
+- (<span class="pl-k">instancetype</span>)<span class="pl-en">initWithMake</span><span class="pl-en">:</span>(<span class="pl-c1">NSString</span> *)<span class="pl-smi">make</span> <span class="pl-en">model</span><span class="pl-en">:</span>(<span class="pl-c1">NSString</span> *)<span class="pl-smi">model</span> {
   ...
 }
 <span class="pl-k">@end</span>
@@ -390,11 +402,26 @@ objection_initializer(initWithMake:model:)
 <div class="highlight highlight-objective-c"><pre><span class="pl-k">@implementation</span> <span class="pl-en">Truck</span>
 <span class="pl-en">objection_requires</span>(<span class="pl-s"><span class="pl-pds">@"</span>engine<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">@"</span>brakes<span class="pl-pds">"</span></span>)
 objection_initializer(truckWithMake:model:)
-+ (<span class="pl-k">id</span>)truckWithMake:(<span class="pl-c1">NSString</span> *) make model: (<span class="pl-c1">NSString</span> *)model {
++ (<span class="pl-k">instancetype</span>)truckWithMake:(<span class="pl-c1">NSString</span> *) make model: (<span class="pl-c1">NSString</span> *)model {
   ...
 }
 <span class="pl-k">@end</span>
 </pre></div>
+
+<h4>
+<a id="ad-hoc-initializer" class="anchor" href="#ad-hoc-initializer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ad-Hoc Initializer</h4>
+
+<div class="highlight highlight-objective-c"><pre><span class="pl-k">@implementation</span> <span class="pl-en">ConfigurableCar</span>
+- (<span class="pl-k">instancetype</span>) <span class="pl-en">initWithModel</span><span class="pl-en">:</span>(<span class="pl-c1">NSString</span> *)<span class="pl-smi">model</span> {
+    <span class="pl-c">//....</span>
+}
+<span class="pl-k">@end</span>
+
+- (<span class="pl-k">void</span>)buildCar {
+  ConfigurableCar *car = [<span class="pl-v">self</span>.objectFactory <span class="pl-c1">getObject:</span>[ConfigurableCar <span class="pl-c1">class</span>], 
+                                           <span class="pl-c1">initializer:</span> <span class="pl-k">@selector</span>(<span class="pl-c1">initWithModel:</span>) 
+                                           <span class="pl-c1">withArgumentList:</span>@[<span class="pl-s"><span class="pl-pds">@"</span>Passat<span class="pl-pds">"</span></span>]];
+}</pre></div>
 
 <h2>
 <a id="testing" class="anchor" href="#testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing</h2>
@@ -460,7 +487,7 @@ git checkout 1.5
 <p>Edit your Pofile</p>
 
 <pre><code>edit Podfile
-pod 'Objection', '1.5'
+pod 'Objection', '1.6'
 </code></pre>
 
 <p>Now you can install Objection</p>
@@ -511,16 +538,18 @@ pod 'Objection', '1.5'
 <li><a href="https://itunes.apple.com/us/app/id417270961?mt=8">SideReel</a></li>
 <li><a href="http://www.google.com/wallet/">Google Wallet</a></li>
 </ul>
+      </section>
+    </div>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/atomicobject/objection">Objection</a> is maintained by <a href="https://github.com/atomicobject">atomicobject</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Objection maintained by <a href="https://github.com/atomicobject">atomicobject</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
+    </div>
 
-    </section>
-
-            <script type="text/javascript">
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -531,6 +560,6 @@ pod 'Objection', '1.5'
             } catch(err) {}
           </script>
 
+
   </body>
 </html>
-
