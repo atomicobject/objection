@@ -10,6 +10,7 @@
 @end
 
 @implementation JSObjectionProviderEntry
+@synthesize lifeCycle = _lifeCycle;
 
 - (id)initWithProvider:(id<JSObjectionProvider>)theProvider lifeCycle:(JSObjectionScope)theLifeCycle {
     if ((self = [super init])) {
