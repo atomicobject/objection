@@ -18,3 +18,11 @@ Nothing in this version has changed that would cause those that are upgrading fr
 **[Changes](#changes)**
 
 1. Ad-Hoc initializers can be used via the JSObjectionInjector and JSObjectFactory
+
+# 1.6.1
+
+**[Changes](#changes)**
+
+1. Fixed build issues in XCode 6.4 and updated Nimble & Quick testing libraries
+2. Improved test output via xcpretty
+3. Fixed regression raised in issue #94 (https://github.com/atomicobject/objection/issues/94)
