@@ -1,3 +1,3 @@
 language: objective-c
 script: rake specs:all
-
+osx_image: xcode6.4
