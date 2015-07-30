@@ -60,7 +60,7 @@ it(@"calls awakeFromObjection when injecting dependencies into properties of an 
     [[JSObjection defaultInjector] injectDependencies:car];
 
     assertThatBool([car awake], isTrue());
-    assertThatBool([car.engine awake], isFalse());
+    assertThatBool([car.engine awake], isTrue());
 });
 
 it(@"defaults to returning a new instance", ^{
@@ -112,7 +112,7 @@ it(@"calls awakeFromObjection when an object has been constructed", ^{
       id car = [[JSObjection defaultInjector] getObject:[Car class]];
 
       assertThatBool([engine awake], isTrue());
-      assertThatBool([car awake], isFalse());
+      assertThatBool([car awake], isTrue());
 });
 
 
