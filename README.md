@@ -408,7 +408,7 @@ It can be downloaded [here](http://objection-framework.org/files/Objection-1.5.t
 Edit your Pofile
 
     edit Podfile
-    pod 'Objection', '1.6'
+    pod 'Objection', '1.6.1'
 
 Now you can install Objection
     
