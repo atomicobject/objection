@@ -1,0 +1,10 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    xcpretty (0.1.10)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  xcpretty
