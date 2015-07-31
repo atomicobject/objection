@@ -376,12 +376,12 @@ If you're using [Kiwi](https://github.com/allending/Kiwi) for testing, checkout 
 
 ### Static Framework and Linkable Framework
 
-It can be downloaded [here](http://objection-framework.org/files/Objection-1.5.tar.gz)
+It can be downloaded [here](https://github.com/atomicobject/objection/releases/download/1.6.1/Objection-1.6.1.tar.gz)
 
 ### Building Static Framework
 
     git clone git://github.com/atomicobject/objection.git
-    git checkout 1.5
+    git checkout 1.6.1
     
 #### iOS
 
