@@ -64,8 +64,11 @@ task :build_all do
   system_or_exit(%Q[set -o pipefail; #{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -alltargets -configuration #{CONFIGURATION} build | xcpretty -c], stdout)
 end
 
-task :publish do
-  system_or_exit %Q[pod trunk publish Objection.podspec --allow-warnings]
+namespace :pod do
+  desc "Publish CocoaPod"
+  task :publish do
+    system_or_exit %Q[pod trunk push Objection.podspec --allow-warnings]
+  end
 end
 
 

@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => 'https://github.com/atomicobject/objection.git', :tag => "#{s.version}" }
   s.homepage     = 'http://www.objection-framework.org'
   s.source_files = 'Source'
-  s.license      = "https://github.com/atomicobject/objection/blob/master/LICENSE"
+  s.license      = { :type => "MIT" }
   s.requires_arc = true
 
   s.ios.deployment_target = '7.0'
