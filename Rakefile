@@ -2,7 +2,7 @@ PROJECT_NAME = "Objection"
 CONFIGURATION = "Debug"
 SPECS_TARGET_NAME = "Specs-OSX"
 UI_SPECS_TARGET_NAME = "Specs-iOS"
-IOS_VERSION = "6.1"
+IOS_VERSION = "7.1"
 SDK_DIR = "iphonesimulator#{IOS_VERSION}"
 
 def xcodebuild_executable
@@ -30,12 +30,12 @@ end
 namespace :artifact do
   desc "Build OSX Framework"
   task :osx => :clean do
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection -configuration Release build], nil)
+    system_or_exit(%Q[set -o pipefail; #{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection -configuration Release build | xcpretty -c], nil)
   end
   
   desc "Build iOS Framework"
   task :ios  => :clean do
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build], nil)
+    system_or_exit(%Q[set -o pipefail; #{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -target Objection-iOS -configuration Release build | xcpretty -c] , nil)
   end                             
   
   require 'rake/clean'
@@ -56,13 +56,21 @@ end
   
 task :clean do
   stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "clean.output") if (ENV['IS_CI_BOX'])
-  system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -alltargets -configuration #{CONFIGURATION} clean], stdout)
+  system_or_exit(%Q[set -o pipefail; #{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -alltargets -configuration #{CONFIGURATION} clean | xcpretty -c], stdout)
 end
 
 task :build_all do
   stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_all.output") if (ENV['IS_CI_BOX'])
-  system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -alltargets -configuration #{CONFIGURATION} build], stdout)
+  system_or_exit(%Q[set -o pipefail; #{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -alltargets -configuration #{CONFIGURATION} build | xcpretty -c], stdout)
 end
+
+namespace :pod do
+  desc "Publish CocoaPod"
+  task :publish do
+    system_or_exit %Q[pod trunk push Objection.podspec --allow-warnings]
+  end
+end
+
 
 namespace :specs do
   desc "All Specs"
@@ -71,13 +79,13 @@ namespace :specs do
   desc "OS X Specs"
   task :osx do
     stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_specs.output") if (ENV['IS_CI_BOX'])
-    system_or_exit(%Q[#{xcodebuild_executable} test -project #{PROJECT_NAME}.xcodeproj -scheme #{SPECS_TARGET_NAME} -configuration #{CONFIGURATION}], stdout)
+    system_or_exit(%Q[set -o pipefail; #{xcodebuild_executable} test -project #{PROJECT_NAME}.xcodeproj -scheme #{SPECS_TARGET_NAME} -configuration #{CONFIGURATION} | xcpretty -c], stdout)
   end
 
   desc "iOS Specs"
   task :ios do
     stdout = File.join(ENV['CC_BUILD_ARTIFACTS'], "build_uispecs.output") if (ENV['IS_CI_BOX'])
     ENV["TEST_AFTER_BUILD"] = "Yes"
-    system_or_exit(%Q[#{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -scheme #{UI_SPECS_TARGET_NAME} -sdk iphonesimulator -configuration #{CONFIGURATION} test ], stdout)
+    system_or_exit(%Q[set -o pipefail; #{xcodebuild_executable} -project #{PROJECT_NAME}.xcodeproj -scheme #{UI_SPECS_TARGET_NAME} -sdk iphonesimulator -configuration #{CONFIGURATION} -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' test | xcpretty -c], stdout)
   end
 end

@@ -2,9 +2,8 @@
 #import "Objection.h"
 
 @implementation JSObjectFactory
-@synthesize injector = _injector;
 
-- (id)initWithInjector:(JSObjectionInjector *)injector {
+- (instancetype)initWithInjector:(JSObjectionInjector *)injector {
     if ((self = [super init])) {
         _injector = injector;
     }
@@ -19,10 +18,17 @@
     return [self.injector getObject:classOrProtocol argumentList:arguments];
 }
 
-- (id)objectForKeyedSubscript: (id)key {
-    return [self getObject:key];
+- (id)getObject:(id)classOrProtocol initializer:(SEL)initializer withArgumentList:(NSArray *)arguments {
+    return [self.injector getObject:classOrProtocol named:nil initializer:initializer argumentList:arguments];
 }
 
+- (id)getObject:(id)classOrProtocol named:(NSString *)named withArgumentList:(NSArray *)arguments {
+    return [self.injector getObject:classOrProtocol named:named argumentList:arguments];
+}
+
+- (id)objectForKeyedSubscript:(id)key {
+    return [self getObject:key];
+}
 
 - (id)getObjectWithArgs:(id)classOrProtocol, ... {
     va_list va_arguments;

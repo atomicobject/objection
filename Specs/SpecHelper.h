@@ -3,13 +3,15 @@
 #define HC_SHORTHAND
 
 #if TARGET_OS_IPHONE
-#import <OCHamcrest-iPhone/OCHamcrest.h>
+#import <OCHamcrestIOS/OCHamcrestIOS.h>
 #else
 #import <OCHamcrest/OCHamcrest.h>
 #endif
 
 #import "Objection.h"
-#import "Kiwi.h"
+#import <Quick/Quick.h>
+#import <Nimble/Nimble-Swift.h>
+#import <Nimble/Nimble.h>
 #import <Foundation/Foundation.h>
 
 #if TARGET_OS_IPHONE

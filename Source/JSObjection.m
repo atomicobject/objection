@@ -60,7 +60,7 @@ static id<JSObjectionPropertyReflector> gPropertyReflector;
     return nil;
 }
 
-+ (void)initialize  {
++ (void)initialize {
     if (self == [JSObjection class]) {
         gObjectionContext = [[NSMutableDictionary alloc] init];
         gPropertyReflector = [[JSObjectionRuntimePropertyReflector alloc] init];
@@ -72,7 +72,7 @@ static id<JSObjectionPropertyReflector> gPropertyReflector;
     }
 }
 
-+ (void) registerClass:(Class)theClass scope:(JSObjectionScope)scope {
++ (void)registerClass:(Class)theClass scope:(JSObjectionScope)scope {
     pthread_mutex_lock(&gObjectionMutex);
     if (scope != JSObjectionScopeSingleton && scope != JSObjectionScopeNormal) {
         @throw [NSException exceptionWithName:@"JSObjectionInjectorException" reason:@"Invalid Instantiation Rule" userInfo:nil];
@@ -84,7 +84,7 @@ static id<JSObjectionPropertyReflector> gPropertyReflector;
     pthread_mutex_unlock(&gObjectionMutex);
 }
 
-+ (void) reset {
++ (void)reset {
     pthread_mutex_lock(&gObjectionMutex);
     [gObjectionContext removeAllObjects];
     pthread_mutex_unlock(&gObjectionMutex);
@@ -96,7 +96,7 @@ static id<JSObjectionPropertyReflector> gPropertyReflector;
     }
 }
 
-+ (JSObjectionInjector *) defaultInjector {  
++ (JSObjectionInjector *)defaultInjector {  
     return gGlobalInjector;
 }
 

@@ -21,3 +21,16 @@ objection_requires(@"someObject")
 @synthesize someObject=_someObject;
 @end
 
+@implementation NamedUnsupportedPropertyObject
+objection_register(NamedUnsupportedPropertyObject)
+objection_requires_names((@{@"MyInteger":@"myInteger"}));
+@synthesize myInteger;
+
+@end
+
+@implementation NamedBadPropertyObject
+@synthesize someObject;
+objection_register(BadPropertyObject)
+objection_requires_names((@{@"BadProperty":@"badProperty"}))
+@end
+

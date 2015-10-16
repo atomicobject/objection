@@ -21,11 +21,7 @@ objection_register(ViewController)
 objection_requires(@"car")
 objection_initializer(initWithNibName:bundle:, @"MyNib")
 
-@synthesize car = _car;
-@synthesize nibName = _nibName;
-@synthesize bundle = _bundle;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super init])) {
         self.nibName = nibNameOrNil;
         self.bundle = nibBundleOrNil;
@@ -33,6 +29,12 @@ objection_initializer(initWithNibName:bundle:, @"MyNib")
     return self;
 }
 
+- (instancetype)initWithName:(NSString *)name {
+    if ((self = [super init])) {
+        self.name = name;
+    }
+    return self;
+}
 @end
 
 @implementation ConfigurableCar

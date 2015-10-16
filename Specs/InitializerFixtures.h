@@ -6,8 +6,10 @@
 @property (nonatomic, strong) Car *car;
 @property (nonatomic, copy) NSString *nibName;
 @property (nonatomic, copy) NSBundle *bundle;
+@property (nonatomic, copy) NSString *name;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+- (instancetype)initWithName:(NSString *)name;
 @end
 
 @interface ConfigurableCar : NSObject

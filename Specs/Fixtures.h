@@ -2,7 +2,7 @@
 
 @interface Engine : NSObject
 {
-  BOOL awake;  
+  BOOL awake;
 }
 @property(nonatomic) BOOL awake;
 
@@ -10,7 +10,7 @@
 
 @interface Brakes : NSObject
 {
-  
+
 }
 @end
 
@@ -19,7 +19,7 @@
 {
   Engine *engine;
   Brakes *brakes;
-  BOOL awake; 
+  BOOL awake;
 }
 
 @property(nonatomic, strong) Engine *engine;
@@ -49,14 +49,14 @@
 
 @interface CarFactory : NSObject
 {
-  
+
 }
 
 @end
 
 @interface SingletonItem : NSObject
 {
-  
+
 }
 @end
 
@@ -87,4 +87,37 @@
 
 @interface UnstoppableCar : NSObject
 @property(nonatomic, strong) Engine *engine;
+@end
+
+@interface Headlight : NSObject
+@end
+
+@interface HIDHeadlight : Headlight
+@end
+
+@interface ShinyCar : NSObject
+@property (nonatomic, strong) Headlight *leftHeadlight;
+@property (nonatomic, strong) Headlight *rightHeadlight;
+@property (nonatomic, strong) Headlight *foglight;
+@end
+
+@protocol Blinkable
+@property (nonatomic, strong) NSNumber* speed;
+@end
+
+@interface Blinker : NSObject<Blinkable>
+@property (nonatomic, strong) NSNumber* speed;
+@end
+
+@interface FlashyCar : NSObject
+@property (nonatomic, strong) id<Blinkable> leftBlinker;
+@property (nonatomic, strong) id<Blinkable> rightBlinker;
+@end
+
+@interface Highbeam : NSObject
+@end
+
+@interface BrightCar : NSObject
+@property (nonatomic, strong) Highbeam *leftHighbeam;
+@property (nonatomic, strong) Highbeam *rightHighbeam;
 @end

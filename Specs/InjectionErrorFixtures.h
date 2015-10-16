@@ -17,10 +17,23 @@
 @end
 
 @interface ReadOnlyPropertyObject : NSObject
-{
-}
 
 @property(weak, nonatomic, readonly) NSObject *someObject;
 
 @end
 
+@interface NamedUnsupportedPropertyObject : NSObject {
+    NSInteger myInteger;
+}
+
+@property(nonatomic, assign) NSInteger myInteger;
+@end
+
+@interface NamedBadPropertyObject : NSObject
+{
+    NSObject *someObject;
+}
+
+@property(nonatomic, strong) NSObject *someObject;
+
+@end

@@ -84,7 +84,20 @@ extern BOOL gEagerSingletonHook;
 
 @end
 
+@interface BlockScopeModule : JSObjectionModule
 
+@end
+
+@interface ProviderScopeModule : JSObjectionModule
+
+@end
+
+@interface BlinkerProvider : NSObject<JSObjectionProvider>
+@end
+
+@interface NamedModule : JSObjectionModule
+- (id)initWithRightHeadlight:(Headlight*)rightHeadlight;
+@end
 
 
 

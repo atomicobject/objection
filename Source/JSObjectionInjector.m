@@ -8,12 +8,14 @@
 #import <objc/runtime.h>
 
 @interface __JSObjectionInjectorDefaultModule : JSObjectionModule
+
 @property (nonatomic, weak) JSObjectionInjector *injector;
+
 @end
 
 @implementation __JSObjectionInjectorDefaultModule
 
-- (id)initWithInjector:(JSObjectionInjector *)injector {
+- (instancetype)initWithInjector:(JSObjectionInjector *)injector {
     if ((self = [super init])) {
         self.injector = injector;
     }
@@ -26,15 +28,22 @@
 
 @end
   
-@interface JSObjectionInjector(Private)
+@interface JSObjectionInjector() {
+  NSDictionary *_globalContext;
+  NSMutableDictionary *_context;
+  NSSet *_eagerSingletons;
+  NSMutableArray *_modules;
+}
+
 - (void)initializeEagerSingletons;
 - (void)configureDefaultModule;
 - (void)configureModule:(JSObjectionModule *)module;
+
 @end
 
 @implementation JSObjectionInjector
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext {
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext {
     if ((self = [super init])) {
         _globalContext = theGlobalContext;
         _context = [[NSMutableDictionary alloc] init];
@@ -46,7 +55,7 @@
     return self;
 }
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule {
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule {
     if ((self = [self initWithContext:theGlobalContext])) {
         [self configureModule:theModule];
         [self initializeEagerSingletons];
@@ -54,7 +63,7 @@
     return self;
 }
 
-- (id)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules {
+- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules {
     if ((self = [self initWithContext:theGlobalContext])) {
         for (JSObjectionModule *module in theModules) {
             [self configureModule:module];      
@@ -64,6 +73,13 @@
     return self;  
 }
 
+- (id)getObject:(id)classOrProtocol {
+    return [self getObjectWithArgs:classOrProtocol, nil];
+}
+
+- (id)getObject:(id)classOrProtocol named:(NSString*)name {
+    return [self getObject:classOrProtocol namedWithArgs:name, nil];
+}
 
 - (id)getObjectWithArgs:(id)classOrProtocol, ... {
     va_list va_arguments;
@@ -73,11 +89,32 @@
     return object;
 }
 
-- (id)getObject:(id)classOrProtocol {
-    return [self getObjectWithArgs:classOrProtocol, nil];
+- (id)getObject:(id)classOrProtocol namedWithArgs:(NSString *)name, ... {
+    va_list va_arguments;
+    va_start(va_arguments, name);
+    id object = [self getObject:classOrProtocol named:name arguments:va_arguments];
+    va_end(va_arguments);
+    return object;
+}
+
+- (id)getObject:(id)classOrProtocol arguments:(va_list)argList {
+    return [self getObject:classOrProtocol named:nil arguments:argList];
+}
+
+- (id)getObject:(id)classOrProtocol initializer:(SEL)selector argumentList:(NSArray *)argumentList {
+    return [self getObject:classOrProtocol named:nil initializer:selector argumentList:argumentList];
+}
+
+- (id)getObject:(id)classOrProtocol named:name arguments:(va_list)argList {
+    NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(argList);
+    return [self getObject:classOrProtocol named:name argumentList:arguments];
 }
 
 - (id)getObject:(id)classOrProtocol argumentList:(NSArray *)argumentList {
+   return [self getObject:classOrProtocol named:nil argumentList:argumentList];
+}
+
+- (id)getObject:(id)classOrProtocol named:(NSString*)name initializer:(SEL)selector argumentList:(NSArray *)argumentList {
     @synchronized(self) {
         if (!classOrProtocol) {
             return nil;
@@ -91,6 +128,10 @@
             key = [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(classOrProtocol)];
         }
         
+        if (name)
+        {
+            key = [NSString stringWithFormat:@"%@:%@",key,name];
+        }
         
         id<JSObjectionEntry> injectorEntry = [_context objectForKey:key];
         injectorEntry.injector = self;
@@ -109,6 +150,9 @@
         }
         
         if (classOrProtocol && injectorEntry) {
+            if ([injectorEntry respondsToSelector:@selector(extractObject:initializer:)]) {
+                return [injectorEntry extractObject:argumentList initializer:selector];
+            }
             return [injectorEntry extractObject:argumentList];
         }
         
@@ -116,12 +160,11 @@
     }
     
     return nil;
-    
+  
 }
 
-- (id)getObject:(id)classOrProtocol arguments:(va_list)argList {
-    NSArray *arguments = JSObjectionUtils.transformVariadicArgsToArray(argList);
-    return [self getObject:classOrProtocol argumentList:arguments];
+- (id)getObject:(id)classOrProtocol named:(NSString*)name argumentList:(NSArray *)argumentList {
+    return [self getObject:classOrProtocol named:name initializer: nil argumentList:argumentList];
 }
 
 - (id)objectForKeyedSubscript: (id)key {
@@ -192,6 +235,11 @@
     JSObjectionUtils.injectDependenciesIntoProperties(self, [object class], object);
 }
 
+- (NSArray *)modules {
+    return [_modules copy];
+}
+
+
 #pragma mark - Private
 
 - (void)initializeEagerSingletons {
@@ -220,7 +268,7 @@
     [self configureModule:module];
 }
 
-#pragma mark - 
+#pragma mark -
 
 
 @end

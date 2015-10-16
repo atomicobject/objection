@@ -13,11 +13,11 @@ BOOL gEagerSingletonHook = NO;
 
 @implementation AfterMarketGearBox
 - (void)shiftUp {
-  
+
 }
 
 - (void)shiftDown {
-  
+
 }
 @end
 
@@ -40,7 +40,7 @@ objection_register_singleton(EagerSingleton)
     _engine = engine;
     _gearBox = gearBox;
   }
-  
+
   return self;
 }
 
@@ -52,7 +52,7 @@ objection_register_singleton(EagerSingleton)
     if (self.instrumentInvalidMetaClass) {
         [self bindMetaClass:(id)@"sneaky" toProtocol:@protocol(MetaCar)];
     } else {
-        [self bindMetaClass:[Car class] toProtocol:@protocol(MetaCar)];    
+        [self bindMetaClass:[Car class] toProtocol:@protocol(MetaCar)];
     }
 
     if (self.instrumentInvalidEagerSingleton) {
@@ -60,7 +60,7 @@ objection_register_singleton(EagerSingleton)
     } else {
         [self registerEagerSingleton:[EagerSingleton class]];
     }
-  
+
 }
 
 
@@ -97,19 +97,19 @@ objection_register_singleton(EagerSingleton)
 {
     NSString *myEngine = @"My Engine";
     Brakes *myBrakes = [[Brakes alloc] init];
-    
+
     [self bindBlock:^(JSObjectionInjector *context) {
         if (_instrumentNilBlock) {
             return (id)nil;
         }
-        
+
         return (id)myBrakes;
     } toClass:[Brakes class]];
-    
+
     [self bindBlock:^(JSObjectionInjector *context) {
         Car *car = nil;
         if (_instrumentNilBlock) {
-            car = [context getObject:[SixSpeedCar class]];            
+            car = [context getObject:[SixSpeedCar class]];
         }
         else {
             car = [context getObject:[FiveSpeedCar class]];
@@ -128,7 +128,7 @@ objection_register_singleton(EagerSingleton)
 
 @implementation BaseCreditCardProcessor
 - (void)processNumber:(NSString *)number {
-  
+
 }
 @end
 
@@ -157,7 +157,7 @@ objection_requires(@"validator")
 
 
 @implementation FirstModule
-- (void)configure {  
+- (void)configure {
     [self bind:[[FiveSpeedCar alloc] init] toClass:[Car class]];
     [self registerEagerSingleton:[EagerSingleton class]];
 }
@@ -165,7 +165,7 @@ objection_requires(@"validator")
 
 @implementation SecondModule
 - (void)configure {
-    [self bind:[[AfterMarketGearBox alloc] init] toProtocol:@protocol(GearBox)];  
+    [self bind:[[AfterMarketGearBox alloc] init] toProtocol:@protocol(GearBox)];
 }
 @end
 
@@ -175,6 +175,67 @@ objection_requires(@"validator")
     [self bindClass:[VisaCCProcessor class] inScope:JSObjectionScopeNormal];
     [self bindClass:[Car class] inScope:JSObjectionScopeSingleton];
     [self registerEagerSingleton:[Car class]];
+}
+@end
+
+@implementation BlockScopeModule
+
+- (void)configure {
+    [self bindBlock:^(JSObjectionInjector *context) {
+        Car *car = [[Car alloc] init];
+        return (id)car;
+    } toClass:[Car class] inScope:JSObjectionScopeSingleton];
+
+    [self bindBlock:^(JSObjectionInjector *context) {
+        return [[AfterMarketGearBox alloc] init];
+    } toProtocol:@protocol(GearBox) inScope:JSObjectionScopeNormal];
+}
+
+@end
+
+@implementation ProviderScopeModule
+- (void)configure
+{
+    [self bindProvider:[[CarProvider alloc] init] toClass:[Car class] inScope:JSObjectionScopeSingleton];
+    [self bindProvider:[[GearBoxProvider alloc] init] toProtocol:@protocol(GearBox) inScope:JSObjectionScopeNormal];
+}
+@end
+
+@implementation BlinkerProvider
+
+-(id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments {
+    Blinker *blinker = [[Blinker alloc]init];
+    blinker.speed = @11;
+    return (id<Blinkable>)blinker;
+}
+
+@end
+
+@implementation NamedModule
+{
+    Headlight* _rightHeadlight;
+}
+
+- (void)configure
+{
+    [self bind:_rightHeadlight toClass:[Headlight class] named:@"RightHeadlight"];
+    [self bindClass:[HIDHeadlight class] toClass:[Headlight class] named:@"LeftHeadlight"];
+    [self bindProvider:[[BlinkerProvider alloc]init] toProtocol:@protocol(Blinkable) named:@"RightBlinker"];
+    [self bindBlock:^(JSObjectionInjector *context){
+        Blinker *blinker = [[Blinker alloc]init];
+        blinker.speed = @1.092;
+        return (id<Blinkable>)blinker;
+    } toProtocol:@protocol(Blinkable) named:@"LeftBlinker"];
+
+    [self bindClass:[HIDHeadlight class] toClass:[Headlight class] inScope:JSObjectionScopeSingleton named:@"My HID Headlight" ];
+}
+
+-(id)initWithRightHeadlight:(Headlight *)rightHeadlight {
+    self = [super init];
+    if (self) {
+        _rightHeadlight = rightHeadlight;
+    }
+    return self;
 }
 
 @end
