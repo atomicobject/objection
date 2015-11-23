@@ -50,7 +50,7 @@ static JSObjectionPropertyInfo FindClassOrProtocolForProperty(objc_property_t pr
 static NSSet* BuildDependenciesForClass(Class klass, NSSet *requirements) {
     Class superClass = class_getSuperclass([klass class]);
     if([superClass respondsToSelector:@selector(objectionRequires)]) {
-        NSSet *parentsRequirements = [superClass performSelector:@selector(objectionRequires)];
+        NSSet *parentsRequirements = [superClass objectionRequires];
         NSMutableSet *dependencies = [NSMutableSet setWithSet:parentsRequirements];
         [dependencies unionSet:requirements];
         requirements = dependencies;
@@ -61,7 +61,7 @@ static NSSet* BuildDependenciesForClass(Class klass, NSSet *requirements) {
 static NSDictionary* BuildNamedDependenciesForClass(Class klass, NSDictionary *namedRequirements) {
     Class superClass = class_getSuperclass([klass class]);
     if([superClass respondsToSelector:@selector(objectionRequiresNames)]) {
-       NSDictionary *parentsNamedRequirements = [superClass performSelector:@selector(objectionRequiresNames)];
+       NSDictionary *parentsNamedRequirements = [superClass objectionRequiresNames];
        NSMutableDictionary *namedDependencies = [NSMutableDictionary dictionaryWithDictionary:parentsNamedRequirements];
        [namedDependencies addEntriesFromDictionary:namedRequirements];
        namedRequirements = namedDependencies;
@@ -146,7 +146,7 @@ static void _validateObjectReturnedFromInjector(id *theObject, JSObjectionProper
 
 static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Class klass, id object) {
     if ([klass respondsToSelector:@selector(objectionRequires)]) {
-        NSSet *properties = [klass performSelector:@selector(objectionRequires)];
+        NSSet *properties = [klass objectionRequires];
         NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
         for (NSString *propertyName in properties) {
             JSObjectionPropertyInfo propertyInfo;
@@ -161,7 +161,7 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
     }
 
     if ([klass respondsToSelector:@selector(objectionRequiresNames)]) {
-        NSDictionary *namedProperties = [klass performSelector:@selector(objectionRequiresNames)];
+        NSDictionary *namedProperties = [klass objectionRequiresNames];
         NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionaryWithCapacity:namedProperties.count];
         for (NSString *namedPropertyKey in [namedProperties allKeys]) {
             NSString* propertyName = [namedProperties valueForKey:namedPropertyKey];
@@ -177,7 +177,7 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
     }
 
     if ([object respondsToSelector:@selector(awakeFromObjection)]) {
-        [object performSelector:@selector(awakeFromObjection)];
+        [object awakeFromObjection];
     }
 }
 
