@@ -1,6 +1,14 @@
 #import <Foundation/Foundation.h>
 #import "JSObjectionModule.h"
 
+@protocol JSObjectionInjectorSelectors
+
+@optional
++ (NSSet *)objectionRequires;
++ (NSDictionary *)objectionRequiresNames;
+
+@end
+
 @interface JSObjectionInjector : NSObject 
 
 - (instancetype)initWithContext:(NSDictionary *)theGlobalContext;
