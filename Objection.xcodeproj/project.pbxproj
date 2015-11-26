@@ -119,6 +119,8 @@
 		4B9D310713DF613600C81C45 /* JSObjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D310213DF613500C81C45 /* JSObjection.m */; };
 		4B9D311413DF79FE00C81C45 /* JSObjectionUtils.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B9D30FE13DF5FAC00C81C45 /* JSObjectionUtils.h */; };
 		4B9D311513DF79FE00C81C45 /* JSObjection.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4B9D310113DF613500C81C45 /* JSObjection.h */; };
+		4BA620D01C06BEAE00DB87B6 /* InjectImplementsProtocolSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA620CF1C06BEAE00DB87B6 /* InjectImplementsProtocolSpecs.m */; };
+		4BA620D11C06BEAE00DB87B6 /* InjectImplementsProtocolSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA620CF1C06BEAE00DB87B6 /* InjectImplementsProtocolSpecs.m */; };
 		4BA6DD1F12AAB3CD00CFFD70 /* JSObjectionInjectorEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED512F12AA8BF300CA6B36 /* JSObjectionInjectorEntry.h */; };
 		4BA6DD2012AAB3CD00CFFD70 /* JSObjectionInjector.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513012AA8BF300CA6B36 /* JSObjectionInjector.h */; };
 		4BA6DD2112AAB3CD00CFFD70 /* JSObjectionBindingEntry.h in Copy Header Files */ = {isa = PBXBuildFile; fileRef = 4BED513112AA8BF300CA6B36 /* JSObjectionBindingEntry.h */; };
@@ -325,6 +327,7 @@
 		4B9D30FE13DF5FAC00C81C45 /* JSObjectionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectionUtils.h; sourceTree = "<group>"; };
 		4B9D310113DF613500C81C45 /* JSObjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjection.h; sourceTree = "<group>"; };
 		4B9D310213DF613500C81C45 /* JSObjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSObjection.m; sourceTree = "<group>"; };
+		4BA620CF1C06BEAE00DB87B6 /* InjectImplementsProtocolSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectImplementsProtocolSpecs.m; sourceTree = "<group>"; };
 		4BA9CFF412AA86E600674F0E /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = Vendor/OCHamcrest.framework; sourceTree = "<group>"; };
 		4BB07D741668679A00D9BA1E /* AddAndRemoveModulesSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAndRemoveModulesSpecs.m; sourceTree = "<group>"; };
 		4BB428A116D3205C00710F1E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -551,6 +554,7 @@
 				4B95819612AE593F00CBF1EB /* ModuleUsageSpecs.m */,
 				4B4289301567F3EC004F73D3 /* InitializerSpecs.m */,
 				4BB07D741668679A00D9BA1E /* AddAndRemoveModulesSpecs.m */,
+				4BA620CF1C06BEAE00DB87B6 /* InjectImplementsProtocolSpecs.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -880,6 +884,7 @@
 				4B42585F13F56D41006BC001 /* InheritanceSpecs.m in Sources */,
 				4B42586013F56D41006BC001 /* ModuleUsageSpecs.m in Sources */,
 				4B42586113F56D41006BC001 /* JSObjectionProviderEntry.m in Sources */,
+				4BA620D01C06BEAE00DB87B6 /* InjectImplementsProtocolSpecs.m in Sources */,
 				4B42586213F56D41006BC001 /* JSObjectionEntry.m in Sources */,
 				4B42586313F56D41006BC001 /* NSObject+Objection.m in Sources */,
 				4B42586413F56D41006BC001 /* JSObjectionUtils.m in Sources */,
@@ -912,6 +917,7 @@
 				4B4258D313F56F45006BC001 /* InheritanceSpecs.m in Sources */,
 				4B4258D413F56F45006BC001 /* ModuleUsageSpecs.m in Sources */,
 				4B4258D513F56F45006BC001 /* JSObjectionProviderEntry.m in Sources */,
+				4BA620D11C06BEAE00DB87B6 /* InjectImplementsProtocolSpecs.m in Sources */,
 				4B4258D613F56F45006BC001 /* JSObjectionEntry.m in Sources */,
 				4B4258D713F56F45006BC001 /* NSObject+Objection.m in Sources */,
 				4B4258D813F56F45006BC001 /* JSObjectionUtils.m in Sources */,
