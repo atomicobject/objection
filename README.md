@@ -388,7 +388,7 @@ It can be downloaded [here](https://github.com/atomicobject/objection/releases/d
 
 1. rake artifact:ios
 2. cp -R build/Release-iphoneuniversal/Objection-iOS.framework ${DEST_DIR}
-3. In XCode -> Project Icon -> Your Target -> Build Phases -> Link Binary With Libraries -> Add (+) -> Add Other
+3. In Xcode -> Project Icon -> Your Target -> Build Phases -> Link Binary With Libraries -> Add (+) -> Add Other
 4. Add -ObjC and -all_load to Other Link Flags in your project
 
 #### Include framework
@@ -398,7 +398,7 @@ It can be downloaded [here](https://github.com/atomicobject/objection/releases/d
 
 1. rake artifact:osx
 2. cp -R build/Release/Objection.framework ${DEST_DIR}
-3. In XCode -> Project Icon -> Your Target -> Build Phases -> Link Binary With Libraries -> Add (+) -> Add Other
+3. In Xcode -> Project Icon -> Your Target -> Build Phases -> Link Binary With Libraries -> Add (+) -> Add Other
 
 #### Include framework
     #import <Objection/Objection.h>
