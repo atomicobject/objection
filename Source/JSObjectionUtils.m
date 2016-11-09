@@ -152,7 +152,7 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
             JSObjectionPropertyInfo propertyInfo;
             id desiredClassOrProtocol;
             _getPropertyInfo(klass, propertyName, &propertyInfo, &desiredClassOrProtocol);
-            id theObject = [injector getObject:desiredClassOrProtocol];
+            id theObject = [injector _getObject:desiredClassOrProtocol named:nil initializer:nil argumentList:nil];
             _validateObjectReturnedFromInjector(&theObject, propertyInfo, desiredClassOrProtocol, propertyName);
             [propertiesDictionary setObject:theObject forKey:propertyName];
         }
@@ -168,7 +168,7 @@ static void InjectDependenciesIntoProperties(JSObjectionInjector *injector, Clas
             JSObjectionPropertyInfo propertyInfo;
             id desiredClassOrProtocol;
             _getPropertyInfo(klass, propertyName, &propertyInfo, &desiredClassOrProtocol);
-            id theObject = [injector getObject:desiredClassOrProtocol named:namedPropertyKey];
+            id theObject = [injector _getObject:desiredClassOrProtocol named:namedPropertyKey initializer:nil argumentList:nil];
             _validateObjectReturnedFromInjector(&theObject, propertyInfo, desiredClassOrProtocol, propertyName);
             [propertiesDictionary setObject:theObject forKey:propertyName];
         }

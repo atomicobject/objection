@@ -74,7 +74,7 @@ static id<JSObjectionPropertyReflector> gPropertyReflector;
 
 + (void)registerClass:(Class)theClass scope:(JSObjectionScope)scope {
     pthread_mutex_lock(&gObjectionMutex);
-    if (scope != JSObjectionScopeSingleton && scope != JSObjectionScopeNormal) {
+    if (scope != JSObjectionScopeSingleton && scope != JSObjectionScopeNormal && scope != JSObjectionScopeGraph) {
         @throw [NSException exceptionWithName:@"JSObjectionInjectorException" reason:@"Invalid Instantiation Rule" userInfo:nil];
     }
 

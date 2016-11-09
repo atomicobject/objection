@@ -30,6 +30,7 @@
 - (void)bindProvider:(id<JSObjectionProvider>)provider toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope named:(NSString *)name;
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol;
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol named:(NSString*)name;
+- (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope;
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope named:(NSString*)name;
 - (void)bindClass:(Class)aClass toClass:(Class)toClass;
 - (void)bindClass:(Class)aClass toClass:(Class)toClass named:(NSString*)name;

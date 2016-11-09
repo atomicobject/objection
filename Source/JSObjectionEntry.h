@@ -3,7 +3,8 @@
 typedef enum {
       JSObjectionScopeNone = -1,
       JSObjectionScopeNormal,
-      JSObjectionScopeSingleton  
+      JSObjectionScopeSingleton,
+      JSObjectionScopeGraph,
 } JSObjectionScope;
 
 

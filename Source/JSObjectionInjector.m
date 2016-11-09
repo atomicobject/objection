@@ -27,12 +27,13 @@
 }
 
 @end
-  
+
 @interface JSObjectionInjector() {
-  NSDictionary *_globalContext;
-  NSMutableDictionary *_context;
-  NSSet *_eagerSingletons;
-  NSMutableArray *_modules;
+    NSDictionary *_globalContext;
+    NSMutableDictionary *_context;
+    NSSet *_eagerSingletons;
+    NSMutableArray *_modules;
+    NSMutableArray *_graphs;
 }
 
 - (void)initializeEagerSingletons;
@@ -48,10 +49,11 @@
         _globalContext = theGlobalContext;
         _context = [[NSMutableDictionary alloc] init];
         _modules = [[NSMutableArray alloc] init];
+        _graphs = [[NSMutableArray alloc]init];
         [self configureDefaultModule];
         [self initializeEagerSingletons];
     }
-
+    
     return self;
 }
 
@@ -66,11 +68,11 @@
 - (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules {
     if ((self = [self initWithContext:theGlobalContext])) {
         for (JSObjectionModule *module in theModules) {
-            [self configureModule:module];      
+            [self configureModule:module];
         }
         [self initializeEagerSingletons];
     }
-    return self;  
+    return self;
 }
 
 - (id)getObject:(id)classOrProtocol {
@@ -111,10 +113,37 @@
 }
 
 - (id)getObject:(id)classOrProtocol argumentList:(NSArray *)argumentList {
-   return [self getObject:classOrProtocol named:nil argumentList:argumentList];
+    return [self getObject:classOrProtocol named:nil argumentList:argumentList];
+}
+
+- (id)getObject:(id)classOrProtocol named:(NSString*)name argumentList:(NSArray *)argumentList {
+    return [self getObject:classOrProtocol named:name initializer: nil argumentList:argumentList];
 }
 
 - (id)getObject:(id)classOrProtocol named:(NSString*)name initializer:(SEL)selector argumentList:(NSArray *)argumentList {
+    
+    [self _startGraph];
+    id obj = [self _getObject:classOrProtocol named:name initializer:selector argumentList:argumentList];
+    [self _endGraph:true];
+    
+    return obj;
+}
+
+- (void)_startGraph {
+    [_graphs addObject:[[NSMutableDictionary alloc]init]];
+}
+
+- (void)_endGraph:(BOOL)isLast {
+    [_graphs removeLastObject];
+    
+    if (isLast && [_graphs count] > 0) {
+        @throw [NSException exceptionWithName:@"ObjectionError"
+                                       reason:@"graphs array is not empty."
+                                     userInfo:nil];
+    }
+}
+
+- (id)_getObject:(id)classOrProtocol named:(NSString*)name initializer:(SEL)selector argumentList:(NSArray *)argumentList {
     @synchronized(self) {
         if (!classOrProtocol) {
             return nil;
@@ -150,22 +179,60 @@
         }
         
         if (classOrProtocol && injectorEntry) {
-            if ([injectorEntry respondsToSelector:@selector(extractObject:initializer:)]) {
-                return [injectorEntry extractObject:argumentList initializer:selector];
+            
+            if (injectorEntry.lifeCycle == JSObjectionScopeNormal) {
+                return [self _getObjectFromEntry:injectorEntry
+                                     initializer:selector
+                                    argumentList:argumentList];
             }
-            return [injectorEntry extractObject:argumentList];
+            else if (injectorEntry.lifeCycle == JSObjectionScopeSingleton) {
+                [self _startGraph];
+                id obj = [self _getObjectFromEntry:injectorEntry
+                                       initializer:selector
+                                      argumentList:argumentList];
+                [self _endGraph:false];
+                return obj;
+            }
+            else if (injectorEntry.lifeCycle == JSObjectionScopeGraph) {
+                
+                NSMutableDictionary* graph = [_graphs lastObject];
+                
+                id obj = [graph objectForKey:key];
+                
+                if (obj) {
+                    return obj;
+                }
+                
+                obj = [self _getObjectFromEntry:injectorEntry
+                                    initializer:selector
+                                   argumentList:argumentList];
+                [graph setObject:obj forKey:key];
+                
+                return obj;
+            }
+            else {
+                @throw [NSException exceptionWithName:@"ObjectionError"
+                                               reason:[NSString stringWithFormat:@"Unknown scope: %d", injectorEntry.lifeCycle]
+                                             userInfo:nil];
+            }
         }
         
         return nil;
     }
     
     return nil;
-  
 }
 
-- (id)getObject:(id)classOrProtocol named:(NSString*)name argumentList:(NSArray *)argumentList {
-    return [self getObject:classOrProtocol named:name initializer: nil argumentList:argumentList];
+-(id) _getObjectFromEntry:(id<JSObjectionEntry>)injectorEntry
+              initializer:(SEL)selector
+             argumentList:(NSArray *)argumentList {
+    
+    if ([injectorEntry respondsToSelector:@selector(extractObject:initializer:)]) {
+        return [injectorEntry extractObject:argumentList initializer:selector];
+    }
+    return [injectorEntry extractObject:argumentList];
 }
+
 
 - (id)objectForKeyedSubscript: (id)key {
     return [self getObjectWithArgs:key, nil];
@@ -173,7 +240,7 @@
 
 
 - (id)withModule:(JSObjectionModule *)theModule {
-    return [self withModuleCollection:[NSArray arrayWithObject:theModule]];    
+    return [self withModuleCollection:[NSArray arrayWithObject:theModule]];
 }
 
 - (id)withModules:(JSObjectionModule *)first, ... {
@@ -188,7 +255,7 @@
     
     va_end(va_modules);
     return [self withModuleCollection:modules];
-   
+    
 }
 
 - (id)withModuleCollection:(NSArray *)theModules {
@@ -213,7 +280,7 @@
     
     va_end(va_modules);
     return [self withoutModuleCollection:classes];
-
+    
 }
 
 - (id)withoutModuleCollection:(NSArray *)moduleClasses {
@@ -232,7 +299,9 @@
 
 
 - (void)injectDependencies:(id)object {
+    [self _startGraph];
     JSObjectionUtils.injectDependenciesIntoProperties(self, [object class], object);
+    [self _endGraph:true];
 }
 
 - (NSArray *)modules {
@@ -246,10 +315,10 @@
     for (NSString *eagerSingletonKey in _eagerSingletons) {
         id entry = [_context objectForKey:eagerSingletonKey] ?: [_globalContext objectForKey:eagerSingletonKey];
         if ([entry lifeCycle] == JSObjectionScopeSingleton) {
-            [self getObject:NSClassFromString(eagerSingletonKey)];      
+            [self getObject:NSClassFromString(eagerSingletonKey)];
         } else {
-            @throw [NSException exceptionWithName:@"JSObjectionException" 
-                                           reason:[NSString stringWithFormat:@"Unable to initialize eager singleton for the class '%@' because it was never registered as a singleton", eagerSingletonKey] 
+            @throw [NSException exceptionWithName:@"JSObjectionException"
+                                           reason:[NSString stringWithFormat:@"Unable to initialize eager singleton for the class '%@' because it was never registered as a singleton", eagerSingletonKey]
                                          userInfo:nil];
         }
     }
