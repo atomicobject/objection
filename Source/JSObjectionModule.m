@@ -23,7 +23,7 @@
 }
 
 - (id)provide:(JSObjectionInjector *)context arguments:(NSArray *)arguments {
-    return [context getObject:_class argumentList:arguments];
+    return [context _getObject:_class named:nil initializer:nil argumentList:arguments];
 }
 
 @end
@@ -130,6 +130,10 @@
 
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol named:(NSString*)name {
     [self bindClass:aClass toProtocol:aProtocol inScope:JSObjectionScopeNormal named:name];
+}
+
+- (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope {
+    [self bindClass:aClass toProtocol:aProtocol inScope:scope named:nil];
 }
 
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope named:(NSString*)name{

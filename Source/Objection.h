@@ -19,6 +19,13 @@
         } \
     }
 
+#define objection_register_graph(value) \
+    + (void)initialize { \
+        if (self == [value class]) { \
+            [JSObjection registerClass:[value class] scope: JSObjectionScopeGraph]; \
+        } \
+    }
+
 #define objection_register_singleton(value) \
     + (void)initialize { \
         if (self == [value class]) { \
