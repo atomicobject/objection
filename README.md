@@ -306,6 +306,20 @@ injector = [otherInjector withModule:[[Level18Module alloc] init]]
                           
 ```
 
+### Modifying an existing injector
+
+An existing injector can be edited using the *addModule:* or *removeModule:* methods. 
+
+- The instances related to the modules being added will be created when needed (eager singletons will be created right away).
+- The instances related to modules being removed will be removed.
+- the instances related to the remaining modules will keep alive.
+
+### Example
+```objective-c
+[anInjector removeModule:Level17Module.class];
+[anInjector addModule:[[Level18Module alloc] init]];
+```
+
 ## Initializers
 
 By default, Objection allocates objects with the default initializer <code>init</code>. If you'd like to instantiate an object with an alternate ininitializer the <code>objection_initializer</code> macro can be used to do so. The macro supports passing in default arguments (scalar values are not currently supported) as well.

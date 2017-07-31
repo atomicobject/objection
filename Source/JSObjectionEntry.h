@@ -25,4 +25,6 @@ typedef enum {
 
 @interface JSObjectionEntry : NSObject<JSObjectionEntry>
 
+@property (nonatomic, strong) Class incomingModuleClass;
+
 @end

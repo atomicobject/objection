@@ -30,6 +30,12 @@
 - (id)withoutModuleOfType:(Class)moduleClass;
 - (id)withoutModuleOfTypes:(Class)first, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)withoutModuleCollection:(NSArray *)moduleClasses;
+- (void)addModule:(JSObjectionModule *)theModule;
+- (void)addModules:(JSObjectionModule *)first, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)addModuleCollection:(NSArray *)theModules;
+- (void)removeModuleOfType:(Class)moduleClass;
+- (void)removeModuleOfTypes:(Class)first, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)removeModuleCollection:(NSArray *)moduleClasses;
 - (void)injectDependencies:(id)object;
 - (id)objectForKeyedSubscript: (id)key;
 - (NSArray *)modules;

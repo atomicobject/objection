@@ -230,6 +230,80 @@
     return [[[self class] alloc] initWithContext:_globalContext andModules:remainingModules];
 }
 
+- (void)addModule:(JSObjectionModule *)theModule {
+    [self addModuleCollection:[NSArray arrayWithObject:theModule]];
+}
+
+- (void)addModules:(JSObjectionModule *)first, ... {
+    va_list va_modules;
+    NSMutableArray *modules = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+    
+    JSObjectionModule *module;
+    while ((module = va_arg( va_modules, JSObjectionModule *) )) {
+        [modules addObject:module];
+    }
+    
+    va_end(va_modules);
+    [self addModuleCollection:modules];
+}
+
+- (void)addModuleCollection:(NSArray *)theModules {
+    NSMutableArray *mergedModules = [NSMutableArray arrayWithArray:_modules];
+    [mergedModules addObjectsFromArray:theModules];
+    
+    for (JSObjectionModule *module in theModules) {
+        [self configureModule:module];
+    }
+    [self initializeEagerSingletons];
+}
+
+- (void)removeModuleOfType:(Class)moduleClass {
+    [self removeModuleCollection:[NSArray arrayWithObject:moduleClass]];
+}
+
+- (void)removeModuleOfTypes:(Class)first, ... {
+    va_list va_modules;
+    NSMutableArray *classes = [NSMutableArray arrayWithObject:first];
+    va_start(va_modules, first);
+    
+    Class aClass;
+    while ((aClass = va_arg( va_modules, Class) )) {
+        [classes addObject:aClass];
+    }
+    
+    va_end(va_modules);
+    [self removeModuleCollection:classes];
+}
+
+- (void)removeModuleCollection:(NSArray *)moduleClasses {
+    NSMutableSet *deletedModulesClasses = [NSMutableSet set];
+    [moduleClasses enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [deletedModulesClasses addObject:[obj class]];
+    }];
+    
+    [[_modules copy] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([deletedModulesClasses containsObject:[obj class]])
+        {
+            [_modules removeObjectIdenticalTo:obj];
+        }
+    }];
+    
+    [[_context copy] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        JSObjectionEntry *entry = obj;
+        if (entry.incomingModuleClass && [deletedModulesClasses containsObject:entry.incomingModuleClass])
+        {            
+            [_context removeObjectForKey:key];
+        }
+    }];
+    
+    __block NSSet *eagerSingletons = [NSSet set];
+    [_modules enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        JSObjectionModule *module = obj;
+        eagerSingletons = [eagerSingletons setByAddingObjectsFromSet:module.eagerSingletons];
+    }];
+    _eagerSingletons = eagerSingletons;
+}
 
 - (void)injectDependencies:(id)object {
     JSObjectionUtils.injectDependenciesIntoProperties(self, [object class], object);
