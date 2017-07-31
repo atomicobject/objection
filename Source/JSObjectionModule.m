@@ -30,8 +30,8 @@
 
 
 @interface JSObjectionModule() {
-  NSMutableDictionary *_bindings;
-  NSMutableSet *_eagerSingletons;
+    NSMutableDictionary *_bindings;
+    NSMutableSet *_eagerSingletons;
 }
 
 - (NSString *)classKey:(Class)class withName:(NSString*)name;
@@ -62,6 +62,7 @@
     }
     NSString *key = [self protocolKey:aProtocol withName:nil];
     JSObjectionBindingEntry *entry = [[JSObjectionBindingEntry alloc] initWithObject:metaClass];
+    entry.incomingModuleClass = self.class;
     [_bindings setObject:entry forKey:key];
 }
 
@@ -73,6 +74,7 @@
     [self ensureInstance: instance conformsTo: aProtocol];
     NSString *key = [self protocolKey:aProtocol withName:name];
     JSObjectionBindingEntry *entry = [[JSObjectionBindingEntry alloc] initWithObject:instance];
+    entry.incomingModuleClass = self.class;
     [_bindings setObject:entry forKey:key];
 }
 
@@ -83,6 +85,7 @@
 - (void)bind:(id)instance toClass:(Class)aClass named:(NSString *)name {
     NSString *key = [self classKey:aClass withName:name];
     JSObjectionBindingEntry *entry = [[JSObjectionBindingEntry alloc] initWithObject:instance];
+    entry.incomingModuleClass = self.class;
     [_bindings setObject:entry forKey:key];
 }
 
@@ -107,9 +110,10 @@
 }
 
 - (void)bindProvider:(id <JSObjectionProvider>)provider toClass:(Class)aClass inScope:(JSObjectionScope)scope
-        named:(NSString *)name {
+               named:(NSString *)name {
     NSString *key = [self classKey:aClass withName:name];
     JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithProvider:provider lifeCycle:scope];
+    entry.incomingModuleClass = self.class;
     [_bindings setObject:entry forKey:key];
 }
 
@@ -118,14 +122,15 @@
 }
 
 - (void)bindProvider:(id <JSObjectionProvider>)provider toProtocol:(Protocol *)aProtocol inScope:(JSObjectionScope)scope
-        named:(NSString *)name {
+               named:(NSString *)name {
     NSString *key = [self protocolKey:aProtocol withName:name];
     JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithProvider:provider lifeCycle:scope];
+    entry.incomingModuleClass = self.class;
     [_bindings setObject:entry forKey:key];
 }
 
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol {
-   [self bindClass:aClass toProtocol:aProtocol named:nil];
+    [self bindClass:aClass toProtocol:aProtocol named:nil];
 }
 
 - (void)bindClass:(Class)aClass toProtocol:(Protocol *)aProtocol named:(NSString*)name {
@@ -171,9 +176,10 @@
 }
 
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toClass:(Class)aClass inScope:(JSObjectionScope)scope
-        named:(NSString *)name {
+            named:(NSString *)name {
     NSString *key = [self classKey:aClass withName:name];
     JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithBlock:block lifeCycle:scope];
+    entry.incomingModuleClass = self.class;
     [_bindings setObject:entry forKey:key];
 }
 
@@ -182,14 +188,17 @@
 }
 
 - (void)bindBlock:(id (^)(JSObjectionInjector *context))block toProtocol:(Protocol *)aProtocol
-        inScope:(JSObjectionScope)scope named:(NSString *)name {
+          inScope:(JSObjectionScope)scope named:(NSString *)name {
     NSString *key = [self protocolKey:aProtocol withName:name];
     JSObjectionProviderEntry *entry = [[JSObjectionProviderEntry alloc] initWithBlock:block lifeCycle: scope];
+    entry.incomingModuleClass = self.class;
     [_bindings setObject:entry forKey:key];
 }
 
 - (void)bindClass:(Class)aClass inScope:(JSObjectionScope)scope {
-    [_bindings setObject:[JSObjectionInjectorEntry entryWithClass:aClass scope:scope] forKey:[self classKey:aClass withName:nil]];
+    JSObjectionInjectorEntry *entry = [JSObjectionInjectorEntry entryWithClass:aClass scope:scope];
+    entry.incomingModuleClass = self.class;
+    [_bindings setObject:entry forKey:[self classKey:aClass withName:nil]];
 }
 
 - (void) registerEagerSingleton:(Class)aClass  {
@@ -205,7 +214,7 @@
 }
 
 - (BOOL)hasBindingForProtocol:(Protocol *)protocol {
-   return [self hasBindingForProtocol:protocol withName:nil];
+    return [self hasBindingForProtocol:protocol withName:nil];
 }
 
 - (BOOL)hasBindingForProtocol:(Protocol *)protocol withName:(NSString*)name {
