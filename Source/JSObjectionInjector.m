@@ -29,7 +29,7 @@
 @end
   
 @interface JSObjectionInjector() {
-  NSDictionary *_globalContext;
+  NSMutableDictionary *_globalContext;
   NSMutableDictionary *_context;
   NSSet *_eagerSingletons;
   NSMutableArray *_modules;
@@ -43,7 +43,7 @@
 
 @implementation JSObjectionInjector
 
-- (instancetype)initWithContext:(NSDictionary *)theGlobalContext {
+- (instancetype)initWithContext:(NSMutableDictionary *)theGlobalContext {
     if ((self = [super init])) {
         _globalContext = theGlobalContext;
         _context = [[NSMutableDictionary alloc] init];
@@ -55,7 +55,7 @@
     return self;
 }
 
-- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule {
+- (instancetype)initWithContext:(NSMutableDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule {
     if ((self = [self initWithContext:theGlobalContext])) {
         [self configureModule:theModule];
         [self initializeEagerSingletons];
@@ -63,7 +63,7 @@
     return self;
 }
 
-- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules {
+- (instancetype)initWithContext:(NSMutableDictionary *)theGlobalContext andModules:(NSArray *)theModules {
     if ((self = [self initWithContext:theGlobalContext])) {
         for (JSObjectionModule *module in theModules) {
             [self configureModule:module];      
@@ -261,6 +261,7 @@
     NSSet *mergedSet = [module.eagerSingletons setByAddingObjectsFromSet:_eagerSingletons];
     _eagerSingletons = mergedSet;
     [_context addEntriesFromDictionary:module.bindings];
+	[_globalContext addEntriesFromDictionary:_context];
 }
 
 - (void)configureDefaultModule {
