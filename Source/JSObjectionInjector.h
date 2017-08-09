@@ -1,19 +1,11 @@
 #import <Foundation/Foundation.h>
 #import "JSObjectionModule.h"
 
-@protocol JSObjectionInjectorSelectors
-
-@optional
-+ (NSSet *)objectionRequires;
-+ (NSDictionary *)objectionRequiresNames;
-
-@end
-
 @interface JSObjectionInjector : NSObject 
 
-- (instancetype)initWithContext:(NSDictionary *)theGlobalContext;
-- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule;
-- (instancetype)initWithContext:(NSDictionary *)theGlobalContext andModules:(NSArray *)theModules;
+- (instancetype)initWithContext:(NSMutableDictionary *)theGlobalContext;
+- (instancetype)initWithContext:(NSMutableDictionary *)theGlobalContext andModule:(JSObjectionModule *)theModule;
+- (instancetype)initWithContext:(NSMutableDictionary *)theGlobalContext andModules:(NSArray *)theModules;
 - (id)getObject:(id)classOrProtocol;
 - (id)getObject:(id)classOrProtocol named:(NSString*)name;
 - (id)getObjectWithArgs:(id)classOrProtocol, ... NS_REQUIRES_NIL_TERMINATION;
